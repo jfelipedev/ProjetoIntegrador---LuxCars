@@ -1,0 +1,36 @@
+CREATE DATABASE carroluxo;
+
+USE carroluxo;
+
+CREATE TABLE Users (
+
+ID_user INT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(40) NOT NULL,
+surname VARCHAR (40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(50) NOT NULL UNIQUE,
+data_subscribe DATETIME
+
+);
+
+CREATE TABLE producer (
+
+ID_producer INT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name_producer VARCHAR (200) NOT NULL,
+origin VARCHAR (20) NOT NULL
+
+);
+
+CREATE TABLE car (
+
+ID_car INT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name_car VARCHAR (100) NOT NULL,
+model VARCHAR (100) NOT NULL,
+year_car DATE NOT NULL,
+url_image VARCHAR (255) NOT NULL,
+value_avg DOUBLE (14,5) NOT NULL,
+producer_ID INT,
+FOREIGN KEY (producer_ID) REFERENCES producer(ID_producer)
+
+);
+
