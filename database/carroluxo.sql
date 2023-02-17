@@ -2,7 +2,7 @@ CREATE DATABASE carroluxo;
 
 USE carroluxo;
 
-CREATE TABLE Users (
+CREATE TABLE users (
 
 ID_user INT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 first_name VARCHAR(40) NOT NULL,
@@ -13,7 +13,7 @@ data_subscribe DATETIME
 
 );
 
-CREATE TABLE producer (
+CREATE TABLE producers (
 
 ID_producer INT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_producer VARCHAR (200) NOT NULL,
@@ -21,7 +21,7 @@ origin VARCHAR (20) NOT NULL
 
 );
 
-CREATE TABLE car (
+CREATE TABLE cars (
 
 ID_car INT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_car VARCHAR (100) NOT NULL,
