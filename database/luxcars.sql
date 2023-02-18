@@ -23,10 +23,7 @@ CREATE TABLE car (
 
 id_car BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_car VARCHAR (100) NOT NULL,
-model VARCHAR (100) NOT NULL,
-year_car DATE NOT NULL,
-url_image VARCHAR (255) NOT NULL,
-price DOUBLE (14,5) NOT NULL,
+description VARCHAR (100) NOT NULL,
 category_id BIGINT,
 FOREIGN KEY (category_id) REFERENCES categories(id_category)
 
