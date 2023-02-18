@@ -19,22 +19,22 @@ public class ProducerController {
     }
 
     @PostMapping("/producer")
-    String create(@RequestBody CategoryDto categoryDto){
+    String create(@RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.create(categoryDto);
     }
 
     @GetMapping("/producer/{id}")
-    CategoryDto read(@PathVariable int id){
+    CategoryDto read(@PathVariable int id) throws Exception {
         return categoryService.read(id);
     }
 
     @PutMapping("/producer/{id}")
-    String update(@PathVariable int id, @RequestBody CategoryDto categoryDto){
+    String update(@PathVariable int id, @RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.update(id, categoryDto);
     }
 
     @DeleteMapping("/producer/{id}")
-    String delete(@PathVariable int id){
+    String delete(@PathVariable int id) throws Exception {
         return categoryService.delete(id);
     }
 }

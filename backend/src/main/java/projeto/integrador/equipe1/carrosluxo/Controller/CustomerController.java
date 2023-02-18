@@ -14,7 +14,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping("/auth")
-    String login(@RequestBody LoginDto loginDto){
+    String login(@RequestBody LoginDto loginDto) throws Exception {
         return customerService.login(loginDto);
     }
     @PostMapping("/register")
