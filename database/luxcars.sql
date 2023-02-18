@@ -5,10 +5,10 @@ USE luxcars;
 CREATE TABLE customers (
 
 id_customer BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-email VARCHAR (50) NOT NULL,
+email VARCHAR (200) NOT NULL,
 password VARCHAR (50) NOT NULL, 
-first_name VARCHAR (50) NOT NULL,
-surname VARCHAR (50) NOT NULL
+first_name VARCHAR (100) NOT NULL,
+surname VARCHAR (100) NOT NULL
 
 );
 
