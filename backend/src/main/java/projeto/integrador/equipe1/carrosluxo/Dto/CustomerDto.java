@@ -2,20 +2,26 @@ package projeto.integrador.equipe1.carrosluxo.Dto;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CustomerEntity;
 
-public class RegisterDto {
+import java.time.LocalDateTime;
+
+public class CustomerDto {
     private String firstName;
     private String surname;
     private String email;
-    private String password;
 
-    public RegisterDto() {
+    public CustomerDto() {
     }
 
-    public RegisterDto(String firstName, String surname, String email, String password) {
+    public CustomerDto(String firstName, String surname, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
-        this.password = password;
+    }
+
+    public CustomerDto(CustomerEntity customerEntity){
+        this.firstName = customerEntity.getFirstName();
+        this.surname = customerEntity.getEmail();
+        this.email = customerEntity.getEmail();
     }
 
     public String getFirstName() {
@@ -42,20 +48,4 @@ public class RegisterDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public CustomerEntity toEntity(){
-        CustomerEntity user = new CustomerEntity();
-        user.setFirstName(this.getFirstName());
-        user.setSurname(this.getSurname());
-        user.setEmail(this.getEmail());
-        user.setPassword(this.getPassword());
-        return user;
-    }
 }

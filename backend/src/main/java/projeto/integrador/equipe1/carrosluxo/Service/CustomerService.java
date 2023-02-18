@@ -1,35 +1,34 @@
 package projeto.integrador.equipe1.carrosluxo.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.LoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.RegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.UserDto;
-import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
-import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
+import projeto.integrador.equipe1.carrosluxo.Dto.CustomerDto;
+import projeto.integrador.equipe1.carrosluxo.Entity.CustomerEntity;
+import projeto.integrador.equipe1.carrosluxo.Repository.CustomerRepository;
 
 @Service
-public class UserService {
+public class CustomerService {
     @Autowired
-    private UserRepository userRepository;
-    public UserDto read(int id){
+    private CustomerRepository customerRepository;
+    public CustomerDto read(long id){
         //if(userRepository.existsById(id)){
-            return new UserDto(userRepository.findById(id));
+            return new CustomerDto(customerRepository.findById(id));
         //}
     }
 
     public String register(RegisterDto register){
-        if(!userRepository.existsByEmail(register.getEmail())){
-            userRepository.save(register.toEntity());
+        if(!customerRepository.existsByEmail(register.getEmail())){
+            customerRepository.save(register.toEntity());
             return "Usuário foi cadastrado com sucesso!";
         }
         return "Não foi possivel registrar, este usuário!";
     }
 
     public String login(LoginDto login){
-        if(userRepository.existsByEmail(login.getEmail())){
-            UserEntity user = userRepository.findByEmail(login.getEmail());
+        if(customerRepository.existsByEmail(login.getEmail())){
+            CustomerEntity user = customerRepository.findByEmail(login.getEmail());
             if(user.getPassword().compareTo(login.getPassword().toString()) == 0){
                 return "Acesso realizado com sucesso!";
             }

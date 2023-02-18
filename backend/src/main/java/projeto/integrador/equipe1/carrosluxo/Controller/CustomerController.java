@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import projeto.integrador.equipe1.carrosluxo.Dto.LoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.RegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Service.ProducerService;
-import projeto.integrador.equipe1.carrosluxo.Service.UserService;
+import projeto.integrador.equipe1.carrosluxo.Service.CustomerService;
 
 @RestController
-public class UserController {
+public class CustomerController {
     @Autowired
-    UserService userService;
+    CustomerService customerService;
 
     @PostMapping("/auth")
     String login(@RequestBody LoginDto loginDto){
-        return userService.login(loginDto);
+        return customerService.login(loginDto);
     }
     @PostMapping("/register")
     String register(@RequestBody RegisterDto registerDto){
-        return userService.register(registerDto);
+        return customerService.register(registerDto);
     }
 }

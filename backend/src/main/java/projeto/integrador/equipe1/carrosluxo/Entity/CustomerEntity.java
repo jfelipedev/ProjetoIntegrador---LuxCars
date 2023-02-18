@@ -4,38 +4,34 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "users")
-public class UserEntity {
+@Entity(name = "customers")
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID_user")
-    private int id;
+    @Column(name = "ID_customer")
+    private long id;
     @Column(name = "first_name")
     private String firstName;
     private String surname;
     private String email;
     private String password;
 
-    @Column(name = "data_subscribe", columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataSubscribe;
-
-    public UserEntity() {
+    public CustomerEntity() {
     }
 
-    public UserEntity(int id, String firstName, String surname, String email, String password, LocalDateTime dataSubscribe) {
+    public CustomerEntity(long id, String firstName, String surname, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.dataSubscribe = dataSubscribe;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,14 +67,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public LocalDateTime getDataSubscribe() {
-        return dataSubscribe;
-    }
-
-    public void setDataSubscribe(LocalDateTime dataSubscribe) {
-        this.dataSubscribe = dataSubscribe;
-    }
-
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -87,7 +75,6 @@ public class UserEntity {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", dataSubscribe=" + dataSubscribe +
                 '}';
     }
 }
