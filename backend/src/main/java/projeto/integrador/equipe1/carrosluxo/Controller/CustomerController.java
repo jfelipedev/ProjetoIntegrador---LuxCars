@@ -18,7 +18,7 @@ public class CustomerController {
         return customerService.login(loginDto);
     }
     @PostMapping("/register")
-    String register(@RequestBody RegisterDto registerDto){
+    String register(@RequestBody RegisterDto registerDto) throws Exception {
         return customerService.register(registerDto);
     }
 }
