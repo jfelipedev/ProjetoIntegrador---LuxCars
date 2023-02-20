@@ -17,7 +17,7 @@ public class CategoryValidation {
     private static final int modelCharactersMaximum = 100;
     private static final int urlCharactersMaximum = 255;
     private static final String textCharactersAllowed = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ]{1,}$";
-    private static final String regexpUrlAllowed = "\"^https?:\\\\/\\\\/(?:www\\\\.)?[-a-zA-Z0-9@:%._\\\\+~#=]{1,256}\\\\.[a-zA-Z0-9()]{1,6}\\\\b(?:[-a-zA-Z0-9()@:%_\\\\+.~#?&\\\\/=]*)$\")";
+    private static final String regexpUrlAllowed = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
 
     public CategoryValidation(CategoryDto categoryDto) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -53,7 +53,7 @@ public class CategoryValidation {
             return "A url não pode ser vazio";
         } else if (url.trim().length() > urlCharactersMaximum) {
             return "A url dever ter menor do que " + urlCharactersMaximum + " caracteres!";
-        } else if (!isValid(url, regexpUrlAllowed)){
+        } else if (!isValidUrl(url)){
             return "Esta url é invalido";
         }
         return null;
@@ -61,6 +61,11 @@ public class CategoryValidation {
     public boolean isValid(String text, String regexp){
         Pattern pattern = Pattern.compile(regexp, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
+        return matcher.find();
+    }
+    public boolean isValidUrl(String url){
+        Pattern pattern = Pattern.compile(regexpUrlAllowed);
+        Matcher matcher = pattern.matcher(url);
         return matcher.find();
     }
 }
