@@ -12,4 +12,7 @@ public class CarEntity {
     private int id;
     @Column(name = "name_car")
     private String nameCar;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 }

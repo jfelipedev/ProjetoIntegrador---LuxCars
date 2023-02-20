@@ -3,6 +3,8 @@ package projeto.integrador.equipe1.carrosluxo.Entity;
 import jakarta.persistence.*;
 import projeto.integrador.equipe1.carrosluxo.Dto.CategoryDto;
 
+import java.util.Set;
+
 @Entity(name = "categories")
 public class CategoryEntity {
     @Id
@@ -14,6 +16,9 @@ public class CategoryEntity {
     @Column(name = "url_image")
     private String urlImage;
     private String model;
+
+    @OneToMany(mappedBy="category")
+    private Set<CarEntity> cars;
 
     public CategoryEntity() {
     }

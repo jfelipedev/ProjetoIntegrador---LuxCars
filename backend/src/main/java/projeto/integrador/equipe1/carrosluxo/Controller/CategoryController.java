@@ -41,7 +41,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/category/{id}")
-    @Operation(summary = "Remover uma categoria especifica", tags = { "Category" })
+    @Operation(summary = "Removerd uma categoria especifica", tags = { "Category" })
     String delete(@PathVariable int id) throws Exception {
         return categoryService.delete(id);
     }
