@@ -14,7 +14,7 @@ import projeto.integrador.equipe1.carrosluxo.Service.CustomerService;
 @Tag(name = "Customer")
 public class CustomerController {
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @PostMapping("/auth")
     @Operation(summary = "Entrar", tags = { "Customer" })

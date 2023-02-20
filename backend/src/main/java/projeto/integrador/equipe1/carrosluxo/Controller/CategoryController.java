@@ -14,7 +14,7 @@ import java.util.List;
 @Tag(name = "Category", description = "Categoria dos carros")
 public class CategoryController {
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/category")
     @Operation(summary = "Exibir lista de todas as categorias", tags = { "Category" })

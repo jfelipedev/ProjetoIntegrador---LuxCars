@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class CategoryService {
     @Autowired
-    public CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
@@ -41,6 +41,9 @@ public class CategoryService {
     public String update(long id, CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
+            if(categoryRepository.existsByDescritpion(category.getDescritpion())) {
+                throw new BadRequestException("Esta categoria já está cadastrado!");
+            }
             CategoryEntity categoryEntity = new CategoryEntity(category);
             categoryEntity.setId(id);
             categoryRepository.save(categoryEntity);
