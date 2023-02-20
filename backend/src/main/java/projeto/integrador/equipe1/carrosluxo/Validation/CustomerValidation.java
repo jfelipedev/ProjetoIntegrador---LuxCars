@@ -83,7 +83,7 @@ public class CustomerValidation {
         if (email.trim().isBlank()){
             return "O email não pode ser vazio";
         }
-        else if (isValid(email, emailAllowed)){
+        else if (!isValid(email, emailAllowed)){
             return "Este email inserido é invalido";
         }
         return null;

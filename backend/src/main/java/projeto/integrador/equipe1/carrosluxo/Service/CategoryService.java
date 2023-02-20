@@ -10,6 +10,7 @@ import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.GlobalException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Repository.CategoryRepository;
+import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class CategoryService {
     Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
     public String create(CategoryDto category) throws Exception {
+        new CategoryValidation(category);
         if(!categoryRepository.existsByDescritpion(category.getDescritpion())){
             categoryRepository.save(category.toEntity());
             logger.info(category.getDescritpion() + " foi adicionado!");
@@ -37,6 +39,7 @@ public class CategoryService {
         throw new ResourceNotFoundException("Esta categoria não existir");
     }
     public String update(long id, CategoryDto category) throws Exception {
+        new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
             CategoryEntity categoryEntity = new CategoryEntity(category);
             categoryEntity.setId(id);
