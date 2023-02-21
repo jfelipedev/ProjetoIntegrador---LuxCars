@@ -2,13 +2,14 @@ CREATE DATABASE luxcars;
 
 USE luxcars;
 
-CREATE TABLE customers (
+CREATE TABLE users (
 
 id_customer BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
 email VARCHAR (200) NOT NULL,
 password VARCHAR (60) NOT NULL, 
 first_name VARCHAR (100) NOT NULL,
-surname VARCHAR (100) NOT NULL
+surname VARCHAR (100) NOT NULL,
+role VARCHAR (100) NOT NULL
 
 );
 
