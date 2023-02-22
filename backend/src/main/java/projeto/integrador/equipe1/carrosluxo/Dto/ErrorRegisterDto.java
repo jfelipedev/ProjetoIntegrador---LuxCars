@@ -1,17 +1,15 @@
 package projeto.integrador.equipe1.carrosluxo.Dto;
 
-import projeto.integrador.equipe1.carrosluxo.Entity.CustomerEntity;
+public class ErrorRegisterDto {
+    String firstName;
+    String surname;
+    String email;
+    String password;
 
-public class RegisterDto {
-    private String firstName;
-    private String surname;
-    private String email;
-    private String password;
-
-    public RegisterDto() {
+    public ErrorRegisterDto() {
     }
 
-    public RegisterDto(String firstName, String surname, String email, String password) {
+    public ErrorRegisterDto(String firstName, String surname, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
@@ -50,12 +48,13 @@ public class RegisterDto {
         this.password = password;
     }
 
-    public CustomerEntity toEntity(){
-        CustomerEntity user = new CustomerEntity();
-        user.setFirstName(this.getFirstName().trim());
-        user.setSurname(this.getSurname().trim());
-        user.setEmail(this.getEmail().trim());
-        user.setPassword(this.getPassword());
-        return user;
+    @Override
+    public String toString() {
+        return "ErrorRegisterDto{" +
+                "firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
