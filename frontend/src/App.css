@@ -1,0 +1,93 @@
+*,*::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+  background: #474350;
+}
+
+/* button, input, textarea {
+  font-family: ;
+  font-size: ;
+} */
+
+ul{
+  list-style: none;
+}
+
+a{
+  outline: none;
+  text-decoration: none;
+}
+
+button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+/* ====================Layout=================== */
+ .container{
+  max-width: 2000px;
+  margin-left: auto;
+  margin-right: auto;
+} 
+
+.grid{
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* ====================Buttons=================== */
+.button{
+  display: inline-block;
+  width: 10rem;
+  height: 2rem;
+  background-color: #1c1c1c;
+  color: white;
+  /* padding: 1.25rem 2rem; */
+  border-radius: 5px;
+  font-weight:lighter;
+}
+
+.button:hover{
+  background-color: whitesmoke;
+  color: #1c1c1c;
+}
+
+.butonFlex{
+  display: inline-flex;
+  align-items:center;
+}
+
+
+/* ====================Breakpoints=================== */
+/* For large devices */
+@media screen and (max-width: 992px){
+ .container {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+ }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px){
+  
+}
+
+@media screen and (max-width: 576px){
+  
+}
+
+/* For small devices */
+@media screen and (max-width: 350px){
+  
+}

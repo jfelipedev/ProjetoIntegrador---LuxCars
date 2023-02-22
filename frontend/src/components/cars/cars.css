@@ -1,0 +1,30 @@
+.section{
+     width: 100%;
+     background: #474350;
+}
+
+.sectionTitle{
+     padding: 1.5rem 2rem;
+}
+
+.carsContainer{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.carsCard{
+     background-color: #474350;
+     border: 1px solid rgba(0, 0, 0, 0.5);
+     /* padding: 1.5rem 2rem; */
+     border-radius: 1.5rem;
+     box-shadow: 1px 1px 1px black;
+    
+}
+
+.carsImg{
+     border-radius: 1.5rem 0px;
+}
+
+
+
