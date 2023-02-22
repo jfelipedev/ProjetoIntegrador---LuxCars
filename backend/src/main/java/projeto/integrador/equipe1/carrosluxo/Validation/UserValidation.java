@@ -1,6 +1,5 @@
 package projeto.integrador.equipe1.carrosluxo.Validation;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import projeto.integrador.equipe1.carrosluxo.Dto.ErrorLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.ErrorRegisterDto;
@@ -11,7 +10,7 @@ import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomerValidation {
+public class UserValidation {
 
     private static final int nameCharactersMinimum = 2;
     private static final int nameCharactersMaximum = 100;
@@ -23,7 +22,7 @@ public class CustomerValidation {
     private static final String emailAllowed = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
             + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
 
-    public CustomerValidation(LoginDto loginDto) throws Exception {
+    public UserValidation(LoginDto loginDto) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorEmail = validationEmail(loginDto.getEmail());
         String errorPassword = validationPassword(loginDto.getPassword());
@@ -33,7 +32,7 @@ public class CustomerValidation {
         }
     }
 
-    public CustomerValidation(RegisterDto registerDto) throws Exception{
+    public UserValidation(RegisterDto registerDto) throws Exception{
         ObjectMapper objectMapper = new ObjectMapper();
         String errorFirstName = validationName(registerDto.getFirstName());
         String errorSurname = validationName(registerDto.getSurname());
