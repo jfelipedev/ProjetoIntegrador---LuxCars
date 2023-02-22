@@ -1,6 +1,7 @@
 package projeto.integrador.equipe1.carrosluxo.Dto;
 
-import projeto.integrador.equipe1.carrosluxo.Entity.CustomerEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserRoles;
 
 public class RegisterDto {
     private String firstName;
@@ -50,12 +51,13 @@ public class RegisterDto {
         this.password = password;
     }
 
-    public CustomerEntity toEntity(){
-        CustomerEntity user = new CustomerEntity();
+    public UserEntity toEntity() {
+        UserEntity user = new UserEntity();
         user.setFirstName(this.getFirstName().trim());
         user.setSurname(this.getSurname().trim());
         user.setEmail(this.getEmail().trim());
         user.setPassword(this.getPassword());
+        user.setRoles(UserRoles.ROLE_USER);
         return user;
     }
 }

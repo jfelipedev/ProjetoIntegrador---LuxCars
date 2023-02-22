@@ -1,27 +1,25 @@
 package projeto.integrador.equipe1.carrosluxo.Dto;
 
-import projeto.integrador.equipe1.carrosluxo.Entity.CustomerEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
-import java.time.LocalDateTime;
-
-public class CustomerDto {
+public class UserDto {
     private String firstName;
     private String surname;
     private String email;
 
-    public CustomerDto() {
+    public UserDto() {
     }
 
-    public CustomerDto(String firstName, String surname, String email) {
+    public UserDto(String firstName, String surname, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
     }
 
-    public CustomerDto(CustomerEntity customerEntity){
-        this.firstName = customerEntity.getFirstName();
-        this.surname = customerEntity.getEmail();
-        this.email = customerEntity.getEmail();
+    public UserDto(UserEntity userEntity) {
+        this.firstName = userEntity.getFirstName();
+        this.surname = userEntity.getEmail();
+        this.email = userEntity.getEmail();
     }
 
     public String getFirstName() {

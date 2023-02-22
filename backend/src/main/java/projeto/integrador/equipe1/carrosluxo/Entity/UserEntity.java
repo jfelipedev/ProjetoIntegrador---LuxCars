@@ -1,25 +1,31 @@
 package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
-@Entity(name = "customers")
-public class CustomerEntity {
+@Entity(name = "users")
+public class UserEntity implements UserDetails {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID_customer")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_user")
     private long id;
     @Column(name = "first_name")
     private String firstName;
     private String surname;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRoles roles;
 
-    public CustomerEntity() {
+    public UserEntity() {
     }
 
-    public CustomerEntity(long id, String firstName, String surname, String email, String password) {
+    public UserEntity(long id, String firstName, String surname, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -59,8 +65,48 @@ public class CustomerEntity {
         this.email = email;
     }
 
+    public UserRoles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(UserRoles roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.name());
+        return Collections.singleton(grantedAuthority);
+    }
+
+    @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {

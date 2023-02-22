@@ -17,32 +17,32 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/category")
-    @Operation(summary = "Exibir lista de todas as categorias", tags = { "Category" })
-    List<CategoryEntity> all(){
+    @Operation(summary = "Exibir lista de todas as categorias", tags = {"Category"})
+    public List<CategoryEntity> all() {
         return categoryService.all();
     }
 
     @PostMapping("/category")
-    @Operation(summary = "Registrar uma nova categoria", tags = { "Category" })
-    String create(@RequestBody CategoryDto categoryDto) throws Exception {
+    @Operation(summary = "Registrar uma nova categoria", tags = {"Category"})
+    public String create(@RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.create(categoryDto);
     }
 
     @GetMapping("/category/{id}")
-    @Operation(summary = "Exibir uma categoria especifica", tags = { "Category" })
-    CategoryDto read(@PathVariable int id) throws Exception {
+    @Operation(summary = "Exibir uma categoria especifica", tags = {"Category"})
+    public CategoryDto read(@PathVariable int id) throws Exception {
         return categoryService.read(id);
     }
 
     @PutMapping("/category/{id}")
-    @Operation(summary = "Atualizar uma categoria especifica", tags = { "Category" })
-    String update(@PathVariable int id, @RequestBody CategoryDto categoryDto) throws Exception {
+    @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
+    public String update(@PathVariable int id, @RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.update(id, categoryDto);
     }
 
     @DeleteMapping("/category/{id}")
-    @Operation(summary = "Removerd uma categoria especifica", tags = { "Category" })
-    String delete(@PathVariable int id) throws Exception {
+    @Operation(summary = "Removerd uma categoria especifica", tags = {"Category"})
+    public String delete(@PathVariable int id) throws Exception {
         return categoryService.delete(id);
     }
 }
