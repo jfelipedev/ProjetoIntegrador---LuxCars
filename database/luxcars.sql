@@ -4,33 +4,30 @@ USE luxcars;
 
 CREATE TABLE users (
 
-id_user BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-email VARCHAR (200) NOT NULL,
+ID BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+email VARCHAR (200) NOT NULL UNIQUE,
 password VARCHAR (60) NOT NULL, 
 first_name VARCHAR (100) NOT NULL,
 surname VARCHAR (100) NOT NULL,
-roles VARCHAR(20) NOT NULL
+roles SMALLINT NOT NULL CHECK (roles IN (1,2)),
+CHECK (length(password) >= 8 AND password REGEXP '[0-9]' AND password REGEXP '[A-Z]')
 
 );
 
 CREATE TABLE categories (
 
-id_category BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 descritpion VARCHAR (200) NOT NULL,
 url_image VARCHAR (255) NOT NULL,
-model VARCHAR (100) NOT NULL,
-rating SMALLINT NOT NULL CHECK (
-    rating > 0
-    AND rating <= 5
-  )
+qualification VARCHAR (100) NOT NULL UNIQUE
 
 );
 
 CREATE TABLE car (
 
-id_car BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_car VARCHAR (100) NOT NULL,
-category_id BIGINT,
-FOREIGN KEY (category_id) REFERENCES categories(id_category)
+category_id BIGINT NOT NULL,
+FOREIGN KEY (category_id) REFERENCES categories(ID)
 
 );
