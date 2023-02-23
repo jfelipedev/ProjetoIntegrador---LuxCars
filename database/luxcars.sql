@@ -1,7 +1,9 @@
+#criacao do database
 CREATE DATABASE luxcars;
 
 USE luxcars;
 
+#criacao das tabelas
 CREATE TABLE users (
 
 ID BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
