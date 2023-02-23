@@ -1,0 +1,25 @@
+.createAccount{ 
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.createaccountBar{
+     position: absolute;
+	left: 40%;
+	top: 20%;
+     max-width: 500px;
+     max-height: 500px;
+}
+
+.createTitle{
+     text-align: center;
+     margin: 30px 0px 100px 0px;
+}
+
+.input{
+     display: flex;
+     justify-content: space-between;
+     gap: 1rem;
+     flex-direction: column;
+}
