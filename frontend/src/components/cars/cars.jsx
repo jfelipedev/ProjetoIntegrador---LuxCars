@@ -4,6 +4,9 @@ import React from "react";
 import './cars.css'
 import { Data } from "./Data";
 
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 
 
@@ -12,12 +15,14 @@ function Cars() {
        <section className="section">
          <h2 className="sectionTitle">Encontre o carro dos seus sonhos para alugar</h2>
 
-         <div className="carsContainer ">
+         <Carousel className="carsContainer container ">
            {Data.map(({id, image, year, distance, title, description}) => {
             return(
               <div className="carsCard" key={id}>
                 
+                
                 <img src={image} alt="" className="carsImg" />
+                
                 
 
                 
@@ -32,7 +37,7 @@ function Cars() {
               </div>
             )
            })}
-         </div>
+         </Carousel>
        </section>
      )
 }

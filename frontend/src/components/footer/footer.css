@@ -5,8 +5,43 @@
      left: 0;
      background-color: #1C1C1C;
      box-shadow: 5px 1px 3px #1C1C1C;
+     color: #F4F7F5;
 }
 
-.footerInfo{
-     display: flex;
+.brand1{
+     margin-left: 3rem;
 }
+
+.copyRight{
+     font-size: 1rem;
+}
+
+
+.footerInfo{
+     height: 6vh;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.socilaMedia{
+     display: flex;
+     gap: 1.2rem;
+     font-size: 1.6rem;
+     margin-right: 2.5rem;
+}
+
+/* ====================Breakpoints=================== */
+/* For medium devices */
+@media screen and (max-width: 768px){
+
+     .copyRight{
+          font-size: 13px;
+     }
+     .socilaMedia{
+          font-size: 1.3rem;
+     }
+}
+
+
+

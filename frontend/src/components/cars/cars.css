@@ -7,24 +7,63 @@
      padding: 1.5rem 2rem;
 }
 
-.carsContainer{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-}
-
 .carsCard{
-     background-color: #474350;
-     border: 1px solid rgba(0, 0, 0, 0.5);
-     /* padding: 1.5rem 2rem; */
-     border-radius: 1.5rem;
-     box-shadow: 1px 1px 1px black;
-    display: flex;
+     background: #474350;
+     border: 1px solid rgba(10 10 10 / 50%);
+     
+     border-radius: 10px;
+     box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%); 
+     display: flex;
+     transform-style: preserve-3d;
 }
 
 .carsImg{
-     border-radius: 1.5rem 0px;
+     border-radius: 10px 0px 0px 10px;
 }
+
+.carsInfo{
+     width: 100%;
+     margin: 1rem ;
+     display: flex;
+     flex-direction: column;
+     align-items:flex-start;
+     justify-content: center;
+}
+
+.carsYear{  
+     height: 1rem;
+}
+
+.carsName{ 
+      margin: 0px 0px 1rem; 
+    
+}
+
+.carsDistance{
+     margin: 1.5rem 0px 7rem;
+     height: rem;
+}
+
+.carsDesciption{
+     width: 35vw;
+     text-align: center;
+}
+
+.seeMore{
+     width: 35vw;
+     height: 2.5rem;
+     
+}
+
+.thumbs-wrapper{
+     display: none;
+     
+}
+
+
+
+
+
 
 
 

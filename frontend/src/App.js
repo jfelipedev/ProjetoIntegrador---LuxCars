@@ -15,7 +15,7 @@ function App() {
       < Cars />
       {/* <Login /> */}
       {/* <Createaccount /> */}
-      < SearchCars />
+      {/* < SearchCars /> */}
       < Footer />
     </div>
   );
