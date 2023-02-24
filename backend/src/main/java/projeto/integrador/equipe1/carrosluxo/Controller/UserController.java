@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import projeto.integrador.equipe1.carrosluxo.Dto.GetMeUserDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.LoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.RegisterDto;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Security.AuthenticationResponse;
 import projeto.integrador.equipe1.carrosluxo.Security.JwtUtil;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
@@ -34,7 +39,7 @@ public class UserController {
     @Operation(summary = "Entrar", tags = {"User"})
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto loginDto) throws Exception {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
-        final UserDetails userDetails =  userService.readByEmail(loginDto.getEmail());
+        final UserDetails userDetails = userService.readByEmail(loginDto.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
@@ -43,5 +48,13 @@ public class UserController {
     @Operation(summary = "Registro", tags = {"User"})
     public String register(@RequestBody RegisterDto registerDto) throws Exception {
         return userService.register(registerDto);
+    }
+
+    @GetMapping("/getmeuser")
+    @Operation(summary = "Exibir dados do proprio usurário", tags = {"User"})
+    public GetMeUserDto getMeUser() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserEntity userEntity = (UserEntity) auth.getPrincipal();
+        return new GetMeUserDto(userService.readByEmail(userEntity.getUsername()));
     }
 }

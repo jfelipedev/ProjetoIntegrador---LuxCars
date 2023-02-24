@@ -14,7 +14,7 @@ public class UserValidation {
 
     private static final int nameCharactersMinimum = 2;
     private static final int nameCharactersMaximum = 100;
-    private static final String nameCharactersAllowed = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ]{1,}$";
+    private static final String nameCharactersAllowed = "^[A-Za-záéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ-]{1,}$";
 
     private static final int passwordCharacterMinimum = 8;
     private static final int passwordCharacterMaximum = 20;

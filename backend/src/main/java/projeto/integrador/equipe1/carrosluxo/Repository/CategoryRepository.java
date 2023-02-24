@@ -5,5 +5,6 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
 public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
     CategoryEntity findById(long id);
-    boolean existsByDescritpion(String descritpion);
+
+    boolean existsByQualification(String qualification);
 }

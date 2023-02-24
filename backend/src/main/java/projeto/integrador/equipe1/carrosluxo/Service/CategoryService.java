@@ -23,9 +23,9 @@ public class CategoryService {
 
     public String create(CategoryDto category) throws Exception {
         new CategoryValidation(category);
-        if(!categoryRepository.existsByDescritpion(category.getDescritpion())){
+        if (!categoryRepository.existsByQualification(category.getQualification())) {
             categoryRepository.save(category.toEntity());
-            logger.info(category.getDescritpion() + " foi adicionado!");
+            logger.info(category.getQualification() + " foi adicionado!");
             return "A categoria foi cadastrado com sucesso!";
         }
         throw new BadRequestException("Esta categoria já está cadastrado!");
@@ -41,13 +41,10 @@ public class CategoryService {
     public String update(long id, CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
-            if(categoryRepository.existsByDescritpion(category.getDescritpion())) {
-                throw new BadRequestException("Esta categoria já está cadastrado!");
-            }
-            CategoryEntity categoryEntity = new CategoryEntity(category);
+            CategoryEntity categoryEntity = category.toEntity();
             categoryEntity.setId(id);
             categoryRepository.save(categoryEntity);
-            logger.info(category.getDescritpion() + "foi atualizado!");
+            logger.info(category.getQualification() + "foi atualizado!");
             return "Esta categoria foi atualizado!";
         }
         throw new ResourceNotFoundException("Esta categoria não existir");

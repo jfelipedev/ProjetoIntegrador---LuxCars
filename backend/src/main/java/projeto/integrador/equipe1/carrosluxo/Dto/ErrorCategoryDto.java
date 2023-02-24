@@ -2,16 +2,16 @@ package projeto.integrador.equipe1.carrosluxo.Dto;
 
 public class ErrorCategoryDto {
     String descritpion;
-    String model;
+    String qualification;
     String urlImage;
 
-    public ErrorCategoryDto() {
+    public ErrorCategoryDto(String descritpion, String qualification, String urlImage) {
+        this.descritpion = descritpion;
+        this.qualification = qualification;
+        this.urlImage = urlImage;
     }
 
-    public ErrorCategoryDto(String descritpion, String model, String urlImage) {
-        this.descritpion = descritpion;
-        this.model = model;
-        this.urlImage = urlImage;
+    public ErrorCategoryDto() {
     }
 
     public String getDescritpion() {
@@ -22,12 +22,12 @@ public class ErrorCategoryDto {
         this.descritpion = descritpion;
     }
 
-    public String getModel() {
-        return model;
+    public String getQualification() {
+        return qualification;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
     public String getUrlImage() {
@@ -42,7 +42,7 @@ public class ErrorCategoryDto {
     public String toString() {
         return "ErrorCategoryDto{" +
                 "descritpion='" + descritpion + '\'' +
-                ", model='" + model + '\'' +
+                ", qualification='" + qualification + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 '}';
     }

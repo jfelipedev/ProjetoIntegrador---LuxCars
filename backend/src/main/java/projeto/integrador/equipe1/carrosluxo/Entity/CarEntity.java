@@ -6,8 +6,8 @@ import projeto.integrador.equipe1.carrosluxo.Dto.CarDto;
 @Entity(name = "car")
 public class CarEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID_car")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private long id;
     @Column(name = "name_car")
     private String nameCar;

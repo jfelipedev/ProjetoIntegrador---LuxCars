@@ -5,14 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
@@ -52,12 +49,13 @@ public class SecurityConfiguration {
                         (authorize) -> authorize
                                 .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api-docs/**").permitAll()
-                            .requestMatchers(HttpMethod.POST,"/auth").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/register").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/category").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/car").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/car/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/category").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/car").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/car/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/getmeuser").hasAnyRole("USER", "ADMIN")
                             .requestMatchers("/category/**", "/car/**").hasRole("ADMIN")
                             .anyRequest().authenticated()
                 );

@@ -1,21 +1,20 @@
 package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
-import projeto.integrador.equipe1.carrosluxo.Dto.CategoryDto;
 
 import java.util.Set;
 
 @Entity(name = "categories")
 public class CategoryEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID_category")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private long id;
     private String descritpion;
 
     @Column(name = "url_image")
     private String urlImage;
-    private String model;
+    private String qualification;
 
     @OneToMany(mappedBy="category")
     private Set<CarEntity> cars;
@@ -23,17 +22,12 @@ public class CategoryEntity {
     public CategoryEntity() {
     }
 
-    public CategoryEntity(long id, String descritpion, String urlImage, String model) {
+    public CategoryEntity(long id, String descritpion, String urlImage, String qualification, Set<CarEntity> cars) {
         this.id = id;
         this.descritpion = descritpion;
         this.urlImage = urlImage;
-        this.model = model;
-    }
-
-    public CategoryEntity(CategoryDto category){
-        this.descritpion = category.getDescritpion();
-        this.model = category.getModel();
-        this.urlImage = category.getUrlImage();
+        this.qualification = qualification;
+        this.cars = cars;
     }
 
     public long getId() {
@@ -60,12 +54,20 @@ public class CategoryEntity {
         this.urlImage = urlImage;
     }
 
-    public String getModel() {
-        return model;
+    public String getQualification() {
+        return qualification;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public Set<CarEntity> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<CarEntity> cars) {
+        this.cars = cars;
     }
 
     @Override
@@ -74,7 +76,8 @@ public class CategoryEntity {
                 "id=" + id +
                 ", descritpion='" + descritpion + '\'' +
                 ", urlImage='" + urlImage + '\'' +
-                ", model='" + model + '\'' +
+                ", qualification='" + qualification + '\'' +
+                ", cars=" + cars +
                 '}';
     }
 }
