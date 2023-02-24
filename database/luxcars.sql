@@ -1,4 +1,3 @@
-
 CREATE DATABASE luxcars;
 
 USE luxcars;
@@ -11,7 +10,7 @@ email VARCHAR (200) NOT NULL UNIQUE,
 password VARCHAR (60) NOT NULL, 
 first_name VARCHAR (100) NOT NULL,
 surname VARCHAR (100) NOT NULL,
-roles SMALLINT NOT NULL CHECK (roles IN (1,2))
+roles SMALLINT NOT NULL CHECK (roles IN (0,1))
 
 );
 
