@@ -37,10 +37,10 @@ function Createaccount() {
              
            </div>
            
-           <button type='submit' className='button'>Entrar</button>
+           <button type='submit' className='button'>Registrar</button>
          </form>       
        </div>
      )
 }
 
-export default Createaccount
+export default Createaccount;

@@ -19,7 +19,7 @@
      /* padding: 1.5rem 2rem; */
      border-radius: 1.5rem;
      box-shadow: 1px 1px 1px black;
-    
+    display: flex;
 }
 
 .carsImg{

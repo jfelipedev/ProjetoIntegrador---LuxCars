@@ -5,6 +5,8 @@ import Header from "./components/header/header";
 import Cars from "./components/cars/cars"
 import Login from "./components/login/login";
 import Createaccount from "./components/createAccount/createAccount";
+import SearchCars from "./components/searchCars/searchCars";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       < Cars />
       {/* <Login /> */}
       {/* <Createaccount /> */}
+      < SearchCars />
+      < Footer />
     </div>
   );
 }

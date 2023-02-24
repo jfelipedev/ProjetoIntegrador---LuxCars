@@ -21,12 +21,14 @@ function Cars() {
                 
 
                 
-                <h5 className="carsYear">{year}</h5>
-                <h2 className="carsName">{title}</h2>
-                <h5 className="carsDistance">{distance}</h5>
-                <p className="carsDesciption">{description}</p>
-                <button className="seeMore button">Ver mais</button>
+                <div className="carsInfo">
+                  <h5 className="carsYear">{year}</h5>
+                  <h2 className="carsName">{title}</h2>
+                  <h5 className="carsDistance">{distance}</h5>
+                  <p className="carsDesciption">{description}</p>
+                  <button className="seeMore button">Ver mais</button>
                 
+                </div>
               </div>
             )
            })}

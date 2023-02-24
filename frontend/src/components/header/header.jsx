@@ -34,19 +34,16 @@ function Header() {
 
           <ul className="navList1 grid">
             <li className="navItem1">
-              <a href="#" className="navLink">Login</a>
+              <a href="#" className="navLink1">Login</a>
             </li>
 
             <li className="navItem1">
-              <a href="#" className="navLink">Minhas Reservas</a>
+              <a href="#" className="navLink1">Minhas Reservas</a>
             </li>
           </ul>
 
           <i class="uil uil-times navClose" onClick={showNav}></i>
         </ul>
-
-        
-        
 
         <div className="navToggler" onClick={showNav}>
           <i class="uil uil-align-center-alt"></i>

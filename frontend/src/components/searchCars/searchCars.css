@@ -1,0 +1,28 @@
+.section{
+     width: 100%;
+     background: #474350;
+     position: relative;
+
+}
+
+.sectionTitle{
+     padding: 1.5rem 2rem;
+}
+
+.searchContainer{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 1rem;
+}
+
+.futureSelect{
+     display: inline-block;
+  width: 15rem;
+  height: 2rem;
+  background-color: #ffffff;
+  color: #1C1C1C;
+  /* padding: 1.25rem 2rem; */
+  border-radius: 5px;
+  font-weight:lighter;
+}
