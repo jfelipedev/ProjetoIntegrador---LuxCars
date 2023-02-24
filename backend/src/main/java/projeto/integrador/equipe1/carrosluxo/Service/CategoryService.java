@@ -41,9 +41,6 @@ public class CategoryService {
     public String update(long id, CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
-            if (categoryRepository.existsByQualification(category.getQualification())) {
-                throw new BadRequestException("Esta categoria já está cadastrado!");
-            }
             CategoryEntity categoryEntity = category.toEntity();
             categoryEntity.setId(id);
             categoryRepository.save(categoryEntity);
