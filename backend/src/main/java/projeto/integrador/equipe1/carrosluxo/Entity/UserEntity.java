@@ -12,14 +12,14 @@ import java.util.Collections;
 public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_user")
+    @Column(name = "ID")
     private long id;
     @Column(name = "first_name")
     private String firstName;
     private String surname;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private UserRoles roles;
 
     public UserEntity() {

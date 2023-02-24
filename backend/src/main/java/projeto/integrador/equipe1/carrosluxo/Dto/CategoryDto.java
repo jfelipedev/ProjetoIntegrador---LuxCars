@@ -1,27 +1,26 @@
 package projeto.integrador.equipe1.carrosluxo.Dto;
 
-import jakarta.persistence.Column;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
 public class CategoryDto {
     private String descritpion;
 
     private String urlImage;
-    private String model;
-
-    public CategoryDto(String descritpion, String urlImage, String model) {
-        this.descritpion = descritpion;
-        this.urlImage = urlImage;
-        this.model = model;
-    }
+    private String qualification;
 
     public CategoryDto() {
     }
 
-    public CategoryDto(CategoryEntity category) {
-        this.descritpion = category.getDescritpion();
-        this.model = category.getModel();
-        this.urlImage = category.getUrlImage();
+    public CategoryDto(String descritpion, String urlImage, String qualification) {
+        this.descritpion = descritpion;
+        this.urlImage = urlImage;
+        this.qualification = qualification;
+    }
+
+    public CategoryDto(CategoryEntity categoryEntity) {
+        this.setQualification(categoryEntity.getQualification());
+        this.setUrlImage(categoryEntity.getUrlImage());
+        this.setDescritpion(categoryEntity.getDescritpion());
     }
 
     public String getDescritpion() {
@@ -40,12 +39,12 @@ public class CategoryDto {
         this.urlImage = urlImage;
     }
 
-    public String getModel() {
-        return model;
+    public String getQualification() {
+        return qualification;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
     @Override
@@ -53,13 +52,13 @@ public class CategoryDto {
         return "CategoryDto{" +
                 "descritpion='" + descritpion + '\'' +
                 ", urlImage='" + urlImage + '\'' +
-                ", model='" + model + '\'' +
+                ", qualification='" + qualification + '\'' +
                 '}';
     }
 
     public CategoryEntity toEntity() {
         CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setModel(this.getModel());
+        categoryEntity.setQualification(this.getQualification());
         categoryEntity.setDescritpion(this.getDescritpion());
         categoryEntity.setUrlImage(this.getUrlImage());
         return categoryEntity;
