@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import projeto.integrador.equipe1.carrosluxo.Dto.CarDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.CarFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
 
@@ -19,7 +20,7 @@ public class CarController {
 
     @GetMapping("/car")
     @Operation(summary = "Exibir lista de todas as carros", tags = {"Car"})
-    public List<CarEntity> all() {
+    public List<CarFullDto> all() {
         return carService.all();
     }
 

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.CategoryDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.CategoryFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.GlobalException;
@@ -12,6 +13,7 @@ import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException
 import projeto.integrador.equipe1.carrosluxo.Repository.CategoryRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -58,8 +60,12 @@ public class CategoryService {
         throw new ResourceNotFoundException("Esta categoria não existir");
     }
 
-    public List<CategoryEntity> all(){
+    public List<CategoryFullDto> all(){
         logger.trace("Todas as categorias foram exibidas!");
-        return (List<CategoryEntity>) categoryRepository.findAll();
+        List<CategoryFullDto> list = new ArrayList();
+        for(CategoryEntity category: categoryRepository.findAll()){
+            list.add(new CategoryFullDto(category));
+        }
+        return list;
     }
 }

@@ -27,7 +27,7 @@ public class CarEntity {
     public CarEntity(CarDto carDto){
         this.nameCar = carDto.getNameCar();
         this.category = new CategoryEntity();
-        this.category.setId(carDto.getIdCategory());
+        this.category.setId(carDto.getCategory().getId());
     }
 
     public long getId() {
