@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import projeto.integrador.equipe1.carrosluxo.Dto.CategoryDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.CategoryFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Service.CategoryService;
 
@@ -18,7 +19,7 @@ public class CategoryController {
 
     @GetMapping("/category")
     @Operation(summary = "Exibir lista de todas as categorias", tags = {"Category"})
-    public List<CategoryEntity> all() {
+    public List<CategoryFullDto> all() {
         return categoryService.all();
     }
 

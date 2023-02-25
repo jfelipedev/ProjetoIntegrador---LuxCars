@@ -5,12 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.CarDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.CarFullDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.CategoryFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.GlobalException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,8 +59,12 @@ public class CarService {
         }
         throw new ResourceNotFoundException("Este carro não existir");
     }
-    public List<CarEntity> all(){
+    public List<CarFullDto> all(){
         logger.trace("Todos os carros foram exibidas!");
-        return (List<CarEntity>) carRepository.findAll();
+        List<CarFullDto> list = new ArrayList();
+        for(CarEntity category: carRepository.findAll()){
+            list.add(new CarFullDto(category));
+        }
+        return list;
     }
 }
