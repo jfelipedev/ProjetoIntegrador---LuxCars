@@ -1,8 +1,10 @@
 package projeto.integrador.equipe1.carrosluxo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,7 +37,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping("/auth")
+    @PostMapping(value = "/auth", produces = "application/json", consumes = "application/json")
     @Operation(summary = "Entrar", tags = {"User"})
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto loginDto) throws Exception {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
@@ -44,13 +46,14 @@ public class UserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register", produces = "application/json", consumes = "application/json")
     @Operation(summary = "Registro", tags = {"User"})
     public String register(@RequestBody RegisterDto registerDto) throws Exception {
         return userService.register(registerDto);
     }
 
-    @GetMapping("/getmeuser")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping(value = "/getmeuser", produces = "application/json", consumes = "application/json")
     @Operation(summary = "Exibir dados do proprio usurário", tags = {"User"})
     public GetMeUserDto getMeUser() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
