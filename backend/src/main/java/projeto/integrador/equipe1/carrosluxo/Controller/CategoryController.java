@@ -19,31 +19,31 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping(value = "/category", produces = "application/json", consumes = "application/json")
+    @GetMapping(value = "/category")
     @Operation(summary = "Exibir lista de todas as categorias", tags = {"Category"})
     public List<CategoryFullDto> all() {
         return categoryService.all();
     }
 
-    @PostMapping(value = "/category", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/category")
     @Operation(summary = "Registrar uma nova categoria", tags = {"Category"})
     public String create(@RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.create(categoryDto);
     }
 
-    @GetMapping(value = "/category/{id}", produces = "application/json", consumes = "application/json")
+    @GetMapping(value = "/category/{id}")
     @Operation(summary = "Exibir uma categoria especifica", tags = {"Category"})
     public CategoryDto read(@PathVariable int id) throws Exception {
         return categoryService.read(id);
     }
 
-    @PutMapping(value = "/category/{id}", produces = "application/json", consumes = "application/json")
+    @PutMapping(value = "/category/{id}")
     @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
     public String update(@PathVariable int id, @RequestBody CategoryDto categoryDto) throws Exception {
         return categoryService.update(id, categoryDto);
     }
 
-    @DeleteMapping(value = "/category/{id}", produces = "application/json", consumes = "application/json")
+    @DeleteMapping(value = "/category/{id}")
     @Operation(summary = "Removerd uma categoria especifica", tags = {"Category"})
     public String delete(@PathVariable int id) throws Exception {
         return categoryService.delete(id);

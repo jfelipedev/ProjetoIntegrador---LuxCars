@@ -37,7 +37,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping(value = "/auth", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/auth")
     @Operation(summary = "Entrar", tags = {"User"})
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto loginDto) throws Exception {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
@@ -46,14 +46,14 @@ public class UserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping(value = "/register", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/register")
     @Operation(summary = "Registro", tags = {"User"})
     public String register(@RequestBody RegisterDto registerDto) throws Exception {
         return userService.register(registerDto);
     }
 
     @SecurityRequirement(name = "Bearer Authentication")
-    @GetMapping(value = "/getmeuser", produces = "application/json", consumes = "application/json")
+    @GetMapping(value = "/getmeuser")
     @Operation(summary = "Exibir dados do proprio usurário", tags = {"User"})
     public GetMeUserDto getMeUser() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
