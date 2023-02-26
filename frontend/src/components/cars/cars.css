@@ -1,16 +1,12 @@
 .section{
      width: 100%;
+     height: 100%;
      background: #474350;
-}
-
-.sectionTitle{
-     padding: 1.5rem 2rem;
 }
 
 .carsCard{
      background: #474350;
      border: 1px solid rgba(10 10 10 / 50%);
-     
      border-radius: 10px;
      box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%); 
      display: flex;
@@ -40,7 +36,7 @@
 }
 
 .carsDistance{
-     margin: 1.5rem 0px 7rem;
+     margin: 1.5rem 0px 5rem;
      height: rem;
 }
 
@@ -52,7 +48,6 @@
 .seeMore{
      width: 35vw;
      height: 2.5rem;
-     
 }
 
 .thumbs-wrapper{

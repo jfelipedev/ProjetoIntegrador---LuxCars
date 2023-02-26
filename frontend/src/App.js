@@ -12,10 +12,12 @@ function App() {
   return (
     <div>
       < Header />
-      < Cars />
-      {/* <Login /> */}
-      {/* <Createaccount /> */}
-      {/* < SearchCars /> */}
+      <div className="home">
+        < Cars />
+        {/* <Login /> */}
+        {/* <Createaccount /> */}
+        < SearchCars />
+      </div>
       < Footer />
     </div>
   );
