@@ -32,7 +32,6 @@ public class GetMeUserDto {
             default:
                 this.role = "Cargo Desconhecido";
         }
-
     }
 
     public GetMeUserDto() {
