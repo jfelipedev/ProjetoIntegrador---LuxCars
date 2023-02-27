@@ -14,32 +14,34 @@ function Login() {
      return(
        <div className="Login">
          <form action="" className="loginbar" onSubmit={handleSignupForm}>
-           <h1 className='loginTitle'>Iniciar Sessão</h1>
+           <h1 className='loginTitle'><span>LUX</span>CAR</h1>
            
            <div className="inputs">
              <div className="inputLogin">
-               <h5>Acesse pela sua conta Lux:</h5>
+               <h5 className='acessar'>Acesse pela sua conta Lux:</h5>
                
-               <input type="email" placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
-               <i class="uil uil-envelope EmailIcon"></i>
-               
-               
-               <input type="password" placeholder='Senha' requiredvaleu={password} onChange={(event) => setPassword(event.target.value)}/>
-               <i class="uil uil-eye-slash eye"></i>
+               <input className='input1' type="email" placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
+               {/* <i class="uil uil-envelope EmailIcon"></i> */}
                
                
-               <button type='submit' className='button'>Entrar</button>
+               <input className='input1' type="password" placeholder='Senha' requiredvaleu={password} onChange={(event) => setPassword(event.target.value)}/>
+               {/* <i class="uil uil-eye-slash eye"></i> */}
+               
+               
+               <button type='submit' className='buttonE button'>Entrar</button>
              </div>
 
-             <div className="Createaccount">
-               <h5>Ainda não é cadastrado?</h5>
-               <button className='button'>Criar Conta</button>
+             <div className="createaccount">
+               <h5 className='cadastrar'>Ainda não é cadastrado?</h5>
+               <button className='button buttonE'>Criar Conta</button>
 
-               <i class="uil uil-check-circle checkedIcon">Rápido e fácil reservar</i>
-               <i class="uil uil-check-circle checkedIcon">Descontos de até 40%</i>
-               <i class="uil uil-check-circle checkedIcon">Acesso a ofertas exclusivas</i>
+               <div className="icons">
+                 <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Rápido e fácil reservar</span></i>
+                 <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Descontos de até 40%</span></i>
+                 <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Acesso a ofertas exclusivas  </span></i>
+               </div>
 
-               <button className='button'>Avançar sem cadastrado</button>
+               <button className=' buttonE button'>Avançar sem cadastrado</button>
              </div>
            </div>
          </form>

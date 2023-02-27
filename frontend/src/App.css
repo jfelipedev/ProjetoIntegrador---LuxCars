@@ -12,6 +12,11 @@ html{
   background: #474350;
 }
 
+body{
+  max-width: 1366px;
+  max-height: 768px;
+}
+
 /* button, input, textarea {
   font-family: ;
   font-size: ;
@@ -20,6 +25,7 @@ html{
 .sectionTitle{
   padding: 3rem 0px 1rem 0px;
   text-align: center;
+  background: #474350;
 }
 
 .home{
@@ -49,7 +55,7 @@ img{
 
 /* ====================Layout=================== */
  .container{
-  max-width: 1300px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 } 

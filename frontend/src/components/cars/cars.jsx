@@ -18,7 +18,7 @@ function Cars() {
          <Carousel className="carsContainer container ">
            {Data.map(({id, image, year, distance, title, description}) => {
             return(
-              <div className="carsCard" key={id}>
+              <div className="carsCard " key={id}>
                 
                 
                 <img src={image} alt="" className="carsImg" />
