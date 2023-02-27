@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,7 +40,7 @@ public class UserController {
 
     @PostMapping(value = "/auth")
     @Operation(summary = "Entrar", tags = {"User"})
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto loginDto) throws Exception {
+    public ResponseEntity<?> login(@RequestBody LoginDto loginDto) throws Exception {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         final UserDetails userDetails = userService.readByEmail(loginDto.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
@@ -55,9 +56,9 @@ public class UserController {
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping(value = "/getmeuser")
     @Operation(summary = "Exibir dados do proprio usurário", tags = {"User"})
-    public GetMeUserDto getMeUser() throws Exception {
+    public ResponseEntity<?> getMeUser() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userEntity = (UserEntity) auth.getPrincipal();
-        return new GetMeUserDto(userService.readByEmail(userEntity.getUsername()));
+        return new ResponseEntity<>(new GetMeUserDto(userService.readByEmail(userEntity.getUsername())), HttpStatus.OK);
     }
 }

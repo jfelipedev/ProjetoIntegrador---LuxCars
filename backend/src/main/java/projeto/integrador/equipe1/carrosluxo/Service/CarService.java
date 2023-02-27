@@ -23,11 +23,11 @@ public class CarService {
     private CarRepository carRepository;
     Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
-    public String create(CarDto carDto) throws Exception {
+    public CarFullDto create(CarDto carDto) throws Exception {
         if(!carRepository.existsByNameCar(carDto.getNameCar())){
             carRepository.save(carDto.toEntity());
             logger.info(carDto.getNameCar() + " foi adicionado!");
-            return "Este carro foi cadastrado com sucesso!";
+            return new CarFullDto(carRepository.findByNameCar(carDto.getNameCar()));
         }
         throw new BadRequestException("Este carro já está cadastrado!");
     }
@@ -38,7 +38,7 @@ public class CarService {
         }
         throw new ResourceNotFoundException("Este carro não existir");
     }
-    public String update(long id, CarDto carDto) throws Exception {
+    public CarFullDto update(long id, CarDto carDto) throws Exception {
         if(carRepository.existsById(id)){
             if(carRepository.existsByNameCar(carDto.getNameCar())) {
                 throw new BadRequestException("Este carro já está cadastrado!");
@@ -47,7 +47,7 @@ public class CarService {
             carEntity.setId(id);
             carRepository.save(carEntity);
             logger.info(carEntity.getNameCar() + " foi atualizado!");
-            return "Este carro foi atualizado!";
+            return new CarFullDto(carRepository.findById(id));
         }
         throw new ResourceNotFoundException("Este carro não existir");
     }
