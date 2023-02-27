@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import "./createAccount.css";
 
 function Createaccount() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  var emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-  const [name, setName] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password1, setpassword1] = useState("");
-
-  const handleCreateAccount = (event, key) => {
-    event.preventDefault();
-    console.log({ name, sobrenome, email, password, password1 });
-  };
+  function newUser(data) {
+    if (data.password !== data.repassword) {
+      alert("Senhas diferentes!");
+    }
+    console.log(data);
+  }
   return (
     <div className="createAccount">
       <form
         action=""
         className="createaccountBar"
-        onSubmit={handleCreateAccount}
+        onSubmit={handleSubmit(newUser)}
       >
         <h1 className="createTitle">Criar Conta</h1>
 
@@ -28,42 +27,48 @@ function Createaccount() {
           <input
             type="text"
             placeholder="Nome"
-            required
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            {...register(
+              "name",
+              { minLength: 3, maxLength: 16 },
+              { required: true }
+            )}
           />
+          {errors.name && <span>Nome inválido</span>}
 
           <input
             type="text"
             placeholder="Sobrenome"
-            required
-            value={sobrenome}
-            onChange={(event) => setSobrenome(event.target.value)}
+            {...register(
+              "lastName",
+              { minLength: 3, maxLength: 16 },
+              { required: true }
+            )}
           />
+          {errors.lastName && <span>Sobrenome inválido</span>}
 
           <input
             type="email"
             placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            {...register("email", {
+              pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            })}
           />
-          {/* <i class="uil uil-envelope EmailIcon"></i> */}
-
+          {errors.email && <span>Email inválido</span>}
           <input
             type="senha"
             placeholder="Senha"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            {...register(
+              "password",
+              { minLength: 6, maxLength: 16 },
+              { required: true }
+            )}
           />
-          {/* <i class="uil uil-eye-slash eye"></i> */}
-
+          {errors.password && <span>Senha inválida</span>}
           <input
             type="senha"
             placeholder="Confirmar Senha"
-            value={password1}
-            onChange={(event) => setpassword1(event.target.value)}
+            {...register("repassword", { required: true })}
           />
-          {/* <i class="uil uil-eye-slash eye"></i> */}
         </div>
 
         <button type="submit" className="button buttonR">
