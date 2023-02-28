@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './login.css'
-
+import { Link } from 'react-router-dom'
 
 
 function Login() {
@@ -33,7 +33,8 @@ function Login() {
 
              <div className="createaccount">
                <h5 className='cadastrar'>Ainda não é cadastrado?</h5>
-               <button className='button buttonE'>Criar Conta</button>
+               <button className='button buttonE'> <Link to="/createAccount" className="navLink activeLink">Criar Conta</Link></button>
+
 
                <div className="icons">
                  <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Rápido e fácil reservar</span></i>
