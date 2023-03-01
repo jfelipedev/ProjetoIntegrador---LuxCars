@@ -13,10 +13,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 function Cars() {
      return(
        <section className="section">
-         <h2 className="sectionTitle">Encontre o carro dos seus sonhos para alugar</h2>
+         <h2 className="item sectionTitle">Encontre o carro dos seus sonhos para alugar</h2>
 
          <Carousel className="carsContainer container ">
-           {Data.map(({id, image, year, distance, title, description}) => {
+           {Data.map(({id, image, year, distance, linkMap, title, description, linkdescription}) => {
             return(
               <div className="carsCard " key={id}>
                 
@@ -29,9 +29,10 @@ function Cars() {
                 <div className="carsInfo">
                   <h5 className="carsYear">{year}</h5>
                   <h2 className="carsName">{title}</h2>
-                  <h5 className="carsDistance">{distance}</h5>
-                  <p className="carsDesciption">{description}</p>
+                  <h5 className="carsDistance">{distance}<a href="" className="linkMap">{linkMap}</a></h5>
+                  <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
                   <button className="seeMore button">Ver mais</button>
+                  
                 
                 </div>
               </div>

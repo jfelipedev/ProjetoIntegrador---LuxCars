@@ -10,16 +10,16 @@ import Footer from "./components/footer/footer";
 
 function App() {
   return (
-    <div>
+    <>
       < Header />
       <div className="home">
-        < Cars />
-        {/* <Login /> */}
+        {/* < Cars /> */}
+        <Login />
         {/* <Createaccount /> */}
-        < SearchCars />
+        {/* < SearchCars /> */}
       </div>
       < Footer />
-    </div>
+    </>
   );
 }
 

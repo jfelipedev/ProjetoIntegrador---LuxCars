@@ -108,6 +108,9 @@ input::-moz-placeholder{color: #474350;}
      width: 18rem;
      background-color: #ffc857;
      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     color: whitesmoke;
+     height: 2rem;
+     border-radius: 5px;
 }
 
 .inputLogin .button {

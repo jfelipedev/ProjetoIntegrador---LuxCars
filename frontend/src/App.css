@@ -12,10 +12,6 @@ html{
   background: #474350;
 }
 
-body{
-  max-width: 1366px;
-  max-height: 768px;
-}
 
 /* button, input, textarea {
   font-family: ;
@@ -25,11 +21,13 @@ body{
 .sectionTitle{
   padding: 3rem 0px 1rem 0px;
   text-align: center;
-  background: #474350;
+  font-family: 'Inter', sans-serif;
+  font-weight: 100;
+  color: #F4F7F5;
 }
 
 .home{
-  padding-top: 5rem;
+  padding-top: 4.8rem;
 }
 
 
@@ -76,6 +74,7 @@ img{
   border-radius: 5px;
   font-weight:lighter;
   box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+  font-family: 'Inter', sans-serif;
 }
 
 .button:hover{
@@ -96,11 +95,17 @@ img{
   margin-left: 1.5rem;
   margin-right: 1.5rem;
  }
+
+ .home{
+  padding-top: 4.8rem;
+}
 }
 
 /* For medium devices */
 @media screen and (max-width: 768px){
-  
+  .home{
+    padding-top: 4.5rem;
+  }
 }
 
 @media screen and (max-width: 576px){

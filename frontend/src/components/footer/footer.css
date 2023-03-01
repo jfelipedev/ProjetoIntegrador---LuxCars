@@ -8,12 +8,14 @@
      color: #F4F7F5;
 }
 
-.brand1{
-     margin-left: 3rem;
-}
+/* .brand1{
+     
+} */
 
 .copyRight{
      font-size: 1rem;
+     font-family: 'Heebo', sans-serif;
+     font-weight: lighter;
 }
 
 
@@ -22,13 +24,13 @@
      display: flex;
      align-items: center;
      justify-content: space-between;
+     margin: 0px 3rem;
 }
 
 .socilaMedia{
      display: flex;
      gap: 1.2rem;
      font-size: 1.6rem;
-     margin-right: 2.5rem;
 }
 
 /* ====================Breakpoints=================== */

@@ -28,12 +28,12 @@ function Login() {
                {/* <i class="uil uil-eye-slash eye"></i> */}
                
                
-               <button type='submit' className='buttonE button'>Entrar</button>
+               <button type='submit' className='buttonE '>Entrar</button>
              </div>
 
              <div className="createaccount">
                <h5 className='cadastrar'>Ainda não é cadastrado?</h5>
-               <button className='button buttonE'>Criar Conta</button>
+               <button className=' buttonE'>Criar Conta</button>
 
                <div className="icons">
                  <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Rápido e fácil reservar</span></i>
@@ -41,7 +41,7 @@ function Login() {
                  <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Acesso a ofertas exclusivas  </span></i>
                </div>
 
-               <button className=' buttonE button'>Avançar sem cadastrado</button>
+               <button className='buttonE '>Avançar sem cadastrado</button>
              </div>
            </div>
          </form>
