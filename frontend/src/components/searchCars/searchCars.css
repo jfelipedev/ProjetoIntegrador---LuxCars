@@ -13,15 +13,9 @@
 }
 
 .dropDown{
-     
-    
      border-radius: 5px;
-    
-     
      transition: .5s;
      transform: translate(0px, -10px);
-     
-     
 }
 
 .select{
@@ -41,3 +35,20 @@
 .button1{
     height: 40px; 
 }
+
+.MuiBox-root{
+     color: #F4F7F5;
+     font-family: 'Inter', sans-serif;
+}
+
+.inputCalendar{
+     height: 40px;
+     border-radius: 5px;
+     margin-top: 10px;
+     border: none;
+     width: 185px;
+}
+
+
+
+

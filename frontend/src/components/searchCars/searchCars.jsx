@@ -2,11 +2,15 @@
 import React, {useState} from "react";
 import './searchCars.css'
 import Select from "react-select";
-import { DateRange } from 'react-date-range';
-import { addDays } from 'date-fns';
 
 
 
+
+
+import Box from '@mui/material/Box';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
 
 const suppliers = [
@@ -32,17 +36,13 @@ const DBsuppliers = [
 function SearchCars() {
 
 
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: 'selection'
-    }
-  ]);
-
   const handleSelectChange = (event) => {
     console.log(event)
   }
+
+  const [value, setValue] = React.useState([null, null]);
+
+
 
  
   return (
@@ -69,16 +69,23 @@ function SearchCars() {
 
         <div className="dropDown drop">
           
-          <DateRange
-            editableDateInputs={true} 
-            onChange={item => setState([item.selection])}
-            showSelectionPreview={true}
-            moveRangeOnFirstSelection={false}
-            months={1}
-            ranges={state}
-            rangeColors={state}
-          
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateRangePicker
+              
+              localeText={{ start: 'Check-in', end: 'Check-out' }}
+              label="Advanced keyboard"
+              value={value}
+              onChange={(newValue) => setValue(newValue)}
+              renderInput={(startProps, endProps) => (
+                <React.Fragment>
+                  <input ref={startProps.inputRef} {...startProps.inputProps} className="inputCalendar" />
+                  <Box sx={{ mx: 1 }}> to </Box>
+                  <input ref={endProps.inputRef} {...endProps.inputProps} className="inputCalendar" />
+                </React.Fragment>
+        )}
+      />
+          </LocalizationProvider>
+
         </div>
 
         <button className="button button1">BUSCAR</button>
