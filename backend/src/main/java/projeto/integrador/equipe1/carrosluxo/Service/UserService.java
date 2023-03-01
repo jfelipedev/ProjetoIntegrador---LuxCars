@@ -6,9 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import projeto.integrador.equipe1.carrosluxo.Dto.LoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.RegisterDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.RegisterFullDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.UserDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.UserFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.InternalServerErrorException;
@@ -37,13 +38,14 @@ public class UserService implements UserDetailsService {
         throw new InternalServerErrorException("Não foi possivel localizar o usuário com email: " + email);
     }
 
-    public String register(RegisterDto register) throws Exception {
+    public long register(RegisterDto register) throws Exception {
         new UserValidation(register);
         register.setPassword(bCryptPasswordEncoder.encode(register.getPassword()));
-        if (!userRepository.existsByEmail(register.getEmail())) {
-            userRepository.save(register.toEntity());
+        if (userRepository.existsByEmail(register.getEmail())) {
+           throw new BadRequestException("Este email já está em uso!");
         }
-        return "Se o email não foi usado, então foi cadastrado com sucesso!";
+        userRepository.save(register.toEntity());
+        return userRepository.findByEmail(register.getEmail()).getId();
     }
 
     @Override

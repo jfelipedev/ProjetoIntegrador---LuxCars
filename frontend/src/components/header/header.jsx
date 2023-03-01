@@ -19,28 +19,28 @@ function Header() {
         
         <ul className="navList grid" ref={navRef}>
           <li className="navItem">
-            <a href="#" className="navLink activeLink">Carros</a>
+            <Link to="/" className="navLink activeLink">Carros</Link>
           </li>
 
           <li className="navItem">
-            <a href="#" className="navLink">Ofertas</a>
+            <Link to="/" className="navLink">Ofertas</Link>
           </li>
 
           <li className="navItem">
-            <a href="#" className="navLink">Contato</a>
+            <Link to="/" className="navLink">Contato</Link>
           </li>
 
           <li className="navItem">
-            <a href="#" className="navLink">Duvidas</a>
+            <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
           <ul className="navList1 grid">
             <li className="navItem1">
-              <a href="#" className="navLink1">Login</a>
+              <Link to="/login" className="navLink1">Login</Link>
             </li>
 
             <li className="navItem1">
-              <a href="#" className="navLink1">Minhas Reservas</a>
+              <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
           </ul>
 

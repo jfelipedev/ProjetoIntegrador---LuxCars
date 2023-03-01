@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState} from "react";
 import './searchCars.css'
 import Select from "react-select";
@@ -25,9 +26,22 @@ const DBsuppliers = [
 
 
 
+=======
+import "./searchCars.css";
+import Select from "react-select";
 
+const suppliers = [
+  { label: "Conversivel", value: "Conversivel" },
+  { label: "Coupé", value: "Coupé" },
+  { label: "Esportivo", value: "Esportiv" },
+  { label: "Sedan", value: "Sedan" },
+];
+>>>>>>> 539a7eb4dfdba51cfa6ee129d73c0a375fadf976
+
+const DBsuppliers = ["Buenos Aires", "Mendoza", "Cordoba"];
 
 function SearchCars() {
+<<<<<<< HEAD
 
   const [state, setState] = useState([
     {
@@ -42,6 +56,9 @@ function SearchCars() {
   }
 
   return(
+=======
+  return (
+>>>>>>> 539a7eb4dfdba51cfa6ee129d73c0a375fadf976
     <div className="searchSection">
       <h1 className="sectionTitle">ALUGUE O CARRO DOS SEUS SONHOS</h1>
 
@@ -80,7 +97,7 @@ function SearchCars() {
         <button className="button button1">BUSCAR</button>
       </div>
     </div>
-  )
+  );
 }
 
-export default SearchCars
+export default SearchCars;

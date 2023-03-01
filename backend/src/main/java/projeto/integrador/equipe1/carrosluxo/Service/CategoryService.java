@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import projeto.integrador.equipe1.carrosluxo.Dto.CarFullDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.CategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.CategoryFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
@@ -23,12 +24,12 @@ public class CategoryService {
 
     Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
-    public String create(CategoryDto category) throws Exception {
+    public CarFullDto create(CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if (!categoryRepository.existsByQualification(category.getQualification())) {
             categoryRepository.save(category.toEntity());
             logger.info(category.getQualification() + " foi adicionado!");
-            return "A categoria foi cadastrado com sucesso!";
+            return categoryRepository.findByQualification(category.getQualification());
         }
         throw new BadRequestException("Esta categoria já está cadastrado!");
     }
@@ -40,14 +41,14 @@ public class CategoryService {
         }
         throw new ResourceNotFoundException("Esta categoria não existir");
     }
-    public String update(long id, CategoryDto category) throws Exception {
+    public CategoryFullDto update(long id, CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
             CategoryEntity categoryEntity = category.toEntity();
             categoryEntity.setId(id);
             categoryRepository.save(categoryEntity);
             logger.info(category.getQualification() + "foi atualizado!");
-            return "Esta categoria foi atualizado!";
+            return new CategoryFullDto(categoryRepository.findById(id));
         }
         throw new ResourceNotFoundException("Esta categoria não existir");
     }

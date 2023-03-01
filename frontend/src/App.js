@@ -1,28 +1,23 @@
-
-import React from "react"
-import './App.css';
+import React from "react";
+import "./App.css";
 import Header from "./components/header/header";
-import Cars from "./components/cars/cars"
-import Login from "./components/login/login";
-import Createaccount from "./components/createAccount/createAccount";
-import SearchCars from "./components/searchCars/searchCars";
 import Footer from "./components/footer/footer";
+import { Outlet } from "react-router-dom";
+// import Cars from './components/cars/cars';
+// import SearchCars from './components/searchCars/searchCars'
 
 function App() {
   return (
-    <>
-      < Header />
-      <div className="home">
-        {/* < Cars /> */}
-        <Login />
-        {/* <Createaccount /> */}
-        {/* < SearchCars /> */}
-      </div>
-      < Footer />
-    </>
+    <div>
+      <Header />
+      {/* <Cars /> */}
+      <>
+        <Outlet />
+      </>
+      {/* <SearchCars /> */}
+      <Footer />
+    </div>
   );
 }
 
 export default App;
-
-
