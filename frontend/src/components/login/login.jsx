@@ -34,7 +34,7 @@ function Login() {
              <div className="createaccount">
                <h5 className='cadastrar'>Ainda não é cadastrado?</h5>
 
-               <button className='button buttonE'> <Link to="/createAccount" className="navLink activeLink">Criar Conta</Link></button>
+               <button className='buttonE'><Link to="/createAccount" className="registeLink">Criar Conta</Link></button>
 
 
 

@@ -111,6 +111,17 @@ input::-moz-placeholder{color: #474350;}
      color: whitesmoke;
      height: 2rem;
      border-radius: 5px;
+     font-weight: 500;
+}
+
+.buttonE:hover, .registeLink:hover{
+     color:aliceblue;
+     background-color: #474350;
+}
+
+.registeLink{
+     color: whitesmoke;
+     text-decoration: none;
 }
 
 .inputLogin .button {
