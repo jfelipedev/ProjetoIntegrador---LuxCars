@@ -44,6 +44,12 @@ public class CategoryService {
     public CategoryFullDto update(long id, CategoryDto category) throws Exception {
         new CategoryValidation(category);
         if(categoryRepository.existsById(id)){
+            if(!categoryRepository.findById(id).getQualification().equals(category.getQualification())) {
+                logger.info("Modificando a qualification do id " + id);
+                if(categoryRepository.existsByQualification(category.getQualification())){
+                    throw new BadRequestException("Erro: qualification especificado já está em uso");
+                }
+            }
             CategoryEntity categoryEntity = category.toEntity();
             categoryEntity.setId(id);
             categoryRepository.save(categoryEntity);
