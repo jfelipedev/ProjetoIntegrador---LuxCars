@@ -1,17 +1,18 @@
 
-import React from 'react';
+import React, {Component} from 'react';
 import { useState } from 'react';
 import './searchCars.css'
 import Select from "react-select";
 
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
 
 
 
-import Box from '@mui/material/Box';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+
+
 
 
 const suppliers = [
@@ -41,11 +42,15 @@ function SearchCars() {
     console.log(event)
   }
 
-  const [value, setValue] = React.useState([null, null]);
+  const handleEvent = (event, picker) => {
+    console.log(picker.startDate);
+  }
+  const handleCallback = (start, end, label) => {
+    console.log(start, end, label);
+  }
 
 
 
- 
   return (
     <div className="searchSection">
       <h1 className="sectionTitle">ALUGUE O CARRO DOS SEUS SONHOS</h1>
@@ -56,6 +61,7 @@ function SearchCars() {
             options={suppliers}
             onChange= {handleSelectChange}
             className="select"
+            placeholder="Categoria"
           />
             
         </div>
@@ -65,27 +71,17 @@ function SearchCars() {
             options={DBsuppliers}
             onChange= {handleSelectChange}
             className="select"
+            placeholder="Onde Vamos?"
           />
         </div>
 
-        <div className="dropDown drop">
+        <div className=" drop">
+          <DateRangePicker 
+            onEvent={handleEvent} onCallback={handleCallback}
+          > 
+            <input  className="form-control" placeholder='iii'/>
+          </DateRangePicker>
           
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateRangePicker
-              
-              localeText={{ start: 'Check-in', end: 'Check-out' }}
-              label="Advanced keyboard"
-              value={value}
-              onChange={(newValue) => setValue(newValue)}
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <input ref={startProps.inputRef} {...startProps.inputProps} className="inputCalendar" />
-                  <Box sx={{ mx: 1 }}> to </Box>
-                  <input ref={endProps.inputRef} {...endProps.inputProps} className="inputCalendar" />
-                </React.Fragment>
-        )}
-      />
-          </LocalizationProvider>
 
         </div>
 

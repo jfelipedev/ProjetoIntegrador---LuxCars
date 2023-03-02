@@ -3,13 +3,16 @@ import Cars from "../../components/cars/cars";
 import SearchCars from "../../components/searchCars/searchCars";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
+import Category from "../../components/categorias/category";
+
 
 function index() {
   return (
-    <div>
+    <div className="index">
       <Header />
       <Cars />
       <SearchCars />
+      <Category />
       <Footer />
     </div>
   );
