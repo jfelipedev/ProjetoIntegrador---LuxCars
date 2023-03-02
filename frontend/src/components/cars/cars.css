@@ -6,7 +6,13 @@
      align-items: center;
      justify-content: center;
      flex-direction: column;
-     padding: 50px;
+     padding: 30px;
+     margin-top: 7rem;
+
+}
+
+.item.sectionTitle {
+     font-weight: 300;
 
 }
 
@@ -29,6 +35,12 @@
 
 .carsImg {
      border-radius: 10px 0px 0px 10px;
+     max-width: 197;
+     max-height: 121;
+     width: auto;
+     height: auto;
+     overflow: hidden;
+
 }
 
 .carsInfo {
