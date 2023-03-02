@@ -29,6 +29,12 @@ span:hover {
      }
 }
 
+p{
+    
+     text-align: center;
+     justify-content: center;
+}
+
 .acessar {
      text-align: center;
      font-size: 16px;

@@ -1,6 +1,8 @@
-import Image1 from "../../assets/Car1.jpg"
-import Image2 from "../../assets/Car1.jpg"
-import Image3 from "../../assets/Car1.jpg"
+import Image1 from "../../assets/ferrari1.jpg"
+import Image2 from "../../assets/ferrari2.jpg"
+import Image3 from "../../assets/ferrari3.jpg"
+import Image4 from "../../assets/ferrari4.jpg"
+
 
 export const Data = [
      {
@@ -35,7 +37,7 @@ export const Data = [
      },
      {
           id: 4,
-          image: Image3,
+          image: Image4,
           year: 2014,
           distance: "A 940 m de você - ",
           linkMap: "MOSTRAR NO MAPA",

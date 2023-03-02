@@ -14,6 +14,7 @@ function Footer() {
              <i class="uil uil-linkedin"></i>
              <i class="uil uil-twitter"></i>
              <i class="uil uil-instagram"></i>
+             <a href="https://gitlab.ctd.academy/ctd/brasil/projeto-integrador-1/0223/turma-5/grupo-1"><i class="uil uil-gitlab"></i></a>
            </div>
 
 
