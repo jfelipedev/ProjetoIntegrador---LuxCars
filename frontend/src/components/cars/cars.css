@@ -11,6 +11,11 @@
 
 }
 
+.item.sectionTitle{
+     font-weight: 300;
+
+}
+
 .carsCard{
      background: #474350;
      border: 1px solid rgba(82, 69, 64 / 50%);
@@ -24,6 +29,12 @@
 
 .carsImg{
      border-radius: 10px 0px 0px 10px;
+     max-width: 197;
+     max-height: 121;
+     width: auto;
+     height: auto;
+     overflow: hidden;
+     
 }
 
 .carsInfo{

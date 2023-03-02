@@ -1,6 +1,5 @@
 import React from 'react'
 import "./category.css"
-import {categoryData} from "./categoryData"
 import Image1 from "../../assets/Car1.jpg"
 
 function Category() {
@@ -14,7 +13,7 @@ function Category() {
         <div className="categoryCard">
           <div className="imgBx">
             <img src={Image1} alt="img" />
-            <h4></h4>
+            <h4>Conversível</h4>
             <h6><span>807.105 Carros</span></h6>
           </div>
           <div className="contentBx">
@@ -28,7 +27,7 @@ function Category() {
         <div className="categoryCard">
           <div className="imgBx">
             <img src={Image1} alt="img" />
-            <h4></h4>
+            <h4>Conversível</h4>
             <h6><span>807.105 Carros</span></h6>
           </div>
           <div className="contentBx">
@@ -42,7 +41,7 @@ function Category() {
         <div className="categoryCard">
           <div className="imgBx">
             <img src={Image1} alt="img" />
-            <h4></h4>
+            <h4>Conversível</h4>
             <h6><span>807.105 Carros</span></h6>
           </div>
           <div className="contentBx">
@@ -56,7 +55,7 @@ function Category() {
         <div className="categoryCard">
           <div className="imgBx">
             <img src={Image1} alt="img" />
-            <h4></h4>
+            <h4>Conversível</h4>
             <h6><span>807.105 Carros</span></h6>
           </div>
           <div className="contentBx">

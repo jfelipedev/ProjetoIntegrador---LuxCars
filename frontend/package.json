@@ -6,17 +6,20 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.11",
+    "@mui/x-data-grid": "^5.17.25",
     "@mui/x-date-pickers": "^5.0.20",
     "@mui/x-date-pickers-pro": "^5.0.20",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
+
     "bootstrap-daterangepicker": "^3.1.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "jquery": "^3.6.3",
     "moment": "^2.29.4",
+
     "react": "^18.2.0",
     "react-bootstrap-daterangepicker": "^8.0.0",
     "react-date-range": "^1.4.0",
@@ -43,17 +46,7 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "rules": {
-      "react/jsx-indent": [
-        2,
-        2
-      ],
-      "react/jsx-indent-props": [
-        2,
-        2
-      ]
-    }
+    ]
   },
   "browserslist": {
     "production": [
