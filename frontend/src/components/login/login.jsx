@@ -31,7 +31,7 @@ function Login() {
     if (valueLoginUser.password === '') return setStatus({ type: 'error', message: 'Necessario preencher o campo senha' });
     if (valueLoginUser.password.length < 8) return setStatus({ type: 'error', message: 'Tamanho da senha insuficiente' });
     if (valueLoginUser.password.length > 20) return setStatus({ type: 'error', message: 'Sua senha não segue o padrao' });
-    if (valueLoginUser.password != '/^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;') return setStatus({ type: 'error', message: 'Sua senha não segue o padrão' });
+    if (valueLoginUser.password !== '/^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;') return setStatus({ type: 'error', message: 'Sua senha não segue o padrão' });
 
     //apagar o status da mensagem
     setStatus({
