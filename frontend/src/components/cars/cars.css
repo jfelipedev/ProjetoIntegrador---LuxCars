@@ -1,4 +1,4 @@
-.section{
+.section {
      width: 100%;
      height: 100%;
      background: #474350;
@@ -6,40 +6,48 @@
      align-items: center;
      justify-content: center;
      flex-direction: column;
-     padding: 30px;
+     padding: 50px;
 
 }
 
-.carsCard{
-     background: #474350;
+.item.sectionTitle {
+     justify-content: center;
+     align-items: center;
+}
+
+.carsCard {
+
      border: 1px solid rgba(82, 69, 64 / 50%);
      border-radius: 10px;
-     box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%); 
+     box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
      display: flex;
      transform-style: preserve-3d;
+     box-shadow: -1rem 0 3rem #000;
      background-color: #393640;
 
 }
 
-.carsImg{
+.carsImg {
      border-radius: 10px 0px 0px 10px;
 }
 
-.carsInfo{
+.carsInfo {
      width: 100%;
-     margin: 1rem ;
+     margin: 1rem;
      display: flex;
      flex-direction: column;
-     align-items:flex-start;
-     justify-content:center;
+     align-items: flex-start;
+     justify-content: center;
 }
 
-.linkMap, .linkdescription {
+.linkMap,
+.linkdescription {
      color: #ffc857;
      text-decoration: none;
 }
 
-.linkMap:hover, .linkdescription:hover {
+.linkMap:hover,
+.linkdescription:hover {
      animation: ondular 2s ease-in-out infinite;
      color: #F4F7F5;
 }
@@ -61,7 +69,7 @@
      }
 }
 
-.carsYear{  
+.carsYear {
      height: .7rem;
      font-size: 1rem;
      color: #AAA6B5;
@@ -69,19 +77,19 @@
      font-family: 'Roboto', sans-serif;
 }
 
-.carsName{ 
-      color: #F4F7F5;
-      font-family: 'Roboto', sans-serif;
+.carsName {
+     color: #F4F7F5;
+     font-family: 'Roboto', sans-serif;
 }
 
-.carsDistance{
+.carsDistance {
      margin: 2rem 0px 7rem;
      font-family: 'Roboto', sans-serif;
      color: #F4F7F5;
      font-size: 1rem;
 }
 
-.carsDesciption{
+.carsDesciption {
      width: 35vw;
      text-align: center;
      font-family: 'Roboto', sans-serif;
@@ -90,20 +98,12 @@
      font-size: 1rem;
 }
 
-.seeMore{
+.seeMore {
      width: 100%;
      height: 2.5rem;
 }
 
-.thumbs-wrapper{
+.thumbs-wrapper {
      display: none;
-     
+
 }
-
-
-
-
-
-
-
-
