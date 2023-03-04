@@ -7,6 +7,7 @@ import Select from "react-select";
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-daterangepicker/daterangepicker.css';
+import { event } from 'jquery';
 
 
 
@@ -51,6 +52,12 @@ function SearchCars() {
 
 
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
+
+
+
   return (
     <div className="searchSection">
       <h1 className="sectionTitle">ALUGUE O CARRO DOS SEUS SONHOS</h1>
@@ -73,19 +80,21 @@ function SearchCars() {
             className="select"
             placeholder="Onde Vamos?"
           />
+          
         </div>
 
         <div className=" drop">
           <DateRangePicker 
             onEvent={handleEvent} onCallback={handleCallback}
+            
           > 
-            <input  className="form-control" placeholder='iii'/>
+            <input  className="form-control" />
           </DateRangePicker>
           
 
         </div>
 
-        <button className="button button1">BUSCAR</button>
+        <button className="button button1" type='submit' onSubmit={handleSubmit}>BUSCAR</button>
       </div>
     </div>
   );

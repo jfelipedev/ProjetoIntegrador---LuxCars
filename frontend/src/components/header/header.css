@@ -21,8 +21,9 @@ a{
      margin: 0px 2.5rem;
 }
 
-/* .brand{
-}  */
+.brand{
+     height: 5rem;
+} 
 
 .navToggler{
      color: #FFC857;

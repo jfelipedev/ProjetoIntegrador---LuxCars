@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import React from 'react';
 import './header.css'
 import { Link } from 'react-router-dom'
+import Image1 from '../../assets/logoWhiteLetters.png'
+import Image2 from '../../assets/logoWhiteBox.png'
 
 
 function Header() {
@@ -14,7 +16,7 @@ function Header() {
   return (
     <header className="header">
       <nav className="nav " >
-        <img src="" alt="LuxCars" className="brand" />
+        <img src={Image1} alt="LuxCars" className="brand" />
 
         
         <ul className="navList grid" ref={navRef}>
