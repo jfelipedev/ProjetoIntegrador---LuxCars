@@ -1,10 +1,10 @@
-.createAccount{ 
+.createAccount {
      display: flex;
      justify-content: center;
      align-items: center;
 }
 
-.createaccountBar{
+.createaccountBar {
      position: absolute;
      left: 40%;
      top: 20%;
@@ -16,7 +16,7 @@
      border-radius: 10px 10px 10px 10px;
      background-color: #1C1C1C;
      padding: 30px;
-    
+
      -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
      top: 50%;
@@ -24,28 +24,59 @@
      transform: translate(-50%, -50%);
 }
 
-.createTitle{
+.createTitle {
      text-align: center;
-     margin: 30px 0px 100px 0px;
+     margin: 30px 0px 60px 0px;
      color: #ffc857;
 }
 
-.input{
+.input {
      display: flex;
      justify-content: space-between;
      flex-direction: column;
      gap: 1.5rem;
+
 }
 
-.buttonR{
+
+.buttonR {
+     /*width: 18rem;
+     background-color: #ffc857;
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     margin-top: 1.5rem;*/
+
      width: 18rem;
      background-color: #ffc857;
      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     color: whitesmoke;
+     height: 2rem;
+     border-radius: 5px;
+     font-weight: 500;
      margin-top: 1.5rem;
+
 }
+
+.log {
+
+     color: whitesmoke;
+     margin-top: 0.8rem;
+     text-align: right;
+     padding: 0 10px;
+     border-top: 2px solid whitesmoke;
+     font-size: small;
+
+
+
+}
+
+.log a {
+     color: #ffc857;
+     text-decoration: none;
+}
+
+
+
 
 /* ====================Breakpoints=================== */
 /* For large devices */
-@media screen and (max-width: 768px){
-    
-    }
+@media screen and (max-width: 768px) {}
