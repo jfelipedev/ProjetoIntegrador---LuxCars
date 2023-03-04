@@ -11,35 +11,36 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 function Cars() {
-     return(
-       <section className="section">
-         <h2 className="item sectionTitle">Veículos em destaque</h2>
+  return (
+    <section className="section">
+      <h2 className="item sectionTitle">Veículos em destaque</h2>
 
-         <Carousel className="carsContainer container ">
-           {Data.map(({id, image, year, distance, linkMap, title, description, linkdescription}) => {
-            return(
-              <div className="carsCard " key={id}>               
-                
-                <img src={image} alt="" className="carsImg" />               
-                
-                <div className="carsInfo">
-                  <h5 className="carsYear">{year}</h5>
-                  <h2 className="carsName">{title}</h2>
-                  <h5 className="carsDistance">{distance}<a href="" className="linkMap">{linkMap}</a></h5>
-                  <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
-                  <button className="seeMore button">Ver mais</button>
-                  
-                
-                </div>
+      <Carousel className="carsContainer container ">
+        {Data.map(({ id, image, year, distance, linkMap, title, description, linkdescription }) => {
+          return (
+            <div className="carsCard " key={id}>
+
+              <img src={image} alt="" className="carsImg" />
+
+              <div className="carsInfo">
+                <h5 className="carsYear">{year}</h5>
+                <h2 className="carsName">{title}</h2>
+                <h5 className="carsDistance">{distance}<a href="" className="linkMap">{linkMap}</a></h5>
+                <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
+                <button className="seeMore button">Ver mais</button>
+
+
               </div>
-            )
-           })}
-         </Carousel>
-       </section>
-     )
+            </div>
+
+          )
+        })}
+      </Carousel>
+    </section >
+  )
 }
 
- export default Cars
+export default Cars
 
 
 

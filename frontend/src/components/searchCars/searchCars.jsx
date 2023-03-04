@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react';
+import React from 'react';
 import { useState } from 'react';
 import './searchCars.css'
 import Select from "react-select";
@@ -7,33 +7,21 @@ import Select from "react-select";
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-daterangepicker/daterangepicker.css';
-import { event } from 'jquery';
-
-
-
-
-
-
 
 
 const suppliers = [
-  {label: "Conversivel", value: "Conversivel"},
-  {label: "Coupé", value: "Coupé"},
-  {label: "Esportivo", value: "Esportiv"},
-  {label: "Sedan", value: "Sedan"},
-] 
+  { label: "Conversivel", value: "Conversivel" },
+  { label: "Coupé", value: "Coupé" },
+  { label: "Esportivo", value: "Esportiv" },
+  { label: "Sedan", value: "Sedan" },
+]
 
 const DBsuppliers = [
-  {label: "Argentina", value: "Conversivel"},
-  {label: "Angola", value: "Coupé"},
-  {label: "Brasil", value: "Esportiv"},
-  {label: "Paraguai", value: "Sedan"},
-] 
-
-
-
-
-
+  { label: "Argentina", value: "Conversivel" },
+  { label: "Angola", value: "Coupé" },
+  { label: "Brasil", value: "Esportiv" },
+  { label: "Paraguai", value: "Sedan" },
+]
 
 
 function SearchCars() {
@@ -64,19 +52,19 @@ function SearchCars() {
 
       <div className="searchContainer ">
         <div className="dropDown">
-          <Select 
+          <Select
             options={suppliers}
-            onChange= {handleSelectChange}
+            onChange={handleSelectChange}
             className="select"
             placeholder="Categoria"
           />
-            
+
         </div>
 
         <div className="dropDown">
-          <Select 
+          <Select
             options={DBsuppliers}
-            onChange= {handleSelectChange}
+            onChange={handleSelectChange}
             className="select"
             placeholder="Onde Vamos?"
           />
@@ -84,13 +72,13 @@ function SearchCars() {
         </div>
 
         <div className=" drop">
-          <DateRangePicker 
+          <DateRangePicker
             onEvent={handleEvent} onCallback={handleCallback}
             
           > 
             <input  className="form-control" />
           </DateRangePicker>
-          
+
 
         </div>
 

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import "./createAccount.css";
+import React from "react";
 
 function Createaccount() {
   const {
@@ -55,7 +56,7 @@ function Createaccount() {
           />
           {errors.email && <span>Email inválido</span>}
           <input
-            type="senha"
+            type="password"
             placeholder="Senha"
             {...register(
               "password",
@@ -65,7 +66,7 @@ function Createaccount() {
           />
           {errors.password && <span>Senha inválida</span>}
           <input
-            type="senha"
+            type="password"
             placeholder="Confirmar Senha"
             {...register("repassword", { required: true })}
           />
@@ -74,9 +75,18 @@ function Createaccount() {
         <button type="submit" className="button buttonR">
           Registrar
         </button>
+
+        <div className="log">Já tem uma conta?<a href="/login"> Faça login</a></div>
       </form>
     </div>
   );
+
+
+
+
+
+
+
 }
 
 export default Createaccount;

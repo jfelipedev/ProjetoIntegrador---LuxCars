@@ -1,4 +1,4 @@
-.header{
+.header {
      width: 100vw;
      height: 6rem;
      position: fixed;
@@ -9,29 +9,30 @@
      box-shadow: 5px 1px 3px #1C1C1C;
 }
 
-a{
+a {
      text-decoration: none;
 }
 
-.nav{
+.nav {
      height: 12vh;
      display: flex;
      justify-content: space-between;
      align-items: center;
      margin: 0px 2.5rem;
+
 }
 
 .brand{
      height: 5rem;
 } 
 
-.navToggler{
+.navToggler {
      color: #FFC857;
      font-weight: bold;
      font-size: 2rem;
 }
 
-.navClose{
+.navClose {
      color: #FFC857;
      font-weight: bold;
      font-size: 2rem;
@@ -42,10 +43,10 @@ a{
      column-gap: 2rem;
      align-items: center;
      font-size: 1.3rem;
-     font-weight:500;
+     font-weight: 500;
 }
 
-.navList1{
+.navList1 {
      display: flex;
      flex-direction: column;
      font-size: 0.9rem;
@@ -53,51 +54,55 @@ a{
      gap: 1rem;
 }
 
-.navClose , .navToggler{
+.navClose,
+.navToggler {
      display: none;
      cursor: pointer;
 }
 
-.navLink{
+.navLink {
      color: #F4F7F5;
      text-decoration: none;
      font-family: 'Inter', sans-serif;
 }
 
-.navLink1{
+.navLink1 {
      color: #FFC857;
      text-decoration: none;
      font-family: 'Inter', sans-serif;
 }
 
 /*Active Link*/
-.activeLink, .navLink:hover{
+.activeLink,
+.navLink:hover {
      color: #807a90;
 }
 
 /* ====================Breakpoints=================== */
 /* For medium devices */
-@media screen and (max-width: 768px){
-     .navClose , .navToggler{
+@media screen and (max-width: 768px) {
+
+     .navClose,
+     .navToggler {
           display: block;
      }
 
-     .brand{
+     .brand {
           display: none;
      }
 
-     .navLink{
+     .navLink {
           color: whitesmoke;
      }
 
-     .navList{
+     .navList {
           position: fixed;
           top: 0;
           left: 0;
           height: 100vh;
           width: 100vw;
           flex-direction: column;
-          align-items:flex-end;
+          align-items: flex-end;
           padding: 2rem;
           gap: 1.5rem;
           background-color: #474350;
@@ -105,16 +110,16 @@ a{
           transform: translateX(100%);
      }
 
-     .navList1{
+     .navList1 {
           align-items: flex-end;
      }
 
-     .responsive{
+     .responsive {
           transform: translateX(0);
      }
-     
-/*Colocar esse x em cima*/
-     .navClose{
+
+     /*Colocar esse x em cima*/
+     .navClose {
           position: absolute;
           top: 1.5rem;
           left: 2.5rem;
@@ -122,7 +127,3 @@ a{
 
 
 }
-
-
-
-
