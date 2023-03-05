@@ -5,7 +5,6 @@ h1 {
 
 span {
      color: #ffc857;
-
 }
 
 span:hover {
@@ -53,7 +52,6 @@ p{
      color: whitesmoke;
 }
 
-
 .Login {
      display: flex;
      align-items: center;
@@ -62,7 +60,6 @@ p{
      width: 100%;
      min-height: 100%;
      color: whitesmoke;
-
 }
 
 .loginbar {
@@ -112,7 +109,7 @@ input::-moz-placeholder{color: #474350;}
 
 .buttonE{
      width: 18rem;
-     background-color: #ffc857;
+     background-color: #474350;
      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
      color: whitesmoke;
      height: 2rem;
@@ -121,8 +118,8 @@ input::-moz-placeholder{color: #474350;}
 }
 
 .buttonE:hover, .registeLink:hover{
-     color:aliceblue;
-     background-color: #474350;
+     color:#474350;
+     background-color: #ffc857;
 }
 
 .registeLink{
@@ -143,7 +140,7 @@ input::-moz-placeholder{color: #474350;}
 }
 
 .createaccount .button {
-     background-color: #ffc857;
+     background-color: #474350;
      color: black;
      font-weight: 600;
 }
@@ -227,7 +224,7 @@ input::-moz-placeholder{color: #474350;}
 
      .buttonE{
           width: 15rem;
-          background-color: #ffc857;
+          background-color: #474350;
           box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
      }
 
