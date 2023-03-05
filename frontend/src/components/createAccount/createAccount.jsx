@@ -80,13 +80,6 @@ function Createaccount() {
       </form>
     </div>
   );
-
-
-
-
-
-
-
 }
 
 export default Createaccount;
