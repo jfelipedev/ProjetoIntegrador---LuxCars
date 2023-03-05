@@ -6,11 +6,14 @@
 }
 
 .categoryTitle{
-     height: 10px;
-     margin-left: 12rem;
+     padding: 3rem 0px 1rem 0px;
+     text-align: center;
      font-family: 'Inter', sans-serif;
-     font-weight: 100;
+     font-weight: 300;
+     font-size: calc(1.325rem + .9vw);
      color: #F4F7F5;
+     margin-top: 0;
+     line-height: 1.2;
 }
 
 .categoryContainer{
@@ -198,7 +201,6 @@
      .categoryTitle{
           height: 10px;
           text-align: center;
-          
      }
 
      .categoryContainer{
