@@ -16,9 +16,8 @@ function Header() {
   return (
     <header className="header">
       <nav className="nav " >
-        <img src={Image1} alt="LuxCars" className="brand" />
+      <a href="//gitlab.ctd.academy/ctd/brasil/projeto-integrador-1/0223/turma-5/grupo-1"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
-        
         <ul className="navList grid" ref={navRef}>
           <li className="navItem">
             <Link to="/" className="navLink activeLink">Carros</Link>
@@ -59,4 +58,3 @@ function Header() {
 }
 
 export default Header
-
