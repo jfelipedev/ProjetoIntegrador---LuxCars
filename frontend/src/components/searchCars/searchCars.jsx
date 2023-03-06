@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import './searchCars.css'
 import Select from "react-select";
@@ -22,10 +21,7 @@ const DBsuppliers = [
   { label: "Paraguai", value: "Sedan" },
 ]
 
-
 function SearchCars() {
-
-
   const handleSelectChange = (event) => {
     console.log(event)
   }
@@ -37,7 +33,9 @@ function SearchCars() {
     console.log(start, end, label);
   }
 
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
 
   return (
     <div className="searchSection">
@@ -51,7 +49,6 @@ function SearchCars() {
             className="select"
             placeholder="Categoria"
           />
-
         </div>
 
         <div className="dropDown">
@@ -65,15 +62,14 @@ function SearchCars() {
 
         <div className=" drop">
           <DateRangePicker
-            onEvent={handleEvent} onCallback={handleCallback}
-          >
-            <input className="form-control" placeholder='iii' />
+            onEvent={handleEvent} onCallback={handleCallback}   
+          > 
+            <input  className="form-control" />
           </DateRangePicker>
-
-
         </div>
 
-        <button className="button button1">BUSCAR</button>
+        <button className="button button1" type='submit' onSubmit={handleSubmit}>BUSCAR</button>
+        
       </div>
     </div>
   );

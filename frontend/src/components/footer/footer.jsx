@@ -1,11 +1,12 @@
 import React from "react";
 import './footer.css'
+import Image1 from '../../assets/logoWhiteBox.png'
 
 function Footer() {
      return(
        <div className="footer">
          <div className="footerInfo ">
-           <img src="" alt="LuxCars" className="brand1" />
+           <img src={Image1} alt="LuxCars" className="brand1" />
 
            <h5 className="copyRight">©️2023 LuxCars.com LTDA</h5>
 

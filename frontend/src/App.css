@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500&family=Inter:wght@200;400;500;900&family=Lato:wght@300;400;700&family=Oxygen:wght@300;400&family=Roboto:wght@300;400;500&display=swap');
 
-
 *,*::after, *::before{
   margin: 0;
   padding: 0;
@@ -11,12 +10,6 @@ html{
   scroll-behavior: smooth;
   background: #474350;
 }
-
-
-/* button, input, textarea {
-  font-family: ;
-  font-size: ;
-} */
 
 .sectionTitle{
   padding: 3rem 0px 1rem 0px;
@@ -33,7 +26,6 @@ html{
 .home{
   padding-top: 4.8rem;
 }
-
 
 ul{
   list-style: none;
@@ -91,7 +83,6 @@ img{
   align-items:center;
 }
 
-
 /* ====================Breakpoints=================== */
 /* For large devices */
 @media screen and (max-width: 992px){
@@ -115,6 +106,7 @@ img{
 @media screen and (max-width: 576px){
   
 }
+
 
 /* For small devices */
 @media screen and (max-width: 350px){

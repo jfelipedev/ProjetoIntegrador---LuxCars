@@ -2,17 +2,15 @@ import React, { useState } from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
 
   const handleSignupForm = (event) => {
     event.preventDefault()
 
     if (!validate()) return;
-    //console.log({email, password})
+    console.log({email, password})
   }
 
   const [status, setStatus] = useState({
@@ -24,7 +22,6 @@ function Login() {
     email: email,
     password: password
   }
-
 
   function validate() {
     if (valueLoginUser.email === '') return setStatus({ type: 'error', message: 'Necessario preencher o campo login' });
@@ -41,12 +38,11 @@ function Login() {
     return true;
   }
 
-
   return (
     <div className="Login">
 
       <form action="" className="loginbar" onSubmit={handleSignupForm}>
-        <h1 className='loginTitle'><span>LUX</span>CAR</h1>
+        <h1 className='loginTitle'><span>LUX</span>CARS</h1>
 
         <div className="inputs">
 
@@ -54,20 +50,18 @@ function Login() {
             <h5 className='acessar'>Acesse pela sua conta Lux:</h5>
             {status.type === 'error' ? <p style={{ color: "red" }}>{status.message}</p> : ""}
 
-            <input className='input1' type="email" name='email' placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
+            <input className='input1' type="email" name='email'  placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
             {/* <i class="uil uil-envelope EmailIcon"></i> */}
-
 
             <input className='input1' type="password" name='password' placeholder='Senha' requiredvaleu={password} onChange={(event) => setPassword(event.target.value)} />
             {/* <i class="uil uil-eye-slash eye"></i> */}
-
 
             <button type='submit' className='buttonE '>Entrar</button>
           </div>
 
           <div className="inputs">
             <div className="inputLogin">
-              <h5 className='acessar'>Acesse pela sua conta Lux:</h5>
+              <h5 className='acessar'>Cadastre-se para ter uma conta Lux:</h5>
 
               <Link to={"/createAccount"} className="registeLink"><button className='buttonE'>Criar Conta</button></Link>
 

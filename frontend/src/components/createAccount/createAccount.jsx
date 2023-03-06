@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import "./createAccount.css";
+import React from "react";
 
 function Createaccount() {
   const {
@@ -79,13 +80,6 @@ function Createaccount() {
       </form>
     </div>
   );
-
-
-
-
-
-
-
 }
 
 export default Createaccount;
