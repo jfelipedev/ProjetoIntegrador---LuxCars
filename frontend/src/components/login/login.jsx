@@ -53,7 +53,6 @@ function Login() {
             <input className='input1' type="email" name='email'  placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
             {/* <i class="uil uil-envelope EmailIcon"></i> */}
 
-
             <input className='input1' type="password" name='password' placeholder='Senha' requiredvaleu={password} onChange={(event) => setPassword(event.target.value)} />
             {/* <i class="uil uil-eye-slash eye"></i> */}
 

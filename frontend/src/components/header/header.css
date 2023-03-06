@@ -14,7 +14,7 @@ a {
 }
 
 .nav {
-     height: 12vh;
+     height: 10vh;
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -80,8 +80,6 @@ a {
 }
 
 /* ====================Breakpoints=================== */
-
-
 /* For large devices */
 @media screen and (max-width: 992px) {
      .nav {
