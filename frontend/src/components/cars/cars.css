@@ -8,12 +8,10 @@
      flex-direction: column;
      padding: 30px;
      margin-top: 7rem;
-
 }
 
 .item.sectionTitle {
      font-weight: 300;
-
 }
 
 .item.sectionTitle {
@@ -22,7 +20,6 @@
 }
 
 .carsCard {
-
      border: 1px solid rgba(82, 69, 64 / 50%);
      border-radius: 10px;
      box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
@@ -40,7 +37,6 @@
      width: auto;
      height: auto;
      overflow: hidden;
-
 }
 
 .carsInfo {
@@ -166,7 +162,6 @@
           height: 2.5rem;
      }
 }
-
 
 @media screen and (max-width: 576px){
      .carsCard{
