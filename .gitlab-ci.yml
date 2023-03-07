@@ -1,31 +1,8 @@
-# image: maven:3.9.0-amazoncorretto-17
-
-# build:
-#   stage: build
-#   script:
-#     - cd backend
-#     - mvn compile
-
-# test:
-#   stage: test
-#   script:
-#     - cd backend
-#     - mvn test
-
-# deploy:
-#   stage: deploy
-#   script:
-#     - cd backend
-#     - mvn package
-#   artifacts:
-#     name: Carlux
-#     paths:
-#       - backend/target/*.jar
 build:
   image: docker:19.03.12
   stage: build
   services:
-    - docker:19.03.12-dind
+    - docker:latest
   script:
     - docker login -u viniciusocker1999 -p dckr_pat_rjSrlLJXgeNOcmnMciNL0U2XTVs
     - docker build -t viniciusocker1999/dh-grupo1-pi-back:latest ./backend
