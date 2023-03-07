@@ -19,5 +19,5 @@ deploy:
     - mvn package
   artifacts:
     name: Carlux.jar
-    paths:
-      - backend/target/Carrosluxo-0.0.1-SNAPSHOT.jar
+    path:
+      - backend/target/*.jar
