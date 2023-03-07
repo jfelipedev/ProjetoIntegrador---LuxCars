@@ -28,5 +28,5 @@ build:
     - docker:19.03.12-dind
   script:
     - docker login -u viniciusocker1999 -p dckr_pat_rjSrlLJXgeNOcmnMciNL0U2XTVs
-    - docker build -t viniciusocker1999/dh-grupo1-pi-back:latest
+    - docker build -t viniciusocker1999/dh-grupo1-pi-back:latest ./backend
     - docker push viniciusocker1999/dh-grupo1-pi-back:latest
