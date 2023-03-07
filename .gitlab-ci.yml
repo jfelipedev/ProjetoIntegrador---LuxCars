@@ -13,7 +13,10 @@ test:
     - mvn test
 
 deploy:
-  stage: deploy
+  stage: package
   script:
     - cd backend
-    - mvn deploy
+    - mvn package
+  artifacts:
+    paths:
+      - backend/target/*.jar
