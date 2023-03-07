@@ -20,4 +20,4 @@ deploy:
   artifacts:
     name: Carlux.jar
     paths:
-      - backend/target/*.jar
+      - backend/target/Carrosluxo-0.0.1-SNAPSHOT.jar
