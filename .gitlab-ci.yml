@@ -12,7 +12,7 @@ test:
     - cd backend
     - mvn test
 
-deploy:
+package:
   stage: package
   script:
     - cd backend
