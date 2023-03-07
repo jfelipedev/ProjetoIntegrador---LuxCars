@@ -18,6 +18,6 @@ deploy:
     - cd backend
     - mvn package
   artifacts:
-    name: Carlux.jar
-    path:
+    name: Carlux
+    paths:
       - backend/target/*.jar
