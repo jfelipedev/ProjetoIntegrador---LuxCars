@@ -1,32 +1,32 @@
-image: maven:3.9.0-amazoncorretto-17
+# image: maven:3.9.0-amazoncorretto-17
 
-build:
-  stage: build
-  script:
-    - cd backend
-    - mvn compile
-
-test:
-  stage: test
-  script:
-    - cd backend
-    - mvn test
-
-deploy:
-  stage: deploy
-  script:
-    - cd backend
-    - mvn package
-  artifacts:
-    name: Carlux
-    paths:
-      - backend/target/*.jar
 # build:
-#   image: docker:19.03.12
 #   stage: build
-#   services:
-#     - docker:19.03.12-dind
 #   script:
-#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD https://gitlab.ctd.academy:5050/
-#     - docker build -t $CI_REGISTRY/group/project/image:latest .
-#     - docker push $CI_REGISTRY/group/project/image:latest
+#     - cd backend
+#     - mvn compile
+
+# test:
+#   stage: test
+#   script:
+#     - cd backend
+#     - mvn test
+
+# deploy:
+#   stage: deploy
+#   script:
+#     - cd backend
+#     - mvn package
+#   artifacts:
+#     name: Carlux
+#     paths:
+#       - backend/target/*.jar
+build:
+  image: docker:19.03.12
+  stage: build
+  services:
+    - docker:19.03.12-dind
+  script:
+    - docker login -u viniciusocker1999 -p dckr_pat_rjSrlLJXgeNOcmnMciNL0U2XTVs
+    - docker build -t viniciusocker1999/dh-grupo1-pi-back:latest
+    - docker push viniciusocker1999/dh-grupo1-pi-back:latest
