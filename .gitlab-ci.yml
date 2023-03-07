@@ -1,0 +1,19 @@
+image: maven:3.9.0-amazoncorretto-17
+
+build:
+  stage: build
+  script:
+    - cd backend
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - cd backend
+    - mvn test
+
+deploy:
+  stage: deploy
+  script:
+    - cd backend
+    - mvn deploy
