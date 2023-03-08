@@ -26,6 +26,7 @@ function Createaccount() {
 
         <div className="input">
           <input
+          className="create"
             type="text"
             placeholder="Nome"
             {...register(
@@ -37,6 +38,7 @@ function Createaccount() {
           {errors.name && <span>Nome inválido</span>}
 
           <input
+          className="create"
             type="text"
             placeholder="Sobrenome"
             {...register(
@@ -48,6 +50,7 @@ function Createaccount() {
           {errors.lastName && <span>Sobrenome inválido</span>}
 
           <input
+          className="create"
             type="email"
             placeholder="Email"
             {...register("email", {
@@ -56,6 +59,7 @@ function Createaccount() {
           />
           {errors.email && <span>Email inválido</span>}
           <input
+          className="create"
             type="password"
             placeholder="Senha"
             {...register(
@@ -66,6 +70,7 @@ function Createaccount() {
           />
           {errors.password && <span>Senha inválida</span>}
           <input
+          className="create"
             type="password"
             placeholder="Confirmar Senha"
             {...register("repassword", { required: true })}
@@ -76,7 +81,7 @@ function Createaccount() {
           Registrar
         </button>
 
-        <div className="log">Já tem uma conta?<a href="/login"> Faça login</a></div>
+        <div className="log">Já tem uma conta?<a href="/login"> Faça Login</a></div>
       </form>
     </div>
   );

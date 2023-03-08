@@ -36,7 +36,7 @@ p{
 
 .acessar {
      text-align: center;
-     font-size: 16px;
+     font-size: 18px;
      font-weight: 600;
      text-transform: uppercase;
      display: inline-block;
@@ -45,7 +45,7 @@ p{
 
 .cadastrar{
      text-align: center;
-     font-size: 16px;
+     font-size: 18px;
      font-weight: 600;
      text-transform: uppercase;
      display: inline-block;
@@ -117,14 +117,9 @@ input::-moz-placeholder{color: #474350;}
      font-weight: 500;
 }
 
-.buttonE:hover, .registeLink:hover{
+.buttonE:hover{
      color:#474350;
      background-color: #ffc857;
-}
-
-.registeLink{
-     color: whitesmoke;
-     text-decoration: none;
 }
 
 .inputLogin .button {
@@ -171,8 +166,8 @@ input::-moz-placeholder{color: #474350;}
      position: absolute;
      left: 50%;
      top: 50%;
-     max-width: 600px;
-     max-height: 600px;
+     max-width: 700px;
+     max-height: 700px;
      /* --- incluido depois --- */
      -webkit-border-radius: 10px 10px 10px 10px;
      border-radius: 10px 10px 10px 10px;
@@ -186,9 +181,9 @@ input::-moz-placeholder{color: #474350;}
      transform: translate(-50%, -50%);
      }
 
-     .acessar ,.cadastrar{
+     .acessar .cadastrar{
           text-align: center;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 600;
           text-transform: uppercase;
           display: inline-block;
@@ -213,13 +208,14 @@ input::-moz-placeholder{color: #474350;}
           flex-direction: column;
           border: none;
           border-bottom: 1px solid whitesmoke;
-          padding: 10px;
+          padding: 5px;
           border-radius: 5px;
+          gap: 15px;
      }
 
      .input1{
           height: 32px;
-          width: 200px;
+          width: 15rem;
      } 
 
      .buttonE{
@@ -238,8 +234,132 @@ input::-moz-placeholder{color: #474350;}
          padding: 10px;
      }
 
-     .icons{
-          display: flex;
-          flex-direction: column;
+     .iconBig{
+          font-size: 14px;
      }
     }
+
+    @media screen and (max-width: 576px){
+     .loginbar{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          max-width: 600px;
+          max-height: 600px;
+          /* --- incluido depois --- */
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+          background-color: #1C1C1C;
+          padding: 10px;
+          width: 50%;
+          -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          }
+     
+          .loginTitle {
+               text-align: center;
+               margin: 10px 0px 15px 0px;
+               font-size: 1.7rem;
+          }
+     
+          .inputs {
+               display: flex;
+               flex-direction: column;
+          }
+     
+          .input1{
+               height: 30px;
+               width: 12rem;
+          } 
+     
+          .buttonE{
+               width: 12rem;
+               background-color: #474350;
+               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          }
+
+          .acessar ,.cadastrar{
+               text-align: center;
+               font-size: 14px;
+               font-weight: 600;
+               text-transform: uppercase;
+               display: inline-block;
+               color: whitesmoke;
+     
+          }
+     
+          .icons{
+               display: flex;
+               flex-direction: column;
+          }
+
+          .iconBig{
+               font-size: 12px;
+          }
+    }
+
+    /* For small devices */
+@media screen and (max-width: 390px){
+     .loginbar{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          max-width: 500px;
+          max-height: 500px;
+          /* --- incluido depois --- */
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+          background-color: #1C1C1C;
+          padding: 10px;
+          width: 60%;
+          -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          }
+     
+          .loginTitle {
+               text-align: center;
+               margin: 5px 0px 10px 0px;
+               font-size: 1.5rem;
+          }
+     
+          .inputs {
+               display: flex;
+               flex-direction: column;
+          }
+     
+          .input1{
+               height: 30px;
+               width: 12rem;
+          } 
+     
+          .buttonE{
+               width: 12rem;
+               background-color: #474350;
+               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          }
+
+          .acessar ,.cadastrar{
+               text-align: center;
+               font-size: 12px;
+               font-weight: 600;
+               text-transform: uppercase;
+               display: inline-block;
+               color: whitesmoke;
+     
+          }
+     
+          .icons{
+               display: flex;
+               flex-direction: column;
+          }
+
+          .iconBig{
+               font-size: 12px;
+          }
+}

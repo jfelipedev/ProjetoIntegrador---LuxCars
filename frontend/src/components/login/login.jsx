@@ -63,7 +63,7 @@ function Login() {
             <div className="inputLogin">
               <h5 className='acessar'>Cadastre-se para ter uma conta Lux:</h5>
 
-              <Link to={"/createAccount"} className="registeLink"><button className='buttonE'>Criar Conta</button></Link>
+              <Link to={"/createAccount"}><button className='buttonE'>Criar Conta</button></Link>
 
               <div className="icons">
                 <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Rápido e fácil reservar</span></i>

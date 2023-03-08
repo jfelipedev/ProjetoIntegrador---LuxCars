@@ -18,7 +18,7 @@ function Header() {
       <nav className="nav " >
       <a href="//gitlab.ctd.academy/ctd/brasil/projeto-integrador-1/0223/turma-5/grupo-1"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
-        <ul className="navList grid" ref={navRef}>
+        <ul className="navList" ref={navRef}>
           <li className="navItem">
             <Link to="/" className="navLink activeLink">Carros</Link>
           </li>
