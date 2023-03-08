@@ -28,10 +28,12 @@ span:hover {
      }
 }
 
-p{
-    
+p {
+
+     max-width: 290px;
      text-align: center;
      justify-content: center;
+     white-space: normal;
 }
 
 .acessar {
@@ -43,7 +45,7 @@ p{
      color: whitesmoke;
 }
 
-.cadastrar{
+.cadastrar {
      text-align: center;
      font-size: 18px;
      font-weight: 600;
@@ -100,14 +102,21 @@ p{
      padding: 10px;
 }
 
-.input1{
+.input1 {
      height: 32px;
-} 
+}
 
-::-webkit-input-placeholder{color: #474350; font-weight: 500; padding-left: 1rem;}
-input::-moz-placeholder{color: #474350;}
+::-webkit-input-placeholder {
+     color: #474350;
+     font-weight: 500;
+     padding-left: 1rem;
+}
 
-.buttonE{
+input::-moz-placeholder {
+     color: #474350;
+}
+
+.buttonE {
      width: 18rem;
      background-color: #474350;
      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
@@ -146,22 +155,23 @@ input::-moz-placeholder{color: #474350;}
      padding: 5px 10px;
 }
 
-.checkedIcon{
+.checkedIcon {
      font-size: 1.5rem;
 }
 
-.icons{
+.icons {
      display: flex;
      flex-direction: column;
 }
 
-.iconBig{
+.iconBig {
      font-size: 1rem;
 }
 
 /* ====================Breakpoints=================== */
 /* For large devices */
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 992px){
      .loginbar{
      position: absolute;
      left: 50%;
@@ -188,7 +198,6 @@ input::-moz-placeholder{color: #474350;}
           text-transform: uppercase;
           display: inline-block;
           color: whitesmoke;
-
      }
 
      .loginTitle {
@@ -213,12 +222,12 @@ input::-moz-placeholder{color: #474350;}
           gap: 15px;
      }
 
-     .input1{
-          height: 32px;
+     .input1 {
+          height: 32px; 
           width: 15rem;
      } 
 
-     .buttonE{
+     .buttonE {
           width: 15rem;
           background-color: #474350;
           box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
@@ -231,7 +240,7 @@ input::-moz-placeholder{color: #474350;}
           flex-direction: column;
           border: none;
           border-bottom: 1px solid whitesmoke;
-         padding: 10px;
+          padding: 10px;
      }
 
      .iconBig{
@@ -239,7 +248,7 @@ input::-moz-placeholder{color: #474350;}
      }
     }
 
-    @media screen and (max-width: 576px){
+    @media screen and (max-width: 768px){
      .loginbar{
           position: absolute;
           left: 50%;
@@ -288,7 +297,6 @@ input::-moz-placeholder{color: #474350;}
                text-transform: uppercase;
                display: inline-block;
                color: whitesmoke;
-     
           }
      
           .icons{
@@ -302,7 +310,7 @@ input::-moz-placeholder{color: #474350;}
     }
 
     /* For small devices */
-@media screen and (max-width: 390px){
+@media screen and (max-width: 576px){
      .loginbar{
           position: absolute;
           left: 50%;
