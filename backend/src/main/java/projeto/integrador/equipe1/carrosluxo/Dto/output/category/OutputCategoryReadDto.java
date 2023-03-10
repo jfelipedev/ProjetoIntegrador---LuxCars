@@ -1,23 +1,22 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.category;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
-public class CategoryDto {
+public class OutputCategoryReadDto {
     private String descritpion;
-
     private String urlImage;
     private String qualification;
 
-    public CategoryDto() {
+    public OutputCategoryReadDto() {
     }
 
-    public CategoryDto(String descritpion, String urlImage, String qualification) {
+    public OutputCategoryReadDto(String descritpion, String urlImage, String qualification) {
         this.descritpion = descritpion;
         this.urlImage = urlImage;
         this.qualification = qualification;
     }
 
-    public CategoryDto(CategoryEntity categoryEntity) {
+    public OutputCategoryReadDto(CategoryEntity categoryEntity) {
         this.setQualification(categoryEntity.getQualification());
         this.setUrlImage(categoryEntity.getUrlImage());
         this.setDescritpion(categoryEntity.getDescritpion());
@@ -45,22 +44,5 @@ public class CategoryDto {
 
     public void setQualification(String qualification) {
         this.qualification = qualification;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryDto{" +
-                "descritpion='" + descritpion + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                ", qualification='" + qualification + '\'' +
-                '}';
-    }
-
-    public CategoryEntity toEntity() {
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setQualification(this.getQualification());
-        categoryEntity.setDescritpion(this.getDescritpion());
-        categoryEntity.setUrlImage(this.getUrlImage());
-        return categoryEntity;
     }
 }

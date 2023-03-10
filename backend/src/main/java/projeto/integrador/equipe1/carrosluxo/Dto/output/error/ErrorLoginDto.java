@@ -1,4 +1,4 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.error;
 
 public class ErrorLoginDto {
     String email;
@@ -26,13 +26,5 @@ public class ErrorLoginDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "errorLoginDto{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

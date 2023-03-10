@@ -17,15 +17,12 @@ import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
-
-    @Autowired
-    private UserService userService;
 
     AuthenticationManager authenticationManager;
-
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private UserService userService;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -52,14 +49,21 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/register").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/caracteristic").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/car").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/city").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/image").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/caracteristic/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/car/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/city/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/image/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/getmeuser").hasAnyRole("USER", "ADMIN")
-                            .requestMatchers("/category/**", "/car/**").hasRole("ADMIN")
-                            .anyRequest().authenticated()
+                                .requestMatchers("/category/**", "caracteristic/**", "/car/**", "/city/**", "/image/**").hasRole("ADMIN")
+                                .anyRequest().authenticated()
                 );
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers().frameOptions().disable();
         return http.build();
     }
 }

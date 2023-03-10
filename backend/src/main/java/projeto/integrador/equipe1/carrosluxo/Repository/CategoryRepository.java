@@ -1,14 +1,13 @@
 package projeto.integrador.equipe1.carrosluxo.Repository;
 
 import org.springframework.data.repository.CrudRepository;
-import projeto.integrador.equipe1.carrosluxo.Dto.CarFullDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
-    CategoryEntity findById(long id);
-    List<CategoryEntity> findAll();
-    boolean existsByQualification(String qualification);
-    CarFullDto findByQualification(String qualification);
+
+    Optional<Boolean> existsByQualification(String qualification);
+
+    Optional<CategoryEntity> findByQualification(String qualification);
 }

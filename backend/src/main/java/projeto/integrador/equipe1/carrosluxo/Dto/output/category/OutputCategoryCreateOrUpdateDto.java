@@ -1,25 +1,24 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.category;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
-public class CategoryFullDto {
+public class OutputCategoryCreateOrUpdateDto {
     private long id;
     private String descritpion;
-
     private String urlImage;
     private String qualification;
 
-    public CategoryFullDto() {
+    public OutputCategoryCreateOrUpdateDto() {
     }
 
-    public CategoryFullDto(long id, String descritpion, String urlImage, String qualification) {
+    public OutputCategoryCreateOrUpdateDto(long id, String descritpion, String urlImage, String qualification) {
         this.id = id;
         this.descritpion = descritpion;
         this.urlImage = urlImage;
         this.qualification = qualification;
     }
 
-    public CategoryFullDto(CategoryEntity categoryEntity) {
+    public OutputCategoryCreateOrUpdateDto(CategoryEntity categoryEntity) {
         this.setId(categoryEntity.getId());
         this.setQualification(categoryEntity.getQualification());
         this.setUrlImage(categoryEntity.getUrlImage());
@@ -56,24 +55,5 @@ public class CategoryFullDto {
 
     public void setQualification(String qualification) {
         this.qualification = qualification;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryFullDto{" +
-                "id=" + id +
-                ", descritpion='" + descritpion + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                ", qualification='" + qualification + '\'' +
-                '}';
-    }
-
-    public CategoryEntity toEntity() {
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setId(this.getId());
-        categoryEntity.setQualification(this.getQualification());
-        categoryEntity.setDescritpion(this.getDescritpion());
-        categoryEntity.setUrlImage(this.getUrlImage());
-        return categoryEntity;
     }
 }

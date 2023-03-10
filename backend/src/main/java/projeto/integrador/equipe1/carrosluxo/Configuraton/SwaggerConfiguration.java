@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,8 +18,11 @@ import org.springframework.context.annotation.Configuration;
         scheme = "bearer"
 )
 public class SwaggerConfiguration {
+    Logger logger = LoggerFactory.getLogger(SwaggerConfiguration.class);
+
     @Bean
     public OpenAPI SwaggerConfiguration() {
+        logger.trace("Retornando as configurações do swagger...");
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info().title("CarLux API").description(
