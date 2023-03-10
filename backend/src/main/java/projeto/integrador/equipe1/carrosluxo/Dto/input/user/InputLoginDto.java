@@ -1,15 +1,15 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.input.user;
 
-public class LoginDto {
+public class InputLoginDto {
     private String email;
     private String password;
 
-    public LoginDto(String email, String password) {
+    public InputLoginDto(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public LoginDto() {
+    public InputLoginDto() {
     }
 
     public String getEmail() {

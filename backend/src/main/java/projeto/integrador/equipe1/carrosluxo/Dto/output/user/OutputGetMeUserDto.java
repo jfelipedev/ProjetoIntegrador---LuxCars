@@ -1,28 +1,25 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
-import projeto.integrador.equipe1.carrosluxo.Entity.UserRoles;
 
-public class GetMeUserDto {
+public class OutputGetMeUserDto {
     private String firstName;
     private String surname;
     private String email;
     private String role;
 
-    public GetMeUserDto(String firstName, String surname, String email, String role) {
+    public OutputGetMeUserDto(String firstName, String surname, String email, String role) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.role = role;
     }
 
-    public GetMeUserDto(UserEntity userEntity) {
+    public OutputGetMeUserDto(UserEntity userEntity) {
         this.firstName = userEntity.getFirstName();
         this.surname = userEntity.getSurname();
         this.email = userEntity.getEmail();
-        switch (userEntity.getRoles()){
+        switch (userEntity.getRoles()) {
             case ROLE_USER:
                 this.role = "Usuário";
                 break;
@@ -34,7 +31,7 @@ public class GetMeUserDto {
         }
     }
 
-    public GetMeUserDto() {
+    public OutputGetMeUserDto() {
     }
 
     public String getFirstName() {
@@ -67,15 +64,5 @@ public class GetMeUserDto {
 
     public void setRoles(String role) {
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "GetMeUserDto{" +
-                "firstName='" + firstName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,6 +32,13 @@ public class UserEntity implements UserDetails {
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public UserEntity(InputRegisterDto register) {
+        this.firstName = register.getFirstName();
+        this.surname = register.getSurname();
+        this.email = register.getEmail();
+        this.password = register.getPassword();
     }
 
     public long getId() {
@@ -84,6 +92,10 @@ public class UserEntity implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return email;
@@ -107,20 +119,5 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

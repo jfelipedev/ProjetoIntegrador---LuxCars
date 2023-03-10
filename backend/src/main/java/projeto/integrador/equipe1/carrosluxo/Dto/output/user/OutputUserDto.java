@@ -1,18 +1,18 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
-public class UserFullDto {
+public class OutputUserDto {
     private long id;
     private String firstName;
     private String surname;
     private String email;
     private String role;
 
-    public UserFullDto() {
+    public OutputUserDto() {
     }
 
-    public UserFullDto(long id, String firstName, String surname, String email, String role) {
+    public OutputUserDto(long id, String firstName, String surname, String email, String role) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -20,12 +20,12 @@ public class UserFullDto {
         this.role = role;
     }
 
-    public UserFullDto(UserEntity userEntity) {
-        this.id = userEntity.getId();
-        this.firstName = userEntity.getFirstName();
-        this.surname = userEntity.getEmail();
-        this.email = userEntity.getEmail();
-        switch (userEntity.getRoles()){
+    public OutputUserDto(UserEntity user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.surname = user.getEmail();
+        this.email = user.getEmail();
+        switch (user.getRoles()) {
             case ROLE_USER:
                 this.role = "Usuário";
                 break;
@@ -75,16 +75,5 @@ public class UserFullDto {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "UserFullDto{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
     }
 }

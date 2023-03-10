@@ -35,6 +35,8 @@ country VARCHAR(100) NOT NULL
 CREATE TABLE IF NOT EXISTS cars (
 ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_car VARCHAR (100) NOT NULL,
+descritpion VARCHAR (2000) NOT NULL,
+highlight BOOLEAN DEFAULT false NOT NULL,
 category_id BIGINT NOT NULL,
 city_id BIGINT NOT NULL,
 FOREIGN KEY (category_id) REFERENCES categories(ID),
@@ -71,9 +73,12 @@ FOREIGN KEY (car_id) REFERENCES cars(ID)
 
 
 
-/*insercao nas tabelas de usuarios*/
-INSERT INTO users(email, password, first_name, surname, roles) values ('teste@mail.com', 'Abcde123', 'Fulano', 'Sicrano', 0);
-INSERT INTO users(email, password, first_name, surname, roles) values ('usercomum@mail.com', 'Edfgh123', 'Beltrano', 'de tal', 1);
+/*insercao nas tabelas de usuarios
+  Senha do role 0 = Fulano12!
+  Senha do role 1 = Beltrano12!
+*/
+INSERT INTO users(email, password, first_name, surname, roles) values ('administrador@mail.com', '$2a$12$IOK8StaznX4/43zA3vPtHOV40wW5APGLpvZh31GiexOYH5B57jTZO', 'Fulano', 'Sicrano', 0);
+INSERT INTO users(email, password, first_name, surname, roles) values ('usercomum@mail.com', '$2a$12$CAlvUt4F4IR4d/rv.hMPWeZC16cGGmGxGB4m37GogRBysdpqj3DfO', 'Beltrano', 'de tal', 1);
 
 /*insercao nas tabelas de catergories*/
 INSERT INTO categories(descritpion, url_image, qualification) values ('ferrari gt', 'urlimagemaqui', 'conversivel');
@@ -81,7 +86,7 @@ INSERT INTO categories(descritpion, url_image, qualification) values ('ferrari g
 /*insercao nas tabelas de cidade*/
 INSERT INTO cities(name_city, country) values ('Napoli', 'Italia');
 
-INSERT INTO cars (name_car, category_id, city_id) values ('GT 400', 1,1);
+INSERT INTO cars (name_car, descritpion, highlight, category_id, city_id) values ('GT 400', 'descricao qualquer', true, 1,1);
 
 INSERT INTO caracteristics(name_caracteristcs, icon) values ('potência de 340 cv e torque de 44,1 m', 'testeICon');
 

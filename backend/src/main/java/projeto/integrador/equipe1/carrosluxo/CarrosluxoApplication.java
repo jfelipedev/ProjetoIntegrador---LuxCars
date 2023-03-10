@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CarrosluxoApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(CarrosluxoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CarrosluxoApplication.class, args);
+    }
 }
