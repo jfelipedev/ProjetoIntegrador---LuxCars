@@ -39,6 +39,7 @@ public class UserEntity implements UserDetails {
         this.surname = register.getSurname();
         this.email = register.getEmail();
         this.password = register.getPassword();
+        this.roles = UserRoles.ROLE_USER;
     }
 
     public long getId() {
