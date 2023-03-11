@@ -25,8 +25,9 @@ public class SwaggerConfiguration {
         logger.trace("Retornando as configurações do swagger...");
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("CarLux API").description(
-                        "Aluguel de carros de luxo."));
-
+                .info(new Info()
+                        .version("Sprint 2")
+                        .title("CarLux API")
+                        .description("Aluguel de carros de luxo."));
     }
 }
