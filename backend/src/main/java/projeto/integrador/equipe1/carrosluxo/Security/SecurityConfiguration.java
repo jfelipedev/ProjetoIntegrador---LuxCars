@@ -12,7 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +40,9 @@ public class SecurityConfiguration {
         authenticationManagerBuilder.userDetailsService(userService);
         authenticationManager = authenticationManagerBuilder.build();
         http
+                .cors()
+                .configurationSource(corsConfigurationSource())
+                .and()
                 .csrf().disable()
                 .exceptionHandling()
                 .and()
@@ -65,5 +73,13 @@ public class SecurityConfiguration {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().disable();
         return http.build();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOriginPattern("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
