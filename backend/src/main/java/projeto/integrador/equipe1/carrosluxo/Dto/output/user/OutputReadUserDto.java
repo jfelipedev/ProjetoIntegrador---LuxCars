@@ -1,24 +1,24 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
-public class UserDto {
+public class OutputReadUserDto {
     private String firstName;
     private String surname;
     private String email;
 
-    public UserDto() {
+    public OutputReadUserDto() {
     }
 
-    public UserDto(String firstName, String surname, String email) {
+    public OutputReadUserDto(String firstName, String surname, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
     }
 
-    public UserDto(UserEntity userEntity) {
+    public OutputReadUserDto(UserEntity userEntity) {
         this.firstName = userEntity.getFirstName();
-        this.surname = userEntity.getEmail();
+        this.surname = userEntity.getSurname();
         this.email = userEntity.getEmail();
     }
 
@@ -45,5 +45,4 @@ public class UserDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

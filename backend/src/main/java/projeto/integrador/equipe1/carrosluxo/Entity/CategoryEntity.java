@@ -1,6 +1,7 @@
 package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class CategoryEntity {
     private String urlImage;
     private String qualification;
 
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy = "category")
     private Set<CarEntity> cars;
 
     public CategoryEntity() {
@@ -28,6 +29,12 @@ public class CategoryEntity {
         this.urlImage = urlImage;
         this.qualification = qualification;
         this.cars = cars;
+    }
+
+    public CategoryEntity(InputCategoryDto category) {
+        this.descritpion = category.getDescritpion();
+        this.urlImage = category.getUrlImage();
+        this.qualification = category.getQualification();
     }
 
     public long getId() {
@@ -68,16 +75,5 @@ public class CategoryEntity {
 
     public void setCars(Set<CarEntity> cars) {
         this.cars = cars;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryEntity{" +
-                "id=" + id +
-                ", descritpion='" + descritpion + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                ", qualification='" + qualification + '\'' +
-                ", cars=" + cars +
-                '}';
     }
 }

@@ -1,18 +1,15 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.input.user;
 
-import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
-import projeto.integrador.equipe1.carrosluxo.Entity.UserRoles;
-
-public class RegisterDto {
+public class InputRegisterDto {
     private String firstName;
     private String surname;
     private String email;
     private String password;
 
-    public RegisterDto() {
+    public InputRegisterDto() {
     }
 
-    public RegisterDto(String firstName, String surname, String email, String password) {
+    public InputRegisterDto(String firstName, String surname, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
@@ -49,15 +46,5 @@ public class RegisterDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserEntity toEntity() {
-        UserEntity user = new UserEntity();
-        user.setFirstName(this.getFirstName().trim());
-        user.setSurname(this.getSurname().trim());
-        user.setEmail(this.getEmail().trim());
-        user.setPassword(this.getPassword());
-        user.setRoles(UserRoles.ROLE_USER);
-        return user;
     }
 }

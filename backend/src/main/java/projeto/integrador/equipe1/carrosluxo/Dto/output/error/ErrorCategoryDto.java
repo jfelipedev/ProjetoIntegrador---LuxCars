@@ -1,4 +1,4 @@
-package projeto.integrador.equipe1.carrosluxo.Dto;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.error;
 
 public class ErrorCategoryDto {
     String descritpion;
@@ -36,14 +36,5 @@ public class ErrorCategoryDto {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
-    }
-
-    @Override
-    public String toString() {
-        return "ErrorCategoryDto{" +
-                "descritpion='" + descritpion + '\'' +
-                ", qualification='" + qualification + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                '}';
     }
 }
