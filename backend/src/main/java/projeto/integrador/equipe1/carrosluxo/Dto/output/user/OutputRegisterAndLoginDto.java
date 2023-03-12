@@ -2,14 +2,14 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
-public class OutputRegisterDto {
+public class OutputRegisterAndLoginDto {
     private OutputUserDto user;
     private String jwt;
 
-    public OutputRegisterDto() {
+    public OutputRegisterAndLoginDto() {
     }
 
-    public OutputRegisterDto(UserEntity user, String jwt) {
+    public OutputRegisterAndLoginDto(UserEntity user, String jwt) {
         this.user = new OutputUserDto(user);
         this.jwt = jwt;
     }

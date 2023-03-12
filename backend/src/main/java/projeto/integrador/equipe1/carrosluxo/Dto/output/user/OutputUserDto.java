@@ -23,7 +23,7 @@ public class OutputUserDto {
     public OutputUserDto(UserEntity user) {
         this.id = user.getId();
         this.firstName = user.getFirstName();
-        this.surname = user.getEmail();
+        this.surname = user.getSurname();
         this.email = user.getEmail();
         switch (user.getRoles()) {
             case ROLE_USER:

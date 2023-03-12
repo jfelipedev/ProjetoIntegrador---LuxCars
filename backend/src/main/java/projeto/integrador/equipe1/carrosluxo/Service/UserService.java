@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorRegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.user.OutputReadUserDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.InternalServerErrorException;
@@ -27,13 +26,6 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
-
-    public OutputReadUserDto read(long id) throws Exception {
-        if (userRepository.existsById(id)) {
-            return new OutputReadUserDto(userRepository.findById(id).get());
-        }
-        throw new InternalServerErrorException("Não foi possivel localizar o usuário com id " + id);
-    }
 
     public UserEntity readByEmail(String email) throws Exception {
         if (userRepository.existsByEmail(email).get()) {
