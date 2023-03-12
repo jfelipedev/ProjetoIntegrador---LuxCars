@@ -26,8 +26,10 @@ function Cars() {
                 <h5 className="carsYear">{year}</h5>
                 <h2 className="carsName">{title}</h2>
                 <h5 className="carsDistance">{distance}<a href="" className="linkMap">{linkMap}</a></h5>
-                <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
-                <button className="seeMore button">Ver mais</button>
+                <div className="centerCarInfo">
+                  <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
+                  <button className="seeMore button">Ver mais</button>
+                </div>
 
 
               </div>

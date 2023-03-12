@@ -3,6 +3,13 @@ h1 {
      margin: 0
 }
 
+.spanError{
+     color: red;
+     font-family: "Roboto";
+     font-size: 12px;
+     padding-bottom: 24px;
+}
+
 span {
      color: #ffc857;
 }
@@ -97,7 +104,7 @@ p {
 .inputLogin {
      display: flex;
      flex-direction: column;
-     gap: 24px;
+     gap: px;
      border-left: 1px solid whitesmoke;
      padding: 10px;
 }
@@ -219,7 +226,7 @@ input::-moz-placeholder {
           border-bottom: 1px solid whitesmoke;
           padding: 5px;
           border-radius: 5px;
-          gap: 15px;
+          
      }
 
      .input1 {
@@ -245,6 +252,13 @@ input::-moz-placeholder {
 
      .iconBig{
           font-size: 14px;
+     }
+
+     .spanError{
+          color: red;
+          font-family: "Roboto", sans-serif;
+          font-size: 12px;
+          padding-bottom: 15px;
      }
     }
 

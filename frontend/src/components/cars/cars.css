@@ -6,18 +6,16 @@
      align-items: center;
      justify-content: center;
      flex-direction: column;
-     padding: 30px;
-     margin-top: 7rem;
+     margin-top: 4rem;
 }
 
-.item.sectionTitle {
-     font-weight: 300;
-}
-
-.item.sectionTitle {
+.item {
+     font-weight: 200;
      justify-content: center;
      align-items: center;
+     font-size: 1.8rem;
 }
+
 
 .carsCard {
      border: 1px solid rgba(82, 69, 64 / 50%);
@@ -25,8 +23,9 @@
      box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
      display: flex;
      transform-style: preserve-3d;
-     box-shadow: -1rem 0 3rem #000;
+     box-shadow: inset 1rem 0 3rem #000;
      background-color: #393640;
+     height: 400px;
 }
 
 .carsImg {
@@ -89,8 +88,16 @@
      font-family: 'Roboto', sans-serif;
 }
 
+.centerCarInfo{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
 .carsDistance {
-     margin: 2rem 0px 7rem;
+     margin: 3rem 0px 8rem;
      font-family: 'Roboto', sans-serif;
      color: #F4F7F5;
      font-size: 1rem;

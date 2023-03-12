@@ -10,8 +10,8 @@ function index() {
   return (
     <div className="index">
       <Header />
-      <Cars />
       <SearchCars />
+      <Cars />
       <Category />
       <Footer />
     </div>

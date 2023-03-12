@@ -1,8 +1,8 @@
 .categorySection{
      width: 100%;
      transform-style: preserve-3d;
-     margin-bottom: 10rem;
-     margin-top: 6rem;
+     margin-bottom: 8rem;
+     margin-top: 5rem;
 }
 
 .categoryTitle{
@@ -12,7 +12,6 @@
      font-weight: 300;
      font-size: calc(1.325rem + .9vw);
      color: #F4F7F5;
-     margin-top: 0;
      line-height: 1.2;
 }
 
@@ -27,7 +26,7 @@
      position: relative;
      width: 350px;
      height: 247px;
-     margin: 20px;
+     margin: 0px 20px;
      transform-style: preserve-3d;
      perspective: 1000px;
      border-top: 1px solid #ffffff;

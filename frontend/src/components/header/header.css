@@ -107,8 +107,19 @@ a {
 
 /* For medium devices */
 @media screen and (max-width: 768px) {
+     .header {
+          width: 100vw;
+          height: 4.5rem;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 100;
+          background-color: #1C1C1C;
+          box-shadow: 5px 1px 3px #1C1C1C;
+     }
+     
      .nav {
-          height: 11vh;
+          height: 8vh;
           display: flex;
           justify-content: space-between;
           align-items: center;
