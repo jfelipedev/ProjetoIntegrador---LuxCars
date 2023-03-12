@@ -18,7 +18,6 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCarDto;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
 

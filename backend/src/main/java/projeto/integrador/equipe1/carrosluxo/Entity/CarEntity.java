@@ -81,6 +81,10 @@ public class CarEntity {
         return nameCar;
     }
 
+    public void setNameCar(String nameCar) {
+        this.nameCar = nameCar;
+    }
+
     public String getDescritpion() {
         return descritpion;
     }
@@ -95,10 +99,6 @@ public class CarEntity {
 
     public void setHighlight(Boolean highlight) {
         this.highlight = highlight;
-    }
-
-    public void setNameCar(String nameCar) {
-        this.nameCar = nameCar;
     }
 
     public CategoryEntity getCategory() {

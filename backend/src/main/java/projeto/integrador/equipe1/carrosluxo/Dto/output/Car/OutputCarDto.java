@@ -34,7 +34,7 @@ public class OutputCarDto {
         this.highlight = car.getHighlight();
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
-        if(car.getImages().size() <= 1) {
+        if (car.getImages().size() <= 1) {
             ImagesEntity image = (ImagesEntity) car.getImages().toArray()[0];
             this.urlImage = image.getUrl();
         }

@@ -101,7 +101,7 @@ public class CarService {
         throw new ResourceNotFoundException("Este carro não existir");
     }
 
-    public  List<OutputCarDto> allHighlight(){
+    public List<OutputCarDto> allHighlight() {
         List<OutputCarDto> list = new ArrayList();
         for (CarEntity car : carRepository.findAllHighlight().get()) {
             list.add(new OutputCarDto(car));

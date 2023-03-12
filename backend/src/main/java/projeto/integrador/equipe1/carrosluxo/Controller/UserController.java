@@ -14,8 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorLoginDto;
@@ -24,7 +25,6 @@ import projeto.integrador.equipe1.carrosluxo.Dto.output.user.OutputRegisterAndLo
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
-import projeto.integrador.equipe1.carrosluxo.Security.AuthenticationResponse;
 import projeto.integrador.equipe1.carrosluxo.Security.JwtUtil;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 import projeto.integrador.equipe1.carrosluxo.Validation.UserValidation;
@@ -51,7 +51,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = AuthenticationResponse.class))}),
+                            schema = @Schema(implementation = OutputRegisterAndLoginDto.class))}),
             @ApiResponse(responseCode = "400",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorLoginDto.class))})

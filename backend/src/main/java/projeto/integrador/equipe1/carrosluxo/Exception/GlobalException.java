@@ -5,11 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.Locale;
 import java.util.UUID;
 
 @ControllerAdvice
@@ -42,14 +40,14 @@ public class GlobalException {
     }
 
     @ExceptionHandler(JwtException.class)
-    public ResponseEntity<String> errosJwts(JwtException ex){
+    public ResponseEntity<String> errosJwts(JwtException ex) {
         UUID uuid = UUID.randomUUID();
         logger.error("CODE: " + uuid.toString() + ex.getStackTrace());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro do TOKEN JWT [" + uuid.toString() + "]!");
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> OthersInternalServerErrorException(Exception ex){
+    public ResponseEntity<String> OthersInternalServerErrorException(Exception ex) {
         UUID uuid = UUID.randomUUID();
         logger.error("CODE: " + uuid.toString() + ex.getStackTrace());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro Interno do servidor [" + uuid.toString() + "]!");
