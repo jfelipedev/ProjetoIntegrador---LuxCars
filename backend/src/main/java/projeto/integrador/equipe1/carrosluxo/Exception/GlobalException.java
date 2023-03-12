@@ -1,5 +1,6 @@
 package projeto.integrador.equipe1.carrosluxo.Exception;
 
+import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,14 @@ public class GlobalException {
         logger.error(ex.getMessage() + "CODE: " + uuid.toString());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro Interno do servidor [" + uuid.toString() + "]!");
     }
+
+    @ExceptionHandler(JwtException.class)
+    public ResponseEntity<String> errosJwts(JwtException ex){
+        UUID uuid = UUID.randomUUID();
+        logger.error("CODE: " + uuid.toString() + ex.getStackTrace());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro do TOKEN JWT [" + uuid.toString() + "]!");
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> OthersInternalServerErrorException(Exception ex){
         UUID uuid = UUID.randomUUID();
