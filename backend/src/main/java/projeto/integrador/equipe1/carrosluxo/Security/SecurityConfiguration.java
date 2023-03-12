@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -52,8 +53,6 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests(
                         (authorize) -> authorize
-                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api-docs/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/register").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
@@ -68,7 +67,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/image/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/getmeuser").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/category/**", "caracteristic/**", "/car/**", "/city/**", "/image/**").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 );
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().disable();
