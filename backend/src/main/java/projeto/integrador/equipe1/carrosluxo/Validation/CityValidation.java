@@ -2,7 +2,7 @@ package projeto.integrador.equipe1.carrosluxo.Validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCityDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCityDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 public class CityValidation {

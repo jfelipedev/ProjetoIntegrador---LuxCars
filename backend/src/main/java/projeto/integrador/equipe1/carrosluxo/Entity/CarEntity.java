@@ -17,6 +17,11 @@ public class CarEntity {
 
     private String descritpion;
 
+    private Double price;
+
+    @Column(name = "year_car")
+    private Integer year;
+
     private Boolean highlight;
 
     @ManyToOne
@@ -41,10 +46,12 @@ public class CarEntity {
     public CarEntity() {
     }
 
-    public CarEntity(long id, String nameCar, String descritpion, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<CaracteristicEntity> caracteristics) {
+    public CarEntity(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<CaracteristicEntity> caracteristics) {
         this.id = id;
         this.nameCar = nameCar;
         this.descritpion = descritpion;
+        this.price = price;
+        this.year = year;
         this.highlight = highlight;
         this.category = category;
         this.cities = cities;
@@ -55,6 +62,8 @@ public class CarEntity {
     public CarEntity(InputCarDto car) {
         this.nameCar = car.getNameCar();
         this.descritpion = car.getDescritpion();
+        this.price = car.getPrice();
+        this.year = car.getYear();
         this.highlight = car.getHighlight();
         this.category = new CategoryEntity();
         this.category.setId(car.getIdCategory());
@@ -91,6 +100,22 @@ public class CarEntity {
 
     public void setDescritpion(String descritpion) {
         this.descritpion = descritpion;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Boolean getHighlight() {

@@ -18,7 +18,7 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaract
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCaracteristicDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Service.CaracteristicService;
 
 @RestController

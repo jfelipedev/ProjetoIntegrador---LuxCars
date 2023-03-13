@@ -2,7 +2,7 @@ package projeto.integrador.equipe1.carrosluxo.Validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCategoryDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.util.regex.Matcher;

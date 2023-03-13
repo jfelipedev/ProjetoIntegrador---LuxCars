@@ -1,4 +1,4 @@
-package projeto.integrador.equipe1.carrosluxo.Dto.output.error;
+package projeto.integrador.equipe1.carrosluxo.Dto.error;
 
 public class ErrorImageDto {
     private String title;

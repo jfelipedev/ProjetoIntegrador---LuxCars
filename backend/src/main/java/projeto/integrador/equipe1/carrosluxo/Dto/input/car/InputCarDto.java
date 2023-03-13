@@ -1,5 +1,7 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.input.car;
 
+import jakarta.persistence.Column;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +9,10 @@ public class InputCarDto {
     private String nameCar;
 
     private String descritpion;
+
+    private Double price;
+
+    private Integer year;
 
     private Boolean highlight;
     private long idCategory;
@@ -16,9 +22,11 @@ public class InputCarDto {
     public InputCarDto() {
     }
 
-    public InputCarDto(String nameCar, String descritpion, Boolean highlight, long idCategory, long idCity, Set<Long> idCaracteristics) {
+    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, Set<Long> idCaracteristics) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
+        this.price = price;
+        this.year = year;
         this.highlight = highlight;
         this.idCategory = idCategory;
         this.idCity = idCity;
@@ -39,6 +47,22 @@ public class InputCarDto {
 
     public void setDescritpion(String descritpion) {
         this.descritpion = descritpion;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Boolean getHighlight() {

@@ -9,7 +9,7 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCarDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCarDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CitiesEntity;
@@ -40,17 +40,17 @@ public class CarService {
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
         new CarValidation(car);
         if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null, null, null, null)));
         }
         if (!categoryRepository.existsById(car.getIdCategory())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null, null, null, null)));
         }
         if (!cityRepository.existsById(car.getIdCity())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, "Esta cidade não está registrado!", null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, "Esta cidade não está registrado!", null)));
         }
         for (Long idCaCaracteristic : car.getIdCaracteristics()) {
             if (!caracteristicRepository.existsById(car.getIdCity())) {
-                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, "Contém uma caracteristica que não existir!")));
+                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, null, "Contém uma caracteristica que não existir!")));
             }
         }
         carRepository.save(new CarEntity(car));
@@ -72,17 +72,17 @@ public class CarService {
             throw new ResourceNotFoundException("Este carro não existir");
         }
         if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null, null, null, null)));
         }
         if (!categoryRepository.existsById(car.getIdCategory())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null, null, null, null)));
         }
         if (!cityRepository.existsById(car.getIdCity())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, "Esta cidade não está registrado!", null)));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, "Esta cidade não está registrado!", null)));
         }
         for (Long idCaCaracteristic : car.getIdCaracteristics()) {
             if (!caracteristicRepository.existsById(car.getIdCity())) {
-                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, "Contém uma caracteristica que não existir!")));
+                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, null, "Contém uma caracteristica que não existir!")));
             }
         }
         CarEntity carEntity = new CarEntity(car);

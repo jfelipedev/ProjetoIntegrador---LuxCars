@@ -1,14 +1,20 @@
-package projeto.integrador.equipe1.carrosluxo.Dto.output.error;
+package projeto.integrador.equipe1.carrosluxo.Dto.error;
 
 public class ErrorCarDto {
     private String nameCar;
     private String category;
+    private String descritpion;
+    private String  price;
+    private String  year;
     private String city;
     private String caracteristics;
 
-    public ErrorCarDto(String nameCar, String category, String city, String caracteristics) {
+    public ErrorCarDto(String nameCar, String category, String descritpion, String price, String year, String city, String caracteristics) {
         this.nameCar = nameCar;
         this.category = category;
+        this.descritpion = descritpion;
+        this.price = price;
+        this.year = year;
         this.city = city;
         this.caracteristics = caracteristics;
     }
@@ -30,6 +36,30 @@ public class ErrorCarDto {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescritpion() {
+        return descritpion;
+    }
+
+    public void setDescritpion(String descritpion) {
+        this.descritpion = descritpion;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getCity() {

@@ -9,7 +9,7 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorCategoryDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;

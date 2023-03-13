@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorRegisterDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.InternalServerErrorException;

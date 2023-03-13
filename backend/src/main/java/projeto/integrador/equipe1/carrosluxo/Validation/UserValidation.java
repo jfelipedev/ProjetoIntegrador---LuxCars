@@ -3,8 +3,8 @@ package projeto.integrador.equipe1.carrosluxo.Validation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorLoginDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorRegisterDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorLoginDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.util.regex.Matcher;
