@@ -27,22 +27,8 @@ public class SwaggerConfiguration {
     @Bean
     public OpenAPI SwaggerConfiguration() {
         logger.trace("Retornando as configurações do swagger...");
-        List<Server> servers = new ArrayList();
-        Server server1 = new Server();
-        Server server2 = new Server();
-        Server server3 = new Server();
-        Server server4 = new Server();
-        server1.setUrl("https://api.carlux.viniciusofagundes.com.br");
-        server2.setUrl("http://localhost");
-        server3.setUrl("http://localhost:8080");
-        server4.setUrl("https://back.viniciusofagundes.com.br");
-        servers.add(server1);
-        servers.add(server2);
-        servers.add(server3);
-        servers.add(server4);
         return new OpenAPI()
                 .components(new Components())
-                .servers(servers)
                 .info(new Info()
                         .version("Sprint 2")
                         .title("CarLux API")
