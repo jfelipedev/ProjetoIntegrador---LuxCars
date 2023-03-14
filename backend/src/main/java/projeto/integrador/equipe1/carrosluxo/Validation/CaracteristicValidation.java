@@ -15,10 +15,12 @@ public class CaracteristicValidation {
     private static final int iconCharactersMaximum = 255;
     private static final String iconCharactersAllowed = "^[A-Za-z0-9]{5,}$";
 
+    public CaracteristicValidation() {
+    }
 
     public CaracteristicValidation(InputCaracteristicDto caracteristic) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        String errorName = validationText(caracteristic.getName(), nameCharactersMinimum, nameCharactersMaximum, null);
+        String errorName = validationText(caracteristic.getName(), nameCharactersMinimum, nameCharactersMaximum, "");
         String errorIcon = validationText(caracteristic.getIcon(), iconCharactersMinimum, iconCharactersMaximum, iconCharactersAllowed);
         if (!(errorName == null && errorIcon == null)) {
             ErrorCaracteristicDto errorCaracteristicDto = new ErrorCaracteristicDto(errorName, errorIcon);
