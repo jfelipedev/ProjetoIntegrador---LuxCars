@@ -4,7 +4,6 @@ import React from "react";
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
-import axios from "axios";
 import api from "../../services/api";
 
 
@@ -54,7 +53,7 @@ function Createaccount() {
     if (value.email !== value.confirmEmail) {
       alert("E-mails diferentes!");
     }else{
-      api.post("https://back.viniciusofagundes.com.br/register", {
+      api.post("/register", {
           firstName: value.name,
           surname: value.surname,
           email: value.email,

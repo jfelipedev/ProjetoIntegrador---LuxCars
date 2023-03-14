@@ -38,7 +38,7 @@ function Login() {
 
     console.log(value);
 
-    api.post("https://back.viniciusofagundes.com.br/auth", {
+    api.post("/auth", {
           email: value.email,
           password: value.password
       })
@@ -49,6 +49,7 @@ function Login() {
     })
     .catch((erro) => {
       console.log(erro)
+      console.log("Deu errado")
     })
 
   }
