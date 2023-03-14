@@ -17,10 +17,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorLoginDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorLoginDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.user.OutputRegisterAndLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;

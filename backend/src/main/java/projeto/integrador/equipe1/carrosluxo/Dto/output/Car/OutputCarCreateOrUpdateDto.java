@@ -13,6 +13,10 @@ public class OutputCarCreateOrUpdateDto {
 
     private String descritpion;
 
+    private Double price;
+
+    private Integer year;
+
     private Boolean highlight;
     private OutputCarCategoryDto category;
     private OutputCarCityDto city;
@@ -22,10 +26,12 @@ public class OutputCarCreateOrUpdateDto {
     public OutputCarCreateOrUpdateDto() {
     }
 
-    public OutputCarCreateOrUpdateDto(long id, String nameCar, String descritpion, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, Set<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
+    public OutputCarCreateOrUpdateDto(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, Set<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
         this.id = id;
         this.nameCar = nameCar;
         this.descritpion = descritpion;
+        this.price = price;
+        this.year = year;
         this.highlight = highlight;
         this.category = category;
         this.city = city;
@@ -37,6 +43,8 @@ public class OutputCarCreateOrUpdateDto {
         this.id = car.getId();
         this.nameCar = car.getNameCar();
         this.descritpion = car.getDescritpion();
+        this.price = car.getPrice();
+        this.year = car.getYear();
         this.highlight = car.getHighlight();
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
@@ -74,6 +82,22 @@ public class OutputCarCreateOrUpdateDto {
 
     public void setDescritpion(String descritpion) {
         this.descritpion = descritpion;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Boolean getHighlight() {

@@ -1,8 +1,8 @@
 package projeto.integrador.equipe1.carrosluxo.Validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.util.regex.Matcher;
@@ -13,6 +13,9 @@ public class ImageValidation {
     private static final int titleCharactersMaximum = 100;
     private static final int urlCharactersMaximum = 255;
     private static final String regexpUrlAllowed = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
+
+    public ImageValidation() {
+    }
 
     public ImageValidation(InputImageDto image) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -37,11 +40,11 @@ public class ImageValidation {
 
     public String validationUrl(String url) {
         if (url.trim().isBlank()) {
-            return "A url não pode ser vazio";
+            return "A url não pode ser vazio!";
         } else if (url.trim().length() > urlCharactersMaximum) {
             return "A url dever ter menor do que " + urlCharactersMaximum + " caracteres!";
         } else if (!isValidUrl(url)) {
-            return "Esta url é invalido";
+            return "Esta url é invalido!";
         }
         return null;
     }

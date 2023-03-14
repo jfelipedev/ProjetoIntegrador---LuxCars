@@ -1,10 +1,10 @@
 package projeto.integrador.equipe1.carrosluxo.Validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorLoginDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorLoginDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.error.ErrorRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.util.regex.Matcher;
@@ -21,6 +21,9 @@ public class UserValidation {
     private static final int emailCharacterMaximum = 200;
     private static final String emailAllowed = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
 
+    public UserValidation() {
+    }
+
     public UserValidation(InputLoginDto login) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorEmail = validationEmail(login.getEmail());
@@ -33,8 +36,8 @@ public class UserValidation {
 
     public UserValidation(InputRegisterDto registerDto) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        String errorFirstName = validationName(registerDto.getFirstName());
-        String errorSurname = validationName(registerDto.getSurname());
+        String errorFirstName = validationName("primeiro nome", registerDto.getFirstName());
+        String errorSurname = validationName("sobrenome", registerDto.getSurname());
         String errorEmail = validationEmail(registerDto.getEmail());
         String errorPassword = validationPassword(registerDto.getPassword());
         if (!(errorFirstName == null && errorSurname == null && errorEmail == null && errorPassword == null)) {
@@ -43,29 +46,29 @@ public class UserValidation {
         }
     }
 
-    public String validationName(String name) {
+    public String validationName(String campo, String name) {
         if (name.trim().isBlank()) {
-            return "O primeiro nome não pode está vazio!";
+            return "O " + campo + " não pode está vazio!";
         } else if (name.trim().length() < nameCharactersMinimum) {
-            return "O primeiro nome dever ser maior do que " + nameCharactersMinimum + " caractreres!";
+            return "O " + campo + " dever ser maior do que " + nameCharactersMinimum + " caractreres!";
         } else if (name.trim().length() > nameCharactersMaximum) {
-            return "O primeiro nome dever ser menor do que " + nameCharactersMaximum + " caractreres!";
+            return "O " + campo + " dever ser menor do que " + nameCharactersMaximum + " caractreres!";
         } else if (!validationLength(name.trim().split(" "), 2)) {
-            return "O primeiro nome contém palavras menor do que 2 caractres";
+            return "O " + campo + " nome contém palavras menor do que 2 caractres!";
         }
         String list[] = name.split(" ");
         for (String item : list) {
             if (!isValid(item, nameCharactersAllowed)) {
-                return "O primeiro nome contém caracteres invalidos!";
+                return "O " + campo + " contém caracteres invalidos!";
             }
         }
         return null;
     }
 
 
-    private String validationPassword(String password) {
+    public String validationPassword(String password) {
         if (password.trim().isBlank()) {
-            return "A senha não pode ser vazio";
+            return "A senha não pode ser vazio!";
         } else if (password.trim().length() < passwordCharacterMinimum) {
             return "A senha dever ter mais do que " + passwordCharacterMinimum + " caracteres!";
         } else if (password.trim().length() > passwordCharacterMaximum) {
@@ -74,18 +77,18 @@ public class UserValidation {
         return null;
     }
 
-    private String validationEmail(String email) {
+    public String validationEmail(String email) {
         if (email.trim().isBlank()) {
-            return "O email não pode ser vazio";
+            return "O email não pode ser vazio!";
         } else if (!isValid(email, emailAllowed)) {
-            return "Este email inserido é invalido";
+            return "Este email inserido é invalido!";
         } else if (email.trim().length() > emailCharacterMaximum) {
             return "O email não pode ser maior do que 200 caracteres!";
         }
         return null;
     }
 
-    private boolean validationLength(String[] lista, int min) {
+    public boolean validationLength(String[] lista, int min) {
         boolean tmp = true;
         for (String item : lista) {
             if (item.length() < min) {

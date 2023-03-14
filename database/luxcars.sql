@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS cars (
 ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_car VARCHAR (100) NOT NULL,
 descritpion VARCHAR (2000) NOT NULL,
+price DECIMAL (10,2) NOT NULL,
+year_car INT (4) NOT NULL,
 highlight BOOLEAN DEFAULT false NOT NULL,
 category_id BIGINT NOT NULL,
 city_id BIGINT NOT NULL,
@@ -86,7 +88,7 @@ INSERT INTO categories(descritpion, url_image, qualification) values ('ferrari g
 /*insercao nas tabelas de cidade*/
 INSERT INTO cities(name_city, country) values ('Napoli', 'Italia');
 
-INSERT INTO cars (name_car, descritpion, highlight, category_id, city_id) values ('GT 400', 'descricao qualquer', true, 1,1);
+INSERT INTO cars (name_car, descritpion, price, year_car, highlight, category_id, city_id) values ('GT 400', 'descricao qualquer', 1250.58, 2020, true, 1,1);
 
 INSERT INTO caracteristics(name_caracteristcs, icon) values ('potência de 340 cv e torque de 44,1 m', 'testeICon');
 
