@@ -16,6 +16,9 @@ public class CategoryValidation {
     private static final int urlCharactersMaximum = 255;
     private static final String regexpUrlAllowed = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
 
+    public CategoryValidation() {
+    }
+
     public CategoryValidation(InputCategoryDto category) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorDescritpion = validationText(category.getDescritpion(), descritpionCharactersMinimum, descritpionCharactersMaximum);
@@ -40,11 +43,11 @@ public class CategoryValidation {
 
     public String validationUrl(String url) {
         if (url.trim().isBlank()) {
-            return "A url não pode ser vazio";
+            return "A url não pode ser vazio!";
         } else if (url.trim().length() > urlCharactersMaximum) {
             return "A url dever ter menor do que " + urlCharactersMaximum + " caracteres!";
         } else if (!isValidUrl(url)) {
-            return "Esta url é invalido";
+            return "Esta url é invalido!";
         }
         return null;
     }

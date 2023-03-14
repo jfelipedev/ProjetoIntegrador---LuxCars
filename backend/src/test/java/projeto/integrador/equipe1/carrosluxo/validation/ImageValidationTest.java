@@ -2,8 +2,10 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
+import projeto.integrador.equipe1.carrosluxo.Validation.CityValidation;
 import projeto.integrador.equipe1.carrosluxo.Validation.ImageValidation;
 
 public class ImageValidationTest {
@@ -84,9 +86,16 @@ public class ImageValidationTest {
     }
 
     @Test
-    void loginInvalid() {
+    void imageInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
             new ImageValidation(new InputImageDto("", "", 0));
+        });
+    }
+
+    @Test
+    void imageValid() {
+        Assertions.assertDoesNotThrow( () -> {
+            new ImageValidation(new InputImageDto("Lateral do carro", "http://img.carlux.com/car/1/carlateral.png", 1));
         });
     }
 }
