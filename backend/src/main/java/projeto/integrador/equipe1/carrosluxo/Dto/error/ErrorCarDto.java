@@ -4,8 +4,8 @@ public class ErrorCarDto {
     private String nameCar;
     private String category;
     private String descritpion;
-    private String  price;
-    private String  year;
+    private String price;
+    private String year;
     private String city;
     private String caracteristics;
 

@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Service.CaracteristicService;
 
 @RestController

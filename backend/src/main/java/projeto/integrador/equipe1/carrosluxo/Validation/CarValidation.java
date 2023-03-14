@@ -1,8 +1,8 @@
 package projeto.integrador.equipe1.carrosluxo.Validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCarDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.time.LocalDate;
@@ -27,28 +27,26 @@ public class CarValidation {
     }
 
     private String validationPrice(Double price) {
-        if(price == null){
+        if (price == null) {
             return "Este campo não pode está vazio!";
-        }
-        else if (price < 200){
+        } else if (price < 200) {
             return "Aviso: o valor do preço deve ser maior ou igual a R$200 para ser válido!";
-        }
-        else if (price > 99999.99){
+        } else if (price > 99999.99) {
             return "Aviso: o valor do preço deve ser menor ou igual a R$99999.99 para ser válido!";
         }
         return null;
     }
 
-    public String validationYear(Integer year){
+    public String validationYear(Integer year) {
         LocalDate dataAtual = LocalDate.now();
         int anoAtual = dataAtual.getYear();
-        if(year == null){
+        if (year == null) {
             return "Este campo não pode está vazio!";
-        } else if(year < 1904){
+        } else if (year < 1904) {
             return "Aviso: o valor do ano deve ser maior ou igual a 1900 para ser válido!";
-        } else if(year > anoAtual){
+        } else if (year > anoAtual) {
             return "Aviso: o valor do ano deve ser menor ou igual a " + anoAtual + " para ser válido!";
-        } else{
+        } else {
             return null;
         }
     }

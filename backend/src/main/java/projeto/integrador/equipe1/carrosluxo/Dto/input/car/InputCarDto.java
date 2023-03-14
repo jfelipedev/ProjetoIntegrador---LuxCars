@@ -1,7 +1,5 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.input.car;
 
-import jakarta.persistence.Column;
-
 import java.util.HashSet;
 import java.util.Set;
 
