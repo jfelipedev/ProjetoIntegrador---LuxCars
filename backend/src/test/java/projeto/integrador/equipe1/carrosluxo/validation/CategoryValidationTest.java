@@ -2,15 +2,9 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
-import projeto.integrador.equipe1.carrosluxo.Validation.CarValidation;
 import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
-import projeto.integrador.equipe1.carrosluxo.Validation.ImageValidation;
-
-import java.util.HashSet;
 
 public class CategoryValidationTest {
     @Test
@@ -98,7 +92,7 @@ public class CategoryValidationTest {
 
     @Test
     void categoryValid() {
-        Assertions.assertDoesNotThrow( () -> {
+        Assertions.assertDoesNotThrow(() -> {
             new CategoryValidation(new InputCategoryDto("Carros conversiveis", "http://img.carlux.com/category/conversivel.png", "Canversivel"));
         });
     }

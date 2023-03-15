@@ -2,11 +2,9 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
-import projeto.integrador.equipe1.carrosluxo.Validation.ImageValidation;
 import projeto.integrador.equipe1.carrosluxo.Validation.UserValidation;
 
 public class UserValidationTest {
@@ -157,8 +155,9 @@ public class UserValidationTest {
 
     @Test
     void loginValid() {
-        Assertions.assertDoesNotThrow( () -> {
-            new UserValidation(new InputLoginDto("user@mail.com", "12345678"));;
+        Assertions.assertDoesNotThrow(() -> {
+            new UserValidation(new InputLoginDto("user@mail.com", "12345678"));
+            ;
         });
     }
 
@@ -171,8 +170,9 @@ public class UserValidationTest {
 
     @Test
     void RegisterValid() {
-        Assertions.assertDoesNotThrow( () -> {
-            new UserValidation(new InputRegisterDto("João", "da silva","user@mail.com", "12345678"));;
+        Assertions.assertDoesNotThrow(() -> {
+            new UserValidation(new InputRegisterDto("João", "da silva", "user@mail.com", "12345678"));
+            ;
         });
     }
 }

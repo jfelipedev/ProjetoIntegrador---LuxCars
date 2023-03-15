@@ -3,11 +3,8 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
-import projeto.integrador.equipe1.carrosluxo.Validation.CarValidation;
 import projeto.integrador.equipe1.carrosluxo.Validation.CaracteristicValidation;
-import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
 
 public class CaracteristicValidationTest {
     @Test
@@ -28,7 +25,8 @@ public class CaracteristicValidationTest {
     @Test
     void validationTextCharMin() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("Ola", 5, 25, "");;
+        String error = caracteristicValidation.validationText("Ola", 5, 25, "");
+        ;
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 5 caractreres!", error);
     }
@@ -52,14 +50,14 @@ public class CaracteristicValidationTest {
     @Test
     void isValidValid() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        Boolean error = caracteristicValidation.isValid("teste","^[a-z]{1,}$");
+        Boolean error = caracteristicValidation.isValid("teste", "^[a-z]{1,}$");
         Assertions.assertTrue(error);
     }
 
     @Test
     void isValidInvalid() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        Boolean error = caracteristicValidation.isValid("teste teste","^[a-z]{1,}$");
+        Boolean error = caracteristicValidation.isValid("teste teste", "^[a-z]{1,}$");
         Assertions.assertFalse(error);
     }
 
@@ -72,7 +70,7 @@ public class CaracteristicValidationTest {
 
     @Test
     void caracteristicValid() {
-        Assertions.assertDoesNotThrow( () -> {
+        Assertions.assertDoesNotThrow(() -> {
             new CaracteristicValidation(new InputCaracteristicDto("Teste", "TesteIcon"));
         });
     }
