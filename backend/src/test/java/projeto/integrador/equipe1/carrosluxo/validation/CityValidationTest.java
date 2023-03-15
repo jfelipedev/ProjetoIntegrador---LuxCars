@@ -2,10 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
-import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
 import projeto.integrador.equipe1.carrosluxo.Validation.CityValidation;
 
 public class CityValidationTest {
@@ -49,7 +47,7 @@ public class CityValidationTest {
 
     @Test
     void cityValid() {
-        Assertions.assertDoesNotThrow( () -> {
+        Assertions.assertDoesNotThrow(() -> {
             new CityValidation(new InputCityDto("Rio de janeiro", "Brasil"));
         });
     }

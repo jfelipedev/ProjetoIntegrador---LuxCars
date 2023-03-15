@@ -63,7 +63,7 @@ public class CarValidation {
         return null;
     }
 
-    public int getAnoAtual(){
+    public int getAnoAtual() {
         LocalDate dataAtual = LocalDate.now();
         int anoAtual = dataAtual.getYear();
         return anoAtual;

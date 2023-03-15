@@ -3,15 +3,10 @@ package projeto.integrador.equipe1.carrosluxo.validation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Validation.CarValidation;
-import projeto.integrador.equipe1.carrosluxo.Validation.CategoryValidation;
-import projeto.integrador.equipe1.carrosluxo.Validation.CityValidation;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 public class CarValidationTest {
     @Test
@@ -94,7 +89,8 @@ public class CarValidationTest {
     @Test
     void validationYearMin() {
         CarValidation carValidation = new CarValidation();
-        String error = carValidation.validationYear(1899);;
+        String error = carValidation.validationYear(1899);
+        ;
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Aviso: o valor do ano deve ser maior ou igual a 1900 para ser válido!", error);
     }
@@ -108,20 +104,20 @@ public class CarValidationTest {
     }
 
     @Test
-    void carInvalid(){
+    void carInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<Long> list = new HashSet<>();
             list.add(1L);
-            new CarValidation(new InputCarDto("d","d",20.0,1850, Boolean.TRUE, 1, 1, list));
+            new CarValidation(new InputCarDto("d", "d", 20.0, 1850, Boolean.TRUE, 1, 1, list));
         });
     }
 
     @Test
     void carValid() {
-        Assertions.assertDoesNotThrow( () -> {
+        Assertions.assertDoesNotThrow(() -> {
             HashSet<Long> list = new HashSet<>();
             list.add(1L);
-            new CarValidation(new InputCarDto("Ferrati GT 300","Um carro conversivel",1500.0,2011, Boolean.TRUE, 1, 1, list));
+            new CarValidation(new InputCarDto("Ferrati GT 300", "Um carro conversivel", 1500.0, 2011, Boolean.TRUE, 1, 1, list));
         });
     }
 }
