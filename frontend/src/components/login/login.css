@@ -36,7 +36,6 @@ span:hover {
 }
 
 p {
-
      max-width: 290px;
      text-align: center;
      justify-content: center;
@@ -373,7 +372,6 @@ input::-moz-placeholder {
                text-transform: uppercase;
                display: inline-block;
                color: whitesmoke;
-     
           }
      
           .icons{
