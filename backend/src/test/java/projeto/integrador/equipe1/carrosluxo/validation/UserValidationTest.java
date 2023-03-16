@@ -154,9 +154,25 @@ public class UserValidationTest {
     }
 
     @Test
+    void loginValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            new UserValidation(new InputLoginDto("user@mail.com", "12345678"));
+            ;
+        });
+    }
+
+    @Test
     void registerInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
             new UserValidation(new InputRegisterDto("d", "d", "d", "d"));
+        });
+    }
+
+    @Test
+    void RegisterValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            new UserValidation(new InputRegisterDto("João", "da silva", "user@mail.com", "12345678"));
+            ;
         });
     }
 }

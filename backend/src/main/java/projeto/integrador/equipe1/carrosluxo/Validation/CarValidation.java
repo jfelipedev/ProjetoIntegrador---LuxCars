@@ -13,6 +13,9 @@ public class CarValidation {
     private static final int descritpionCharactersMinimum = 5;
     private static final int descritpionCharactersMaximum = 2000;
 
+    public CarValidation() {
+    }
+
     public CarValidation(InputCarDto car) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorNameCar = validationText(car.getNameCar(), nameCarCharactersMinimum, nameCarCharactersMaximum);
@@ -26,26 +29,24 @@ public class CarValidation {
         }
     }
 
-    private String validationPrice(Double price) {
+    public String validationPrice(Double price) {
         if (price == null) {
             return "Este campo não pode está vazio!";
         } else if (price < 200) {
             return "Aviso: o valor do preço deve ser maior ou igual a R$200 para ser válido!";
-        } else if (price > 99999.99) {
-            return "Aviso: o valor do preço deve ser menor ou igual a R$99999.99 para ser válido!";
+        } else if (price > 9999999999.99) {
+            return "Aviso: o valor do preço deve ser menor ou igual a R$9.999.999.999,99 para ser válido!";
         }
         return null;
     }
 
     public String validationYear(Integer year) {
-        LocalDate dataAtual = LocalDate.now();
-        int anoAtual = dataAtual.getYear();
         if (year == null) {
             return "Este campo não pode está vazio!";
-        } else if (year < 1904) {
+        } else if (year < 1900) {
             return "Aviso: o valor do ano deve ser maior ou igual a 1900 para ser válido!";
-        } else if (year > anoAtual) {
-            return "Aviso: o valor do ano deve ser menor ou igual a " + anoAtual + " para ser válido!";
+        } else if (year > getAnoAtual()) {
+            return "Aviso: o valor do ano deve ser menor ou igual a " + getAnoAtual() + " para ser válido!";
         } else {
             return null;
         }
@@ -60,5 +61,11 @@ public class CarValidation {
             return "Este campo dever ser menor do que " + textCharactersMaximum + " caractreres!";
         }
         return null;
+    }
+
+    public int getAnoAtual() {
+        LocalDate dataAtual = LocalDate.now();
+        int anoAtual = dataAtual.getYear();
+        return anoAtual;
     }
 }

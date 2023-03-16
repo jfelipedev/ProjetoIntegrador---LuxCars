@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import './login.css';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import api from "../../services/api"
@@ -32,7 +32,9 @@ function Login() {
     event.preventDefault()
   }*/
 
+
   const navigate = useNavigate();
+
 
   function loginUser(value) {
     console.log(value);
@@ -45,14 +47,13 @@ function Login() {
        login(response.data.jwt)
       console.log(response)
       alert("Usuário Cadastrado")
-      // navigate("/")
+      navigate("/")
     })
     .catch((erro) => {
       console.log(erro)
       console.log("Deu errado")
     })
   }
-
 
   return (
     <div className="Login">

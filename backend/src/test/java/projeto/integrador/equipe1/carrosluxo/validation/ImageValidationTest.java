@@ -84,9 +84,16 @@ public class ImageValidationTest {
     }
 
     @Test
-    void loginInvalid() {
+    void imageInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
             new ImageValidation(new InputImageDto("", "", 0));
+        });
+    }
+
+    @Test
+    void imageValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            new ImageValidation(new InputImageDto("Lateral do carro", "http://img.carlux.com/car/1/carlateral.png", 1));
         });
     }
 }

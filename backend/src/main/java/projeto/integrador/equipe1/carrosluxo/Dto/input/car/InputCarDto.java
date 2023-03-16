@@ -5,22 +5,18 @@ import java.util.Set;
 
 public class InputCarDto {
     private String nameCar;
-
     private String descritpion;
-
     private Double price;
-
     private Integer year;
-
     private Boolean highlight;
     private long idCategory;
     private long idCity;
-    private Set<Long> idCaracteristics = new HashSet<>();
+    private HashSet<Long> idCaracteristics = new HashSet<>();
 
     public InputCarDto() {
     }
 
-    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, Set<Long> idCaracteristics) {
+    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, HashSet<Long> idCaracteristics) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
         this.price = price;
@@ -91,7 +87,7 @@ public class InputCarDto {
         return idCaracteristics;
     }
 
-    public void setIdCaracteristics(Set<Long> idCaracteristics) {
+    public void setIdCaracteristics(HashSet<Long> idCaracteristics) {
         this.idCaracteristics = idCaracteristics;
     }
 }

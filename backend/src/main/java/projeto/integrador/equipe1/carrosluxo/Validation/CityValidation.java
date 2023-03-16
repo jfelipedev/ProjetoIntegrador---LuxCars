@@ -11,6 +11,9 @@ public class CityValidation {
     private static final int countryCharactersMinimum = 2;
     private static final int countryCharactersMaximum = 100;
 
+    public CityValidation() {
+    }
+
     public CityValidation(InputCityDto city) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorNameCity = validationText(city.getNameCity(), nameCityCharactersMinimum, nameCityCharactersMaximum);
