@@ -31,10 +31,11 @@ public class ImageService {
 
     public OutputImageCreateOrUpdateDto create(InputImageDto image) throws Exception {
         new ImageValidation(image);
-        logger.info(image.getTitle() + " foi adicionado!");
         if (carRepository.existsById(image.getIdCar())) {
+            logger.info(image.getTitle() + " foi adicionado!");
             return new OutputImageCreateOrUpdateDto(imageRepository.save(new ImagesEntity(image)));
         } else {
+            logger.info("Erro ao adicionar a image: " + image.getTitle() + "!");
             throw new BadRequestException(objectMapper.writeValueAsString(new ErrorImageDto(null, null, "Este carro não Existir")));
         }
     }
