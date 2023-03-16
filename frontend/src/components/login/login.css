@@ -36,7 +36,6 @@ span:hover {
 }
 
 p {
-
      max-width: 290px;
      text-align: center;
      justify-content: center;
@@ -366,14 +365,13 @@ input::-moz-placeholder {
                box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
           }
 
-          .acessar ,.cadastrar{
+          .acessar .cadastrar{
                text-align: center;
                font-size: 12px;
                font-weight: 600;
                text-transform: uppercase;
                display: inline-block;
                color: whitesmoke;
-     
           }
      
           .icons{

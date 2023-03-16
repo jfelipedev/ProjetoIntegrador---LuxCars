@@ -24,7 +24,7 @@ function Header() {
           </li>
 
           <li className="navItem">
-            <Link to="/" className="navLink">Ofertas</Link>
+            <Link to="/product" className="navLink">Ofertas</Link>
           </li>
 
           <li className="navItem">

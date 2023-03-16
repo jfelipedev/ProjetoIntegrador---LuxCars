@@ -3,14 +3,14 @@ import Image2 from "../../assets/carFerrariCaliforniaT2015Blue.jpg"
 import Image3 from "../../assets/carChevroletCamaroSS.jpg"
 import Image4 from "../../assets/carBMW430iCabrioMSport.jpg"
 
-export const Data = [
+export const carsData = [
      {
           id: 1,
           image: Image1 
      },
      {
           id: 2,
-          image: Image2,
+          image: Image2
      },
      {
           id: 3,
@@ -18,6 +18,6 @@ export const Data = [
      },
      {
           id: 4,
-          image: Image4,
+          image: Image4
      }
 ]

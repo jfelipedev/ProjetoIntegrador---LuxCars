@@ -9,7 +9,7 @@ import Category from "../../components/categorias/category";
 function index() {
   return (
     <div className="index">
-      <Header />
+      <Header /> 
       <SearchCars />
       <Cars />
       <Category />

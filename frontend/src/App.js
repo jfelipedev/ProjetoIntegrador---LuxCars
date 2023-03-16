@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
  import Cars from './components/cars/cars';
  import SearchCars from './components/searchCars/searchCars'
 
+
 function App() {
   return (
     <div>

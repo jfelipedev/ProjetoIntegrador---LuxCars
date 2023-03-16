@@ -21,8 +21,6 @@ const validation = yup.object().shape({
   // 'um número e um caracter especial'
 })
 
-
-
 function Login() {
   const { register, handleSubmit, formState: { errors }, } = useForm(
     {
@@ -34,8 +32,9 @@ function Login() {
     event.preventDefault()
   }*/
 
-  function loginUser(value) {
+  const navigate = useNavigate();
 
+  function loginUser(value) {
     console.log(value);
 
     api.post("/auth", {
@@ -45,13 +44,13 @@ function Login() {
     .then((response) => {
        login(response.data.jwt)
       console.log(response)
-      console.log("Deu certo")
+      alert("Usuário Cadastrado")
+      // navigate("/")
     })
     .catch((erro) => {
       console.log(erro)
       console.log("Deu errado")
     })
-
   }
 
 
@@ -59,7 +58,7 @@ function Login() {
     <div className="Login">
 
       <form action="" className="loginbar" onSubmit={handleSubmit(loginUser)}>
-        <h1 className='loginTitle'><span>LUX</span>CAR</h1>
+        <h1 className='loginTitle'><span>LUX</span>CARS</h1>
 
         <div className="inputs">
 
@@ -79,8 +78,6 @@ function Login() {
               {...register("password")}
             />
             {  <span className="spanError">{errors.password?.message}</span>}
-            
-
 
             <button type='submit' className='buttonE '>Entrar</button>
           </div>

@@ -1,26 +1,37 @@
 
-import React from "react";
-import './cars.css'
+import React, {useState, useEffect} from "react";
+import './cars.css';
 import { Data } from "./Data";
-
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
-
-
 function Cars() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+
+
+  
   return (
     <section className="section">
-      <h2 className="item sectionTitle">Veículos em destaque</h2>
-
-      <Carousel className="carsContainer container ">
+     <Carousel className="carousel" autoPlay infiniteLoop emulateTouch useKeyboardArrows showStatus={true}
+        showIndicators={!isMobile}>
         {Data.map(({ id, image, year, distance, linkMap, title, description, linkdescription }) => {
           return (
-            <div className="carsCard " key={id}>
-
-              <img src={image} alt="" className="carsImg" />
-
+            <div className="carsCard" key={id}>              
+              <img src={image} alt="Carro" className="carsImg" />          
               <div className="carsInfo">
                 <h5 className="carsYear">{year}</h5>
                 <h2 className="carsName">{title}</h2>
@@ -29,11 +40,8 @@ function Cars() {
                   <p className="carsDesciption">{description}<a href="" className="linkdescription">{linkdescription}</a></p>
                   <button className="seeMore button">Ver mais</button>
                 </div>
-
-
               </div>
             </div>
-
           )
         })}
       </Carousel>
