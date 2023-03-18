@@ -33,7 +33,7 @@ public class CarEntity {
     private CitiesEntity cities;
 
     @OneToMany(mappedBy = "car")
-    private Set<ImagesEntity> images;
+    private Set<ImagesEntity> images = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -69,13 +69,6 @@ public class CarEntity {
         this.category.setId(car.getIdCategory());
         this.cities = new CitiesEntity();
         this.cities.setId(car.getIdCity());
-        Set<CaracteristicEntity> list = new HashSet<>();
-        for (Long idCaracteristic : car.getIdCaracteristics()) {
-            CaracteristicEntity caracteristic = new CaracteristicEntity();
-            caracteristic.setId(idCaracteristic);
-            list.add(caracteristic);
-        }
-        this.caracteristics = list;
     }
 
     public long getId() {

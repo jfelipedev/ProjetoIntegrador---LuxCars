@@ -23,8 +23,8 @@ public class CarValidation {
         String errorYear = validationYear(car.getYear());
         String errorPrice = validationPrice(car.getPrice());
 
-        if (!(errorNameCar == null)) {
-            ErrorCarDto errorCarDto = new ErrorCarDto(errorNameCar, null, errorDescritpion, errorPrice, errorYear, null, null);
+        if (!(errorNameCar == null && errorDescritpion == null && errorYear == null && errorPrice == null)) {
+            ErrorCarDto errorCarDto = new ErrorCarDto(errorNameCar, null, errorDescritpion, errorPrice, errorYear, null, null, null);
             throw new BadRequestException(objectMapper.writeValueAsString(errorCarDto));
         }
     }

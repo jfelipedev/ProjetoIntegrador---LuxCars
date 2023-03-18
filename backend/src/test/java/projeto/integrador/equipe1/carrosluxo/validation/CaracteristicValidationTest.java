@@ -26,7 +26,6 @@ public class CaracteristicValidationTest {
     void validationTextCharMin() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
         String error = caracteristicValidation.validationText("Ola", 5, 25, "");
-        ;
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 5 caractreres!", error);
     }

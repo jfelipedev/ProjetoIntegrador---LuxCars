@@ -19,6 +19,6 @@ public interface CarRepository extends CrudRepository<CarEntity, Long> {
 
     Optional<CarEntity[]> findAllByCategoryAndCities(CategoryEntity category, CitiesEntity cities);
 
-    @Query("SELECT c FROM cars c WHERE highlight = True")
+    @Query("SELECT c FROM cars c WHERE highlight=true")
     Optional<CarEntity[]> findAllHighlight();
 }

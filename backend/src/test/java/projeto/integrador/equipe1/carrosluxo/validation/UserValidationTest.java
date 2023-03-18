@@ -157,7 +157,6 @@ public class UserValidationTest {
     void loginValid() {
         Assertions.assertDoesNotThrow(() -> {
             new UserValidation(new InputLoginDto("user@mail.com", "12345678"));
-            ;
         });
     }
 
@@ -172,7 +171,6 @@ public class UserValidationTest {
     void RegisterValid() {
         Assertions.assertDoesNotThrow(() -> {
             new UserValidation(new InputRegisterDto("João", "da silva", "user@mail.com", "12345678"));
-            ;
         });
     }
 }
