@@ -1,0 +1,152 @@
+.createAccount {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.createaccountBar {
+     position: absolute;
+     left: 40%;
+     top: 20%;
+     max-width: 900px;
+     max-height: 900px;
+
+     /* --- incluido depois --- */
+     -webkit-border-radius: 10px 10px 10px 10px;
+     border-radius: 10px 10px 10px 10px;
+     background-color: #1C1C1C;
+     padding: 30px;
+
+     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+
+.createTitle {
+     text-align: center;
+     margin: 30px 0px 60px 0px;
+     color: #ffc857;
+     font-family: 'Roboto', sans-serif;
+}
+
+.input {
+     font-family: 'Inter', sans-serif;
+     display: flex;
+     justify-content: space-between;
+     flex-direction: column;
+     gap: 5px;
+}
+
+.spanError1{
+     color: red;
+          font-family: "Roboto", sans-serif;
+          font-size: 12px;
+          padding-bottom: 10px;
+}
+
+.create{
+     width: 18rem;
+     height: 2rem;
+     border-radius: 5px;
+}
+
+.buttonR {
+     /*width: 18rem;
+     background-color: #ffc857;
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     margin-top: 1.5rem;*/
+
+     width: 18rem;
+     background-color: #474350;
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     color: whitesmoke;
+     height: 2rem;
+     border-radius: 5px;
+     font-weight: 500;
+     margin-top: 1.5rem;
+}
+
+.buttonR:hover {
+     color:#474350;
+     background-color: #ffc857;
+}
+
+.log {
+     font-family: 'Inter', sans-serif;
+     color: whitesmoke;
+     margin-top: 0.8rem;
+     text-align: center;
+     padding: 0 10px;
+     border-top: 2px solid whitesmoke;
+     font-size: small;
+}
+
+.log a {
+     color: #ffc857;
+     text-decoration: none;
+}
+
+/* ====================Breakpoints=================== */
+/* For large devices */
+@media screen and (max-width: 390px) {
+     .createaccountBar {
+          position: absolute;
+          left: 40%;
+          top: 20%;
+          max-width: 600px;
+          max-height: 600px;
+     
+          /* --- incluido depois --- */
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+          background-color: #1C1C1C;
+          padding: 30px;
+     
+          -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+     }
+
+     .createTitle {
+          text-align: center;
+          margin: 10px 0px 35px 0px;
+          color: #ffc857;
+          font-family: 'Roboto', sans-serif;
+     }
+
+     .input {
+          font-family: 'Inter', sans-serif;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: center;
+     }
+
+     .create{
+          width: 15rem;
+          height: 2rem;
+          border-radius: 5px;
+     }
+
+     .buttonR {
+          width: 15rem;
+          background-color: #474350;
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          color: whitesmoke;
+          height: 2rem;
+          border-radius: 5px;
+          font-weight: 500;
+          margin-top: 1.5rem;
+     }
+
+     .spanError1{
+          color: red;
+               font-family: "Roboto", sans-serif;
+               font-size: 12px;
+               padding-bottom: 5px;
+     }
+}

@@ -1,0 +1,385 @@
+h1 {
+     font-weight: bold;
+     margin: 0
+}
+
+.spanError{
+     color: red;
+     font-family: "Roboto";
+     font-size: 12px;
+     padding-bottom: 24px;
+}
+
+span {
+     color: #ffc857;
+}
+
+span:hover {
+     animation: ondular 2s ease-in-out infinite;
+}
+
+@keyframes ondular {
+     0% {
+          transform: translateY(0);
+          opacity: 1;
+     }
+
+     50% {
+          transform: translateY(-10px);
+          opacity: 0.5;
+     }
+
+     100% {
+          transform: translateY(0);
+          opacity: 1;
+     }
+}
+
+p {
+     max-width: 290px;
+     text-align: center;
+     justify-content: center;
+     white-space: normal;
+}
+
+.acessar {
+     text-align: center;
+     font-size: 18px;
+     font-weight: 600;
+     text-transform: uppercase;
+     display: inline-block;
+     color: whitesmoke;
+}
+
+.cadastrar {
+     text-align: center;
+     font-size: 18px;
+     font-weight: 600;
+     text-transform: uppercase;
+     display: inline-block;
+     color: whitesmoke;
+}
+
+.Login {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     justify-content: center;
+     width: 100%;
+     min-height: 100%;
+     color: whitesmoke;
+}
+
+.loginbar {
+     position: absolute;
+     left: 40%;
+     top: 20%;
+     max-width: 900px;
+     max-height: 900px;
+
+     /* --- incluido depois --- */
+     -webkit-border-radius: 10px 10px 10px 10px;
+     border-radius: 10px 10px 10px 10px;
+     background-color: #1C1C1C;
+     padding: 30px;
+     width: 100%;
+     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+
+.loginTitle {
+     text-align: center;
+     margin: 30px 0px 100px 0px;
+}
+
+.inputs {
+     display: flex;
+     justify-content: space-between;
+}
+
+.inputLogin {
+     display: flex;
+     flex-direction: column;
+     gap: px;
+     border-left: 1px solid whitesmoke;
+     padding: 10px;
+}
+
+.input1 {
+     height: 32px;
+}
+
+::-webkit-input-placeholder {
+     color: #474350;
+     font-weight: 500;
+     padding-left: 1rem;
+}
+
+input::-moz-placeholder {
+     color: #474350;
+}
+
+.buttonE {
+     width: 18rem;
+     background-color: #474350;
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     color: whitesmoke;
+     height: 2rem;
+     border-radius: 5px;
+     font-weight: 500;
+}
+
+.buttonE:hover{
+     color:#474350;
+     background-color: #ffc857;
+}
+
+.inputLogin .button {
+     font-weight: 600;
+}
+
+.createaccount {
+     display: flex;
+     flex-direction: column;
+     border-left: 1px solid whitesmoke;
+     padding-left: 10px;
+     padding-top: 0.5rem;
+}
+
+.createaccount .button {
+     background-color: #474350;
+     color: black;
+     font-weight: 600;
+}
+
+.Createaccount .button:nth-child(6) {
+     display: inline-flex;
+     width: max-content;
+     padding: 5px 10px;
+}
+
+.checkedIcon {
+     font-size: 1.5rem;
+}
+
+.icons {
+     display: flex;
+     flex-direction: column;
+}
+
+.iconBig {
+     font-size: 1rem;
+}
+
+/* ====================Breakpoints=================== */
+/* For large devices */
+
+@media screen and (max-width: 992px){
+     .loginbar{
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     max-width: 700px;
+     max-height: 700px;
+     /* --- incluido depois --- */
+     -webkit-border-radius: 10px 10px 10px 10px;
+     border-radius: 10px 10px 10px 10px;
+     background-color: #1C1C1C;
+     padding: 15px;
+     width: 50%;
+     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     }
+
+     .acessar .cadastrar{
+          text-align: center;
+          font-size: 16px;
+          font-weight: 600;
+          text-transform: uppercase;
+          display: inline-block;
+          color: whitesmoke;
+     }
+
+     .loginTitle {
+          text-align: center;
+          margin: 15px 0px 50px 0px;
+     }
+
+     .inputs {
+          display: flex;
+          flex-direction: column;
+     }
+
+     .inputLogin {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border: none;
+          border-bottom: 1px solid whitesmoke;
+          padding: 5px;
+          border-radius: 5px;
+          
+     }
+
+     .input1 {
+          height: 32px; 
+          width: 15rem;
+     } 
+
+     .buttonE {
+          width: 15rem;
+          background-color: #474350;
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     }
+
+     .createaccount {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border: none;
+          border-bottom: 1px solid whitesmoke;
+          padding: 10px;
+     }
+
+     .iconBig{
+          font-size: 14px;
+     }
+
+     .spanError{
+          color: red;
+          font-family: "Roboto", sans-serif;
+          font-size: 12px;
+          padding-bottom: 15px;
+     }
+    }
+
+    @media screen and (max-width: 768px){
+     .loginbar{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          max-width: 600px;
+          max-height: 600px;
+          /* --- incluido depois --- */
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+          background-color: #1C1C1C;
+          padding: 10px;
+          width: 50%;
+          -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          }
+     
+          .loginTitle {
+               text-align: center;
+               margin: 10px 0px 15px 0px;
+               font-size: 1.7rem;
+          }
+     
+          .inputs {
+               display: flex;
+               flex-direction: column;
+          }
+     
+          .input1{
+               height: 30px;
+               width: 12rem;
+          } 
+     
+          .buttonE{
+               width: 12rem;
+               background-color: #474350;
+               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          }
+
+          .acessar ,.cadastrar{
+               text-align: center;
+               font-size: 14px;
+               font-weight: 600;
+               text-transform: uppercase;
+               display: inline-block;
+               color: whitesmoke;
+          }
+     
+          .icons{
+               display: flex;
+               flex-direction: column;
+          }
+
+          .iconBig{
+               font-size: 12px;
+          }
+    }
+
+    /* For small devices */
+@media screen and (max-width: 576px){
+     .loginbar{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          max-width: 500px;
+          max-height: 500px;
+          /* --- incluido depois --- */
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+          background-color: #1C1C1C;
+          padding: 10px;
+          width: 60%;
+          -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          }
+     
+          .loginTitle {
+               text-align: center;
+               margin: 5px 0px 10px 0px;
+               font-size: 1.5rem;
+          }
+     
+          .inputs {
+               display: flex;
+               flex-direction: column;
+          }
+     
+          .input1{
+               height: 30px;
+               width: 12rem;
+          } 
+     
+          .buttonE{
+               width: 12rem;
+               background-color: #474350;
+               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          }
+
+          .acessar .cadastrar{
+               text-align: center;
+               font-size: 12px;
+               font-weight: 600;
+               text-transform: uppercase;
+               display: inline-block;
+               color: whitesmoke;
+          }
+     
+          .icons{
+               display: flex;
+               flex-direction: column;
+          }
+
+          .iconBig{
+               font-size: 12px;
+          }
+}

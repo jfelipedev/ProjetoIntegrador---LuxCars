@@ -1,0 +1,88 @@
+.footer{
+     width: 100%;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     background-color: #1C1C1C;
+     box-shadow: 5px 1px 3px #1C1C1C;
+     color: #F4F7F5;
+}
+
+.brand1{
+     height: 3.5rem;
+}
+
+.copyRight{
+     padding-top: 5px;
+     font-size: 1.2rem;
+     font-family: 'Heebo', sans-serif;
+     font-weight: lighter;
+     text-align: center;
+}
+
+
+.footerInfo{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin: 0px 3rem;
+}
+
+.socilaMedia{
+     display: flex;
+     gap: 1.2rem;
+     font-size: 1.7rem;
+}
+
+/* ====================Breakpoints=================== */
+/* For medium devices */
+@media screen and (max-width: 768px){
+
+     .footerInfo{
+          height: 6vh;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 0px 2rem;
+     }
+
+     .copyRight{
+          padding-top: 7px;
+          font-size: 1.1rem;
+     }
+
+     .socilaMedia{
+          font-size: 1.5rem;
+          gap: 1rem;
+     }
+
+     .brand1{
+          height: 3rem;
+     }
+}
+
+@media screen and (max-width: 576px){
+  
+     .footerInfo{
+          height: 6vh;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 0px 1rem;
+     }
+
+     .copyRight{
+          padding-top: 5px;
+          font-size: 15px;
+     }
+
+     .socilaMedia{
+          display: none;
+     }
+
+     .brand1{
+          height: 2.5rem;
+     }
+}
+
+

@@ -1,41 +1,52 @@
 package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity(name = "users")
-public class UserEntity {
+public class UserEntity implements UserDetails {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID_user")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private long id;
     @Column(name = "first_name")
     private String firstName;
     private String surname;
     private String email;
     private String password;
-
-    @Column(name = "data_subscribe", columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataSubscribe;
+    @Enumerated(EnumType.ORDINAL)
+    private UserRoles roles;
 
     public UserEntity() {
     }
 
-    public UserEntity(int id, String firstName, String surname, String email, String password, LocalDateTime dataSubscribe) {
+    public UserEntity(long id, String firstName, String surname, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.dataSubscribe = dataSubscribe;
     }
 
-    public int getId() {
+    public UserEntity(InputRegisterDto register) {
+        this.firstName = register.getFirstName();
+        this.surname = register.getSurname();
+        this.email = register.getEmail();
+        this.password = register.getPassword();
+        this.roles = UserRoles.ROLE_USER;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,6 +74,21 @@ public class UserEntity {
         this.email = email;
     }
 
+    public UserRoles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(UserRoles roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.name());
+        return Collections.singleton(grantedAuthority);
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
@@ -71,23 +97,28 @@ public class UserEntity {
         this.password = password;
     }
 
-    public LocalDateTime getDataSubscribe() {
-        return dataSubscribe;
-    }
-
-    public void setDataSubscribe(LocalDateTime dataSubscribe) {
-        this.dataSubscribe = dataSubscribe;
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", dataSubscribe=" + dataSubscribe +
-                '}';
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -1,0 +1,251 @@
+.section {
+     width: 100%;
+     height: auto;
+     background: #474350;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     margin-top: 2rem;
+     border: 2px solid purple;
+}
+
+/*.item {
+     font-weight: 200;
+     justify-content: center;
+     align-items: center;
+     font-size: 1.8rem;
+}*/
+
+.carsCard {
+     border: 1px solid rgba(82, 69, 64 / 50%);
+     border-radius: 10px;
+     box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+     display: flex;
+     transform-style: preserve-3d;
+     box-shadow: inset 1rem 0 3rem #000;
+     background-color: #393640;
+     height: 50vh;
+     
+}
+
+.carsImg {
+     border-radius: 10px 0px 0px 10px;
+     object-fit: contain;
+     height: auto; 
+}
+
+.carsInfo {
+     width: 100%;
+     margin: 1rem;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: center;
+}
+
+.linkMap,
+.linkdescription {
+     color: #ffc857;
+     text-decoration: none;
+}
+
+.linkMap:hover,
+.linkdescription:hover {
+     animation: ondular 2s ease-in-out infinite;
+     color: #F4F7F5;
+}
+
+@keyframes ondular {
+     0% {
+          transform: translateY(0);
+          opacity: 1;
+     }
+
+     50% {
+          transform: translateY(-10px);
+          opacity: 0.5;
+     }
+
+     100% {
+          transform: translateY(0);
+          opacity: 1;
+     }
+}
+
+.carsYear {
+     height: .7rem;
+     font-size: 1rem;
+     color: #AAA6B5;
+     font-weight: bold;
+     font-family: 'Roboto', sans-serif;
+}
+
+.carsName {
+     color: #F4F7F5;
+     font-family: 'Roboto', sans-serif;
+}
+
+.centerCarInfo{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.carsDistance {
+     margin: 3rem 0px 8rem;
+     font-family: 'Roboto', sans-serif;
+     color: #F4F7F5;
+     font-size: 1rem;
+}
+
+.carsDesciption {
+     width: 35vw;
+     text-align: center;
+     font-family: 'Roboto', sans-serif;
+     font-weight: 400;
+     color: #F4F7F5;
+     font-size: 1rem;
+}
+
+.seeMore {
+     width: 100%;
+     height: 2.5rem;
+}
+
+.thumbs-wrapper {
+     display: none;   
+}
+
+@media screen and (max-width: 768px){
+ 
+     .carsCard{
+          background: #474350;
+          border: 1px solid rgba(82, 69, 64 / 50%);
+          border-radius: 10px;
+          box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%); 
+          display: flex;
+          transform-style: preserve-3d;
+          background-color: #393640;
+          height: auto;
+          flex-direction: column;
+          align-items:center;
+          
+     }
+
+     .carsImg{
+          width:100%;
+          height:auto;
+     }
+
+     .carsInfo{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 1rem;
+          text-align: center;
+     }
+
+     .carsYear{  
+          height: .5rem;
+          font-size: 14px;
+          color: #AAA6B5;
+          font-weight: bold;
+          font-family: 'Roboto', sans-serif;
+     }
+     
+     .carsName{ 
+           color: #F4F7F5;
+           font-family: 'Roboto', sans-serif;
+           font-size: 20px;;
+     }
+     
+     .carsDistance{
+          margin: .5rem 0 1rem;
+          font-family: 'Roboto', sans-serif;
+          color: #F4F7F5;
+          font-size: 14px;
+     }
+     
+     .carsDesciption{
+          width: 90%;
+          text-align: center;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          color: #F4F7F5;
+          font-size: 14px;
+     }
+     
+     .seeMore{
+          width: 100%;
+          height: 2.5rem;
+          margin-top:1rem;
+     }
+
+}
+
+@media screen and (max-width: 576px){
+     .carsCard{
+          background: #474350;
+          border: 1px solid rgba(82, 69, 64 / 50%);
+          border-radius: 10px;
+          box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%); 
+          display: flex;
+          transform-style: preserve-3d;
+          background-color: #393640;
+          height: auto;
+          flex-direction: column;
+          align-items:center;
+     }
+
+     .carsImg{
+          max-width:100%;
+          height: auto;
+
+     }
+
+     .carsInfo{
+          padding: 1rem;
+          text-align: center;
+     }
+
+     .carsYear{  
+          height: .2rem;
+          font-size: 10px;
+          color: #AAA6B5;
+          font-weight: bold;
+          font-family: 'Roboto', sans-serif;
+          font-size: 1rem;
+     }
+     
+     .carsName{ 
+           color: #F4F7F5;
+           font-family: 'Roboto', sans-serif;
+           font-size: 1.5rem;
+     }
+     
+     .carsDistance{
+          margin: .2rem 0px 1rem;
+          font-family: 'Roboto', sans-serif;
+          color: #F4F7F5;
+          font-size: 1rem;
+     }
+     
+     .carsDesciption{
+          width: 80%;
+          text-align: center;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          color: #F4F7F5;
+          font-size: 1rem;
+     }
+     
+     .seeMore{
+          width: 100%;
+          height: 2.5rem;
+     }
+
+          
+}

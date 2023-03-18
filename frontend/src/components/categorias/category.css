@@ -1,0 +1,213 @@
+.categorySection{
+     width: 100%;
+     transform-style: preserve-3d;
+     margin-bottom: 8rem;
+     margin-top: 5rem;
+}
+
+.categoryTitle{
+     padding: 3rem 0px 1rem 0px;
+     text-align: center;
+     font-family: 'Inter', sans-serif;
+     font-weight: 300;
+     font-size: calc(1.325rem + .9vw);
+     color: #F4F7F5;
+     line-height: 1.2;
+}
+
+.categoryContainer{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transform-style: preserve-3d;
+}
+
+.categoryContainer .categoryCard{
+     position: relative;
+     width: 350px;
+     height: 247px;
+     margin: 0px 20px;
+     transform-style: preserve-3d;
+     perspective: 1000px;
+     border-top: 1px solid #ffffff;
+     border-left: 1px solid #ffffff;
+     box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.2);
+     border-radius: 5px;
+}
+
+.categoryContainer .categoryCard .box{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transform-style: preserve-3d;
+     transition: 1s ease;
+}
+
+.categoryContainer .categoryCard:hover .box{
+     transform: rotateY(180deg);
+}
+
+.categoryContainer .categoryCard .box .contentFront{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: #474350;
+     object-fit: cover;
+}
+
+.img{
+     width: 100%;
+     height: 75%;
+     border-radius: 5px 5px 0px 0px;
+}
+
+.categoryContainer .categoryCard .box .contentBx{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: #474350;
+     backface-visibility: hidden;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     transform-style: preserve-3d;
+     transform: rotateY(180deg);
+}
+
+.categoryContainer .categoryCard .box .contentBx .contentBack{
+     transform-style: preserve-3d;
+     padding: 2%;
+     background: #474350;
+     transform: translateZ(100px);
+}
+
+.text1{
+     margin-left: 5px;
+     color: #F4F7F5;
+     font-family: 'Roboto', sans-serif;
+}
+
+.text2{
+     margin-left: 5px;
+     color: #D0DCD4;
+     font-family: 'Roboto', sans-serif;
+     letter-spacing: 1px;
+     font-size: 14px;
+}
+
+.text3{
+     color: #F4F7F5;
+     font-family: 'Roboto', sans-serif;
+}
+
+.text4{
+     color: #f4f7f5;
+     font-family: 'Roboto', sans-serif;
+     letter-spacing: 1px;
+     font-size: 14px;
+     text-align: justify;
+}
+
+/* ====================Breakpoints=================== */
+/* For large devices */
+@media screen and (max-width: 992px){
+     .categoryTitle{
+          height: 10px;
+          margin-left: 1.1rem;
+     }
+
+     .categoryContainer{
+          flex-wrap: wrap;
+     }
+
+     .categoryContainer .categoryCard:hover .box{
+          transform: rotateY(180deg);
+     }
+
+     .categoryContainer .categoryCard .box .contentBx{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #474350;
+          backface-visibility: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform-style: preserve-3d;
+          transform: rotateY(180deg);
+     }
+
+     .text4{
+          font-size: 12px;
+     }
+
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px){
+     .categoryTitle{
+          height: 10px;
+          text-align: center;
+     }
+
+     .categoryContainer{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform-style: preserve-3d;
+          flex-wrap: wrap;
+     }
+
+     .categoryContainer .categoryCard{
+          position: relative;
+          width: 300px;
+          height: 230px;
+          margin: 20px;
+     }
+
+     .categoryContainer .categoryCard:hover .box{
+          transform: rotateY(180deg);
+     }
+
+     .categoryContainer .categoryCard .box .contentBx{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #474350;
+          backface-visibility: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform-style: preserve-3d;
+          transform: rotateY(180deg);
+     }
+
+     .text4{
+          font-size: 12px;
+     }
+   }
+
+   @media screen and (max-width: 576px){
+     .categoryTitle{
+          height: 10px;
+          text-align: center;
+     }
+
+     .categoryContainer{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform-style: preserve-3d;
+          flex-wrap:wrap-reverse;
+     }
+   }
