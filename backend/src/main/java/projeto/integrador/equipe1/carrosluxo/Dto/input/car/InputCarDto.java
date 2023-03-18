@@ -1,7 +1,6 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.input.car;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class InputCarDto {
     private String nameCar;
@@ -13,9 +12,6 @@ public class InputCarDto {
     private long idCity;
     private HashSet<Long> idCaracteristics = new HashSet<>();
 
-    public InputCarDto() {
-    }
-
     public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, HashSet<Long> idCaracteristics) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
@@ -25,6 +21,9 @@ public class InputCarDto {
         this.idCategory = idCategory;
         this.idCity = idCity;
         this.idCaracteristics = idCaracteristics;
+    }
+
+    public InputCarDto() {
     }
 
     public String getNameCar() {
@@ -83,7 +82,7 @@ public class InputCarDto {
         this.idCity = idCity;
     }
 
-    public Set<Long> getIdCaracteristics() {
+    public HashSet<Long> getIdCaracteristics() {
         return idCaracteristics;
     }
 

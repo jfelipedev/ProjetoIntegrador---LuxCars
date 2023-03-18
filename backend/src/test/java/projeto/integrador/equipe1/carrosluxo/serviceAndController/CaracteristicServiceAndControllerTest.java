@@ -10,19 +10,12 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.CaracteristicController;
-import projeto.integrador.equipe1.carrosluxo.Controller.CategoryController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryCreateOrUpdateDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.city.OutputCityReadDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CaracteristicService;
-import projeto.integrador.equipe1.carrosluxo.Service.CategoryService;
 
 import java.util.List;
 
@@ -95,12 +88,11 @@ public class CaracteristicServiceAndControllerTest {
     void serviceAllTest() {
         Assertions.assertDoesNotThrow(() -> {
             List<OutputCaracteristicDto> list = caracteristicService.all();
-            Assertions.assertEquals(1,list.size());
-            Assertions.assertEquals(1,list.get(0).getId());
+            Assertions.assertEquals(1, list.size());
+            Assertions.assertEquals(1, list.get(0).getId());
             Assertions.assertEquals("testeICon", list.get(0).getIcon());
         });
     }
-
 
     @Test
     void ControllerAllTest() {
@@ -113,7 +105,7 @@ public class CaracteristicServiceAndControllerTest {
     }
 
     @Test
-    void controllerCreateTest(){
+    void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.create(new InputCaracteristicDto("Tem iceberg", "Iceberg"));
             Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -122,7 +114,7 @@ public class CaracteristicServiceAndControllerTest {
     }
 
     @Test
-    void controllerReadTest(){
+    void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<OutputCaracteristicReadDto> response = (ResponseEntity<OutputCaracteristicReadDto>) caracteristicController.read(1);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -131,7 +123,7 @@ public class CaracteristicServiceAndControllerTest {
     }
 
     @Test
-    void controllerUpdateTest(){
+    void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.update(1, new InputCaracteristicDto("Tem iceberg", "Iceberg"));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -140,7 +132,7 @@ public class CaracteristicServiceAndControllerTest {
     }
 
     @Test
-    void controllerDeleteTest(){
+    void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<String> response = (ResponseEntity<String>) caracteristicController.delete(1);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());

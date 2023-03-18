@@ -10,8 +10,10 @@ INSERT INTO cities(`name_city`, `country`) values
 ('Napoli', 'Italia');
 INSERT INTO cities(`name_city`, `country`) values
 ('São Paulo', 'Brasil');
-INSERT INTO `cars` (`name_car`, `descritpion`, `highlight`, `category_id`, `city_id`) VALUES
-('Audi', 'Eu sou um audi', 1, 1, 1);
+INSERT INTO `cars` (name_car, descritpion, price, year_car, highlight, category_id, city_id) VALUES
+('Audi M6', 'Eu sou um audi', 890.85, 2015, false, 1, 2);
+INSERT INTO cars (name_car, descritpion, price, year_car, highlight, category_id, city_id) VALUES
+ ('Ferrari GT 400', 'descricao qualquer', 1250.58, 2020, true, 2, 1);
 INSERT INTO caracteristics(`name_caracteristcs`, `icon`) values ('potência de 340 cv e torque de 44,1 m', 'testeICon');
 INSERT INTO car_caracteristics(`car_id`, `caracteristics_id`) values (1,1);
 INSERT INTO images(`title`, `url`, `car_id`) values ('Imagem de um audi', 'http://img.carlux.com/audi.png',1);

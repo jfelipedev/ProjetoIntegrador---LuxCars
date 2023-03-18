@@ -6,14 +6,14 @@ public class InputRegisterDto {
     private String email;
     private String password;
 
-    public InputRegisterDto() {
-    }
-
     public InputRegisterDto(String firstName, String surname, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public InputRegisterDto() {
     }
 
     public String getFirstName() {

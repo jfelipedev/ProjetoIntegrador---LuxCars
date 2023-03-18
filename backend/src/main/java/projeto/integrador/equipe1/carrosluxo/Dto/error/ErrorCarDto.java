@@ -9,7 +9,9 @@ public class ErrorCarDto {
     private String city;
     private String caracteristics;
 
-    public ErrorCarDto(String nameCar, String category, String descritpion, String price, String year, String city, String caracteristics) {
+    private String highlight;
+
+    public ErrorCarDto(String nameCar, String category, String descritpion, String price, String year, String city, String caracteristics, String highlight) {
         this.nameCar = nameCar;
         this.category = category;
         this.descritpion = descritpion;
@@ -17,6 +19,7 @@ public class ErrorCarDto {
         this.year = year;
         this.city = city;
         this.caracteristics = caracteristics;
+        this.highlight = highlight;
     }
 
     public ErrorCarDto() {
@@ -76,5 +79,13 @@ public class ErrorCarDto {
 
     public void setCaracteristics(String caracteristics) {
         this.caracteristics = caracteristics;
+    }
+
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
     }
 }

@@ -11,13 +11,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.CategoryController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.city.OutputCityCreateOrUpdateDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.city.OutputCityDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.city.OutputCityReadDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CategoryService;
@@ -38,7 +34,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void createValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCategoryCreateOrUpdateDto category = categoryService.create(new InputCategoryDto("Carros SUVs","http://img.carlux.com/suvs.png","survs"));
+            OutputCategoryCreateOrUpdateDto category = categoryService.create(new InputCategoryDto("Carros SUVs", "http://img.carlux.com/suvs.png", "survs"));
             Assertions.assertEquals(3, category.getId());
         });
     }
@@ -68,13 +64,13 @@ public class categoryServiceAndControllerTest {
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCategoryCreateOrUpdateDto category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "http://img.carlux.com/category/suvs.png","SUVs"));
+            OutputCategoryCreateOrUpdateDto category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "http://img.carlux.com/category/suvs.png", "SUVs"));
             Assertions.assertEquals("Carros sem o teto", category.getDescritpion());
             Assertions.assertEquals("SUVs", category.getQualification());
-            category = categoryService.update(1, new InputCategoryDto("São carros suvs!", "http://img.carlux.com/category/suvs.png","SUVs"));
+            category = categoryService.update(1, new InputCategoryDto("São carros suvs!", "http://img.carlux.com/category/suvs.png", "SUVs"));
             Assertions.assertEquals("São carros suvs!", category.getDescritpion());
             Assertions.assertEquals("SUVs", category.getQualification());
-            category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "http://img.carlux.com/category/conversivel.png","Conversivel"));
+            category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "http://img.carlux.com/category/conversivel.png", "Conversivel"));
             Assertions.assertEquals("Carros sem o teto", category.getDescritpion());
             Assertions.assertEquals("Conversivel", category.getQualification());
         });
@@ -83,7 +79,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void updateInvalidIdCategory() {
         Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            categoryService.update(10, new InputCategoryDto("São carros suvs!", "http://img.carlux.com/category/suvs.png","SUVs"));
+            categoryService.update(10, new InputCategoryDto("São carros suvs!", "http://img.carlux.com/category/suvs.png", "SUVs"));
         }).getMessage());
     }
 
@@ -113,9 +109,9 @@ public class categoryServiceAndControllerTest {
     void serviceAllTest() {
         Assertions.assertDoesNotThrow(() -> {
             List<OutputCategoryAllDto> list = categoryService.all();
-            Assertions.assertEquals(2,list.size());
-            Assertions.assertEquals(1,list.get(0).getId());
-            Assertions.assertEquals(2,list.get(1).getId());
+            Assertions.assertEquals(2, list.size());
+            Assertions.assertEquals(1, list.get(0).getId());
+            Assertions.assertEquals(2, list.get(1).getId());
             Assertions.assertEquals("Conversivel", list.get(0).getQualification());
             Assertions.assertEquals("Sedans", list.get(1).getQualification());
         });
@@ -132,16 +128,16 @@ public class categoryServiceAndControllerTest {
     }
 
     @Test
-    void controllerCreateTest(){
+    void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.create(new InputCategoryDto("Carros SUVs","http://img.carlux.com/suvs.png","survs"));
+            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.create(new InputCategoryDto("Carros SUVs", "http://img.carlux.com/suvs.png", "survs"));
             Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
             Assertions.assertEquals(3, response.getBody().getId());
         });
     }
 
     @Test
-    void controllerReadTest(){
+    void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<OutputCategoryReadDto> response = (ResponseEntity<OutputCategoryReadDto>) categoryController.read(1);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -150,16 +146,16 @@ public class categoryServiceAndControllerTest {
     }
 
     @Test
-    void controllerUpdateTest(){
+    void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.update(1, new InputCategoryDto("Carros SUVs","http://img.carlux.com/suvs.png","survs"));
+            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.update(1, new InputCategoryDto("Carros SUVs", "http://img.carlux.com/suvs.png", "survs"));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("survs", response.getBody().getQualification());
         });
     }
 
     @Test
-    void controllerDeleteTest(){
+    void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<String> response = (ResponseEntity<String>) categoryController.delete(1);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());

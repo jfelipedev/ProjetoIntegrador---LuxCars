@@ -5,13 +5,13 @@ public class InputImageDto {
     private String url;
     private long idCar;
 
-    public InputImageDto() {
-    }
-
     public InputImageDto(String title, String url, long idCar) {
         this.title = title;
         this.url = url;
         this.idCar = idCar;
+    }
+
+    public InputImageDto() {
     }
 
     public String getTitle() {

@@ -6,14 +6,14 @@ public class ErrorRegisterDto {
     String email;
     String password;
 
-    public ErrorRegisterDto() {
-    }
-
     public ErrorRegisterDto(String firstName, String surname, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public ErrorRegisterDto() {
     }
 
     public String getFirstName() {

@@ -1,9 +1,13 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.output.Car;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
 public class OutputCarDto {
+    Logger logger = LoggerFactory.getLogger(OutputCarDto.class);
+
     private long id;
     private String nameCar;
 
@@ -42,9 +46,11 @@ public class OutputCarDto {
         this.highlight = car.getHighlight();
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
-        if (car.getImages().size() <= 1) {
+        if (car.getImages().size() >= 1) {
             ImagesEntity image = (ImagesEntity) car.getImages().toArray()[0];
             this.urlImage = image.getUrl();
+        } else {
+            this.urlImage = "Este carro não tem imagem anexado";
         }
     }
 

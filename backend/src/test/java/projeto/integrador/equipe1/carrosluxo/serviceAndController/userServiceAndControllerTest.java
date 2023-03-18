@@ -14,6 +14,7 @@ import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.InternalServerErrorException;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
+
 import java.util.NoSuchElementException;
 
 @SpringBootTest
