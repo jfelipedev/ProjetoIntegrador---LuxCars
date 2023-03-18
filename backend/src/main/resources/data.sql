@@ -4,6 +4,8 @@ INSERT INTO `users` (`email`, `password`, `first_name`, `surname`, `roles`) VALU
 ('joao2@mail.com', '$2a$10$qhs4u7Ng2sdaPSv8gIzNKOVpjFJCKwEnd3/GGIBDvz/H/GGh.dDBK', 'João', 'Silva', 1);
 INSERT INTO `categories` (`descritpion`, `url_image`, `qualification`) VALUES
 ('Carros sem o teto', 'http://teste.com/teste.png', 'Conversivel');
+INSERT INTO `categories` (`descritpion`, `url_image`, `qualification`) VALUES
+('São carros sedans', 'http://teste.com/sedans.png', 'Sedans');
 INSERT INTO cities(`name_city`, `country`) values
 ('Napoli', 'Italia');
 INSERT INTO cities(`name_city`, `country`) values
