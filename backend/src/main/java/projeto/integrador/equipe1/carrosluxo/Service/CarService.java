@@ -39,21 +39,33 @@ public class CarService {
 
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
         new CarValidation(car);
+        ErrorCarDto error = new ErrorCarDto();
         if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null, null, null, null)));
+            error.setNameCar("Este carro já está cadastrado!");
         }
         if (!categoryRepository.existsById(car.getIdCategory())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null, null, null, null)));
+            error.setCategory("Esta categoria não existe!");
         }
         if (!cityRepository.existsById(car.getIdCity())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, "Esta cidade não está registrado!", null)));
+            error.setCity("Esta cidade não está registrado!");
         }
-        for (Long idCaCaracteristic : car.getIdCaracteristics()) {
-            if (!caracteristicRepository.existsById(car.getIdCity())) {
-                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, null, "Contém uma caracteristica que não existir!")));
+        for (Long idCaracteristic : car.getIdCaracteristics()) {
+            if (!caracteristicRepository.existsById(idCaracteristic)) {
+                error.setCaracteristics("Contém uma caracteristica que não existir!");
+                break;
             }
         }
-        carRepository.save(new CarEntity(car));
+        if (!((car.getHighlight() == Boolean.TRUE) || (car.getHighlight() == Boolean.FALSE))) {
+            error.setHighlight("O destaque precisar ser verdadeiro ou falso!");
+        }
+        if (!(error.getNameCar() == null && error.getCategory() == null && error.getCity() == null && error.getCaracteristics() == null && error.getHighlight() == null)) {
+            throw new BadRequestException(objectMapper.writeValueAsString(error));
+        }
+        CarEntity carEntity = new CarEntity(car);
+        for (Long idCaracteristic : car.getIdCaracteristics()) {
+            carEntity.getCaracteristics().add(caracteristicRepository.findById(idCaracteristic).get());
+        }
+        carRepository.save(carEntity);
         logger.info(car.getNameCar() + " foi adicionado!");
         return new OutputCarCreateOrUpdateDto(carRepository.findByNameCar(car.getNameCar()).get());
     }
@@ -71,21 +83,34 @@ public class CarService {
         if (!carRepository.existsById(id)) {
             throw new ResourceNotFoundException("Este carro não existir");
         }
-        if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto("Este carro já está cadastrado!", null, null, null, null, null, null)));
-        }
-        if (!categoryRepository.existsById(car.getIdCategory())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, "Esta categoria não existe!", null, null, null, null, null)));
-        }
-        if (!cityRepository.existsById(car.getIdCity())) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, "Esta cidade não está registrado!", null)));
-        }
-        for (Long idCaCaracteristic : car.getIdCaracteristics()) {
-            if (!caracteristicRepository.existsById(car.getIdCity())) {
-                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCarDto(null, null, null, null, null, null, "Contém uma caracteristica que não existir!")));
+        ErrorCarDto error = new ErrorCarDto();
+        if (!carRepository.findById(id).get().getNameCar().equals(car.getNameCar())) {
+            if (carRepository.existsByNameCar(car.getNameCar()).get()) {
+                error.setNameCar("Este carro já está cadastrado!");
             }
         }
+        if (!categoryRepository.existsById(car.getIdCategory())) {
+            error.setCategory("Esta categoria não existe!");
+        }
+        if (!cityRepository.existsById(car.getIdCity())) {
+            error.setCity("Esta cidade não está registrado!");
+        }
+        for (Long idCaracteristic : car.getIdCaracteristics()) {
+            if (!caracteristicRepository.existsById(idCaracteristic)) {
+                error.setCaracteristics("Contém uma caracteristica que não existir!");
+                break;
+            }
+        }
+        if (!((car.getHighlight() == Boolean.TRUE) || (car.getHighlight() == Boolean.FALSE))) {
+            error.setHighlight("O destaque precisar ser verdadeiro ou falso!");
+        }
+        if (!(error.getNameCar() == null && error.getCategory() == null && error.getCity() == null && error.getCaracteristics() == null && error.getHighlight() == null)) {
+            throw new BadRequestException(objectMapper.writeValueAsString(error));
+        }
         CarEntity carEntity = new CarEntity(car);
+        for (Long idCaracteristic : car.getIdCaracteristics()) {
+            carEntity.getCaracteristics().add(caracteristicRepository.findById(idCaracteristic).get());
+        }
         carEntity.setId(id);
         carRepository.save(carEntity);
         logger.info(carEntity.getNameCar() + " foi atualizado!");
@@ -141,12 +166,24 @@ public class CarService {
             }
             return list;
         } else {
+            Boolean errorCategory = false;
+            Boolean errorCity = false;
+
             if (!carRepository.existsById(idCategory)) {
-                throw new ResourceNotFoundException("Esta categoria não existir!");
+                errorCategory = true;
             }
             if (!carRepository.existsById(idCity)) {
+                errorCity = true;
+            }
+
+            if (errorCity == true && errorCategory == true) {
+                throw new ResourceNotFoundException("Esta cidade e categoria não existir!");
+            } else if (errorCity == false && errorCategory == true) {
+                throw new ResourceNotFoundException("Esta categoria não existir!");
+            } else if (errorCity == true && errorCategory == false) {
                 throw new ResourceNotFoundException("Esta cidade não existir!");
             }
+
             List<OutputCarDto> list = new ArrayList();
             CitiesEntity cities = new CitiesEntity();
             cities.setId(idCity);

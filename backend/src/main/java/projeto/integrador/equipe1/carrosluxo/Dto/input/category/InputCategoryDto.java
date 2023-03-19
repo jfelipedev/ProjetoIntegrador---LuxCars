@@ -5,13 +5,13 @@ public class InputCategoryDto {
     private String urlImage;
     private String qualification;
 
-    public InputCategoryDto() {
-    }
-
     public InputCategoryDto(String descritpion, String urlImage, String qualification) {
         this.descritpion = descritpion;
         this.urlImage = urlImage;
         this.qualification = qualification;
+    }
+
+    public InputCategoryDto() {
     }
 
     public String getDescritpion() {

@@ -4,9 +4,6 @@ public class InputCityDto {
     private String nameCity;
     private String country;
 
-    public InputCityDto() {
-    }
-
     public InputCityDto(String nameCity, String country) {
         this.nameCity = nameCity;
         this.country = country;

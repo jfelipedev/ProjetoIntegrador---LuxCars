@@ -52,7 +52,7 @@ public class CaracteristicService {
         if (caracteristicRepository.existsById(id)) {
             caracteristicRepository.deleteById(id);
             logger.info("A caracteristica com a id " + id + " foi deletado!");
-            return "Esta caracteristica foi deleto com sucesso!";
+            return "Esta caracteristica foi deletado com sucesso!";
         }
         throw new ResourceNotFoundException("Esta caracteristica não está registrado!");
     }

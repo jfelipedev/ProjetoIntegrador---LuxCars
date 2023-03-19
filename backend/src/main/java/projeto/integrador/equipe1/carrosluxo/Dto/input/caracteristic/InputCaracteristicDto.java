@@ -4,12 +4,12 @@ public class InputCaracteristicDto {
     private String name;
     private String icon;
 
-    public InputCaracteristicDto() {
-    }
-
     public InputCaracteristicDto(String name, String icon) {
         this.name = name;
         this.icon = icon;
+    }
+
+    public InputCaracteristicDto() {
     }
 
     public String getName() {

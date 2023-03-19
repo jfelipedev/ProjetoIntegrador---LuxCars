@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.UserController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputLoginDto;
@@ -17,7 +19,8 @@ import java.util.NoSuchElementException;
 
 @SpringBootTest
 @Transactional
-
+@ActiveProfiles("test")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class userServiceAndControllerTest {
     @Autowired
     UserService userService;
@@ -36,7 +39,7 @@ public class userServiceAndControllerTest {
     @Test
     void readByEmailInvalid() {
         Assertions.assertEquals("Não foi possivel localizar o usuário com email: joao3@mail.com", Assertions.assertThrows(InternalServerErrorException.class, () -> {
-            UserEntity userEntity = userService.readByEmail("joao3@mail.com");
+            userService.readByEmail("joao3@mail.com");
         }).getMessage());
     }
 

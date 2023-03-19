@@ -90,7 +90,6 @@ public class CarValidationTest {
     void validationYearMin() {
         CarValidation carValidation = new CarValidation();
         String error = carValidation.validationYear(1899);
-        ;
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Aviso: o valor do ano deve ser maior ou igual a 1900 para ser válido!", error);
     }
