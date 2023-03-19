@@ -1,17 +1,35 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import './header.css'
 import { Link } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-import Image2 from '../../assets/logoWhiteBox.png'
+//import Image2 from '../../assets/logoWhiteBox.png'
+import { getToken } from '../../services/auth';
+import HeaderModal from '../headerModal/headerModal';
+
 
 
 function Header() {
   const navRef = useRef();
 
-  const showNav = () => {
-    navRef.current.classList.toggle("responsive")
-  }
+  const [visible, setVisible] = useState(false)
+
+  // const showNav = () => {
+  //   navRef.current.classList.toggle("responsive")
+  // }
+
+  const [token, setToken] = useState(getToken())
+
+ useEffect(() => {
+	const handleStorage = () => {
+		setToken(getToken())
+	}
+
+	window.addEventListener('storage', handleStorage())
+	return () => window.removeEventListener('storage', handleStorage())
+}, [])
+
+ 
 
   return (
     <header className="header">
@@ -35,7 +53,7 @@ function Header() {
             <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
-          <ul className="navList1 grid">
+          {!token &&  <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
             </li>
@@ -43,16 +61,16 @@ function Header() {
             <li className="navItem1">
               <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
-          </ul>
-
-          <i class="uil uil-times navClose" onClick={showNav}></i>
+          </ul>}
+          {token && <h1>Ola</h1>}
         </ul>
 
-        <div className="navToggler" onClick={showNav}>
-          <i class="uil uil-align-center-alt"></i>
+        <div className="navToggler">
+          <i class="uil uil-align-center-alt" onClick={() => setVisible(true)}></i>
         </div>
-
+      
       </nav>
+      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null} 
     </header>
   )
 }

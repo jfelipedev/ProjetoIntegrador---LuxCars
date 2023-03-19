@@ -10,11 +10,11 @@ h1 {
      padding-bottom: 24px;
 }
 
-span {
+.anima {
      color: #ffc857;
 }
 
-span:hover {
+.anima:hover {
      animation: ondular 2s ease-in-out infinite;
 }
 

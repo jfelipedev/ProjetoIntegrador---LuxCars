@@ -1,0 +1,47 @@
+.headerModal{
+     position: absolute;
+     right: 0;
+     top: 0;
+     background-color: rgba(0, 0, 0, 0.5);
+     color: aliceblue;
+     width: 100%;
+     display: flex;
+     justify-content: right;
+}
+
+.headerModalcontent{
+     height: 90vh;
+     width: 50%;
+     background-color: #474350;
+     border: 1px solid #FFC857;
+}
+
+.headerModalHeader{
+     height: 11rem;
+}
+
+.headerModalUser{
+     display: flex;
+     flex-direction: column;
+     align-items:flex-end;
+     justify-content: center;
+     padding-right: 10px;
+     padding-top: 2.5rem;
+}
+
+.headerModalTitle{
+     margin: 0;
+}
+
+.headerModalBody{
+     padding: 10px;
+     border-top: 1px solid #eee;
+     border-bottom: 1px solid #eee;
+}
+
+.navClose {
+     color: #FFC857;
+     font-weight: bold;
+     font-size: 2rem;
+     cursor: pointer;
+}

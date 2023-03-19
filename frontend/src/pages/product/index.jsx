@@ -5,6 +5,7 @@ import ProductCarousel from '../../components/productCarousel/productCarousel'
 import { productData } from '../../components/productCarousel/productData'
 import ProductInfo from '../../components/productInfo/productInfo'
 import ProductPolicy from '../../components/productPolicy/productPolicy'
+import ProductFeatured from '../../components/productsFeatured/productFeatured'
 
 function ProductScreen() {
   return (
@@ -13,6 +14,7 @@ function ProductScreen() {
       <ProductCarousel slides={productData} />
       <ProductInfo />
       <ProductPolicy />
+      <ProductFeatured />
       <Footer />
     </div>
   )

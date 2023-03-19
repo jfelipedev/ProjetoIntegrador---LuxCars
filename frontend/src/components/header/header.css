@@ -33,16 +33,11 @@ a {
      font-size: 2rem;
 }
 
-.navClose {
-     color: #FFC857;
-     font-weight: bold;
-     font-size: 2rem;
-}
-
 .navList {
      display: flex;
      column-gap: 2rem;
      align-items: center;
+     justify-content: center;
      font-size: 1.3rem;
      font-weight: 500;
      padding-top: 5px;
@@ -56,7 +51,7 @@ a {
      gap: 1rem;
 }
 
-.navClose,
+
 .navToggler {
      display: none;
      cursor: pointer;
@@ -127,46 +122,49 @@ a {
      }
      
      
-     .navClose,
      .navToggler {
           display: block;
-     }
-
-     .brand {
-          display: none;
+          
      }
 
      .navLink {
           color: whitesmoke;
      }
 
-     .navList {
+      .navList {
           position: fixed;
-          top: 0;
+          /* top: 0;
           left: 0;
           height: 100vh;
           width: 100vw;
-          flex-direction: column;
-          align-items: flex-end;
-          padding: 2rem;
+          flex-direction: column; */
+          /* align-items: flex-end; Mudei pra center*/
+          align-items: center;
+          justify-content: center;
+          padding-top: 1.5rem;
           gap: 1.5rem;
           background-color: #474350;
           transition: 1s ease-in;
-          transform: translateX(100%);
-     }
+          /* transform: translateX(100%); */
+          display: none;
+     } 
+
+     .brand{
+          height: 3rem;
+     }   
 
      .navList1 {
           align-items: flex-end;
      }
 
-     .responsive {
+     /* .responsive {
           transform: translateX(0);
-     }
+     }  */
 
      /*Colocar esse x em cima*/
-     .navClose {
+     /* .navClose {
           position: absolute;
           top: 1.5rem;
           left: 2.5rem;
-     }
+     } */
 }
