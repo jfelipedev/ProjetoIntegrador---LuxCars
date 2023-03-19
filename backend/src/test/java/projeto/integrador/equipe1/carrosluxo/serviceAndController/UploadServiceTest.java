@@ -10,12 +10,10 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Service.S3Service;
 import projeto.integrador.equipe1.carrosluxo.Service.UploadService;
 
-import java.net.http.HttpHeaders;
 import java.nio.file.Files;
 
 @SpringBootTest

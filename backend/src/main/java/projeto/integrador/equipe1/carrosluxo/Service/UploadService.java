@@ -24,7 +24,6 @@ public class UploadService {
     }
 
 
-
     public String uploadFile(MultipartFile file, String path, Long id, int minWidth, int maxWidth, int minHeight, int maxHeight) throws Exception {
         if (file.isEmpty()) {
             throw new BadRequestException("Nenhum arquivo foi enviado!");
