@@ -52,9 +52,9 @@ public class S3Service {
         }
     }
 
-    public String uploadFile(MultipartFile file, String path) throws IOException, NoSuchAlgorithmException {
+    public String uploadFile(MultipartFile file, String path, Long id) throws IOException, NoSuchAlgorithmException {
         logger.trace("OriginalFilename: " + file.getName());
-        String fileName = md5Generator.generate(file) + "." + StringUtils.getFilenameExtension(file.getName());
+        String fileName = md5Generator.generate(file) + "." + id.toString() + "." + StringUtils.getFilenameExtension(file.getName());
         logger.trace("File: " + fileName);
         File tempFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
         file.transferTo(tempFile);

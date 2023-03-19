@@ -33,7 +33,6 @@ public class CategoryEntity {
 
     public CategoryEntity(InputCategoryDto category) {
         this.descritpion = category.getDescritpion();
-        this.urlImage = category.getUrlImage();
         this.qualification = category.getQualification();
     }
 

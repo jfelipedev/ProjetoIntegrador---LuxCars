@@ -27,11 +27,11 @@ public class s3ServiceTest {
     @Test
     public void testUploadFileAndDeleteFile() throws IOException {
         Assertions.assertDoesNotThrow(() -> {
-            String objectfile = "/test/65a8e27d8879283831b664bd8b7f0ad4.txt";
+            String objectfile = "/test/65a8e27d8879283831b664bd8b7f0ad4.2.txt";
             String content = "Hello, World!";
             MultipartFile file = new MockMultipartFile("test-file.txt", content.getBytes(StandardCharsets.UTF_8));
-            String url = s3Service.uploadFile(file, "test");
-            Assertions.assertEquals("http://localhost:9000/carlux-test/test/65a8e27d8879283831b664bd8b7f0ad4.txt", url);
+            String url = s3Service.uploadFile(file, "test", 2L);
+            Assertions.assertEquals("http://localhost:9000/carlux-test/test/65a8e27d8879283831b664bd8b7f0ad4.2.txt", url);
             S3Object object = s3Service.getObject(objectfile);
             String objectContent = IOUtils.toString(object.getObjectContent(), StandardCharsets.UTF_8);
             Assertions.assertEquals(objectContent, content);
