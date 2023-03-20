@@ -21,7 +21,11 @@ public class OutputImageCreateOrUpdateDto {
     public OutputImageCreateOrUpdateDto(ImagesEntity image) {
         this.id = image.getId();
         this.title = image.getTitle();
-        this.url = image.getUrl();
+        if (image.getUrl() == "") {
+            this.url = "Imagem ainda não foi inserida!";
+        } else {
+            this.url = image.getUrl();
+        }
         this.car = new OutputImageCarDto(image.getCar());
     }
 

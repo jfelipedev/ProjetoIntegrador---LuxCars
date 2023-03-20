@@ -119,7 +119,7 @@ public class CategoryController {
     })
     @Operation(summary = "Mudar de imagem da categoria", tags = {"Category"})
     public ResponseEntity<?> upload(@PathVariable Long id, @Schema(description = "Arquivo a ser enviado", type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
-        logger.trace("Controle: UPDATE / POST /category/{id}/upload");
+        logger.trace("Controle: UPLOAD / POST /category/{id}/upload");
         return new ResponseEntity<>(categoryService.upload(id, file), HttpStatus.OK);
     }
 }

@@ -5,11 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
+import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
@@ -25,6 +28,8 @@ public class ImageService {
     ObjectMapper objectMapper = new ObjectMapper();
     Logger logger = LoggerFactory.getLogger(ImageService.class);
     @Autowired
+    private UploadService uploadService;
+    @Autowired
     private ImageRepository imageRepository;
     @Autowired
     private CarRepository carRepository;
@@ -36,7 +41,7 @@ public class ImageService {
             return new OutputImageCreateOrUpdateDto(imageRepository.save(new ImagesEntity(image)));
         } else {
             logger.info("Erro ao adicionar a image: " + image.getTitle() + "!");
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorImageDto(null, null, "Este carro não Existir")));
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorImageDto(null, "Este carro não Existir")));
         }
     }
 
@@ -52,7 +57,7 @@ public class ImageService {
         new ImageValidation(image);
         if (imageRepository.existsById(id)) {
             if (!carRepository.existsById(image.getIdCar())) {
-                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorImageDto(null, null, "Este carro não Existir")));
+                throw new BadRequestException(objectMapper.writeValueAsString(new ErrorImageDto(null, "Este carro não Existir")));
             }
             ImagesEntity imagesEntity = new ImagesEntity(image);
             imagesEntity.setId(id);
@@ -65,6 +70,10 @@ public class ImageService {
 
     public String delete(long id) throws Exception {
         if (imageRepository.existsById(id)) {
+            ImagesEntity image = imageRepository.findById(id).get();
+            if(image.getUrl() != ""){
+                logger.trace("Imagem " + image.getUrl() +": " + uploadService.deleteFile(image.getUrl()));
+            }
             imageRepository.deleteById(id);
             logger.info("A imagem com a id " + id + " foi deletado!");
             return "Esta imagem foi deletado com sucesso!";
@@ -79,5 +88,19 @@ public class ImageService {
             list.add(new OutputImageDto(image));
         }
         return list;
+    }
+
+    public OutputImageReadDto upload(Long id, MultipartFile file) throws Exception {
+        logger.trace("Salvando a  imagem do id " + id);
+        if (!imageRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Não existir está imagem!");
+        }
+        ImagesEntity images = imageRepository.findById(id).get();
+        if(images.getUrl() != ""){
+            logger.info("Imagem " + images.getUrl() +": " + uploadService.deleteFile(images.getUrl()));
+        }
+        images.setUrl(uploadService.uploadFile(file, "image", id, 650, 1450, 420, 780));
+        imageRepository.save(images);
+        return new OutputImageReadDto(images);
     }
 }

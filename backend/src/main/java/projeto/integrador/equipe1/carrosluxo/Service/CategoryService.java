@@ -25,7 +25,7 @@ public class CategoryService {
     ObjectMapper objectMapper = new ObjectMapper();
     Logger logger = LoggerFactory.getLogger(CategoryService.class);
     @Autowired
-    UploadService uploadService;
+    private UploadService uploadService;
     @Autowired
     private CategoryRepository categoryRepository;
 

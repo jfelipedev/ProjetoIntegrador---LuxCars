@@ -27,7 +27,7 @@ public class ImagesEntity {
 
     public ImagesEntity(InputImageDto image) {
         this.title = image.getTitle();
-        this.url = image.getUrl();
+        this.url = "";
         CarEntity car = new CarEntity();
         car.setId(image.getIdCar());
         this.car = car;
