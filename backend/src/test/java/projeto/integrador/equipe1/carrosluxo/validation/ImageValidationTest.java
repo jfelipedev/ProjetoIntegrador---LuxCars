@@ -39,61 +39,16 @@ public class ImageValidationTest {
     }
 
     @Test
-    void validationUrlValid() {
-        ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationUrl("http://img.carlux.com/teste.png");
-        Assertions.assertNull(error);
-    }
-
-    @Test
-    void validationUrlEmpty() {
-        ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationUrl("");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("A url não pode ser vazio!", error);
-    }
-
-    @Test
-    void validationUrlMax() {
-        ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationUrl("http://img.carlux.com/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste.png");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("A url dever ter menor do que 255 caracteres!", error);
-    }
-
-    @Test
-    void validationUrlInvalid() {
-        ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationUrl("http//img.carlux.com/teste.png");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("Esta url é invalido!", error);
-    }
-
-    @Test
-    void isValidUrlValid() {
-        ImageValidation imageValidation = new ImageValidation();
-        Boolean error = imageValidation.isValidUrl("http://img.carlux.com/teste.png");
-        Assertions.assertTrue(error);
-    }
-
-    @Test
-    void isValidUrlInvalid() {
-        ImageValidation imageValidation = new ImageValidation();
-        Boolean error = imageValidation.isValidUrl("http//img.carlux.com/teste.png");
-        Assertions.assertFalse(error);
-    }
-
-    @Test
     void imageInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
-            new ImageValidation(new InputImageDto("", "", 0));
+            new ImageValidation(new InputImageDto("", 0));
         });
     }
 
     @Test
     void imageValid() {
         Assertions.assertDoesNotThrow(() -> {
-            new ImageValidation(new InputImageDto("Lateral do carro", "http://img.carlux.com/car/1/carlateral.png", 1));
+            new ImageValidation(new InputImageDto("Lateral do carro", 1));
         });
     }
 }

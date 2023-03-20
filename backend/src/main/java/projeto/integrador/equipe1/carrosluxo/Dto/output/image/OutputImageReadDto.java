@@ -18,7 +18,11 @@ public class OutputImageReadDto {
 
     public OutputImageReadDto(ImagesEntity images) {
         this.title = images.getTitle();
-        this.url = images.getUrl();
+        if (images.getUrl() == "") {
+            this.url = "Imagem ainda não foi inserida!";
+        } else {
+            this.url = images.getUrl();
+        }
         this.car = new OutputImageCarDto(images.getCar());
     }
 

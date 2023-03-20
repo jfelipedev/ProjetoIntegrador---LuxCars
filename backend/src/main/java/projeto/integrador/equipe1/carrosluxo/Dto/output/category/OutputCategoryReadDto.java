@@ -18,7 +18,11 @@ public class OutputCategoryReadDto {
 
     public OutputCategoryReadDto(CategoryEntity categoryEntity) {
         this.setQualification(categoryEntity.getQualification());
-        this.setUrlImage(categoryEntity.getUrlImage());
+        if (categoryEntity.getUrlImage() == "") {
+            this.urlImage = "Imagem ainda não foi inserida!";
+        } else {
+            this.urlImage = categoryEntity.getUrlImage();
+        }
         this.setDescritpion(categoryEntity.getDescritpion());
     }
 

@@ -11,13 +11,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.CarController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
@@ -293,7 +289,7 @@ public class CarServiceAndControllerTest {
     @Test
     void ControllerAllTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<List<OutputCarDto>> response = (ResponseEntity<List<OutputCarDto>>) carController.all(null,null);
+            ResponseEntity<List<OutputCarDto>> response = (ResponseEntity<List<OutputCarDto>>) carController.all(null, null);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals(2, response.getBody().size());
             Assertions.assertEquals(1, response.getBody().get(0).getId());

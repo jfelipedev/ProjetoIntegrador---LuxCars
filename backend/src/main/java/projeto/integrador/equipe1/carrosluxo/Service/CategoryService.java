@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
@@ -24,6 +25,8 @@ public class CategoryService {
     ObjectMapper objectMapper = new ObjectMapper();
     Logger logger = LoggerFactory.getLogger(CategoryService.class);
     @Autowired
+    private UploadService uploadService;
+    @Autowired
     private CategoryRepository categoryRepository;
 
     public OutputCategoryCreateOrUpdateDto create(InputCategoryDto category) throws Exception {
@@ -33,7 +36,7 @@ public class CategoryService {
             logger.info(category.getQualification() + " foi adicionado!");
             return new OutputCategoryCreateOrUpdateDto(categoryRepository.findByQualification(category.getQualification()).get());
         }
-        throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCategoryDto(null, "Esta categoria já está cadastrado!", null)));
+        throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCategoryDto(null, "Esta categoria já está cadastrado!")));
     }
 
     public OutputCategoryReadDto read(long id) throws Exception {
@@ -50,7 +53,7 @@ public class CategoryService {
             if (!categoryRepository.findById(id).get().getQualification().equals(category.getQualification())) {
                 logger.info("Modificando a qualification do id " + id);
                 if (categoryRepository.existsByQualification(category.getQualification()).get()) {
-                    throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCategoryDto(null, "qualification especificado já está em uso", null)));
+                    throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCategoryDto(null, "qualification especificado já está em uso")));
                 }
             }
             CategoryEntity categoryEntity = new CategoryEntity(category);
@@ -64,6 +67,10 @@ public class CategoryService {
 
     public String delete(long id) throws Exception {
         if (categoryRepository.existsById(id)) {
+            CategoryEntity category = categoryRepository.findById(id).get();
+            if(category.getUrlImage() != ""){
+                logger.trace("Imagem " + category.getUrlImage() +": " + uploadService.deleteFile(category.getUrlImage()));
+            }
             categoryRepository.deleteById(id);
             logger.info("A categoria com a id " + id + " foi deletado!");
             return "Esta categoria foi deletado com sucesso!";
@@ -78,5 +85,19 @@ public class CategoryService {
             list.add(new OutputCategoryAllDto(category, category.getCars().size()));
         }
         return list;
+    }
+
+    public OutputCategoryReadDto upload(Long id, MultipartFile file) throws Exception {
+        logger.trace("Salvando a  imagem do id " + id);
+        if (!categoryRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Não existir está categoria!");
+        }
+        CategoryEntity category = categoryRepository.findById(id).get();
+        if(category.getUrlImage() != ""){
+            logger.trace("Imagem " + category.getUrlImage() +": " + uploadService.deleteFile(category.getUrlImage()));
+        }
+        category.setUrlImage(uploadService.uploadFile(file, "category", id, 650, 1450, 420, 780));
+        categoryRepository.save(category);
+        return new OutputCategoryReadDto(category);
     }
 }
