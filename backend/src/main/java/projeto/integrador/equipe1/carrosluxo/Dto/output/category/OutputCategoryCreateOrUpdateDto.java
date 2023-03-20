@@ -21,7 +21,7 @@ public class OutputCategoryCreateOrUpdateDto {
     public OutputCategoryCreateOrUpdateDto(CategoryEntity categoryEntity) {
         this.setId(categoryEntity.getId());
         this.setQualification(categoryEntity.getQualification());
-        if (categoryEntity.getUrlImage() == null) {
+        if (categoryEntity.getUrlImage() == "") {
             this.urlImage = "Imagem ainda não foi inserida!";
         } else {
             this.urlImage = categoryEntity.getUrlImage();

@@ -24,9 +24,6 @@ public class UploadServiceTest {
     @Autowired
     UploadService uploadService;
 
-    @Autowired
-    S3Service s3Service;
-
     @Test
     void uploadFileValid() {
         Assertions.assertDoesNotThrow(() -> {
@@ -35,8 +32,9 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            Assertions.assertEquals("http://localhost:9000/carlux-test/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000));
-            s3Service.deleteFile("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
+            Assertions.assertEquals("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000));
+            Assertions.assertEquals("Imagem removida!", uploadService.deleteFile("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png"));
+            Assertions.assertEquals("Imagem Não Existe!", uploadService.deleteFile("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png"));
         });
     }
 

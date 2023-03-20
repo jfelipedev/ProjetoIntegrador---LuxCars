@@ -21,7 +21,7 @@ public class OutputCategoryAllDto {
     public OutputCategoryAllDto(CategoryEntity category, int numberCars) {
         this.id = category.getId();
         this.qualification = category.getQualification();
-        if (category.getUrlImage() == null) {
+        if (category.getUrlImage() == "") {
             this.urlImage = "Imagem ainda não foi inserida!";
         } else {
             this.urlImage = category.getUrlImage();

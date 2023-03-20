@@ -34,6 +34,7 @@ public class CategoryEntity {
     public CategoryEntity(InputCategoryDto category) {
         this.descritpion = category.getDescritpion();
         this.qualification = category.getQualification();
+        this.urlImage = "";
     }
 
     public long getId() {

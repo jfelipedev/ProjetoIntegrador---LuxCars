@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +19,9 @@ import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryR
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CategoryService;
+import projeto.integrador.equipe1.carrosluxo.Service.UploadService;
 
+import java.nio.file.Files;
 import java.util.List;
 
 @SpringBootTest
@@ -30,6 +34,9 @@ public class categoryServiceAndControllerTest {
 
     @Autowired
     CategoryController categoryController;
+
+    @Autowired
+    UploadService uploadService;
 
     @Test
     void createValid() {
@@ -91,18 +98,54 @@ public class categoryServiceAndControllerTest {
     }
 
     @Test
+    void deleteInvalid() {
+        Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            categoryService.delete(10);
+        }).getMessage());
+    }
+
+
+    @Test
     void deleteValid() {
         Assertions.assertDoesNotThrow(() -> {
+            ClassPathResource resource = new ClassPathResource("teste.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            categoryService.upload(1L, file);
             String categoty = categoryService.delete(1);
             Assertions.assertEquals("Esta categoria foi deletado com sucesso!", categoty);
         });
     }
 
     @Test
-    void deleteInvalid() {
-        Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            categoryService.delete(10);
+    void uploadInvalid() {
+        Assertions.assertEquals("Não existir está categoria!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            ClassPathResource resource = new ClassPathResource("teste.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            categoryService.upload(10L,file);
         }).getMessage());
+    }
+
+    @Test
+    void uploadValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            ClassPathResource resource = new ClassPathResource("teste.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            OutputCategoryReadDto categoty1 = categoryService.upload(1L,file);
+            OutputCategoryReadDto categoty2 = categoryService.upload(2L,file);
+            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", categoty1.getUrlImage());
+            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.2.png", categoty2.getUrlImage());
+            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
+            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.2.png");
+        });
     }
 
     @Test
@@ -160,6 +203,20 @@ public class categoryServiceAndControllerTest {
             ResponseEntity<String> response = (ResponseEntity<String>) categoryController.delete(1);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta categoria foi deletado com sucesso!", response.getBody());
+        });
+    }
+    @Test
+    void controllerUploadTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            ClassPathResource resource = new ClassPathResource("teste.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            ResponseEntity<OutputCategoryReadDto> response = (ResponseEntity<OutputCategoryReadDto>) categoryController.upload(1L, file);
+            Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", response.getBody().getUrlImage());
+            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
         });
     }
 }

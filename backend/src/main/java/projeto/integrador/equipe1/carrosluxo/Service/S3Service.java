@@ -34,33 +34,27 @@ public class S3Service {
     private MD5Generator md5Generator;
 
     @Autowired
-    public S3Service(@Value("${cloud.aws.s3.endpoint}") String endpoint,
+    public S3Service(@Value("${cloud.aws.s3.endpoint:s3.amazonaws.com}") String endpoint,
                      @Value("${cloud.aws.credentials.accessKey}") String accessKey,
                      @Value("${cloud.aws.credentials.secretKey}") String secretKey,
-                     @Value("$isAwsS3") String isAwsS3) {
-        if (isAwsS3 == "True") {
-            amazonS3 = AmazonS3ClientBuilder.standard()
-                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, "us-east-1"))
-                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
-                    .build();
-        } else {
-            amazonS3 = AmazonS3ClientBuilder.standard()
-                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, "us-east-1"))
-                    .withPathStyleAccessEnabled(true)
-                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
-                    .build();
-        }
+                     @Value("${AwsPathStyle}") Boolean PathStyle,
+                     @Value("${cloud.aws.region.static}") String region) {
+        amazonS3 = AmazonS3ClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, region))
+                .withPathStyleAccessEnabled(PathStyle)
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+                .build();
     }
 
     public String uploadFile(MultipartFile file, String path, Long id) throws IOException, NoSuchAlgorithmException {
-        logger.trace("OriginalFilename: " + file.getName());
-        String fileName = md5Generator.generate(file) + "." + id.toString() + "." + StringUtils.getFilenameExtension(file.getName());
-        logger.trace("File: " + fileName);
+        logger.info("OriginalFilename: " + file.getOriginalFilename());
+        String fileName = md5Generator.generate(file) + "." + id.toString() + "." + StringUtils.getFilenameExtension(file.getOriginalFilename());
+        logger.info("File: " + fileName);
         File tempFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
         file.transferTo(tempFile);
-        logger.trace("Bucket: " + bucketName);
+        logger.info("Bucket: " + bucketName);
         amazonS3.putObject(new PutObjectRequest(bucketName, path + "/" + fileName, tempFile).withCannedAcl(CannedAccessControlList.PublicRead));
-        return amazonS3.getUrl(bucketName, path + "/" + fileName).toString();
+        return "/" + path + "/" + fileName;
     }
 
     public void deleteFile(String key) {

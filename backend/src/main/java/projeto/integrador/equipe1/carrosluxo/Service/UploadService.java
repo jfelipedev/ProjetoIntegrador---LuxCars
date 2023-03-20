@@ -55,5 +55,15 @@ public class UploadService {
         }
         return s3Service.uploadFile(file, path, id);
     }
+
+    public String deleteFile(String url){
+        if(s3Service.doesObjectExist(url)){
+            s3Service.deleteFile(url);
+            return "Imagem removida!";
+        }
+        else{
+            return "Imagem Não Existe!";
+        }
+    }
 }
 
