@@ -10,15 +10,28 @@
 }
 
 .headerModalcontent{
-     height: 90vh;
+     height: 85.1vh;
      width: 50%;
      background-color: #474350;
-     border: 1px solid #FFC857;
+     /* transform: translateX(0%);
+     transition: 3s ease; Ver alguma forma de colocar e tirra como um menu hamburguer*/
 }
 
 .headerModalHeader{
-     height: 11rem;
+     height: 11.5rem;
+     background-color: #1C1C1C;
+     border: 1px solid #1C1C1C;
 }
+
+.headerModalTitle{
+     color: #FFC857;
+     font-size: 1.5rem;
+     font-family: 'Inter', sans-serif;
+}
+
+/* .headerModalTitleUser{
+     
+} */
 
 .headerModalUser{
      display: flex;
@@ -26,17 +39,63 @@
      align-items:flex-end;
      justify-content: center;
      padding-right: 10px;
-     padding-top: 2.5rem;
+     padding-top: 5.5rem;    
 }
 
-.headerModalTitle{
-     margin: 0;
-}
 
 .headerModalBody{
-     padding: 10px;
-     border-top: 1px solid #eee;
-     border-bottom: 1px solid #eee;
+     text-align: right;
+     height: 15rem;
+     padding: 0 10px;
+     height: 25rem;
+     border: 1px solid #FFC857;
+     border-bottom: none ;
+     border-top: none;
+}
+
+.navListModal{
+     display: flex;
+     flex-direction: column;
+     gap: 1.5rem;
+}
+
+.navItemModal{
+     border-top: 1px solid #1C1C1C;
+     padding-top: 1.5rem;
+}
+
+.navItem1Modal{
+     border-top: 1px solid #1C1C1C;
+     padding-top: 1.5rem;
+}
+
+.navLinkModal, .navLink1Modal{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     color: #F4F7F5;
+     text-decoration: none;
+}
+
+.navLinkModal:hover{
+     color: #807a90;
+}
+
+.navLink1Modal:hover{
+     color: #807a90;
+}
+
+.headerModalFooter{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 8.3rem;
+     border: 1px solid #FFC857;
+     border-top: none;
+}
+
+.headerButton{
+     width: 17rem;
+     height: 2.5rem;
 }
 
 .navClose {
@@ -44,4 +103,12 @@
      font-weight: bold;
      font-size: 2rem;
      cursor: pointer;
+}
+
+.activeLink1{
+     color: #807a90;
+}
+
+.first{
+     border-top: none;
 }
