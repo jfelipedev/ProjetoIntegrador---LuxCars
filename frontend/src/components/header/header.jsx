@@ -20,21 +20,21 @@ function Header() {
 
   const [token, setToken] = useState(getToken())
 
- useEffect(() => {
-	const handleStorage = () => {
-		setToken(getToken())
-	}
+  useEffect(() => {
+    const handleStorage = () => {
+      setToken(getToken())
+    }
 
-	window.addEventListener('storage', handleStorage())
-	return () => window.removeEventListener('storage', handleStorage())
-}, [])
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
 
- 
+
 
   return (
     <header className="header">
       <nav className="nav " >
-      <a href="//gitlab.ctd.academy/ctd/brasil/projeto-integrador-1/0223/turma-5/grupo-1"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
+        <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
@@ -53,7 +53,7 @@ function Header() {
             <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
-          {!token &&  <ul className="navList1 grid">
+          {!token && <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
             </li>
@@ -68,9 +68,9 @@ function Header() {
         <div className="navToggler">
           <i class="uil uil-align-center-alt" onClick={() => setVisible(true)}></i>
         </div>
-      
+
       </nav>
-      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null} 
+      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null}
     </header>
   )
 }
