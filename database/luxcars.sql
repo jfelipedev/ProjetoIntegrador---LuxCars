@@ -2,6 +2,11 @@ CREATE DATABASE luxcars;
 
 USE luxcars;
 
+CREATE TABLE IF NOT EXISTS roles (
+ID BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+name_role VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS users (
 
 ID BIGINT (20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -9,7 +14,8 @@ email VARCHAR (200) NOT NULL UNIQUE,
 password VARCHAR (60) NOT NULL, 
 first_name VARCHAR (100) NOT NULL,
 surname VARCHAR (100) NOT NULL,
-roles SMALLINT NOT NULL CHECK (roles IN (0,1))
+roles_id BIGINT NOT NULL,
+FOREIGN KEY (roles_id) REFERENCES roles(ID)
 
 );
 
@@ -22,12 +28,19 @@ qualification VARCHAR (100) NOT NULL UNIQUE
 
 );
 
-
 CREATE TABLE IF NOT EXISTS cities (
 
 ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name_city VARCHAR (100) NOT NULL,
 country VARCHAR(100) NOT NULL
+
+);
+
+CREATE TABLE IF NOT EXISTS bookings (
+ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+start_date DATE,
+start_time TIME,
+end_date DATE
 
 );
 
@@ -41,9 +54,12 @@ year_car INT (4) NOT NULL,
 highlight BOOLEAN DEFAULT false NOT NULL,
 category_id BIGINT NOT NULL,
 city_id BIGINT NOT NULL,
+user_id BIGINT NOT NULL,
+booking_id BIGINT NOT NULL,
 FOREIGN KEY (category_id) REFERENCES categories(ID),
-FOREIGN KEY(city_id) REFERENCES cities(ID)
-
+FOREIGN KEY(city_id) REFERENCES cities(ID),
+FOREIGN KEY(user_id) REFERENCES users(ID),
+FOREIGN KEY(booking_id) REFERENCES bookings(ID)
 );
 
 
@@ -76,11 +92,15 @@ FOREIGN KEY (car_id) REFERENCES cars(ID)
 
 
 /*insercao nas tabelas de usuarios
-  Senha do role 0 = Fulano12!
-  Senha do role 1 = Beltrano12!
+  Senha do role admin = Fulano12!
+  Senha do role user = Beltrano12!
 */
-INSERT INTO users(email, password, first_name, surname, roles) values ('administrador@mail.com', '$2a$12$IOK8StaznX4/43zA3vPtHOV40wW5APGLpvZh31GiexOYH5B57jTZO', 'Fulano', 'Sicrano', 0);
-INSERT INTO users(email, password, first_name, surname, roles) values ('usercomum@mail.com', '$2a$12$CAlvUt4F4IR4d/rv.hMPWeZC16cGGmGxGB4m37GogRBysdpqj3DfO', 'Beltrano', 'de tal', 1);
+
+insert into roles(name_role) values ('admin');
+insert into roles(name_role) values ('user');
+
+INSERT INTO users(email, password, first_name, surname, roles_id) values ('administrador@mail.com', '$2a$12$IOK8StaznX4/43zA3vPtHOV40wW5APGLpvZh31GiexOYH5B57jTZO', 'Camila', 'Ferreira', (SELECT ID FROM roles WHERE name_role = 'admin'));
+INSERT INTO users(email, password, first_name, surname, roles_id) values ('usercomum@mail.com', '$2a$12$CAlvUt4F4IR4d/rv.hMPWeZC16cGGmGxGB4m37GogRBysdpqj3DfO', 'Beltrano', 'de tal', (SELECT ID FROM roles WHERE name_role = 'user'));
 
 /*insercao nas tabelas de catergories*/
 INSERT INTO categories(descritpion, url_image, qualification) values ('ferrari gt', 'urlimagemaqui', 'conversivel');
@@ -88,13 +108,21 @@ INSERT INTO categories(descritpion, url_image, qualification) values ('ferrari g
 /*insercao nas tabelas de cidade*/
 INSERT INTO cities(name_city, country) values ('Napoli', 'Italia');
 
-INSERT INTO cars (name_car, descritpion, price, year_car, highlight, category_id, city_id) values ('GT 400', 'descricao qualquer', 1250.58, 2020, true, 1,1);
+INSERT INTO bookings (start_date, start_time, end_date) VALUES ('2023-03-23', '14:30:00', '2023-03-25');
+
+INSERT INTO cars (name_car, descritpion, price, year_car, highlight, category_id, city_id, user_id, booking_id) values ('GT 400', 'descricao qualquer', 1250.58, 2020, true, 1,1, 1, 1);
 
 INSERT INTO caracteristics(name_caracteristcs, icon) values ('potência de 340 cv e torque de 44,1 m', 'testeICon');
 
 INSERT INTO car_caracteristics(car_id, caracteristics_id) values (1,1);
 
-INSERT INTO images(title, url, car_id) values ('imagem da ferrari gt 400', 'urldaimagem',1);
+INSERT INTO images(title, url, car_id) values ('imagem da ferrari gt 400', '  ',1);
+
+select * from cars;
+
+
+
+
 
 
 
