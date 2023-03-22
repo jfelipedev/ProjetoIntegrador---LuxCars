@@ -1,8 +1,15 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import projeto.integrador.equipe1.carrosluxo.Controller.UserController;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserRoleEntity;
+import projeto.integrador.equipe1.carrosluxo.Repository.UserRolesRepository;
 
 public class OutputUserDto {
+    Logger logger = LoggerFactory.getLogger(OutputUserDto.class);
     private long id;
     private String firstName;
     private String surname;
@@ -25,7 +32,7 @@ public class OutputUserDto {
         this.firstName = user.getFirstName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
-        switch (user.getRoles()) {
+        switch (user.getRole().getRoleName()) {
             case ROLE_USER:
                 this.role = "Usuário";
                 break;

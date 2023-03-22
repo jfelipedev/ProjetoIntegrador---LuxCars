@@ -99,7 +99,7 @@ public class ImageService {
         if(images.getUrl() != ""){
             logger.info("Imagem " + images.getUrl() +": " + uploadService.deleteFile(images.getUrl()));
         }
-        images.setUrl(uploadService.uploadFile(file, "image", id, 650, 1450, 420, 780));
+        images.setUrl(uploadService.uploadFile(file, "image", id, 677, 679, 380, 382));
         imageRepository.save(images);
         return new OutputImageReadDto(images);
     }

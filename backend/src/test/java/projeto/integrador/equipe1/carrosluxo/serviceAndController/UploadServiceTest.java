@@ -32,9 +32,9 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            Assertions.assertEquals("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000));
-            Assertions.assertEquals("Imagem removida!", uploadService.deleteFile("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png"));
-            Assertions.assertEquals("Imagem Não Existe!", uploadService.deleteFile("/test/3fe226caa9dc6e99bbe3845cc0c886c9.1.png"));
+            Assertions.assertEquals("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png", uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000));
+            Assertions.assertEquals("Imagem removida!", uploadService.deleteFile("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png"));
+            Assertions.assertEquals("Imagem Não Existe!", uploadService.deleteFile("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png"));
         });
     }
 
