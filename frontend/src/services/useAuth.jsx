@@ -1,24 +1,26 @@
+//Mudar pra local storage dps
+
 import { createContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = (props) => {
-  const authLocalStorage = localStorage.getItem("auth");
+  const authSessionStorage = sessionStorage.getItem("auth");
 
   const [auth, setAuth] = useState(
-    authLocalStorage === null ? "" : authLocalStorage
+    authSessionStorage === null ? "" : authSessionStorage
   );
 
   const saveToken = (tokenReceived) => {
     if (tokenReceived !== auth) {
       setAuth(tokenReceived);
-      localStorage.setItem("auth", tokenReceived);
+      sessionStorage.setItem("auth", tokenReceived);
     }
   };
 
   const removeToken = () => {
     setAuth("");
-    localStorage.removeItem("auth");
+    sessionStorage.removeItem("auth");
     alert("Usuário deslogado");
   };
 

@@ -6,7 +6,7 @@ import * as yup from "yup"
 import api from "../../services/api"
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom"
-import { TOKEN_KEY } from "../../services/auth";
+
 
 const validation = yup.object().shape({
   email: yup.string("Necessario preencher o campo login")
@@ -39,12 +39,12 @@ function Login() {
 
   function loginUser(value) {
     console.log(value);
-    // sessionStorage.setItem(TOKEN_KEY, "Ladilau");
-    //navigate("/")
+    
 //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
     api.post("/auth", {
           email: value.email,
-          password: value.password
+          password: value.password,
+          isAdmin: true
       })
     .then((response) => {
        login(response.data.jwt)

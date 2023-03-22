@@ -21,8 +21,6 @@ function Cars() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-
   
   return (
     <section className="section">

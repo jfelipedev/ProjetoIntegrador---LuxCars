@@ -1,29 +1,42 @@
 import React, {useState} from 'react'
 import './productFeatured.css'
 // import { productFeaturedData } from './productFeaturedData';
-// import { GoKebabHorizontal } from 'react-icons/go'
+import { GoKebabHorizontal } from 'react-icons/go'
 import Image1 from "../../assets/carBMW-M440i.jpg"
+import { Data } from '../cars/Data'
 
 const ProductFeatured = ({slides}) => {
 
+  
+  
+
+ 
+  
      
   return (
      <div className="productfeaturedCarousel">
           <h3 className="productFeaturedTitle">Você também pode gostar de</h3>
           <div className="productFeaturedContainer">
 
-          <div className="productFeaturedCard" >              
-          <img src={Image1} alt="Carro" className="productFeturedImg" />          
-            <div className="productFeturedInfo">
-                <h5 className="productFeturedYear">Ano</h5>
-                <h2 className="productFeturedName">Chevrolet Camaro 6.2 SS</h2>
-                <h5 className="productFeturedDistance">A 940 m de você -<a href="" className="linkMap"> MOSTRAR NO MAPA</a></h5>
+            <GoKebabHorizontal className='left-Goke'/>
+            <GoKebabHorizontal className='right-Goke'/>
+            {Data.map(({id, image, year, distance, linkMap, title, description, linkdescription}) => {
+              return(
+              <div className="productFeaturedCard " key={id} >              
+                <img src={image} alt="Carro" className="productFeturedImg" />          
                 <div className="productFeturedInfo">
-                  <p className="productFeturedDesciption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean justo elit, volutpat eu ullamcorper ac, ultrices eu erat.<a href="" className="linkdescription"> mais...</a></p>
-                  <button className="productFeturedbutton button">Ver mais</button>
+                    <h5 className="productFeturedYear">{year}</h5>
+                    <h2 className="productFeturedName">{title}</h2>
+                    <h5 className="productFeturedDistance">{distance} <a href="" className="linkMap"> {linkMap}</a></h5>
+                    <div className="productFeturedInfo1">
+                      <p className="productFeturedDesciption">{description}<a href="" className="linkdescription"> {linkdescription}</a></p>
+                      <button className="productFeturedbutton button">Ver mais</button>
+                    </div>
                 </div>
-            </div>
-          </div>
+              </div>
+              )
+            })}
+          
 
           </div>
    </div>

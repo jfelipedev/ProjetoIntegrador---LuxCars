@@ -8,20 +8,6 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 
-// const suppliers = [
-//   { label: "Conversivel", value: "Conversivel" },
-//   { label: "Coupé", value: "Coupé" },
-//   { label: "Esportivo", value: "Esportiv" },
-//   { label: "Sedan", value: "Sedan" },
-// ]
-
-// const DBsuppliers = [
-//   { label: "Argentina", value: "Conversivel" },
-//   { label: "Angola", value: "Coupé" },
-//   { label: "Brasil", value: "Esportiv" },
-//   { label: "Paraguai", value: "Sedan" },
-// ]
-
 function SearchCars() {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
