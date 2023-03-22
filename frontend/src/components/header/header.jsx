@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { login } from '../../services/auth';
 import React from 'react';
 import Avatar from '../avatar/avatar';
 import './header.css'
@@ -27,26 +26,26 @@ function Header() {
     .slice(0, 2)
     .join("");
 
-
   const [token, setToken] = useState(getToken())
  
-
   useEffect(() => {
 	  const handleStorage = () => {
 		setToken(getToken())
 	}
 
-	window.addEventListener('storage', handleStorage())
-	return () => window.removeEventListener('storage', handleStorage())
-}, [])
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
 
 useEffect(() => { 
   setIsAuthenticated(!!token); 
 }, [token]);
 
+
   return (
     <header className="header">
       <nav className="nav " >
+
       <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
         <ul className="navList" ref={navRef}>
@@ -75,6 +74,7 @@ useEffect(() => {
               <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
           </ul>}
+
           {isAuthenticated && 
           <div className="user-info">
           <h1>Ola</h1>
@@ -83,13 +83,12 @@ useEffect(() => {
         </div>}
             
         </ul>
-          
           <div className="navToggler">
           <i class="uil uil-align-center-alt" onClick={() => setVisible(true)}></i>
         </div>
-      
+
       </nav>
-      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null} 
+      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null}
     </header>
   )
 }

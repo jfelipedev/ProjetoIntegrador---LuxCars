@@ -1,4 +1,5 @@
-.policyContainer{
+
+.policyContainer {
      display: grid;
      grid-template-columns: repeat(3, 1fr);
      grid-column-gap: 20px;
@@ -10,7 +11,7 @@
      padding: 20px;
 }
 
-.rentalPolicy{
+.rentalPolicy {
      text-align: center;
      background-color: #474350;
      padding-bottom: 5rem;
@@ -18,7 +19,7 @@
      padding-right: 2rem;
 }
 
-.policyTitle{
+.policyTitle {
      padding-bottom: 1rem;
      color: #F4F7F5;
      font-weight: 200;
@@ -26,9 +27,9 @@
      font-family: 'Heebo', sans-serif;
 }
 
-.secundTitle{
+.secundTitle {
      padding-bottom: 0;
-     margin-bottom: 0 ;
+     margin-bottom: 0;
      color: #F4F7F5;
      font-weight: 200;
      font-size: 24px;
@@ -40,7 +41,7 @@
      margin-bottom: .4rem;
 }
 
-.square{
+.square {
      color: #F4F7F5;
      font-size: 14px;
      font-family: 'Roboto', sans-serif;
@@ -49,3 +50,7 @@
      margin-left: 2rem;
      margin-right: 2rem;
 }
+
+
+
+

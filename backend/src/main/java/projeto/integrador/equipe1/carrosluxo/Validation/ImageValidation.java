@@ -11,18 +11,13 @@ import java.util.regex.Pattern;
 public class ImageValidation {
     private static final int titleCharactersMinimum = 8;
     private static final int titleCharactersMaximum = 100;
-    private static final int urlCharactersMaximum = 255;
-    private static final String regexpUrlAllowed = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
-
     public ImageValidation() {
     }
-
     public ImageValidation(InputImageDto image) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorTitle = validationText(image.getTitle(), titleCharactersMinimum, titleCharactersMaximum);
-        String errorUrl = validationUrl(image.getUrl());
-        if (!(errorTitle == null && errorUrl == null)) {
-            ErrorImageDto errorImageDto = new ErrorImageDto(errorTitle, errorUrl, null);
+        if (!(errorTitle == null)) {
+            ErrorImageDto errorImageDto = new ErrorImageDto(errorTitle, null);
             throw new BadRequestException(objectMapper.writeValueAsString(errorImageDto));
         }
     }
@@ -36,22 +31,5 @@ public class ImageValidation {
             return "Este campo dever ser menor do que " + textCharactersMaximum + " caractreres!";
         }
         return null;
-    }
-
-    public String validationUrl(String url) {
-        if (url.trim().isBlank()) {
-            return "A url não pode ser vazio!";
-        } else if (url.trim().length() > urlCharactersMaximum) {
-            return "A url dever ter menor do que " + urlCharactersMaximum + " caracteres!";
-        } else if (!isValidUrl(url)) {
-            return "Esta url é invalido!";
-        }
-        return null;
-    }
-
-    public boolean isValidUrl(String url) {
-        Pattern pattern = Pattern.compile(regexpUrlAllowed);
-        Matcher matcher = pattern.matcher(url);
-        return matcher.find();
     }
 }
