@@ -96,7 +96,7 @@ public class CategoryService {
         if(category.getUrlImage() != ""){
             logger.trace("Imagem " + category.getUrlImage() +": " + uploadService.deleteFile(category.getUrlImage()));
         }
-        category.setUrlImage(uploadService.uploadFile(file, "category", id, 650, 1450, 420, 780));
+        category.setUrlImage(uploadService.uploadFile(file, "category", id, 650, 1450, 220, 780));
         categoryRepository.save(category);
         return new OutputCategoryReadDto(category);
     }

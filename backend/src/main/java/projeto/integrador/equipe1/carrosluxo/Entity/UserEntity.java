@@ -20,26 +20,64 @@ public class UserEntity implements UserDetails {
     private String surname;
     private String email;
     private String password;
-    @Enumerated(EnumType.ORDINAL)
-    private UserRoles roles;
 
-    public UserEntity() {
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roles_id")
+    private UserRoleEntity role;
 
-    public UserEntity(long id, String firstName, String surname, String email, String password) {
+    public UserEntity(long id, String firstName, String surname, String email, String password, UserRoleEntity role) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
-    public UserEntity(InputRegisterDto register) {
+    public UserEntity() {
+    }
+
+    public UserEntity(InputRegisterDto register, UserRoleEntity role) {
         this.firstName = register.getFirstName();
         this.surname = register.getSurname();
         this.email = register.getEmail();
         this.password = register.getPassword();
-        this.roles = UserRoles.ROLE_USER;
+        this.role = role;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleName().name());
+        return Collections.singleton(grantedAuthority);
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public long getId() {
@@ -74,51 +112,15 @@ public class UserEntity implements UserDetails {
         this.email = email;
     }
 
-    public UserRoles getRoles() {
-        return roles;
-    }
-
-    public void setRoles(UserRoles roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.name());
-        return Collections.singleton(grantedAuthority);
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
-    public String getUsername() {
-        return email;
+    public UserRoleEntity getRole() {
+        return role;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public void setRole(UserRoleEntity role) {
+        this.role = role;
     }
 }

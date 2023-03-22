@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.image;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.Objects;
+
 public class OutputImageCreateOrUpdateDto {
     private long id;
     private String title;
@@ -21,7 +23,7 @@ public class OutputImageCreateOrUpdateDto {
     public OutputImageCreateOrUpdateDto(ImagesEntity image) {
         this.id = image.getId();
         this.title = image.getTitle();
-        if (image.getUrl() == "") {
+        if (Objects.equals(image.getUrl(), "")) {
             this.url = "Imagem ainda não foi inserida!";
         } else {
             this.url = image.getUrl();

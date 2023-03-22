@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.category;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
+import java.util.Objects;
+
 public class OutputCategoryAllDto {
     private long id;
     private String qualification;
@@ -21,7 +23,7 @@ public class OutputCategoryAllDto {
     public OutputCategoryAllDto(CategoryEntity category, int numberCars) {
         this.id = category.getId();
         this.qualification = category.getQualification();
-        if (category.getUrlImage() == "") {
+        if (Objects.equals(category.getUrlImage(), "")) {
             this.urlImage = "Imagem ainda não foi inserida!";
         } else {
             this.urlImage = category.getUrlImage();

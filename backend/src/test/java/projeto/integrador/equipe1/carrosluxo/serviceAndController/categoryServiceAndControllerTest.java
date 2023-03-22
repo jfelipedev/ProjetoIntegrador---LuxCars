@@ -141,10 +141,10 @@ public class categoryServiceAndControllerTest {
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             OutputCategoryReadDto categoty1 = categoryService.upload(1L,file);
             OutputCategoryReadDto categoty2 = categoryService.upload(2L,file);
-            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", categoty1.getUrlImage());
-            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.2.png", categoty2.getUrlImage());
-            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
-            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.2.png");
+            Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png", categoty1.getUrlImage());
+            Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.2.png", categoty2.getUrlImage());
+            uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png");
+            uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.2.png");
         });
     }
 
@@ -215,8 +215,8 @@ public class categoryServiceAndControllerTest {
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             ResponseEntity<OutputCategoryReadDto> response = (ResponseEntity<OutputCategoryReadDto>) categoryController.upload(1L, file);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-            Assertions.assertEquals("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", response.getBody().getUrlImage());
-            uploadService.deleteFile("/category/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
+            Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png", response.getBody().getUrlImage());
+            uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png");
         });
     }
 }
