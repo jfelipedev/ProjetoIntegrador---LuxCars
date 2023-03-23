@@ -8,6 +8,8 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "users")
 public class UserEntity implements UserDetails {
@@ -24,6 +26,9 @@ public class UserEntity implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roles_id")
     private UserRoleEntity role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<BookingEntity> bookings = new HashSet<>();
 
     public UserEntity(long id, String firstName, String surname, String email, String password, UserRoleEntity role) {
         this.id = id;
@@ -44,6 +49,7 @@ public class UserEntity implements UserDetails {
         this.password = register.getPassword();
         this.role = role;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleName().name());
@@ -53,6 +59,10 @@ public class UserEntity implements UserDetails {
     @Override
     public String getPassword() {
         return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -110,10 +120,6 @@ public class UserEntity implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public UserRoleEntity getRole() {

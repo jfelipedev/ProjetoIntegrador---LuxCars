@@ -11,7 +11,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
-import projeto.integrador.equipe1.carrosluxo.Service.S3Service;
 import projeto.integrador.equipe1.carrosluxo.Service.UploadService;
 
 import java.nio.file.Files;

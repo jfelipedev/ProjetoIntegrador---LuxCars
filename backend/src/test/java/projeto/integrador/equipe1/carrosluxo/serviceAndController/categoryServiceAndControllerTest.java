@@ -127,7 +127,7 @@ public class categoryServiceAndControllerTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            categoryService.upload(10L,file);
+            categoryService.upload(10L, file);
         }).getMessage());
     }
 
@@ -139,8 +139,8 @@ public class categoryServiceAndControllerTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            OutputCategoryReadDto categoty1 = categoryService.upload(1L,file);
-            OutputCategoryReadDto categoty2 = categoryService.upload(2L,file);
+            OutputCategoryReadDto categoty1 = categoryService.upload(1L, file);
+            OutputCategoryReadDto categoty2 = categoryService.upload(2L, file);
             Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png", categoty1.getUrlImage());
             Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.2.png", categoty2.getUrlImage());
             uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png");
@@ -205,6 +205,7 @@ public class categoryServiceAndControllerTest {
             Assertions.assertEquals("Esta categoria foi deletado com sucesso!", response.getBody());
         });
     }
+
     @Test
     void controllerUploadTest() {
         Assertions.assertDoesNotThrow(() -> {

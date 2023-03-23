@@ -1,43 +1,28 @@
-package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.booking;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
-public class OutputUserDto {
-    Logger logger = LoggerFactory.getLogger(OutputUserDto.class);
+public class OutputBookingUserDto {
     private long id;
     private String firstName;
     private String surname;
     private String email;
-    private String role;
 
-    public OutputUserDto() {
-    }
-
-    public OutputUserDto(long id, String firstName, String surname, String email, String role) {
+    public OutputBookingUserDto(long id, String firstName, String surname, String email) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
-        this.role = role;
     }
 
-    public OutputUserDto(UserEntity user) {
+    public OutputBookingUserDto() {
+    }
+
+    public OutputBookingUserDto(UserEntity user) {
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
-        switch (user.getRole().getRoleName()) {
-            case ROLE_USER:
-                this.role = "Usuário";
-                break;
-            case ROLE_ADMIN:
-                this.role = "Administrador";
-                break;
-            default:
-                this.role = "Cargo Desconhecido";
-        }
     }
 
     public long getId() {
@@ -70,13 +55,5 @@ public class OutputUserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

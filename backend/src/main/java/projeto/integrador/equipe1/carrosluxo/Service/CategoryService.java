@@ -68,8 +68,8 @@ public class CategoryService {
     public String delete(long id) throws Exception {
         if (categoryRepository.existsById(id)) {
             CategoryEntity category = categoryRepository.findById(id).get();
-            if(category.getUrlImage() != ""){
-                logger.trace("Imagem " + category.getUrlImage() +": " + uploadService.deleteFile(category.getUrlImage()));
+            if (category.getUrlImage() != "") {
+                logger.trace("Imagem " + category.getUrlImage() + ": " + uploadService.deleteFile(category.getUrlImage()));
             }
             categoryRepository.deleteById(id);
             logger.info("A categoria com a id " + id + " foi deletado!");
@@ -93,8 +93,8 @@ public class CategoryService {
             throw new ResourceNotFoundException("Não existir está categoria!");
         }
         CategoryEntity category = categoryRepository.findById(id).get();
-        if(category.getUrlImage() != ""){
-            logger.trace("Imagem " + category.getUrlImage() +": " + uploadService.deleteFile(category.getUrlImage()));
+        if (category.getUrlImage() != "") {
+            logger.trace("Imagem " + category.getUrlImage() + ": " + uploadService.deleteFile(category.getUrlImage()));
         }
         category.setUrlImage(uploadService.uploadFile(file, "category", id, 650, 1450, 220, 780));
         categoryRepository.save(category);

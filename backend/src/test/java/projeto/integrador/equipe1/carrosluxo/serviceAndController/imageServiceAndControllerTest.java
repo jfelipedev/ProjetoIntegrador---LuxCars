@@ -13,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.ImageController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
@@ -131,7 +130,7 @@ public class imageServiceAndControllerTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            imageService.upload(10L,file);
+            imageService.upload(10L, file);
         }).getMessage());
     }
 
