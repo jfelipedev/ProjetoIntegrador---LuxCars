@@ -13,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.ImageController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
@@ -131,7 +130,7 @@ public class imageServiceAndControllerTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            imageService.upload(10L,file);
+            imageService.upload(10L, file);
         }).getMessage());
     }
 
@@ -144,8 +143,8 @@ public class imageServiceAndControllerTest {
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             OutputImageReadDto image = imageService.upload(1L, file);
-            Assertions.assertEquals("/image/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", image.getUrl());
-            uploadService.deleteFile("/image/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
+            Assertions.assertEquals("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png", image.getUrl());
+            uploadService.deleteFile("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png");
         });
     }
 
@@ -204,8 +203,8 @@ public class imageServiceAndControllerTest {
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             ResponseEntity<OutputImageReadDto> response = (ResponseEntity<OutputImageReadDto>) imageController.upload(1L, file);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-            Assertions.assertEquals("/image/3fe226caa9dc6e99bbe3845cc0c886c9.1.png", response.getBody().getUrl());
-            uploadService.deleteFile("/image/3fe226caa9dc6e99bbe3845cc0c886c9.1.png");
+            Assertions.assertEquals("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png", response.getBody().getUrl());
+            uploadService.deleteFile("/image/3ce089b77945c6519ad5d9b4fa408ed55.1.png");
         });
     }
 }

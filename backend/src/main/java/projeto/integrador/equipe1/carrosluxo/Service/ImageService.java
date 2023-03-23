@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
-import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
@@ -71,8 +69,8 @@ public class ImageService {
     public String delete(long id) throws Exception {
         if (imageRepository.existsById(id)) {
             ImagesEntity image = imageRepository.findById(id).get();
-            if(image.getUrl() != ""){
-                logger.trace("Imagem " + image.getUrl() +": " + uploadService.deleteFile(image.getUrl()));
+            if (image.getUrl() != "") {
+                logger.trace("Imagem " + image.getUrl() + ": " + uploadService.deleteFile(image.getUrl()));
             }
             imageRepository.deleteById(id);
             logger.info("A imagem com a id " + id + " foi deletado!");
@@ -96,10 +94,10 @@ public class ImageService {
             throw new ResourceNotFoundException("Não existir está imagem!");
         }
         ImagesEntity images = imageRepository.findById(id).get();
-        if(images.getUrl() != ""){
-            logger.info("Imagem " + images.getUrl() +": " + uploadService.deleteFile(images.getUrl()));
+        if (images.getUrl() != "") {
+            logger.info("Imagem " + images.getUrl() + ": " + uploadService.deleteFile(images.getUrl()));
         }
-        images.setUrl(uploadService.uploadFile(file, "image", id, 650, 1450, 420, 780));
+        images.setUrl(uploadService.uploadFile(file, "image", id, 677, 679, 380, 382));
         imageRepository.save(images);
         return new OutputImageReadDto(images);
     }

@@ -35,6 +35,9 @@ public class CarEntity {
     @OneToMany(mappedBy = "car")
     private Set<ImagesEntity> images = new HashSet<>();
 
+    @OneToMany(mappedBy = "car")
+    private Set<BookingEntity> bookings = new HashSet<>();
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "car_caracteristics",
