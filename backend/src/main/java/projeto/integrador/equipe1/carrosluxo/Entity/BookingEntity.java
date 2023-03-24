@@ -2,6 +2,7 @@ package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "bookings")
@@ -12,13 +13,13 @@ public class BookingEntity {
     private long id;
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
-    private Date startDate;
+    private LocalDate startDate;
     @Column(name = "start_time")
     @Temporal(TemporalType.TIME)
-    private Date startTime;
+    private LocalDate startTime;
     @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private LocalDate endDate;
     @ManyToOne
     @JoinColumn(name = "car_id")
     private CarEntity car;
@@ -26,7 +27,7 @@ public class BookingEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public BookingEntity(long id, Date startDate, Date startTime, Date endDate, CarEntity car, UserEntity user) {
+    public BookingEntity(long id, LocalDate startDate, LocalDate startTime, LocalDate endDate, CarEntity car, UserEntity user) {
         this.id = id;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -46,27 +47,27 @@ public class BookingEntity {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getStartTime() {
+    public LocalDate getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDate startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
