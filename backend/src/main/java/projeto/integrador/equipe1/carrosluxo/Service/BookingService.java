@@ -19,13 +19,12 @@ import projeto.integrador.equipe1.carrosluxo.Repository.BookingRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.BookingValidation;
-
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BookingService {
@@ -151,13 +150,14 @@ public class BookingService {
             }
         }
     }
+
     public List<Date[]> readAllAvailabilityCar(CarEntity car) {
         List<BookingEntity> bookings = new ArrayList<>(List.of(bookingRepository.findAllByCar(car).orElse(new ArrayList<>().toArray(new BookingEntity[0]))));
         Date today = new Date();
         Date deadline = Date.from(today.toInstant().plus(365, ChronoUnit.DAYS));
         List<Date[]> availableIntervals = new ArrayList<>();
         if (bookings.isEmpty()) {
-            Date[] interval = { today, deadline };
+            Date[] interval = {today, deadline};
             availableIntervals.add(interval);
             return availableIntervals;
         }
@@ -171,49 +171,61 @@ public class BookingService {
                 break;
             }
             if (nextAvailableStart.before(bookingStartDate)) {
-                Date[] availableInterval = { nextAvailableStart, bookingStartDate };
+                Date[] availableInterval = {nextAvailableStart, bookingStartDate};
                 availableIntervals.add(availableInterval);
             }
             nextAvailableStart = bookingEndDate.after(today) ? bookingEndDate : today;
         }
         if (nextAvailableStart.before(deadline)) {
-            Date[] lastAvailableInterval = { nextAvailableStart, deadline };
+            Date[] lastAvailableInterval = {nextAvailableStart, deadline};
             availableIntervals.add(lastAvailableInterval);
         }
         return availableIntervals;
     }
-
-
     public List<Date[]> readAllAvailability() {
-        List<CarEntity> cars = (List<CarEntity>) carRepository.findAll();
-        Date today = new Date();
-        Date deadline = Date.from(new Date().toInstant().plus(365, ChronoUnit.DAYS));
-        List<Date[]> availableIntervals = new ArrayList<>();
-        for (CarEntity car : cars) {
-            List<BookingEntity> bookings = List.of(bookingRepository.findAllByCar(car).get());
-            Date dateAvailableStart = today;
-            Date dateAvailableEnd = null;
-            for (BookingEntity booking : bookings) {
-                if (booking.getEndDate().before(today)) {
-                    continue;
-                }
-                if (booking.getStartDate().after(deadline)) {
-                    continue;
-                }
-                if (dateAvailableEnd == null) {
-                    dateAvailableEnd = Date.from(booking.getStartDate().toInstant().minus(1, ChronoUnit.DAYS));
-                } else {
-                    Date[] intervalo = {dateAvailableStart, dateAvailableEnd};
-                    availableIntervals.add(intervalo);
-                    dateAvailableStart = Date.from(dateAvailableEnd.toInstant().plus(1, ChronoUnit.DAYS));
-                }
-                dateAvailableEnd = booking.getEndDate();
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        LocalDate deadline = tomorrow.plusYears(1);
+        List<Date[]> interval = new ArrayList<>();
+        List<Date> dates = new ArrayList<>();
+        LocalDate currentDate = tomorrow;
+        while (currentDate.isBefore(deadline)) {
+            logger.info(currentDate.toString());
+            if (checkDayAvailability(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
+                dates.add(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             }
-            if (dateAvailableEnd == null || dateAvailableEnd.before(deadline)) {
-                Date[] interval = {dateAvailableStart, deadline};
-                availableIntervals.add(interval);
+            else if (!dates.isEmpty()) {
+               interval.add(new Date[]{dates.get(0), Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant())});
+               dates.clear();
+            }
+            currentDate = currentDate.plusDays(1);
+        }
+        if(currentDate.isEqual(deadline)){
+            interval.add(new Date[]{dates.get(0), dates.get(dates.size() - 1)});
+        }
+        return interval;
+    }
+
+    public boolean checkDayAvailability(Date date) {
+        if (date.before(Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
+            return false;
+        }
+        if (date.after(Date.from(LocalDate.now().plusYears(1).atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
+            return false;
+        }
+        List<BookingEntity> bookings = (List<BookingEntity>) bookingRepository.findAll();
+        List<CarEntity> cars = (List<CarEntity>) carRepository.findAll();
+        for (CarEntity car : cars) {
+            boolean available = true;
+            for (BookingEntity booking : bookings) {
+                if (booking.getCar().equals(car) && date.compareTo(booking.getStartDate()) >= 0 && date.compareTo(booking.getEndDate()) <= 0) {
+                    available = false;
+                    break;
+                }
+            }
+            if (available) {
+                return true;
             }
         }
-        return availableIntervals;
+        return false;
     }
 }

@@ -2,12 +2,15 @@ package projeto.integrador.equipe1.carrosluxo.serviceAndController;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.booking.OutputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.BookingEntity;
@@ -22,8 +25,10 @@ import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @SpringBootTest
@@ -31,6 +36,7 @@ import java.util.List;
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class BookingServiceAndControllerTest {
+    Logger logger = LoggerFactory.getLogger(BookingServiceAndControllerTest.class);
     @Autowired
     CarRepository carRepository;
     @Autowired
@@ -174,8 +180,8 @@ public class BookingServiceAndControllerTest {
             Assertions.assertEquals("joao2@mail.com", booking.getUser().getEmail());
             Assertions.assertEquals("João", booking.getUser().getFirstName());
             Assertions.assertEquals("Silva", booking.getUser().getSurname());
-            Assertions.assertEquals("01/04/2023", booking.getStartDate());
-            Assertions.assertEquals("25/04/2023", booking.getEndDate());
+            Assertions.assertEquals("01/01/2023", booking.getStartDate());
+            Assertions.assertEquals("25/01/2023", booking.getEndDate());
             Assertions.assertEquals("14:30:00", booking.getStartTime());
             Assertions.assertEquals("Audi M6", booking.getCar().getNameCar());
         });
@@ -188,8 +194,8 @@ public class BookingServiceAndControllerTest {
             Assertions.assertEquals("joao2@mail.com", booking.getUser().getEmail());
             Assertions.assertEquals("João", booking.getUser().getFirstName());
             Assertions.assertEquals("Silva", booking.getUser().getSurname());
-            Assertions.assertEquals("01/04/2023", booking.getStartDate());
-            Assertions.assertEquals("25/04/2023", booking.getEndDate());
+            Assertions.assertEquals("01/01/2023", booking.getStartDate());
+            Assertions.assertEquals("25/01/2023", booking.getEndDate());
             Assertions.assertEquals("14:30:00", booking.getStartTime());
             Assertions.assertEquals("Audi M6", booking.getCar().getNameCar());
         });
@@ -271,18 +277,48 @@ public class BookingServiceAndControllerTest {
             bookingService.readAllAvailabilityCar(car);
         });
     }
-//    @Test
-//    void readValid() {
-//        Assertions.assertDoesNotThrow(() -> {
-//            OutputCaracteristicReadDto caracteristic = caracteristicService.read(1);
-//            Assertions.assertEquals("testeICon", caracteristic.getIcon());
-//        });
-//    }
-//
-//    @Test
-//    void readInvalid() {
-//        Assertions.assertEquals("Esta caracteristica não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-//            caracteristicService.read(10);
-//        }).getMessage());
-//    }
+    @Test
+    void checkDayAvailabilityTest(){
+        Assertions.assertDoesNotThrow(() -> {
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(15, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(30, ChronoUnit.DAYS))), 1L), 1L);
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(15, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(30, ChronoUnit.DAYS))), 2L), 1L);
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            HashSet<Long> id = new HashSet<>();
+            id.add(1L);
+            carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1,1, id)));
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(-20,ChronoUnit.DAYS))));
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(400,ChronoUnit.DAYS))));
+        });
+    }
+
+    @Test
+    void readAllAvailability() {
+        Assertions.assertDoesNotThrow(() -> {
+            List<Date[]> list = bookingService.readAllAvailability();
+            Assertions.assertEquals(1,list.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list.get(0)[0].toInstant(),list.get(0)[1].toInstant()));
+            bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(80, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(95, ChronoUnit.DAYS))), 1L), 1L);
+            bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(100, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(105, ChronoUnit.DAYS))), 2L), 1L);
+            List<Date[]> list1 = bookingService.readAllAvailability();
+            Assertions.assertEquals(1,list1.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list1.get(0)[0].toInstant(),list1.get(0)[1].toInstant()));
+            bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(100, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(110, ChronoUnit.DAYS))), 1L), 1L);
+            List<Date[]> list2 = bookingService.readAllAvailability();
+            Assertions.assertEquals(2,list2.size());
+            Assertions.assertEquals(99, ChronoUnit.DAYS.between(list2.get(0)[0].toInstant(),list2.get(0)[1].toInstant()));
+            Assertions.assertEquals(260, ChronoUnit.DAYS.between(list2.get(1)[0].toInstant(),list2.get(1)[1].toInstant()));
+            HashSet<Long> id = new HashSet<>();
+            id.add(1L);
+            CarEntity car = carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1,1, id)));
+            List<Date[]> list4 = bookingService.readAllAvailabilityCar(car);
+            Assertions.assertEquals(1,list4.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list4.get(0)[0].toInstant(),list4.get(0)[1].toInstant()));
+            List<Date[]> list3 = bookingService.readAllAvailability();
+            Assertions.assertEquals(1,list3.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list3.get(0)[0].toInstant(),list3.get(0)[1].toInstant()));
+        });
+    }
 }

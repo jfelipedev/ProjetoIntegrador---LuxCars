@@ -3,7 +3,6 @@ package projeto.integrador.equipe1.carrosluxo.Entity;
 import jakarta.persistence.*;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +29,7 @@ public class BookingEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public BookingEntity(long id, Date startDate, Time startTime, Date endDate, CarEntity car, UserEntity user) {
+    public BookingEntity(long id, Date startDate, Date startTime, Date endDate, CarEntity car, UserEntity user) {
         this.id = id;
         this.startDate = startDate;
         this.startTime = startTime;

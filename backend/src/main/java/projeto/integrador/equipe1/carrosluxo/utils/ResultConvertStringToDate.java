@@ -1,4 +1,4 @@
-package projeto.integrador.equipe1.carrosluxo.Validation;
+package projeto.integrador.equipe1.carrosluxo.utils;
 
 import java.util.Date;
 

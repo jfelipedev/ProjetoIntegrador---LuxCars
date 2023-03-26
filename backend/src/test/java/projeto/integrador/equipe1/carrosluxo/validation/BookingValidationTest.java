@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Validation.BookingValidation;
-import projeto.integrador.equipe1.carrosluxo.Validation.ResultCheckConvert;
-import projeto.integrador.equipe1.carrosluxo.Validation.ResultConvertStringToDate;
+import projeto.integrador.equipe1.carrosluxo.utils.ResultCheckConvert;
+import projeto.integrador.equipe1.carrosluxo.utils.ResultConvertStringToDate;
 
 import java.text.SimpleDateFormat;
 

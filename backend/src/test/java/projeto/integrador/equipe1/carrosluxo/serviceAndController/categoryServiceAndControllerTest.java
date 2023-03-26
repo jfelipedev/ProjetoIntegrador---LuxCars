@@ -143,6 +143,7 @@ public class categoryServiceAndControllerTest {
             OutputCategoryReadDto categoty2 = categoryService.upload(2L, file);
             Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png", categoty1.getUrlImage());
             Assertions.assertEquals("/category/ce089b77945c6519ad5d9b4fa408ed55.2.png", categoty2.getUrlImage());
+            categoty2 = categoryService.upload(2L, file);
             uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.1.png");
             uploadService.deleteFile("/category/ce089b77945c6519ad5d9b4fa408ed55.2.png");
         });
