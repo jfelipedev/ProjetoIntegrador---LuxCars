@@ -19,4 +19,4 @@ INSERT INTO cars (name_car, descritpion, price, year_car, highlight, category_id
 INSERT INTO caracteristics(`name_caracteristcs`, `icon`) values ('potência de 340 cv e torque de 44,1 m', 'testeICon');
 INSERT INTO car_caracteristics(`car_id`, `caracteristics_id`) values (1,1);
 INSERT INTO images(`title`, `url`, `car_id`) values ('Imagem de um audi', '',1);
-INSERT INTO bookings (start_date, start_time, end_date, car_id, user_id) VALUES ('2023-03-23', '14:30:00', '2023-03-25', 1, 1);
+INSERT INTO bookings (start_date, start_time, end_date, car_id, user_id) VALUES ('2023-04-01', '14:30:00', '2023-04-25', 1, 2);

@@ -1,6 +1,5 @@
 package projeto.integrador.equipe1.carrosluxo.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +18,21 @@ import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException
 import projeto.integrador.equipe1.carrosluxo.Repository.BookingRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
+import projeto.integrador.equipe1.carrosluxo.Validation.BookingValidation;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class BookingService {
     ObjectMapper objectMapper = new ObjectMapper();
     Logger logger = LoggerFactory.getLogger(BookingService.class);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     @Autowired
     private BookingRepository bookingRepository;
     @Autowired
@@ -36,17 +40,48 @@ public class BookingService {
     @Autowired
     private CarRepository carRepository;
 
-    public OutputBookingDto create(InputBookingDto inputBookingDto) {
-        return null;
+    public OutputBookingDto create(InputBookingDto inputBookingDto, Long idUser) throws Exception {
+        if (userRepository.existsById(idUser)) {
+            new BookingValidation(inputBookingDto);
+            if (carRepository.existsById(inputBookingDto.getIdCar())) {
+                CarEntity car = carRepository.findById(inputBookingDto.getIdCar()).get();
+                checkAvailability(car, dateFormat.parse(inputBookingDto.getStartDate()), dateFormat.parse(inputBookingDto.getEndDate()));
+                UserEntity user = userRepository.findById(idUser).get();
+                return new OutputBookingDto(bookingRepository.save(new BookingEntity(inputBookingDto, user, car)));
+            } else {
+                ErrorBookingDto error = new ErrorBookingDto(null, null, null, "Este carro Não existir", null);
+                throw new BadRequestException(objectMapper.writeValueAsString(error));
+            }
+        } else {
+            ErrorBookingDto error = new ErrorBookingDto(null, null, null, null, "Não foi possivel indetificar o usuario!");
+            throw new ForbiddenException(objectMapper.writeValueAsString(error));
+        }
     }
 
-    public String delete(long id) throws Exception {
-        if (bookingRepository.existsById(id)) {
-            bookingRepository.deleteById(id);
-            logger.info("A reserva com a id " + id + " foi deletado!");
-            return "Esta reserva foi deletada com sucesso!";
+    public String delete(long idUser, Long idBooking) throws Exception {
+        if (userRepository.existsById(idUser)) {
+            if (userRepository.existsById(idBooking)) {
+                UserEntity user = userRepository.findById(idUser).get();
+                if (user.getRole().getRoleName() == UserRoles.ROLE_ADMIN) {
+                    bookingRepository.deleteById(idBooking);
+                    logger.info("A reserva com a id " + idBooking + " foi deletado!");
+                    return "Esta reserva foi deletada com sucesso!";
+                } else {
+                    BookingEntity booking = bookingRepository.findById(idBooking).get();
+                    if (booking.getUser().getId() == idUser) {
+                        bookingRepository.deleteById(idBooking);
+                        logger.info("A reserva com a id " + idBooking + " foi deletado!");
+                        return "Esta reserva foi deletada com sucesso!";
+                    } else {
+                        throw new ForbiddenException("Você não tem permissão para excluir está reserva!");
+                    }
+                }
+            } else {
+                throw new ResourceNotFoundException("Esta reserva não está registrado!");
+            }
+        } else {
+            throw new ForbiddenException("Não foi possivel indetificar o usuario!");
         }
-        throw new ResourceNotFoundException("Esta reserva não está registrado!");
     }
 
     public OutputBookingDto read(long idUser, Long idBooking) throws Exception {
@@ -82,97 +117,100 @@ public class BookingService {
         return list;
     }
 
-    public List<OutputBookingDto> allByIdUser(Long idUser) {
-        logger.trace("Todos as reservas do usuario do id" + idUser + " foram exibidas!");
-        List<OutputBookingDto> list = new ArrayList();
-        UserEntity user = userRepository.findById(idUser).get();
-        for (BookingEntity booking : bookingRepository.findAllByUser(user).get()) {
-            list.add(new OutputBookingDto(booking));
+    public List<OutputBookingDto> allByIdUser(Long idUser) throws Exception {
+        if (userRepository.existsById(idUser)) {
+            logger.trace("Todos as reservas do usuario do id" + idUser + " foram exibidas!");
+            List<OutputBookingDto> list = new ArrayList();
+            UserEntity user = userRepository.findById(idUser).get();
+            for (BookingEntity booking : bookingRepository.findAllByUser(user).get()) {
+                list.add(new OutputBookingDto(booking));
+            }
+            return list;
+        } else {
+            throw new ForbiddenException("Não foi possivel indetificar o usuario!");
         }
-        return list;
     }
 
-    public List<LocalDate[]> readAllAvailabilityCar(CarEntity car) {
-        List<BookingEntity> bookings = List.of(bookingRepository.findAllByCar(car).get());
-        LocalDate today = LocalDate.now();
-        LocalDate deadline = today.plusYears(1);
-        LocalDate dateAvailableStart = today;
-        LocalDate dateAvailableEnd = null;
-        List<LocalDate[]> availableIntervals = new ArrayList<>();
-
-        for (BookingEntity booking : bookings) {
-            if(booking.getEndDate().isBefore(today)){
-                continue;
-            }
-            if (booking.getStartDate().isAfter(deadline)) {
-                continue;
-            }
-            if (dateAvailableEnd == null) {
-                dateAvailableEnd = booking.getStartDate();
-            } else {
-                if(booking.getStartDate().isAfter(dateAvailableEnd.plusDays(1))){
-                    LocalDate[] intervalo = {dateAvailableStart, dateAvailableEnd};
-                    availableIntervals.add(intervalo);
-                    dateAvailableStart = dateAvailableEnd.plusDays(1);
-                }
-                dateAvailableEnd = booking.getStartDate();
-            }
-        }
-        if(dateAvailableEnd == null || dateAvailableEnd.isBefore(deadline)){
-            LocalDate[] interval = {dateAvailableStart,dateAvailableEnd};
-            availableIntervals.add(interval);
-        }
-        return availableIntervals;
-    }
-
-    public void checkAvailability(CarEntity car, LocalDate dateStart, LocalDate dateEnd) throws Exception {
-        if(dateStart.isBefore(LocalDate.now())){
+    public void checkAvailability(CarEntity car, Date dateStart, Date dateEnd) throws Exception {
+        if (dateStart.before(new Date())) {
             throw new BadRequestException(objectMapper.writeValueAsString(new ErrorBookingDto("Não pode reserva para antes do dia atual!", null, null, null, null)));
         }
-        LocalDate deadline = LocalDate.now().plusYears(1);
-        if (dateStart.isAfter(deadline)) {
+        Date deadline = Date.from(new Date().toInstant().plus(365, ChronoUnit.DAYS));
+        if (dateStart.after(deadline)) {
             throw new BadRequestException(objectMapper.writeValueAsString(new ErrorBookingDto("Não pode reserva para daqui um ano!", null, null, null, null)));
         }
-        if (ChronoUnit.DAYS.between(dateStart, dateEnd) > 31) {
-            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorBookingDto(null, null, "Pode reserva até 31 dias.", null, null)));
+        if (ChronoUnit.DAYS.between(dateStart.toInstant(), dateEnd.toInstant()) > 31) {
+            throw new BadRequestException(objectMapper.writeValueAsString(new ErrorBookingDto(null, null, "A reserva só pode ser até 31 dias.", null, null)));
         }
         List<BookingEntity> bookings = List.of(bookingRepository.findAllByCar(car).get());
         for (BookingEntity booking : bookings) {
-            LocalDate start = booking.getStartDate();
-            LocalDate end = booking.getEndDate();
-            if (dateStart.isBefore(end) && dateEnd.isAfter(start)) {
+            Date start = booking.getStartDate();
+            Date end = booking.getEndDate();
+            if (dateStart.before(end) && dateEnd.after(start)) {
                 throw new BadRequestException(objectMapper.writeValueAsString(new ErrorBookingDto("Este intervalo de tempo está indisponivel!", null, null, null, null)));
             }
         }
     }
+    public List<Date[]> readAllAvailabilityCar(CarEntity car) {
+        List<BookingEntity> bookings = new ArrayList<>(List.of(bookingRepository.findAllByCar(car).orElse(new ArrayList<>().toArray(new BookingEntity[0]))));
+        Date today = new Date();
+        Date deadline = Date.from(today.toInstant().plus(365, ChronoUnit.DAYS));
+        List<Date[]> availableIntervals = new ArrayList<>();
+        if (bookings.isEmpty()) {
+            Date[] interval = { today, deadline };
+            availableIntervals.add(interval);
+            return availableIntervals;
+        }
+        bookings.sort(Comparator.comparing(BookingEntity::getStartDate));
+        Date nextAvailableStart = today;
+        for (BookingEntity booking : bookings) {
+            Date bookingStartDate = booking.getStartDate();
+            Date bookingEndDate = booking.getEndDate();
 
-    public List<LocalDate[]> readAllAvailability() {
+            if (bookingStartDate.after(deadline)) {
+                break;
+            }
+            if (nextAvailableStart.before(bookingStartDate)) {
+                Date[] availableInterval = { nextAvailableStart, bookingStartDate };
+                availableIntervals.add(availableInterval);
+            }
+            nextAvailableStart = bookingEndDate.after(today) ? bookingEndDate : today;
+        }
+        if (nextAvailableStart.before(deadline)) {
+            Date[] lastAvailableInterval = { nextAvailableStart, deadline };
+            availableIntervals.add(lastAvailableInterval);
+        }
+        return availableIntervals;
+    }
+
+
+    public List<Date[]> readAllAvailability() {
         List<CarEntity> cars = (List<CarEntity>) carRepository.findAll();
-        LocalDate today = LocalDate.now();
-        LocalDate deadline = today.plusYears(1);
-        List<LocalDate[]> availableIntervals = new ArrayList<>();
+        Date today = new Date();
+        Date deadline = Date.from(new Date().toInstant().plus(365, ChronoUnit.DAYS));
+        List<Date[]> availableIntervals = new ArrayList<>();
         for (CarEntity car : cars) {
             List<BookingEntity> bookings = List.of(bookingRepository.findAllByCar(car).get());
-            LocalDate dateAvailableStart = today;
-            LocalDate dateAvailableEnd = null;
+            Date dateAvailableStart = today;
+            Date dateAvailableEnd = null;
             for (BookingEntity booking : bookings) {
-                if(booking.getEndDate().isBefore(today)){
+                if (booking.getEndDate().before(today)) {
                     continue;
                 }
-                if (booking.getStartDate().isAfter(deadline)) {
+                if (booking.getStartDate().after(deadline)) {
                     continue;
                 }
                 if (dateAvailableEnd == null) {
-                    dateAvailableEnd = booking.getStartDate().minusDays(1);
+                    dateAvailableEnd = Date.from(booking.getStartDate().toInstant().minus(1, ChronoUnit.DAYS));
                 } else {
-                    LocalDate[] intervalo = {dateAvailableStart, dateAvailableEnd};
+                    Date[] intervalo = {dateAvailableStart, dateAvailableEnd};
                     availableIntervals.add(intervalo);
-                    dateAvailableStart = dateAvailableEnd.plusDays(1);
+                    dateAvailableStart = Date.from(dateAvailableEnd.toInstant().plus(1, ChronoUnit.DAYS));
                 }
                 dateAvailableEnd = booking.getEndDate();
             }
-            if(dateAvailableEnd == null || dateAvailableEnd.isBefore(deadline)){
-                LocalDate[] interval = {dateAvailableStart, deadline};
+            if (dateAvailableEnd == null || dateAvailableEnd.before(deadline)) {
+                Date[] interval = {dateAvailableStart, deadline};
                 availableIntervals.add(interval);
             }
         }
