@@ -5,14 +5,12 @@ public class InputBookingDto {
     private String startTime;
     private String endDate;
     private Long idCar;
-    private Long idUser;
 
-    public InputBookingDto(String startDate, String startTime, String endDate, Long idCar, Long idUser) {
+    public InputBookingDto(String startDate, String startTime, String endDate, Long idCar) {
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
         this.idCar = idCar;
-        this.idUser = idUser;
     }
 
     public InputBookingDto() {
@@ -48,13 +46,5 @@ public class InputBookingDto {
 
     public void setIdCar(Long idCar) {
         this.idCar = idCar;
-    }
-
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
     }
 }
