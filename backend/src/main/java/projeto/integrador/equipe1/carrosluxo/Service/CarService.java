@@ -21,7 +21,9 @@ import projeto.integrador.equipe1.carrosluxo.Repository.CategoryRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.CityRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.CarValidation;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,6 +38,8 @@ public class CarService {
     private CityRepository cityRepository;
     @Autowired
     private CaracteristicRepository caracteristicRepository;
+    @Autowired
+    private BookingService bookingService;
 
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
         new CarValidation(car);
@@ -134,12 +138,12 @@ public class CarService {
         return list;
     }
 
-    public List<OutputCarDto> all(Long idCategory, Long idCity) throws Exception {
+    public List<OutputCarDto> all(Long idCategory, Long idCity, LocalDate start, LocalDate end) throws Exception {
         logger.trace("Todos os carros foram exibidas!");
         logger.info("Pesquisando os carros por categoria: " + idCategory + " e cidade: " + idCity);
         if (idCategory == null && idCity == null) {
             List<OutputCarDto> list = new ArrayList();
-            for (CarEntity car : carRepository.findAll()) {
+            for (CarEntity car : bookingService.getAvailableCars((List<CarEntity>) carRepository.findAll(), start, end)) {
                 list.add(new OutputCarDto(car));
             }
             return list;
@@ -150,7 +154,7 @@ public class CarService {
             List<OutputCarDto> list = new ArrayList();
             CitiesEntity cities = new CitiesEntity();
             cities.setId(idCity);
-            for (CarEntity car : carRepository.findAllByCities(cities).get()) {
+            for (CarEntity car : bookingService.getAvailableCars(List.of(carRepository.findAllByCities(cities).get()), start, end)) {
                 list.add(new OutputCarDto(car));
             }
             return list;
@@ -161,7 +165,7 @@ public class CarService {
             }
             CategoryEntity category = new CategoryEntity();
             category.setId(idCategory);
-            for (CarEntity car : carRepository.findAllByCategory(category).get()) {
+            for (CarEntity car : bookingService.getAvailableCars(List.of(carRepository.findAllByCategory(category).get()), start, end)) {
                 list.add(new OutputCarDto(car));
             }
             return list;
@@ -189,7 +193,7 @@ public class CarService {
             cities.setId(idCity);
             CategoryEntity category = new CategoryEntity();
             category.setId(idCategory);
-            for (CarEntity car : carRepository.findAllByCategoryAndCities(category, cities).get()) {
+            for (CarEntity car : bookingService.getAvailableCars(List.of(carRepository.findAllByCategoryAndCities(category, cities).get()), start, end)) {
                 list.add(new OutputCarDto(car));
             }
             return list;

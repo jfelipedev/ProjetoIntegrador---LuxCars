@@ -26,6 +26,7 @@ import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -46,13 +47,15 @@ public class CarController {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = OutputCarDto.class)))}),
+            @ApiResponse(responseCode = "400", description = "A data de inicio e fim da buscar dever está definida!",
+                    content = {@Content}),
             @ApiResponse(responseCode = "404", description = "Esta categoria não existir! | Esta cidade não existir!",
                     content = {@Content}),
     })
     @Operation(summary = "Exibir lista de todas as carros", tags = {"Car"})
-    public ResponseEntity<?> all(@RequestParam(required = false) Long idCategory, @RequestParam(required = false) Long idCity) throws Exception {
+    public ResponseEntity<?> all(@RequestParam(required = false) Long idCategory, @RequestParam(required = false) Long idCity, @RequestParam(required = false) LocalDate start, @RequestParam(required = false) LocalDate end) throws Exception {
         logger.trace("Controle: ALL / GET /car");
-        return new ResponseEntity<>(carService.all(idCategory, idCity), HttpStatus.OK);
+        return new ResponseEntity<>(carService.all(idCategory, idCity, start, end), HttpStatus.OK);
     }
 
     @GetMapping(value = "/car/highlight")

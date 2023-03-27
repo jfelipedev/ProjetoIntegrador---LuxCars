@@ -203,7 +203,7 @@ public class CarServiceAndControllerTest {
     @Test
     void allValid() {
         Assertions.assertDoesNotThrow(() -> {
-            List<OutputCarDto> list = carService.all(null, null);
+            List<OutputCarDto> list = carService.all(null, null, null, null);
             Assertions.assertEquals(2, list.size());
             Assertions.assertEquals(1, list.get(0).getCategory().getId());
             Assertions.assertEquals(2, list.get(1).getCategory().getId());
@@ -215,7 +215,7 @@ public class CarServiceAndControllerTest {
     @Test
     void allIdCategoryValid() {
         Assertions.assertDoesNotThrow(() -> {
-            List<OutputCarDto> list = carService.all(1L, null);
+            List<OutputCarDto> list = carService.all(1L, null, null, null);
             Assertions.assertEquals(1, list.size());
             Assertions.assertEquals(1, list.get(0).getCategory().getId());
             Assertions.assertEquals(2, list.get(0).getCity().getId());
@@ -225,14 +225,14 @@ public class CarServiceAndControllerTest {
     @Test
     void allIdcategoryInvalid() {
         Assertions.assertEquals("Esta categoria não existir!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.all(10L, null);
+            carService.all(10L, null, null, null);
         }).getMessage());
     }
 
     @Test
     void allIdCityValid() {
         Assertions.assertDoesNotThrow(() -> {
-            List<OutputCarDto> list = carService.all(null, 1L);
+            List<OutputCarDto> list = carService.all(null, 1L, null, null);
             Assertions.assertEquals(1, list.size());
             Assertions.assertEquals(2, list.get(0).getCategory().getId());
             Assertions.assertEquals(1, list.get(0).getCity().getId());
@@ -242,14 +242,14 @@ public class CarServiceAndControllerTest {
     @Test
     void allIdcityInvalid() {
         Assertions.assertEquals("Esta cidade não existir!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.all(null, 10L);
+            carService.all(null, 10L, null, null);
         }).getMessage());
     }
 
     @Test
     void allIdcategoryAndIdcityValid() {
         Assertions.assertDoesNotThrow(() -> {
-            List<OutputCarDto> list = carService.all(2L, 1L);
+            List<OutputCarDto> list = carService.all(2L, 1L, null, null);
             Assertions.assertEquals(1, list.size());
             Assertions.assertEquals(2, list.get(0).getCategory().getId());
             Assertions.assertEquals(1, list.get(0).getCity().getId());
@@ -259,21 +259,21 @@ public class CarServiceAndControllerTest {
     @Test
     void allIdcategoryInvalidAndIdcityValid() {
         Assertions.assertEquals("Esta categoria não existir!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.all(10L, 1L);
+            carService.all(10L, 1L, null, null);
         }).getMessage());
     }
 
     @Test
     void allIdcategoryValidAndIdcityInvalid() {
         Assertions.assertEquals("Esta cidade não existir!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.all(1L, 10L);
+            carService.all(1L, 10L, null, null);
         }).getMessage());
     }
 
     @Test
     void allIdcategoryAndIdcityInvalid() {
         Assertions.assertEquals("Esta cidade e categoria não existir!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.all(10L, 10L);
+            carService.all(10L, 10L, null, null);
         }).getMessage());
     }
 
@@ -291,7 +291,7 @@ public class CarServiceAndControllerTest {
     @Test
     void ControllerAllTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<List<OutputCarDto>> response = (ResponseEntity<List<OutputCarDto>>) carController.all(null, null);
+            ResponseEntity<List<OutputCarDto>> response = (ResponseEntity<List<OutputCarDto>>) carController.all(null, null, null, null);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals(2, response.getBody().size());
             Assertions.assertEquals(1, response.getBody().get(0).getId());

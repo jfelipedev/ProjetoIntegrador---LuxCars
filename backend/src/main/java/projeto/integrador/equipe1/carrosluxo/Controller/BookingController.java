@@ -101,9 +101,14 @@ public class BookingController {
                             array = @ArraySchema(schema = @Schema(implementation = OutputBookingDto.class)))}),
     })
     @Operation(summary = "Exibir todas as reservas", tags = {"Booking"})
-    public ResponseEntity<?> all() throws Exception {
+    public ResponseEntity<?> all(@RequestParam(required = false) Long idUser) throws Exception {
         logger.trace("Controle: ALL / GET /booking");
-        return new ResponseEntity<>(bookingService.all(), HttpStatus.OK);
+        if(idUser == null){
+            return new ResponseEntity<>(bookingService.all(), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(bookingService.allByIdUser(idUser), HttpStatus.OK);
+        }
     }
 
     @GetMapping(value = "/mybooking")
