@@ -1,14 +1,23 @@
 package projeto.integrador.equipe1.carrosluxo.serviceAndController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
+import projeto.integrador.equipe1.carrosluxo.Controller.BookingController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
@@ -25,18 +34,24 @@ import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest
 @Transactional
 @ActiveProfiles("test")
+@WithMockUser(username = "joao@mail.com", roles = {"ADMIN"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class BookingServiceAndControllerTest {
     Logger logger = LoggerFactory.getLogger(BookingServiceAndControllerTest.class);
+    ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     CarRepository carRepository;
     @Autowired
@@ -46,7 +61,12 @@ public class BookingServiceAndControllerTest {
     @Autowired
     BookingRepository bookingRepository;
     @Autowired
+    BookingController bookingController;
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    MockMvc mockMvc;
 
     @Test
     void all() {
@@ -258,39 +278,41 @@ public class BookingServiceAndControllerTest {
             bookingService.delete(3L, 1L);
         }).getMessage());
     }
+
     @Test
-    void readAllAvailabilityCar(){
+    void readAllAvailabilityCar() {
         Assertions.assertDoesNotThrow(() -> {
             CarEntity car = carRepository.findById(2L).get();
             List<Date[]> result = bookingService.readAllAvailabilityCar(car);
-            Assertions.assertEquals(1,result.size());
-            Assertions.assertEquals(2,result.get(0).length);
-            Assertions.assertEquals(365, ChronoUnit.DAYS.between(result.get(0)[0].toInstant(),result.get(0)[1].toInstant()));
+            Assertions.assertEquals(1, result.size());
+            Assertions.assertEquals(2, result.get(0).length);
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(result.get(0)[0].toInstant(), result.get(0)[1].toInstant()));
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(25, ChronoUnit.DAYS))), 2L), 1L);
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(50, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(60, ChronoUnit.DAYS))), 2L), 1L);
             result = bookingService.readAllAvailabilityCar(car);
             Assertions.assertEquals(3, result.size());
-            Assertions.assertEquals(19, ChronoUnit.DAYS.between(result.get(0)[0].toInstant(),result.get(0)[1].toInstant()));
-            Assertions.assertEquals(25, ChronoUnit.DAYS.between(result.get(1)[0].toInstant(),result.get(1)[1].toInstant()));
-            Assertions.assertEquals(305, ChronoUnit.DAYS.between(result.get(2)[0].toInstant(),result.get(2)[1].toInstant()));
+            Assertions.assertEquals(19, ChronoUnit.DAYS.between(result.get(0)[0].toInstant(), result.get(0)[1].toInstant()));
+            Assertions.assertEquals(25, ChronoUnit.DAYS.between(result.get(1)[0].toInstant(), result.get(1)[1].toInstant()));
+            Assertions.assertEquals(305, ChronoUnit.DAYS.between(result.get(2)[0].toInstant(), result.get(2)[1].toInstant()));
             bookingRepository.save(new BookingEntity(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(400, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(400, ChronoUnit.DAYS))), 1L), userRepository.findById(1L).get(), carRepository.findById(2L).get()));
             bookingService.readAllAvailabilityCar(car);
         });
     }
+
     @Test
-    void checkDayAvailabilityTest(){
+    void checkDayAvailabilityTest() {
         Assertions.assertDoesNotThrow(() -> {
-            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(15, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(30, ChronoUnit.DAYS))), 1L), 1L);
-            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(15, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(30, ChronoUnit.DAYS))), 2L), 1L);
-            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
             HashSet<Long> id = new HashSet<>();
             id.add(1L);
-            carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1,1, id)));
-            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20,ChronoUnit.DAYS))));
-            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(-20,ChronoUnit.DAYS))));
-            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(400,ChronoUnit.DAYS))));
+            carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1, 1, id)));
+            Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(-20, ChronoUnit.DAYS))));
+            Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(400, ChronoUnit.DAYS))));
         });
     }
 
@@ -298,27 +320,74 @@ public class BookingServiceAndControllerTest {
     void readAllAvailability() {
         Assertions.assertDoesNotThrow(() -> {
             List<Date[]> list = bookingService.readAllAvailability();
-            Assertions.assertEquals(1,list.size());
-            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list.get(0)[0].toInstant(),list.get(0)[1].toInstant()));
+            Assertions.assertEquals(1, list.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list.get(0)[0].toInstant(), list.get(0)[1].toInstant()));
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(80, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(95, ChronoUnit.DAYS))), 1L), 1L);
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(100, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(105, ChronoUnit.DAYS))), 2L), 1L);
             List<Date[]> list1 = bookingService.readAllAvailability();
-            Assertions.assertEquals(1,list1.size());
-            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list1.get(0)[0].toInstant(),list1.get(0)[1].toInstant()));
+            Assertions.assertEquals(1, list1.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list1.get(0)[0].toInstant(), list1.get(0)[1].toInstant()));
             bookingService.create(new InputBookingDto(new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(100, ChronoUnit.DAYS))), "08:00:00", new SimpleDateFormat("dd/MM/yyyy").format(Date.from(new Date().toInstant().plus(110, ChronoUnit.DAYS))), 1L), 1L);
             List<Date[]> list2 = bookingService.readAllAvailability();
-            Assertions.assertEquals(2,list2.size());
-            Assertions.assertEquals(99, ChronoUnit.DAYS.between(list2.get(0)[0].toInstant(),list2.get(0)[1].toInstant()));
-            Assertions.assertEquals(260, ChronoUnit.DAYS.between(list2.get(1)[0].toInstant(),list2.get(1)[1].toInstant()));
+            Assertions.assertEquals(2, list2.size());
+            Assertions.assertEquals(99, ChronoUnit.DAYS.between(list2.get(0)[0].toInstant(), list2.get(0)[1].toInstant()));
+            Assertions.assertEquals(260, ChronoUnit.DAYS.between(list2.get(1)[0].toInstant(), list2.get(1)[1].toInstant()));
             HashSet<Long> id = new HashSet<>();
             id.add(1L);
-            CarEntity car = carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1,1, id)));
+            CarEntity car = carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1, 1, id)));
             List<Date[]> list4 = bookingService.readAllAvailabilityCar(car);
-            Assertions.assertEquals(1,list4.size());
-            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list4.get(0)[0].toInstant(),list4.get(0)[1].toInstant()));
+            Assertions.assertEquals(1, list4.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list4.get(0)[0].toInstant(), list4.get(0)[1].toInstant()));
             List<Date[]> list3 = bookingService.readAllAvailability();
-            Assertions.assertEquals(1,list3.size());
-            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list3.get(0)[0].toInstant(),list3.get(0)[1].toInstant()));
+            Assertions.assertEquals(1, list3.size());
+            Assertions.assertEquals(365, ChronoUnit.DAYS.between(list3.get(0)[0].toInstant(), list3.get(0)[1].toInstant()));
+        });
+    }
+
+    @Test
+    void controllerCreateTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            InputBookingDto input = new InputBookingDto("01/08/2023","08:00:00","15/08/2023", 1L);
+            String json = objectMapper.writeValueAsString(input);
+            mockMvc.perform(post("/booking").content(json).contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isCreated())
+                    .andExpect(jsonPath("$.user.email").value("joao@mail.com"));
+        });
+    }
+
+    @Test
+    void controllerDeleteTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(delete("/booking/1"))
+                    .andExpect(status().isNoContent())
+                    .andExpect(MockMvcResultMatchers.content().string("Esta reserva foi deletada com sucesso!"));
+        });
+    }
+
+    @Test
+    void controllerReadTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(get("/booking/1"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.user.email").value("joao2@mail.com"));
+        });
+    }
+
+    @Test
+    void controllerAllTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(get("/booking"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$[0].user.email").value("joao2@mail.com"));
+        });
+    }
+
+    @Test
+    void controllerAllByUserTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(get("/mybooking"))
+                    .andExpect(status().isOk())
+                    .andExpect(MockMvcResultMatchers.content().string("[]"));
         });
     }
 }

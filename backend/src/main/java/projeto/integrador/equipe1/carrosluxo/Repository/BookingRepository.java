@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface BookingRepository extends CrudRepository<BookingEntity, Long> {
     Optional<BookingEntity[]> findAllByUser(UserEntity user);
+
     Optional<BookingEntity[]> findAllByCar(CarEntity car);
 
     List<BookingEntity> findAllByOrderByStartDateAsc();

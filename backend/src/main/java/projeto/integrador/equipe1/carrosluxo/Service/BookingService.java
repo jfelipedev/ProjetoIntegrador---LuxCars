@@ -19,12 +19,15 @@ import projeto.integrador.equipe1.carrosluxo.Repository.BookingRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.BookingValidation;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -182,6 +185,7 @@ public class BookingService {
         }
         return availableIntervals;
     }
+
     public List<Date[]> readAllAvailability() {
         LocalDate tomorrow = LocalDate.now().plusDays(1);
         LocalDate deadline = tomorrow.plusYears(1);
@@ -192,14 +196,13 @@ public class BookingService {
             logger.info(currentDate.toString());
             if (checkDayAvailability(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
                 dates.add(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            }
-            else if (!dates.isEmpty()) {
-               interval.add(new Date[]{dates.get(0), Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant())});
-               dates.clear();
+            } else if (!dates.isEmpty()) {
+                interval.add(new Date[]{dates.get(0), Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant())});
+                dates.clear();
             }
             currentDate = currentDate.plusDays(1);
         }
-        if(currentDate.isEqual(deadline)){
+        if (currentDate.isEqual(deadline)) {
             interval.add(new Date[]{dates.get(0), dates.get(dates.size() - 1)});
         }
         return interval;

@@ -3,6 +3,7 @@ package projeto.integrador.equipe1.carrosluxo.Controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -19,7 +20,14 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
+import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
+import projeto.integrador.equipe1.carrosluxo.Repository.BookingRepository;
+import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
+import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @Tag(name = "Car", description = "Controle de Carros")
@@ -28,6 +36,10 @@ public class CarController {
     Logger logger = LoggerFactory.getLogger(CarController.class);
     @Autowired
     private CarService carService;
+    @Autowired
+    private BookingService bookingService;
+    @Autowired
+    private CarRepository carRepository;
 
     @GetMapping(value = "/car")
     @ApiResponses(value = {
@@ -115,5 +127,43 @@ public class CarController {
     public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /car/{id}");
         return new ResponseEntity<>(carService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/car/{id}/availability")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
+                    array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
+                    examples = @ExampleObject(value = "[[\"2023-03-10T01:19:42.731+00:00\", \"2023-03-20T01:19:42.731+00:00\"], [\"2023-04-01T01:19:42.731+00:00\", \"2023-04-20T01:19:42.731+00:00\"]]"))}
+            ),
+            @ApiResponse(responseCode = "404",
+                    description = "Este carro não está registrado!",
+                    content = @Content
+            )
+    })
+    @Operation(summary = "Exibir a disponibilidade de um carro especifico", tags = {"Car"})
+    public ResponseEntity<?> availabilityByCar(@PathVariable long id) throws Exception {
+        logger.trace("Controle: availabilityByCar / GET /car/{id}/availability");
+        if(carRepository.existsById(id)) {
+            List<Date[]> list;
+            return new ResponseEntity<>(bookingService.readAllAvailabilityCar(carRepository.findById(id).get()), HttpStatus.OK);
+        }
+        else{
+            throw new ResourceNotFoundException("Este carro não está registrado!");
+        }
+    }
+
+    @GetMapping(value = "/car/availability")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
+                    array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
+                    examples = @ExampleObject(value = "[[\"2023-03-10T01:19:42.731+00:00\", \"2023-03-20T01:19:42.731+00:00\"], [\"2023-04-01T01:19:42.731+00:00\", \"2023-04-20T01:19:42.731+00:00\"]]"))}
+            )
+    })
+    @Operation(summary = "Exibir disponibilidade de todos os carros", tags = {"Car"})
+    public ResponseEntity<?> availability() throws Exception {
+        logger.trace("Controle: availability / GET /car/availability");
+        return new ResponseEntity<>(bookingService.readAllAvailability(), HttpStatus.OK);
     }
 }
