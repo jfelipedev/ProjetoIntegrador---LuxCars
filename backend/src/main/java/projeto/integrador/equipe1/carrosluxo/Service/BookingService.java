@@ -231,4 +231,23 @@ public class BookingService {
         }
         return false;
     }
+
+    public List<CarEntity> getAvailableCars(List<CarEntity> cars, LocalDate startDate, LocalDate endDate) throws BadRequestException {
+        if (startDate == null && endDate == null) {
+            return cars;
+        } else if (startDate == null || endDate == null) {
+            throw new BadRequestException("A data de inicio e fim da buscar dever está definida!");
+        }
+        List<CarEntity> availableCars = new ArrayList<>();
+        for (CarEntity car : cars) {
+            if (isCarAvailable(car, startDate, endDate)) {
+                availableCars.add(car);
+            }
+        }
+        return availableCars;
+    }
+    public boolean isCarAvailable(CarEntity car, LocalDate startDate, LocalDate endDate) {
+        List<BookingEntity> bookingEntities = bookingRepository.findByCarAndDates(car, Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        return bookingEntities.isEmpty();
+    }
 }

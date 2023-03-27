@@ -61,7 +61,6 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/caracteristic/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/car/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/car/**/availability").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/city/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/image/**").permitAll()
                                 .requestMatchers("/category/**", "caracteristic/**", "/car/**", "/city/**", "/image/**").hasRole("ADMIN")
