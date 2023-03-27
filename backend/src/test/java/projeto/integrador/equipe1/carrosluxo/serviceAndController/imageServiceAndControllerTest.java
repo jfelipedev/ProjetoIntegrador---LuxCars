@@ -144,6 +144,8 @@ public class imageServiceAndControllerTest {
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             OutputImageReadDto image = imageService.upload(1L, file);
             Assertions.assertEquals("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png", image.getUrl());
+            image = imageService.upload(1L, file);
+            Assertions.assertEquals("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png", image.getUrl());
             uploadService.deleteFile("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png");
         });
     }

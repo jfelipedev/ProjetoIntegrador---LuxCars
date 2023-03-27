@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import projeto.integrador.equipe1.carrosluxo.Controller.BookingController;
 import projeto.integrador.equipe1.carrosluxo.Controller.CarController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
@@ -18,6 +19,7 @@ import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -334,6 +336,31 @@ public class CarServiceAndControllerTest {
             ResponseEntity<String> response = (ResponseEntity<String>) carController.delete(1);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Este carro foi deletado com sucesso!", response.getBody());
+        });
+    }
+
+    @Test
+    void ControlleravailabilityByCarValid(){
+        Assertions.assertDoesNotThrow(() -> {
+            ResponseEntity<List<Date[]>> response = (ResponseEntity<List<Date[]>>) carController.availabilityByCar(1L);
+            Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+            Assertions.assertEquals(1, response.getBody().size());
+        });
+    }
+
+    @Test
+    void ControlleravailabilityByCarInvalid(){
+        Assertions.assertEquals("Este carro não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            carController.availabilityByCar(10L);
+        }).getMessage());
+    }
+
+    @Test
+    void controlleravailabilityTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            ResponseEntity<List<Date[]>> response = (ResponseEntity<List<Date[]>>) carController.availability();
+            Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+            Assertions.assertEquals(1, response.getBody().size());
         });
     }
 }
