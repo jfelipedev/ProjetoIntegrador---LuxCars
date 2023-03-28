@@ -24,6 +24,7 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.user.InputRegisterDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.booking.OutputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.BookingEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ForbiddenException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
@@ -34,6 +35,7 @@ import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
@@ -345,6 +347,44 @@ public class BookingServiceAndControllerTest {
     }
 
     @Test
+    void isCarAvailableValid(){
+        Assertions.assertDoesNotThrow(() -> {
+            CarEntity car = carRepository.findById(1L).get();
+            Assertions.assertEquals(true, bookingService.isCarAvailable(car, LocalDate.of(2022,8,1), LocalDate.of(2022,8,10)));
+        });
+    }
+
+    @Test
+    void isCarAvailableInvalid(){
+        Assertions.assertDoesNotThrow(() -> {
+            CarEntity car = carRepository.findById(1L).get();
+            UserEntity user = userRepository.findById(1L).get();
+            bookingRepository.save(new BookingEntity(new InputBookingDto("05/08/2022", "08:00:00", "15/08/2022", 1L), user, car));
+            Assertions.assertEquals(false, bookingService.isCarAvailable(car, LocalDate.of(2022, 8, 1), LocalDate.of(2022, 8, 10)));
+        });
+    }
+
+    @Test
+    void getAvailableCarsTest(){
+        Assertions.assertDoesNotThrow(() -> {
+            CarEntity car = carRepository.findById(1L).get();
+            UserEntity user = userRepository.findById(1L).get();
+            bookingRepository.save(new BookingEntity(new InputBookingDto("05/08/2022", "08:00:00", "15/08/2022", 1L), user, car));
+            List<CarEntity> cars = bookingService.getAvailableCars((List<CarEntity>) carRepository.findAll(), LocalDate.of(2022, 8, 1), LocalDate.of(2022, 8, 10));
+            Assertions.assertEquals(1, cars.size());
+            cars = bookingService.getAvailableCars((List<CarEntity>) carRepository.findAll(), null, null);
+            Assertions.assertEquals(2, cars.size());
+        });
+    }
+
+    @Test
+    void getAvailableCarsError(){
+        Assertions.assertEquals("A data de inicio e fim da buscar dever está definida!", Assertions.assertThrows(BadRequestException.class, () -> {
+            bookingService.getAvailableCars((List<CarEntity>) carRepository.findAll(), null, LocalDate.of(2022, 8, 10));
+        }).getMessage());
+    }
+
+    @Test
     void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
             InputBookingDto input = new InputBookingDto("01/08/2023","08:00:00","15/08/2023", 1L);
@@ -377,6 +417,15 @@ public class BookingServiceAndControllerTest {
     void controllerAllTest() {
         Assertions.assertDoesNotThrow(() -> {
             mockMvc.perform(get("/booking"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$[0].user.email").value("joao2@mail.com"));
+        });
+    }
+
+    @Test
+    void controllerAllTestIduser() {
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(get("/booking?idUser=2"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$[0].user.email").value("joao2@mail.com"));
         });
