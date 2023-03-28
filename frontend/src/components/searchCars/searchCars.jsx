@@ -3,49 +3,57 @@ import { useState, useEffect } from 'react';
 import './searchCars.css'
 import Select from "react-select";
 import api from '../../services/api';
+import 'rsuite/dist/rsuite.min.css';
+import moment from 'moment';
+import { DateRangePicker } from 'rsuite';
+import ptBR from 'rsuite/locales/pt_BR';
 
-import DateRangePicker from 'react-bootstrap-daterangepicker';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-daterangepicker/daterangepicker.css';
+
+
 
 function SearchCars() {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
 
+  // Desabilitar datas anteriores a hoje
+  const disabledDate = (date) => {
+    return moment(date).isBefore(moment().startOf('day')) && !moment(date).isSame(moment().startOf('day'));
+  };
+
   useEffect(() => {
     api.get("/category")
-    .then((response) => {
-      let list = [];
-      response.data.map((item) => {
-        list.push({
-          label: item.qualification,
-          value: item.qualification
+      .then((response) => {
+        let list = [];
+        response.data.map((item) => {
+          list.push({
+            label: item.qualification,
+            value: item.qualification
+          })
         })
+        setCategories(list)
+        console.log("Deu certo - category")
       })
-      setCategories(list)
-      console.log("Deu certo - category")
-    })
-    .catch((error)=>{
-      console.log(error)
-      console.log("Deu errado - category")
-    })
+      .catch((error) => {
+        console.log(error)
+        console.log("Deu errado - category")
+      })
 
     api.get("/city")
-    .then((response) => {
-      let list = [];
-      response.data.map((item) => {
-        list.push({
-          label: item.nameCity,
-          value: item.nameCity
+      .then((response) => {
+        let list = [];
+        response.data.map((item) => {
+          list.push({
+            label: item.nameCity,
+            value: item.nameCity
+          })
         })
+        setCities(list)
+        console.log("Deu certo - city")
       })
-      setCities(list)
-      console.log("Deu certo - city")
-    })
-    .catch((error)=>{
-      console.log(error)
-      console.log("Deu errado - city")
-    })
+      .catch((error) => {
+        console.log(error)
+        console.log("Deu errado - city")
+      })
   }, [])
 
   const handleSelectChange = (event) => {
@@ -88,14 +96,20 @@ function SearchCars() {
 
         <div className=" drop">
           <DateRangePicker
-            onEvent={handleEvent} onCallback={handleCallback}   
-          > 
-            <input  className="form-control" />
+            placeholder="Período de reserva"
+            size="md"
+            format="dd/MM/yyyy"
+            locale={ptBR}
+            onEvent={handleEvent}
+            onCallback={handleCallback}
+            disabledDate={disabledDate}
+          >
+            <input className="form-control" />
           </DateRangePicker>
         </div>
 
         <button className="button button1" type='submit' onSubmit={handleSubmit}>BUSCAR</button>
-        
+
       </div>
     </div>
   );

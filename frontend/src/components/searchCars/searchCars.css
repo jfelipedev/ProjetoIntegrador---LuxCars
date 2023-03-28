@@ -26,7 +26,15 @@
      border-radius: 5px;
      transition: .5s;
      transform: translate(0px, -10px);
-     width: 500px;
+     display: 'block';
+     width: 300px;
+     margin: 5px;
+     padding: 5px;
+     size: 100%;
+
+
+
+
 }
 
 .select {
@@ -55,8 +63,8 @@
 }
 
 /* For large devices */
-@media screen and (max-width: 996px){
-     .searchContainer{
+@media screen and (max-width: 996px) {
+     .searchContainer {
           margin-top: 1rem;
           display: flex;
           align-items: flex-start;
@@ -66,7 +74,7 @@
           margin-right: 1rem;
      }
 
-     .select{
+     .select {
           height: 40px;
           width: 300px;
           box-sizing: border-box;
@@ -75,28 +83,28 @@
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d; 
+          border: .5px solid #2d2d2d;
           margin-top: 10px;
      }
 
-     .dropDown{
+     .dropDown {
           width: 400px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
      }
 
-     .drop{
+     .drop {
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
           width: 350px;
      }
-   }
+}
 
 /* For medium devices */
-@media screen and (max-width: 768px){
-     .searchContainer{
+@media screen and (max-width: 768px) {
+     .searchContainer {
           margin-top: 1rem;
           display: flex;
           align-items: flex-start;
@@ -106,7 +114,7 @@
           margin-right: 1rem;
      }
 
-     .select{
+     .select {
           height: 40px;
           width: 200px;
           box-sizing: border-box;
@@ -115,37 +123,37 @@
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d; 
+          border: .5px solid #2d2d2d;
           margin-top: 10px;
      }
 
-     .dropDown{
+     .dropDown {
           width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
      }
 
-     .drop{
+     .drop {
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
           width: 250px;
      }
-   }
+}
 
-   @media screen and (max-width: 576px){
-     .searchContainer{
+@media screen and (max-width: 576px) {
+     .searchContainer {
           margin-top: 1rem;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-direction: column;
           gap: 5px;
-          
+
      }
 
-     .select{
+     .select {
           height: 40px;
           width: 300px;
           box-sizing: border-box;
@@ -154,30 +162,30 @@
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d; 
+          border: .5px solid #2d2d2d;
           margin-top: 10px;
      }
 
-     .dropDown{
+     .dropDown {
           width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
      }
 
-     .drop{
+     .drop {
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
           width: 300px;
      }
 
-     .button1{
-          height: 40px; 
+     .button1 {
+          height: 40px;
           width: 300px;
-      }
+     }
 
-      .sectionTitle{
+     .sectionTitle {
           font-size: 1.5rem;
-      }
-   }
+     }
+}
