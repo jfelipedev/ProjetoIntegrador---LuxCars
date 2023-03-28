@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import projeto.integrador.equipe1.carrosluxo.Controller.BookingController;
 import projeto.integrador.equipe1.carrosluxo.Controller.CarController;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
@@ -340,7 +339,7 @@ public class CarServiceAndControllerTest {
     }
 
     @Test
-    void ControlleravailabilityByCarValid(){
+    void ControlleravailabilityByCarValid() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<List<Date[]>> response = (ResponseEntity<List<Date[]>>) carController.availabilityByCar(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -349,7 +348,7 @@ public class CarServiceAndControllerTest {
     }
 
     @Test
-    void ControlleravailabilityByCarInvalid(){
+    void ControlleravailabilityByCarInvalid() {
         Assertions.assertEquals("Este carro não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
             carController.availabilityByCar(10L);
         }).getMessage());

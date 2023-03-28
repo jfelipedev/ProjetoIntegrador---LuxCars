@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -74,7 +73,6 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/category/{id}")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
@@ -86,8 +84,11 @@ public class CategoryController {
                     content = {@Content}),
     })
     @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCategoryDto category) throws Exception {
         logger.trace("Controle: UPDATE / PUT /category/{id}");
+        logger.info(category.getQualification());
+        logger.info(category.getDescritpion());
         return new ResponseEntity<>(categoryService.update(id, category), HttpStatus.OK);
     }
 

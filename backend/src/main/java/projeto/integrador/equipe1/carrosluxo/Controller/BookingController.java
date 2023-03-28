@@ -13,18 +13,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.booking.OutputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.ForbiddenException;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
 import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
-import org.springframework.security.core.Authentication;
 
 @RestController
 @Tag(name = "Booking", description = "Controle de reservas")
@@ -79,7 +76,7 @@ public class BookingController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = OutputBookingDto.class))}),
+                            schema = @Schema(implementation = OutputBookingDto.class))}),
             @ApiResponse(responseCode = "400", description = "Esta reserva foi deletada com sucesso!",
                     content = {@Content}),
             @ApiResponse(responseCode = "403", description = "Você não tem permissão para excluir está reserva! / Não foi possivel indetificar o usuario!",
@@ -103,10 +100,9 @@ public class BookingController {
     @Operation(summary = "Exibir todas as reservas", tags = {"Booking"})
     public ResponseEntity<?> all(@RequestParam(required = false) Long idUser) throws Exception {
         logger.trace("Controle: ALL / GET /booking");
-        if(idUser == null){
+        if (idUser == null) {
             return new ResponseEntity<>(bookingService.all(), HttpStatus.OK);
-        }
-        else{
+        } else {
             return new ResponseEntity<>(bookingService.allByIdUser(idUser), HttpStatus.OK);
         }
     }
