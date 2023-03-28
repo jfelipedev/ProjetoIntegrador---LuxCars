@@ -3,7 +3,6 @@ package projeto.integrador.equipe1.carrosluxo.serviceAndController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 import projeto.integrador.equipe1.carrosluxo.Controller.BookingController;
@@ -41,7 +38,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -347,15 +343,15 @@ public class BookingServiceAndControllerTest {
     }
 
     @Test
-    void isCarAvailableValid(){
+    void isCarAvailableValid() {
         Assertions.assertDoesNotThrow(() -> {
             CarEntity car = carRepository.findById(1L).get();
-            Assertions.assertEquals(true, bookingService.isCarAvailable(car, LocalDate.of(2022,8,1), LocalDate.of(2022,8,10)));
+            Assertions.assertEquals(true, bookingService.isCarAvailable(car, LocalDate.of(2022, 8, 1), LocalDate.of(2022, 8, 10)));
         });
     }
 
     @Test
-    void isCarAvailableInvalid(){
+    void isCarAvailableInvalid() {
         Assertions.assertDoesNotThrow(() -> {
             CarEntity car = carRepository.findById(1L).get();
             UserEntity user = userRepository.findById(1L).get();
@@ -365,7 +361,7 @@ public class BookingServiceAndControllerTest {
     }
 
     @Test
-    void getAvailableCarsTest(){
+    void getAvailableCarsTest() {
         Assertions.assertDoesNotThrow(() -> {
             CarEntity car = carRepository.findById(1L).get();
             UserEntity user = userRepository.findById(1L).get();
@@ -378,7 +374,7 @@ public class BookingServiceAndControllerTest {
     }
 
     @Test
-    void getAvailableCarsError(){
+    void getAvailableCarsError() {
         Assertions.assertEquals("A data de inicio e fim da buscar dever está definida!", Assertions.assertThrows(BadRequestException.class, () -> {
             bookingService.getAvailableCars((List<CarEntity>) carRepository.findAll(), null, LocalDate.of(2022, 8, 10));
         }).getMessage());
@@ -387,7 +383,7 @@ public class BookingServiceAndControllerTest {
     @Test
     void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            InputBookingDto input = new InputBookingDto("01/08/2023","08:00:00","15/08/2023", 1L);
+            InputBookingDto input = new InputBookingDto("01/08/2023", "08:00:00", "15/08/2023", 1L);
             String json = objectMapper.writeValueAsString(input);
             mockMvc.perform(post("/booking").content(json).contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isCreated())

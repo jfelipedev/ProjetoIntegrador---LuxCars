@@ -21,7 +21,6 @@ import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpd
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
-import projeto.integrador.equipe1.carrosluxo.Repository.BookingRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
@@ -147,11 +146,10 @@ public class CarController {
     @Operation(summary = "Exibir a disponibilidade de um carro especifico", tags = {"Car"})
     public ResponseEntity<?> availabilityByCar(@PathVariable long id) throws Exception {
         logger.trace("Controle: availabilityByCar / GET /car/{id}/availability");
-        if(carRepository.existsById(id)) {
+        if (carRepository.existsById(id)) {
             List<Date[]> list;
             return new ResponseEntity<>(bookingService.readAllAvailabilityCar(carRepository.findById(id).get()), HttpStatus.OK);
-        }
-        else{
+        } else {
             throw new ResourceNotFoundException("Este carro não está registrado!");
         }
     }

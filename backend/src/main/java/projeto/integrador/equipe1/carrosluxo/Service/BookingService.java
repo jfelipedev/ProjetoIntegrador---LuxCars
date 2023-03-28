@@ -246,6 +246,7 @@ public class BookingService {
         }
         return availableCars;
     }
+
     public boolean isCarAvailable(CarEntity car, LocalDate startDate, LocalDate endDate) {
         List<BookingEntity> bookingEntities = bookingRepository.findByCarAndDates(car, Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         return bookingEntities.isEmpty();
