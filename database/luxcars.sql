@@ -68,7 +68,8 @@ FOREIGN KEY(user_id) REFERENCES users(ID)
 CREATE TABLE IF NOT EXISTS caracteristics (
   ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name_caracteristcs VARCHAR(255) NOT NULL,
-  icon VARCHAR(255) NOT NULL
+  icon VARCHAR(255) NOT NULL,
+  unitOfMeasurement VARCHAR(25) NULL
 );
 
 
@@ -76,6 +77,7 @@ CREATE TABLE IF NOT EXISTS car_caracteristics (
   ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   car_id BIGINT NOT NULL,
   caracteristics_id BIGINT NOT NULL,
+  value_caracteristic NULL,
   FOREIGN KEY (car_id) REFERENCES cars(id),
   FOREIGN KEY (caracteristics_id) REFERENCES caracteristics(id)
 );
