@@ -68,7 +68,8 @@ FOREIGN KEY(user_id) REFERENCES users(ID)
 CREATE TABLE IF NOT EXISTS caracteristics (
   ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name_caracteristcs VARCHAR(255) NOT NULL,
-  icon VARCHAR(255) NOT NULL
+  icon VARCHAR(255) NOT NULL,
+  unitOfMeasurement VARCHAR(25) NULL
 );
 
 
@@ -76,6 +77,7 @@ CREATE TABLE IF NOT EXISTS car_caracteristics (
   ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   car_id BIGINT NOT NULL,
   caracteristics_id BIGINT NOT NULL,
+  value_caracteristic VARCHAR(50) NULL,
   FOREIGN KEY (car_id) REFERENCES cars(id),
   FOREIGN KEY (caracteristics_id) REFERENCES caracteristics(id)
 );
@@ -91,7 +93,12 @@ FOREIGN KEY (car_id) REFERENCES cars(ID)
 
 );
 
-
+CREATE TABLE IF NOT EXISTS contact_us_message (
+  ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR (200) NOT NULL,
+  title VARCHAR (300) NOT NULL,
+  body VARCHAR (6000) NOT NULL
+);
 
 /*insercao nas tabelas de usuarios
   Senha do role admin = Fulano12!
@@ -119,13 +126,3 @@ INSERT INTO caracteristics(name_caracteristcs, icon) values ('potência de 340 c
 INSERT INTO car_caracteristics(car_id, caracteristics_id) values (1,1);
 
 INSERT INTO images(title, url, car_id) values ('imagem da ferrari gt 400', '',1);
-
-
-
-
-
-
-
-
-
-
