@@ -33,6 +33,7 @@ import java.util.List;
 @Tag(name = "Car", description = "Controle de Carros")
 
 public class CarController {
+    List<Date[]> cacheCarAvailability;
     Logger logger = LoggerFactory.getLogger(CarController.class);
     @Autowired
     private CarService carService;
@@ -165,6 +166,13 @@ public class CarController {
     @Operation(summary = "Exibir disponibilidade de todos os carros", tags = {"Car"})
     public ResponseEntity<?> availability() throws Exception {
         logger.trace("Controle: availability / GET /car/availability");
-        return new ResponseEntity<>(bookingService.readAllAvailability(), HttpStatus.OK);
+        if(cacheCarAvailability == null){
+            cacheCarAvailability = bookingService.readAllAvailability();
+        }
+        return new ResponseEntity<>(cacheCarAvailability, HttpStatus.OK);
+    }
+
+    public void availabilitySave(){
+        cacheCarAvailability = bookingService.readAllAvailability();
     }
 }
