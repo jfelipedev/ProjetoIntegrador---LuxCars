@@ -168,7 +168,7 @@ public class CarController {
     public ResponseEntity<?> availability() throws Exception {
         logger.trace("Controle: availability / GET /car/availability");
         if(cacheCarAvailability.size() == 0){
-            cacheCarAvailability = bookingService.readAllAvailability();
+            this.availabilitySave();
         }
         return new ResponseEntity<>(cacheCarAvailability, HttpStatus.OK);
     }
