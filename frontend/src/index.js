@@ -11,6 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import ProductScreen from "./pages/product";
+import Faq from './pages/faq/index'
+import Contact from './pages/contact/index'
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,8 +23,10 @@ root.render(
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
         <Route path="/login" element={<LoginScreen />} />
-        <Route path="/createAccount" element={<CreateAccountScreen />} />
-        <Route path="/product" element={<ProductScreen />} />
+        <Route path="/criar-conta" element={<CreateAccountScreen />} />
+        <Route path="/produtos" element={<ProductScreen />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/contato" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
