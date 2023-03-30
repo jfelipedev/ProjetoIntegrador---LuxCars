@@ -103,6 +103,8 @@ function SearchCars() {
             onEvent={handleEvent}
             onCallback={handleCallback}
             disabledDate={disabledDate}
+            character=" até "
+            label="Datas"
           >
             <input className="form-control" />
           </DateRangePicker>
