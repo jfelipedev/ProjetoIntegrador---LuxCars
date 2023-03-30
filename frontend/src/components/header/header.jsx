@@ -9,6 +9,7 @@ import HeaderModal from '../headerModal/headerModal';
 import { useNavigate } from "react-router-dom";
 
 
+
 function Header() {
 
   const navRef = useRef();
@@ -60,19 +61,19 @@ function Header() {
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
-            <Link to="/" className="navLink">Carros</Link>
+            <Link to="/" className="navLink activeLink">Carros</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/produtos" className="navLink">Ofertas</Link>
+            <Link to="/product" className="navLink">Ofertas</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/contato" className="navLink">Contato</Link>
+            <Link to="/" className="navLink">Contato</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/faq" className="navLink">FAQ</Link>
+            <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
           {!isAuthenticated && <ul className="navList1 grid">
