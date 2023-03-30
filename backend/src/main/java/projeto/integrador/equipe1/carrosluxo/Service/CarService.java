@@ -44,9 +44,6 @@ public class CarService {
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
         new CarValidation(car);
         ErrorCarDto error = new ErrorCarDto();
-        if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            error.setNameCar("Este carro já está cadastrado!");
-        }
         if (!categoryRepository.existsById(car.getIdCategory())) {
             error.setCategory("Esta categoria não existe!");
         }
@@ -91,11 +88,6 @@ public class CarService {
             throw new ResourceNotFoundException("Este carro não existir");
         }
         ErrorCarDto error = new ErrorCarDto();
-        if (!carRepository.findById(id).get().getNameCar().equals(car.getNameCar())) {
-            if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-                error.setNameCar("Este carro já está cadastrado!");
-            }
-        }
         if (!categoryRepository.existsById(car.getIdCategory())) {
             error.setCategory("Esta categoria não existe!");
         }
