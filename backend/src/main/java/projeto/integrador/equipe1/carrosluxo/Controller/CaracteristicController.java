@@ -112,7 +112,7 @@ public class CaracteristicController {
                     content = {@Content}),
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = OutputCategoryReadDto.class))}),
+                            schema = @Schema(implementation = OutputCaracteristicReadDto.class))}),
     })
     @Operation(summary = "Mudar a imagem", tags = {"Image"})
     public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {

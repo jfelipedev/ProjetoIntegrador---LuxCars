@@ -3,6 +3,7 @@ package projeto.integrador.equipe1.carrosluxo.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.InputContactUsMessageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
@@ -20,6 +21,7 @@ import projeto.integrador.equipe1.carrosluxo.Validation.ImageValidation;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ContactUsMessageService {
     Logger logger = LoggerFactory.getLogger(ImageService.class);
     @Autowired
