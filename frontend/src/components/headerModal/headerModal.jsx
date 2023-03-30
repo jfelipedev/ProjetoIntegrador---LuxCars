@@ -2,13 +2,19 @@ import React from "react";
 import "./headerModal.css";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { getToken } from "../../services/auth";
+import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout} from '../../services/auth';
+import Avatar from '../avatar/avatar';
+import { useNavigate } from "react-router-dom";
 
 const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
 
   const navRef = useRef();
- 
+  const navigate = useNavigate();
   const [token, setToken] = useState(getToken());
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [firstName, setFirstaName] = useState(getTokenName());
+  const [surname, setSurname] = useState(getTokenSurname());
+  const[nameInitials, setInitials] = useState("");
 
   useEffect(() => {
     const handleStorage = () => {
@@ -18,6 +24,25 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
     window.addEventListener("storage", handleStorage());
     return () => window.removeEventListener("storage", handleStorage());
   }, []);
+
+  useEffect(() => { 
+    setIsAuthenticated(!!token); 
+    if(isAuthenticated){
+      const nameInitials = `${firstName.charAt(0)}${surname.charAt(0)}`;
+      setInitials(nameInitials);
+      sessionStorage.setItem('nameInitials', nameInitials);
+    }
+  }, [token, firstName, surname, isAuthenticated]);
+
+  const handleLogout = () => {
+    logout();
+    setToken(null);
+    setFirstaName(null);
+    setSurname(null);
+    setIsAuthenticated(false);
+    navigate('/');
+    sessionStorage.removeItem('nameInitials', nameInitials);
+  }
 
   const handleOutsideClick = (e) => {
      if(e.target.id === id) onClose();
@@ -29,8 +54,12 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
         <div className="headerModalHeader">
           <i class="uil uil-times navClose" onClick={onClose}></i>
           <div className="headerModalUser">
-            {token && <h1 className="headerModalTitleUser">Ola</h1>}
-            {!token && <h1 className="headerModalTitle">Menu</h1>}
+            {isAuthenticated && <div className="userPart"> 
+              <Avatar nameInitials={nameInitials} />
+              <span className="Hello">Olá,</span>
+              <span className="completeName"> {firstName} {surname}</span>
+            </div> }
+            {!isAuthenticated && <h1 className="headerModalTitle">Menu</h1>}
           </div>
         </div>
         <div className="headerModalBody">
@@ -59,7 +88,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
               </Link>
             </li>
 
-            {token && (
+            {isAuthenticated && (
             <li className="navItemModal">
                <Link to="/" className="navLink1Modal">
                     Minhas Reservas
@@ -68,7 +97,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
             )}
             
 
-            {!token && (
+            {!isAuthenticated && (
             <li className="navItem1Modal">
                <Link to="/login" className="navLink1Modal">
                     Login
@@ -76,7 +105,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
             </li>
             )}
 
-            {!token && (
+            {!isAuthenticated && (
             <li className="navItem1Modal">
                <Link to="/createAccount" className="navLink1Modal">
                     Criar Conta
@@ -88,7 +117,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
           </ul>
         </div>
         <div className="headerModalFooter">
-          {token && <button className="headerButton button" >Sair da Conta</button>}
+          {isAuthenticated && <button className="headerButton button" onClick={handleLogout} >Sair da Conta</button>}
         </div>
       </div>
     </div>

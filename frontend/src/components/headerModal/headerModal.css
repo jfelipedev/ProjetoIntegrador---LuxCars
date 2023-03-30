@@ -1,5 +1,5 @@
 .headerModal{
-     position: absolute;
+     position: fixed;
      right: 0;
      top: 0;
      background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,7 @@
 }
 
 .headerModalcontent{
-     height: 85.1vh;
+     height: 85vh;
      width: 50%;
      background-color: #474350;
      /* transform: translateX(0%);
@@ -18,7 +18,7 @@
 }
 
 .headerModalHeader{
-     height: 11.5rem;
+     height: 25%;
      background-color: #1C1C1C;
      border: 1px solid #1C1C1C;
 }
@@ -27,11 +27,32 @@
      color: #FFC857;
      font-size: 1.5rem;
      font-family: 'Inter', sans-serif;
+     height: 60%;
+     text-align: end;
+     padding-top: 6rem;
 }
 
-/* .headerModalTitleUser{
-     
-} */
+.userPart{
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     justify-content: center;
+}
+
+.Hello{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1.5rem;
+     margin-bottom: 0;
+     font-weight: 500;
+     color: #FFC857;
+     margin-right: 10px;
+}
+
+.completeName{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     font-weight: 500;
+}
 
 .headerModalUser{
      display: flex;
@@ -39,15 +60,20 @@
      align-items:flex-end;
      justify-content: center;
      padding-right: 10px;
-     padding-top: 5.5rem;    
+     padding-top: 2rem;    
 }
 
+.userName1{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     color: #FFC857;
+}
 
 .headerModalBody{
      text-align: right;
      height: 15rem;
      padding: 0 10px;
-     height: 25rem;
+     height: 60%;
      border: 1px solid #FFC857;
      border-bottom: none ;
      border-top: none;
@@ -88,7 +114,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
-     height: 8.3rem;
+     height: 15%;
      border: 1px solid #FFC857;
      border-top: none;
 }

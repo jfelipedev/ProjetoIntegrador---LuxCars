@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import './login.css';
 import { Link } from 'react-router-dom';
 import {yupResolver} from "@hookform/resolvers/yup"
@@ -15,14 +16,22 @@ const validation = yup.object().shape({
   
   password: yup.string("Necessario preencher o campo senha")
   .required("Necessario preencher o campo senha")
-  .min(8, "A senha precisa ter no mínimo 6 caracteres")
+  .min(8, "A senha precisa ter no mínimo 8 caracteres")
    //.matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,}$/, "Tamanho da senha fora do padrao") 
    //A senha precisa ter no mínimo 8 caracteres, ' +
   // 'uma letra maiúscula e uma letra minúscula, ' +
   // 'um número e um caracter especial'
-})
+});
 
 function Login() {
+
+  
+  const navigate = useNavigate();
+
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [errorLogin, setErrorLogin] = useState(null);
+
   const { register, handleSubmit, formState: { errors }, } = useForm(
     {
       resolver: yupResolver(validation)
@@ -33,28 +42,23 @@ function Login() {
     event.preventDefault()
   }*/
 
-
-  const navigate = useNavigate();
-
-
-  function loginUser(value) {
-    console.log(value);
-    
-//Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
+  function loginUser(value) { 
     api.post("/auth", {
           email: value.email,
           password: value.password,
           isAdmin: true
       })
     .then((response) => {
-       login(response.data.jwt)
-      console.log(response)
+      const data = response.data;
+      login(response.data.jwt, data.user.firstName, data.user.surname);
+
       //alert("Usuário Cadastrado")
       navigate("/")
     })
     .catch((erro) => {
-      console.log(erro)
-      console.log("Deu errado")
+      let error = erro.response
+      setErrorLogin(error.data.password)
+      //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
     })
   }
 
@@ -82,6 +86,7 @@ function Login() {
               {...register("password")}
             />
             {  <span className="spanError">{errors.password?.message}</span>}
+            <span className="spanError" style={{display: (errorLogin === null) ? "none" : "block"}}> {errorLogin} </span>
 
             <button type='submit' className='buttonE '>Entrar</button>
           </div>

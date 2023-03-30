@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api = axios.create({
-  baseURL: "http://api.carlux.viniciusofagundes.com.br/"
+  baseURL: "https://api.carlux.viniciusofagundes.com.br/"
 });
 
 api.interceptors.request.use(async config => {

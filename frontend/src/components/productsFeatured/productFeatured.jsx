@@ -1,25 +1,20 @@
 import React, {useState} from 'react'
 import './productFeatured.css'
 // import { productFeaturedData } from './productFeaturedData';
-import { GoKebabHorizontal } from 'react-icons/go'
-import Image1 from "../../assets/carBMW-M440i.jpg"
+
 import { Data } from '../cars/Data'
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductFeatured = ({slides}) => {
 
-  
-  
-
- 
-  
      
   return (
      <div className="productfeaturedCarousel">
           <h3 className="productFeaturedTitle">Você também pode gostar de</h3>
-          <div className="productFeaturedContainer">
+          <Carousel className="productFeaturedContainer" showArrows={true} showThumbs={false}>
 
-            <GoKebabHorizontal className='left-Goke'/>
-            <GoKebabHorizontal className='right-Goke'/>
+            
             {Data.map(({id, image, year, distance, linkMap, title, description, linkdescription}) => {
               return(
               <div className="productFeaturedCard " key={id} >              
@@ -38,7 +33,7 @@ const ProductFeatured = ({slides}) => {
             })}
           
 
-          </div>
+          </Carousel>
    </div>
   )
 }
