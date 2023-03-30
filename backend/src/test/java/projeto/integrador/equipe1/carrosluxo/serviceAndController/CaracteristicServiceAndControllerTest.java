@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +16,12 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaract
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Service.CaracteristicService;
+import projeto.integrador.equipe1.carrosluxo.Service.UploadService;
 
+import java.nio.file.Files;
 import java.util.List;
 
 @SpringBootTest
@@ -30,10 +35,13 @@ public class CaracteristicServiceAndControllerTest {
     @Autowired
     CaracteristicController caracteristicController;
 
+    @Autowired
+    private UploadService uploadService;
+
     @Test
     void ServiceCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.create(new InputCaracteristicDto("Tem iceberg", "Iceberg"));
+            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.create(new InputCaracteristicDto("Tem iceberg", null));
             Assertions.assertEquals(2, caracteristic.getId());
         });
     }
@@ -56,8 +64,8 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.update(1, new InputCaracteristicDto("Tem iceberg", "Iceberg"));
-            Assertions.assertEquals("Iceberg", caracteristic.getIcon());
+            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.update(1, new InputCaracteristicDto("Tem iceberg",null));
+            Assertions.assertEquals("Imagem ainda não foi inserida!", caracteristic.getIcon());
             Assertions.assertEquals("Tem iceberg", caracteristic.getName());
         });
     }
@@ -65,7 +73,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void updateInvalidIdCategory() {
         Assertions.assertEquals("Esta caracteristica não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            caracteristicService.update(10, new InputCaracteristicDto("Tem iceberg", "Iceberg"));
+            caracteristicService.update(10, new InputCaracteristicDto("Tem iceberg", null));
         }).getMessage());
     }
 
@@ -95,6 +103,34 @@ public class CaracteristicServiceAndControllerTest {
     }
 
     @Test
+    void uploadInvalid() {
+        Assertions.assertEquals("Não existir está caracteristica!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            ClassPathResource resource = new ClassPathResource("testeicon.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            caracteristicService.upload(10L, file);
+        }).getMessage());
+    }
+
+    @Test
+    void uploadValid() {
+        Assertions.assertDoesNotThrow(() -> {
+            ClassPathResource resource = new ClassPathResource("testeicon.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            OutputCaracteristicReadDto image = caracteristicService.upload(1L, file);
+            Assertions.assertEquals("/image/f458ead9929c22b7bdbb8f64575c06b2.1.png", image.getIcon());
+            image = caracteristicService.upload(1L, file);
+            Assertions.assertEquals("/image/f458ead9929c22b7bdbb8f64575c06b2.1.png", image.getIcon());
+            uploadService.deleteFile("/image/f458ead9929c22b7bdbb8f64575c06b2.1.png");
+        });
+    }
+
+    @Test
     void ControllerAllTest() {
         Assertions.assertDoesNotThrow(() -> {
             ResponseEntity<List<OutputCaracteristicDto>> response = (ResponseEntity<List<OutputCaracteristicDto>>) caracteristicController.all();
@@ -107,7 +143,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.create(new InputCaracteristicDto("Tem iceberg", "Iceberg"));
+            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.create(new InputCaracteristicDto("Tem iceberg", null));
             Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
             Assertions.assertEquals(2, response.getBody().getId());
         });
@@ -125,9 +161,9 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.update(1, new InputCaracteristicDto("Tem iceberg", "Iceberg"));
+            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.update(1, new InputCaracteristicDto("Tem iceberg", null));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-            Assertions.assertEquals("Iceberg", response.getBody().getIcon());
+            Assertions.assertEquals("Tem iceberg", response.getBody().getName());
         });
     }
 
@@ -137,6 +173,21 @@ public class CaracteristicServiceAndControllerTest {
             ResponseEntity<String> response = (ResponseEntity<String>) caracteristicController.delete(1);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta caracteristica foi deletado com sucesso!", response.getBody());
+        });
+    }
+
+    @Test
+    void controllerUploadTest() {
+        Assertions.assertDoesNotThrow(() -> {
+            ClassPathResource resource = new ClassPathResource("testeicon.png");
+            String filename = "teste.png";
+            String contentType = "image/png";
+            byte[] content = Files.readAllBytes(resource.getFile().toPath());
+            MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
+            ResponseEntity<OutputCaracteristicReadDto> response = (ResponseEntity<OutputCaracteristicReadDto>) caracteristicController.upload(1L, file);
+            Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+            Assertions.assertEquals("/image/f458ead9929c22b7bdbb8f64575c06b2.1.png", response.getBody().getIcon());
+            uploadService.deleteFile("/image/f458ead9929c22b7bdbb8f64575c06b2.1.png");
         });
     }
 }

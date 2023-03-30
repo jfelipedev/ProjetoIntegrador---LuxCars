@@ -64,7 +64,8 @@ FOREIGN KEY(user_id) REFERENCES users(ID)
 CREATE TABLE IF NOT EXISTS caracteristics (
   ID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name_caracteristcs VARCHAR(255) NOT NULL,
-  icon VARCHAR(255) NOT NULL
+  icon VARCHAR(255) NOT NULL,
+  unit_of_measurement VARCHAR(25) NULL
 );
 
 
@@ -72,6 +73,7 @@ CREATE TABLE IF NOT EXISTS car_caracteristics (
   ID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   car_id BIGINT NOT NULL,
   caracteristics_id BIGINT NOT NULL,
+  value_caracteristic VARCHAR(50) NULL,
   FOREIGN KEY (car_id) REFERENCES cars(id),
   FOREIGN KEY (caracteristics_id) REFERENCES caracteristics(id)
 );
@@ -85,4 +87,11 @@ url VARCHAR (255) NOT NULL,
 car_id BIGINT NOT NULL,
 FOREIGN KEY (car_id) REFERENCES cars(ID)
 
+);
+
+CREATE TABLE IF NOT EXISTS contact_us_message (
+  ID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR (200) NOT NULL,
+  title VARCHAR (300) NOT NULL,
+  body VARCHAR (6000) NOT NULL
 );
