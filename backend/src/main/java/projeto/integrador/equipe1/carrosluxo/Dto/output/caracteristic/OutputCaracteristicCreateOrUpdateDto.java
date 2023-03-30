@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 
+import java.util.Objects;
+
 public class OutputCaracteristicCreateOrUpdateDto {
     private long id;
     private String name;
@@ -18,7 +20,11 @@ public class OutputCaracteristicCreateOrUpdateDto {
 
     public OutputCaracteristicCreateOrUpdateDto(CaracteristicEntity caracteristic) {
         this.id = caracteristic.getId();
-        this.icon = caracteristic.getIcon();
+        if (Objects.equals(caracteristic.getIcon(), "")) {
+            this.icon = "Imagem ainda não foi inserida!";
+        } else {
+            this.icon = caracteristic.getIcon();
+        }
         this.name = caracteristic.getName();
     }
 

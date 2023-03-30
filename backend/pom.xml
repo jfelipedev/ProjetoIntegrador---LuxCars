@@ -6,11 +6,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>projeto.integrador.equipe1</groupId>
     <artifactId>carrosluxo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>3Sprint</version>
     <name>carrosluxo</name>
     <description>Aluguel de carros de luxo</description>
     <properties>
@@ -91,6 +91,20 @@
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
             <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version>
         </dependency>
     </dependencies>
     <build>

@@ -20,6 +20,7 @@ function Avatar({name, nameInitials, onLogout }) {
       {isMenuOpen && (<div className="avatar-menu">
         <div>Minhas Reservas</div>
         <div onClick={handleLogout}>Logout</div>
+
         </div>
       )}
     </div>

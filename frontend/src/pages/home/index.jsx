@@ -11,7 +11,7 @@ function index() {
     <div className="index">
       <Header /> 
       <SearchCars />
-      <Cars />
+      {/* <Cars /> */}
       <Category />
       <Footer />
     </div>

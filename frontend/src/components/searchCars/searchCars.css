@@ -1,44 +1,64 @@
 .searchSection {
      width: 100%;
-     height: 100%;
+     height: auto;
      background: #1c1c1c;
      margin-top: 4rem;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 
 .searchContainer {
-     margin-top: 1rem;
      display: flex;
-     align-items: flex-start;
+     align-items: center;
      justify-content: center;
-     gap: 10px;
-     margin-left: 1rem;
-     margin-right: 1rem;
+     flex-wrap: nowrap;
+     /* evita que os elementos sejam quebrados em várias linhas */
+     flex-wrap: wrap;
+     gap: 1rem;
+     padding: 1rem;
+     width: 100%;
+     max-width: 1300px;
+     box-sizing: border-box;
+}
+
+.searchContainer>* {
+     flex: 1;
+     /* cada elemento filho ocupa todo o espaço disponível */
 }
 
 .dropDown {
-     width: 500px;
+     min-width: 200px;
+     /* adicionado */
+     width: 30rem;
      border-radius: 5px;
-     transition: .5s;
+     transition: 0.5s;
      transform: translate(0px, -10px);
 }
 
 .drop {
+     min-width: 150px;
+     /* adicionado */
      border-radius: 5px;
-     transition: .5s;
+     transition: 0.5s;
      transform: translate(0px, -10px);
-     width: 500px;
+     max-width: 13rem;
+}
+
+.dropDown,
+.drop {
+     margin-top: 10px;
 }
 
 .select {
      height: 40px;
-     width: 500px;
      box-sizing: border-box;
      border: none;
      border-radius: 5px;
      outline: none;
      color: #1c1c1c;
      font-weight: 500;
-     border: .5px solid #2d2d2d;
+     border: 0.5px solid #2d2d2d;
      margin-top: 10px;
      font-size: 16px;
 }
@@ -46,26 +66,46 @@
 .button1 {
      height: 40px;
      background-color: #474350;
+     width: 100%;
+     display: block;
+     flex: 1;
+     /* adicionado */
 }
 
+.buttonLink{
+     text-decoration: none;
+}
+
+.button-wrapper {
+     flex: 1;
+     display: flex;
+     align-items: center;
+     justify-content: flex-end;
+}
+
+/* .form-control {
+     height: 40px;
+     border-radius: 5px;
+     margin-top: 10px;
+     border: none;
+} */
 
 /* For large devices */
 @media screen and (max-width: 996px){
      .searchContainer{
-          
+          margin-top: 1rem;
           display: flex;
           align-items: flex-start;
-          justify-content: center;
           flex-wrap: wrap;
+          justify-content: center;
           gap: 5px;
           margin-left: 1rem;
           margin-right: 1rem;
-          margin-bottom: 1rem;
      }
 
      .select{
           height: 40px;
-          width: 250px;
+          width: 200px;
           box-sizing: border-box;
           border: none;
           border-radius: 5px;
@@ -77,7 +117,7 @@
      }
 
      .dropDown{
-          width: 250px;
+          width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
@@ -87,13 +127,11 @@
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
-          width: 300px;
+          width: 350px;
      }
 
-     .button1 {
-          height: 40px;
-          background-color: #474350;
-          width: 300px;
+     .button1{
+          margin-top: 9px;
      }
    }
 
@@ -102,7 +140,8 @@
      .searchContainer{
           margin-top: 1rem;
           display: flex;
-          align-items: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
           justify-content: center;
           gap: 5px;
           margin-left: 1rem;
@@ -111,7 +150,7 @@
 
      .select{
           height: 40px;
-          width: 250px;
+          width: 200px;
           box-sizing: border-box;
           border: none;
           border-radius: 5px;
@@ -123,7 +162,7 @@
      }
 
      .dropDown{
-          width: 250px;
+          width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
@@ -136,10 +175,8 @@
           width: 250px;
      }
 
-     .button1 {
-          height: 40px;
-          background-color: #474350;
-          width: 250px;
+     .button1{
+          margin-bottom: 10px;
      }
    }
 
@@ -147,46 +184,30 @@
      .searchContainer{
           margin-top: 1rem;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          gap: 5px;
-          
      }
 
-     .select{
-          height: 40px;
-          width: 300px;
-          box-sizing: border-box;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          color: #1c1c1c;
-          font-weight: 500;
-          border: .5px solid #2d2d2d; 
-          margin-top: 10px;
+     .searchContainer>* {
+          flex: none;
+          width: 100%;
      }
 
-     .dropDown{
-          width: 300px;
-          border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
+     .dropDown,
+     .drop {
+          min-width: 100%;
+          /* alterado */
+          max-width: 100%;
+          /* adicionado */
      }
 
-     .drop{
-          border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
-          width: 300px;
+     .form-control {
+          max-width: 100%;
      }
 
      .button1{
-          height: 40px; 
           width: 300px;
-      }
-
-      .sectionTitle{
-          font-size: 1.5rem;
-      }
-   }
+     }
+}

@@ -9,8 +9,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +75,6 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/category/{id}")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
@@ -89,8 +86,11 @@ public class CategoryController {
                     content = {@Content}),
     })
     @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCategoryDto category) throws Exception {
         logger.trace("Controle: UPDATE / PUT /category/{id}");
+        logger.info(category.getQualification());
+        logger.info(category.getDescritpion());
         return new ResponseEntity<>(categoryService.update(id, category), HttpStatus.OK);
     }
 
@@ -108,7 +108,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.delete(id), HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping(value = "/category/{id}/upload")
+    @PostMapping(value = "/category/{id}/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Não existir está categoria!",
@@ -118,7 +118,7 @@ public class CategoryController {
                             schema = @Schema(implementation = OutputCategoryReadDto.class))}),
     })
     @Operation(summary = "Mudar de imagem da categoria", tags = {"Category"})
-    public ResponseEntity<?> upload(@PathVariable Long id, @Schema(description = "Arquivo a ser enviado", type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "file", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
         logger.trace("Controle: UPLOAD / POST /category/{id}/upload");
         return new ResponseEntity<>(categoryService.upload(id, file), HttpStatus.OK);
     }

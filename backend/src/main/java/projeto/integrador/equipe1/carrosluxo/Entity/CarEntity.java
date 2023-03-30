@@ -35,18 +35,16 @@ public class CarEntity {
     @OneToMany(mappedBy = "car")
     private Set<ImagesEntity> images = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "car_caracteristics",
-            joinColumns = {@JoinColumn(name = "car_id")},
-            inverseJoinColumns = {@JoinColumn(name = "caracteristics_ID")}
-    )
-    private Set<CaracteristicEntity> caracteristics = new HashSet<>();
+    @OneToMany(mappedBy = "car")
+    private Set<BookingEntity> bookings = new HashSet<>();
+
+    @OneToMany(mappedBy = "car")
+    private Set<CarCaracteristicEntity> carCaracteristic = new HashSet<>();
 
     public CarEntity() {
     }
 
-    public CarEntity(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<CaracteristicEntity> caracteristics) {
+    public CarEntity(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<BookingEntity> bookings, Set<CarCaracteristicEntity> carCaracteristic) {
         this.id = id;
         this.nameCar = nameCar;
         this.descritpion = descritpion;
@@ -56,7 +54,8 @@ public class CarEntity {
         this.category = category;
         this.cities = cities;
         this.images = images;
-        this.caracteristics = caracteristics;
+        this.bookings = bookings;
+        this.carCaracteristic = carCaracteristic;
     }
 
     public CarEntity(InputCarDto car) {
@@ -143,11 +142,19 @@ public class CarEntity {
         this.images = images;
     }
 
-    public Set<CaracteristicEntity> getCaracteristics() {
-        return caracteristics;
+    public Set<BookingEntity> getBookings() {
+        return bookings;
     }
 
-    public void setCaracteristics(Set<CaracteristicEntity> caracteristics) {
-        this.caracteristics = caracteristics;
+    public void setBookings(Set<BookingEntity> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Set<CarCaracteristicEntity> getCarCaracteristic() {
+        return carCaracteristic;
+    }
+
+    public void setCarCaracteristic(Set<CarCaracteristicEntity> carCaracteristic) {
+        this.carCaracteristic = carCaracteristic;
     }
 }

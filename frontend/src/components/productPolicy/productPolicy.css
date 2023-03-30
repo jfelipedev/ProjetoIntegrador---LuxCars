@@ -92,4 +92,38 @@
 
 
 
+/* ====================Breakpoints=================== */
 
+@media (max-width: 768px) {
+     .policyContainer {
+          grid-template-columns: 1fr;
+     }
+}
+
+
+@media (max-width: 768px) {
+     .policyContainer {
+          grid-template-columns: 1fr;
+          grid-row-gap: 10px;
+          padding: 10px;
+     }
+
+     .policyItem {
+          padding: 10px;
+     }
+
+     .policyTitle {
+          font-size: 36px;
+     }
+
+     .secundTitle {
+          font-size: 18px;
+          text-align: center;
+     }
+
+     .square {
+          font-size: 12px;
+          margin-left: 0;
+          margin-right: 0;
+     }
+}

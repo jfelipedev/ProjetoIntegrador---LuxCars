@@ -30,6 +30,7 @@ function Header() {
     return () => window.removeEventListener('storage', handleStorage())
   }, [])
 
+
   useEffect(() => { 
     setIsAuthenticated(!!token); 
     if(isAuthenticated){
@@ -54,7 +55,7 @@ function Header() {
     <header className="header">
       <nav className="nav " >
 
-      <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
+        <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
@@ -73,7 +74,7 @@ function Header() {
             <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
-          {!isAuthenticated &&  <ul className="navList1 grid">
+          {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
             </li>
@@ -82,18 +83,18 @@ function Header() {
               <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
           </ul>}
-
-          {isAuthenticated && <div className="user-info"><Avatar nameInitials={nameInitials} onLogout={handleLogout}/></div>}
-            
+          {isAuthenticated && (
+            <div className="user-info"><div className="gretting">Olá, {firstName} {surname}</div><Avatar nameInitials={nameInitials} onLogout={handleLogout} />
+            </div>)}
         </ul>
-        
+
         <div className="navToggler">
           <i class="uil uil-align-center-alt" onClick={() => setVisible(true)}></i>
         </div>
 
       </nav>
       {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null}
-    </header>
+    </header >
   )
 }
 

@@ -13,6 +13,9 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 import ProductScreen from "./pages/product";
 import RentScreen from "./pages/rent";
 import ProductListScreen from "./pages/productList";
+import Faq from './pages/faq/index'
+import Contact from './pages/contact/index'
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -27,6 +30,11 @@ root.render(
         <Route path="/product" element={<ProductScreen />} />
         <Route path="/rent" element={<RentScreen />} />
         <Route path="/productList" element={<ProductListScreen />} />
+        <Route path="/criar-conta" element={<CreateAccountScreen />} />
+        <Route path="/produtos" element={<ProductScreen />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/contato" element={<Contact />} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

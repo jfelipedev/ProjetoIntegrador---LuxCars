@@ -6,7 +6,8 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import api from "../../services/api"
 import { login } from "../../services/auth";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
 
 
 const validation = yup.object().shape({
@@ -23,14 +24,16 @@ const validation = yup.object().shape({
   // 'um número e um caracter especial'
 });
 
+
 function Login() {
 
-  
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
+
   const [errorLogin, setErrorLogin] = useState(null);
+
 
   const { register, handleSubmit, formState: { errors }, } = useForm(
     {
@@ -38,29 +41,27 @@ function Login() {
     }
   );
 
-  /*const handleSignupForm = (event) => {
-    event.preventDefault()
-  }*/
-
   function loginUser(value) { 
+
     api.post("/auth", {
           email: value.email,
           password: value.password,
-          isAdmin: true
       })
     .then((response) => {
       const data = response.data;
       login(response.data.jwt, data.user.firstName, data.user.surname);
-
       //alert("Usuário Cadastrado")
       navigate("/")
     })
     .catch((erro) => {
       let error = erro.response
       setErrorLogin(error.data.password)
+      setErrorLogin(error.data.email)
       //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
+
     })
   }
+  
 
   return (
     <div className="Login">
@@ -94,7 +95,7 @@ function Login() {
           <div className="createaccount">
             <h5 className='cadastrar'>Ainda não é cadastrado?</h5>
 
-            <Link to={"/createAccount"} className="registeLink"><button className='buttonE'>Criar Conta</button></Link>
+            <Link to={"/criar-conta"} className="registeLink"><button className='buttonE'>Criar Conta</button></Link>
 
             <div className="icons">
               <i class="uil uil-check-circle checkedIcon"><span className='iconBig'>Rápido e fácil reservar</span></i>

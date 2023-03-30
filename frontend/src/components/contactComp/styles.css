@@ -1,0 +1,41 @@
+.formContainer{
+	max-width: 768px;
+    height: 100vh;
+	margin: 0 auto;
+    padding: 190px 10px 0 10px ;
+}
+
+.form {
+    text-align: left;        
+}
+
+
+.form input{
+    margin: 0  0 10px 10px;
+    width: 250px;
+}
+.form msgLabel{
+    margin-bottom: 30px;
+}
+.form label{
+    margin-left: 10px;
+    padding-right: 10px;
+}
+.form textarea{
+    height: 250px;
+    width: 100%;    
+    resize: none;
+}
+
+h1 {
+	color: #000;
+	font-size: 28px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.formContainer h1{
+    text-align: left;
+    margin-bottom: 40px;
+    margin-left: 5px;
+}

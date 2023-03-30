@@ -37,4 +37,12 @@ public class GlobalException {
         logger.error(ex.getMessage() + "CODE: " + uuid.toString());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro Interno do servidor [" + uuid.toString() + "]!");
     }
+
+    @ExceptionHandler(Throwable.class)
+    public ResponseEntity<String> handleException(Throwable ex) {
+        UUID uuid = UUID.randomUUID();
+        logger.error("Erro interno do servidor [Code: {}]: {}", uuid.toString(), ex.getMessage(), ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erro interno do servidor! [Code: " + uuid.toString() + "]");
+    }
 }

@@ -4,11 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
+import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
 import projeto.integrador.equipe1.carrosluxo.Repository.CaracteristicRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.CaracteristicValidation;
@@ -21,6 +24,8 @@ public class CaracteristicService {
     Logger logger = LoggerFactory.getLogger(CaracteristicService.class);
     @Autowired
     private CaracteristicRepository caracteristicRepository;
+    @Autowired
+    private UploadService uploadService;
 
     public OutputCaracteristicCreateOrUpdateDto create(InputCaracteristicDto caracteristic) throws Exception {
         new CaracteristicValidation(caracteristic);
@@ -64,5 +69,19 @@ public class CaracteristicService {
             list.add(new OutputCaracteristicDto(caracteristicEntity));
         }
         return list;
+    }
+
+    public OutputCaracteristicReadDto upload(Long id, MultipartFile file) throws Exception {
+        logger.trace("Salvando a  imagem da caracteristica do id " + id);
+        if (!caracteristicRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Não existir está caracteristica!");
+        }
+        CaracteristicEntity caracteristic = caracteristicRepository.findById(id).get();
+        if (!caracteristic.getIcon().isEmpty()) {
+            logger.info("Imagem " + caracteristic.getIcon() + ": " + uploadService.deleteFile(caracteristic.getIcon()));
+        }
+        caracteristic.setIcon(uploadService.uploadFile(file, "image", id, 100, 100, 100, 100));
+        caracteristicRepository.save(caracteristic);
+        return new OutputCaracteristicReadDto(caracteristic);
     }
 }

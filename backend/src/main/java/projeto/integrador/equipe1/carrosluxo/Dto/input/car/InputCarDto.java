@@ -10,9 +10,9 @@ public class InputCarDto {
     private Boolean highlight;
     private long idCategory;
     private long idCity;
-    private HashSet<Long> idCaracteristics = new HashSet<>();
+    private HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO = new HashSet<>();
 
-    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, HashSet<Long> idCaracteristics) {
+    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
         this.price = price;
@@ -20,7 +20,7 @@ public class InputCarDto {
         this.highlight = highlight;
         this.idCategory = idCategory;
         this.idCity = idCity;
-        this.idCaracteristics = idCaracteristics;
+        this.inputCarCaracteristicDTO = inputCarCaracteristicDTO;
     }
 
     public InputCarDto() {
@@ -82,11 +82,11 @@ public class InputCarDto {
         this.idCity = idCity;
     }
 
-    public HashSet<Long> getIdCaracteristics() {
-        return idCaracteristics;
+    public HashSet<InputCarCaracteristicDTO> getInputCarCaracteristicDTO() {
+        return inputCarCaracteristicDTO;
     }
 
-    public void setIdCaracteristics(HashSet<Long> idCaracteristics) {
-        this.idCaracteristics = idCaracteristics;
+    public void setInputCarCaracteristicDTO(HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO) {
+        this.inputCarCaracteristicDTO = inputCarCaracteristicDTO;
     }
 }

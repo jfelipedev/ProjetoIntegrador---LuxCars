@@ -11,48 +11,59 @@
 }
 
 a {
-     text-decoration: none;
+  text-decoration: none;
 }
 
 .user-info {
-     display: flex;
-     align-items: center;
-   }
-   
-   .gretting {
-     color: #ffc857;
-     text-transform: capitalize;
-     margin-right: 10px;
-   }   
-
-.nav {
-     height: 10vh;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     margin: 0px 2.5rem;
-     padding-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.brand{
-     height: 4rem;
-     width: auto;
-} 
+.gretting {
+  color: #ffc857;
+  text-transform: capitalize;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+   
+.gretting {
+  color: #ffc857;
+  text-transform: capitalize;
+  margin-right: 10px;
+}   
+
+.nav {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2.5rem;
+  padding-bottom: 10px;
+}
+
+.brand {
+  height: 4rem;
+  width: auto;
+}
 
 .navToggler {
-     color: #FFC857;
-     font-weight: bold;
-     font-size: 2rem;
+  color: #ffc857;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .navList {
-     display: flex;
-     column-gap: 2rem;
-     align-items: center;
-     justify-content: center;
-     font-size: 1.3rem;
-     font-weight: 500;
-     padding-top: 5px;
+  display: flex;
+  column-gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-top: 5px;
 }
 
 .navList1 {
@@ -75,15 +86,16 @@ a {
      margin-right: 1rem;
 }
    
+
 .navToggler {
-     display: none;
-     cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 .navLink {
-     color: #F4F7F5;
-     text-decoration: none;
-     font-family: 'Inter', sans-serif;
+  color: #f4f7f5;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
 }
 
 .navLink1 {
@@ -103,15 +115,16 @@ a {
      text-decoration: none;
 }
 
-
 /*Active Link*/
 .activeLink,
 .navLink:hover{
      color: #807a90;
      text-decoration: none;
+
 }
 
 /* ====================Breakpoints=================== */
+
 /* For large devices */
 @media screen and (max-width: 992px) {
      .navList { 

@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.Objects;
+
 public class OutputCarDto {
     Logger logger = LoggerFactory.getLogger(OutputCarDto.class);
 
@@ -49,6 +51,11 @@ public class OutputCarDto {
         if (car.getImages().size() >= 1) {
             ImagesEntity image = (ImagesEntity) car.getImages().toArray()[0];
             this.urlImage = image.getUrl();
+            if (Objects.equals(image.getUrl(), "")) {
+                this.urlImage = "Imagem ainda não foi inserida!";
+            } else {
+                this.urlImage = image.getUrl();
+            }
         } else {
             this.urlImage = "Este carro não tem imagem anexado";
         }

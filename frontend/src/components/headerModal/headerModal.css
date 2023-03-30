@@ -1,10 +1,9 @@
 .headerModal{
      position: fixed;
-     right: 0;
      top: 0;
-     background-color: rgba(0, 0, 0, 0.5);
-     color: aliceblue;
-     width: 100%;
+     right: 0;
+     bottom: 0;
+     left: 0;
      display: flex;
      justify-content: right;
 }
@@ -21,22 +20,23 @@
      height: 25%;
      background-color: #1C1C1C;
      border: 1px solid #1C1C1C;
-}
-
-.headerModalTitle{
+     display: flex;
+   }
+   
+   .headerModalTitle{
      color: #FFC857;
      font-size: 1.5rem;
      font-family: 'Inter', sans-serif;
      height: 60%;
      text-align: end;
-     padding-top: 6rem;
+     padding-top: 5rem;
 }
 
 .userPart{
      display: flex;
      flex-direction: column;
      align-items: flex-end;
-     justify-content: center;
+     justify-content:flex-end;
 }
 
 .Hello{
@@ -52,15 +52,17 @@
      font-family: 'Roboto', sans-serif;
      font-size: 1rem;
      font-weight: 500;
+     color: #F4F7F5;
 }
 
 .headerModalUser{
+     width: 100%;
      display: flex;
      flex-direction: column;
      align-items:flex-end;
      justify-content: center;
      padding-right: 10px;
-     padding-top: 2rem;    
+     padding-top: 5rem;    
 }
 
 .userName1{
@@ -77,64 +79,62 @@
      border: 1px solid #FFC857;
      border-bottom: none ;
      border-top: none;
-}
-
-.navListModal{
+   }
+   
+   .navListModal{
      display: flex;
      flex-direction: column;
      gap: 1.5rem;
-}
-
-.navItemModal{
-     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navItemModal{
      padding-top: 1.5rem;
-}
-
-.navItem1Modal{
      border-top: 1px solid #1C1C1C;
+   }
+   
+   .navItem1Modal{
      padding-top: 1.5rem;
-}
-
-.navLinkModal, .navLink1Modal{
+     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navLinkModal, .navLink1Modal{
      font-family: 'Roboto', sans-serif;
      font-size: 1rem;
      color: #F4F7F5;
      text-decoration: none;
-}
-
-.navLinkModal:hover{
+   }
+   
+   .navLinkModal:hover, .navLink1Modal:hover{
      color: #807a90;
-}
-
-.navLink1Modal:hover{
-     color: #807a90;
-}
-
-.headerModalFooter{
+   }
+   
+   .headerModalFooter{
      display: flex;
      justify-content: center;
      align-items: center;
      height: 15%;
      border: 1px solid #FFC857;
      border-top: none;
-}
-
-.headerButton{
+   }
+   
+   .headerButton{
      width: 17rem;
      height: 2.5rem;
-}
-
-.navClose {
+   }
+   
+   .navClose {
      color: #FFC857;
      font-weight: bold;
      font-size: 2rem;
      cursor: pointer;
-}
-
-.activeLink1{
+     padding-left: 10px;
+   }
+   
+   .activeLink1{
      color: #807a90;
-}
-
-.first{
+   }
+   
+   .first{
      border-top: none;
-}
+   }
+   

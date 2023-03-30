@@ -14,9 +14,9 @@
      transform: translateY(0%);
    }
    
-.footer.hide-footer {
+   .footer.hide-footer {
      transform: translateY(100%);
-}
+   }
 
 .brand1{
      height: 3.5rem;

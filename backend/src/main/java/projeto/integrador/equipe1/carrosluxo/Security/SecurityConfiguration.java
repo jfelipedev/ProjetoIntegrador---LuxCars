@@ -55,6 +55,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/caracteristic").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/car").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/car/availability").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/city").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/image").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
@@ -62,8 +63,14 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/car/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/city/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/image/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/getmeuser").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/category/**", "caracteristic/**", "/car/**", "/city/**", "/image/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/booking").hasAnyRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/booking").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/mybooking").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/booking/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/booking/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/contactUsMessage").hasAnyRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/contactUsMessage").permitAll()
                                 .anyRequest().permitAll()
                 );
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

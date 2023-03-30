@@ -23,6 +23,7 @@ export const login = (token, firstName, surname) => {
   sessionStorage.setItem(TOKEN_SUR, surname);
 };
 
+
 export const logout = () => {
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem(TOKEN_FIRST);
