@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS caracteristics (
   ID BIGINT (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name_caracteristcs VARCHAR(255) NOT NULL,
   icon VARCHAR(255) NOT NULL,
-  unitOfMeasurement VARCHAR(25) NULL
+  unit_of_measurement VARCHAR(25) NULL
 );
 
 
