@@ -1,5 +1,6 @@
 import React from 'react'
 import './productInfo.css'
+import { Link } from 'react-router-dom'
 
 function ProductInfo() {
   return (
@@ -31,8 +32,7 @@ function ProductInfo() {
                <button className='productInfobutton'>Conversivel</button>
                <button className='productInfobutton'>São Paulo, Brasil</button>
                <button className='productInfobutton'>Check-in Check-out</button>
-               <button className='productInfobutton black'>Prosseguir com Aluguel</button>
-
+               <Link to="/rent"><button className='productInfobutton black'>Prosseguir com Aluguel</button></Link>
           </div>
      </div>
     </div>

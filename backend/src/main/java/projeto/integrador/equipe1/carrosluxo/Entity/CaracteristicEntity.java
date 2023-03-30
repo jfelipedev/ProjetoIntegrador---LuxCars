@@ -3,6 +3,9 @@ package projeto.integrador.equipe1.carrosluxo.Entity;
 import jakarta.persistence.*;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity(name = "caracteristics")
 public class CaracteristicEntity {
     @Id
@@ -15,18 +18,27 @@ public class CaracteristicEntity {
 
     private String icon;
 
-    public CaracteristicEntity() {
-    }
+    @Column(name = "unit_of_measurement")
+    private String unitOfMeasurement;
 
-    public CaracteristicEntity(long id, String name, String icon) {
+    @OneToMany(mappedBy = "caracteristic")
+    private Set<CarCaracteristicEntity> carCaracteristic = new HashSet<>();
+
+    public CaracteristicEntity(long id, String name, String icon, String unitOfMeasurement, Set<CarCaracteristicEntity> carCaracteristic) {
         this.id = id;
         this.name = name;
         this.icon = icon;
+        this.unitOfMeasurement = unitOfMeasurement;
+        this.carCaracteristic = carCaracteristic;
+    }
+
+    public CaracteristicEntity() {
     }
 
     public CaracteristicEntity(InputCaracteristicDto caracteristic) {
-        this.icon = caracteristic.getIcon();
+        this.icon = "";
         this.name = caracteristic.getName();
+        this.unitOfMeasurement = caracteristic.getUnitOfMeasurement();
     }
 
     public long getId() {
@@ -51,5 +63,21 @@ public class CaracteristicEntity {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public Set<CarCaracteristicEntity> getCarCaracteristic() {
+        return carCaracteristic;
+    }
+
+    public void setCarCaracteristic(Set<CarCaracteristicEntity> carCaracteristic) {
+        this.carCaracteristic = carCaracteristic;
     }
 }

@@ -6,6 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
+
 function Cars() {
 
   const [isMobile, setIsMobile] = useState(false);
@@ -21,13 +22,11 @@ function Cars() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-
   
   return (
     <section className="section">
      <Carousel className="carousel" autoPlay infiniteLoop emulateTouch useKeyboardArrows showStatus={true}
-        showIndicators={!isMobile}>
+        showIndicators={!isMobile} showArrows={true} showThumbs={false}>
         {Data.map(({ id, image, year, distance, linkMap, title, description, linkdescription }) => {
           return (
             <div className="carsCard" key={id}>              

@@ -29,7 +29,6 @@ import projeto.integrador.equipe1.carrosluxo.Security.JwtUtil;
 import projeto.integrador.equipe1.carrosluxo.Service.UserService;
 import projeto.integrador.equipe1.carrosluxo.Validation.UserValidation;
 
-
 @RestController
 @Tag(name = "User", description = "Controle de usuário")
 public class UserController {

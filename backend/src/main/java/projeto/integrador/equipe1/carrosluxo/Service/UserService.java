@@ -15,6 +15,7 @@ import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.InternalServerErrorException;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
+import projeto.integrador.equipe1.carrosluxo.Repository.UserRolesRepository;
 import projeto.integrador.equipe1.carrosluxo.Validation.UserValidation;
 
 @Service
@@ -26,6 +27,8 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserRolesRepository userRolesRepository;
 
     public UserEntity readByEmail(String email) throws Exception {
         if (userRepository.existsByEmail(email).get()) {
@@ -40,7 +43,7 @@ public class UserService implements UserDetailsService {
         if (userRepository.existsByEmail(register.getEmail()).get()) {
             throw new BadRequestException(objectMapper.writeValueAsString(new ErrorRegisterDto(null, null, "Este email já está em uso", null)));
         }
-        userRepository.save(new UserEntity(register));
+        userRepository.save(new UserEntity(register, userRolesRepository.findById(2L).get()));
         return userRepository.findByEmail(register.getEmail()).get().getId();
     }
 

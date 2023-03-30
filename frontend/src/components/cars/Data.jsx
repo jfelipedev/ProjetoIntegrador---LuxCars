@@ -1,4 +1,4 @@
-import Image1 from "../../assets/carFerrariCaliforniaT2014Red1.jpg"
+import Image1 from "../../assets/carChevroletCamaroSS.jpg"
 import Image2 from "../../assets/carFerrariCaliforniaT2015Blue.jpg"
 import Image3 from "../../assets/carChevroletCamaroSS.jpg"
 import Image4 from "../../assets/carBMW430iCabrioMSport.jpg"
@@ -12,7 +12,7 @@ export const Data = [
           linkMap: "MOSTRAR NO MAPA",
           title: "Ferrari California T",
           description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-          linkdescription: "mais...."  
+          linkdescription: "mais...."
      },
      {
           id: 2,
@@ -21,8 +21,8 @@ export const Data = [
           distance: "A 1500 m de você - ",
           linkMap: "MOSTRAR NO MAPA",
           title: "Ferrari California T",
-          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ", 
-          linkdescription: "mais...." 
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+          linkdescription: "mais...."
      },
      {
           id: 3,
@@ -32,7 +32,7 @@ export const Data = [
           linkMap: "MOSTRAR NO MAPA",
           title: "Chevrolet Camaro SS",
           description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-          linkdescription: "mais...."  
+          linkdescription: "mais...."
      },
      {
           id: 4,
@@ -42,6 +42,6 @@ export const Data = [
           linkMap: "MOSTRAR NO MAPA",
           title: "BMW 430i Cabrio M Sport",
           description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-          linkdescription: "mais...." 
+          linkdescription: "mais...."
      }
 ]

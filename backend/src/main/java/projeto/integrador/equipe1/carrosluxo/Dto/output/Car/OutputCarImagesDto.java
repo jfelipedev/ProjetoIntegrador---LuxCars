@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.Car;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.Objects;
+
 public class OutputCarImagesDto {
     private long id;
     private String title;
@@ -19,7 +21,11 @@ public class OutputCarImagesDto {
     public OutputCarImagesDto(ImagesEntity image) {
         this.id = image.getId();
         this.title = image.getTitle();
-        this.url = image.getUrl();
+        if (Objects.equals(image.getUrl(), "")) {
+            this.url = "Imagem ainda não foi inserida!";
+        } else {
+            this.url = image.getUrl();
+        }
     }
 
     public long getId() {

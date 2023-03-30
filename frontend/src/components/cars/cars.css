@@ -10,12 +10,12 @@
      border: 2px solid purple;
 }
 
-/*.item {
+/* .item {
      font-weight: 200;
      justify-content: center;
      align-items: center;
      font-size: 1.8rem;
-}*/
+} */
 
 .carsCard {
      border: 1px solid rgba(82, 69, 64 / 50%);
@@ -115,9 +115,6 @@
      height: 2.5rem;
 }
 
-.thumbs-wrapper {
-     display: none;   
-}
 
 @media screen and (max-width: 768px){
  

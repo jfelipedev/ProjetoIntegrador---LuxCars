@@ -1,6 +1,7 @@
 package projeto.integrador.equipe1.carrosluxo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,8 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryAllDto;
@@ -72,7 +75,6 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/category/{id}")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = {@Content(mediaType = "application/json",
@@ -84,8 +86,11 @@ public class CategoryController {
                     content = {@Content}),
     })
     @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCategoryDto category) throws Exception {
         logger.trace("Controle: UPDATE / PUT /category/{id}");
+        logger.info(category.getQualification());
+        logger.info(category.getDescritpion());
         return new ResponseEntity<>(categoryService.update(id, category), HttpStatus.OK);
     }
 
@@ -101,5 +106,20 @@ public class CategoryController {
     public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /category/{id}");
         return new ResponseEntity<>(categoryService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(value = "/category/{id}/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Não existir está categoria!",
+                    content = {@Content}),
+            @ApiResponse(responseCode = "200",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OutputCategoryReadDto.class))}),
+    })
+    @Operation(summary = "Mudar de imagem da categoria", tags = {"Category"})
+    public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "file", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
+        logger.trace("Controle: UPLOAD / POST /category/{id}/upload");
+        return new ResponseEntity<>(categoryService.upload(id, file), HttpStatus.OK);
     }
 }

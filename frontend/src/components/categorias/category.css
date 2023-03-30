@@ -2,7 +2,6 @@
      width: 100%;
      transform-style: preserve-3d;
      margin-bottom: 8rem;
-     margin-top: 5rem;
 }
 
 .categoryTitle{
@@ -13,6 +12,7 @@
      font-size: calc(1.325rem + .9vw);
      color: #F4F7F5;
      line-height: 1.2;
+     margin-bottom: 1rem;
 }
 
 .categoryContainer{
@@ -20,13 +20,14 @@
      align-items: center;
      justify-content: center;
      transform-style: preserve-3d;
+     flex-wrap: wrap;
 }
 
 .categoryContainer .categoryCard{
      position: relative;
      width: 350px;
      height: 247px;
-     margin: 0px 20px;
+     margin: 20px;
      transform-style: preserve-3d;
      perspective: 1000px;
      border-top: 1px solid #ffffff;
@@ -57,6 +58,7 @@
      height: 100%;
      background-color: #474350;
      object-fit: cover;
+     cursor: pointer
 }
 
 .img{
@@ -82,9 +84,11 @@
 
 .categoryContainer .categoryCard .box .contentBx .contentBack{
      transform-style: preserve-3d;
-     padding: 2%;
+     padding: 1rem;
      background: #474350;
      transform: translateZ(100px);
+     cursor: pointer;
+     border-radius: 5px;
 }
 
 .text1{

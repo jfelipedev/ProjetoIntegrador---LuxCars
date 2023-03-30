@@ -1,10 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './footer.css'
 import Image1 from '../../assets/logoWhiteBox.png'
 
 function Footer() {
+  const [showFooter, setShowFooter] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      const scrollPosition =
+        window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+      setShowFooter(scrollPosition);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+
+
      return(
-       <div className="footer">
+       <div className={`footer ${showFooter ? "show-footer" : ""}`}>
          <div className="footerInfo ">
            <img src={Image1} alt="LuxCars" className="brand1" />
 

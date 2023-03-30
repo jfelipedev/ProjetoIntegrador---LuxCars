@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.image;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.Objects;
+
 public class OutputImageReadDto {
     private String title;
     private String url;
@@ -18,7 +20,11 @@ public class OutputImageReadDto {
 
     public OutputImageReadDto(ImagesEntity images) {
         this.title = images.getTitle();
-        this.url = images.getUrl();
+        if (Objects.equals(images.getUrl(), "")) {
+            this.url = "Imagem ainda não foi inserida!";
+        } else {
+            this.url = images.getUrl();
+        }
         this.car = new OutputImageCarDto(images.getCar());
     }
 

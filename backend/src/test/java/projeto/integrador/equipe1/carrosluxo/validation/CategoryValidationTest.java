@@ -39,61 +39,16 @@ public class CategoryValidationTest {
     }
 
     @Test
-    void validationUrlValid() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationUrl("http://img.carlux.com/teste.png");
-        Assertions.assertNull(error);
-    }
-
-    @Test
-    void validationUrlEmpty() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationUrl("");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("A url não pode ser vazio!", error);
-    }
-
-    @Test
-    void validationUrlMax() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationUrl("http://img.carlux.com/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste/teste.png");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("A url dever ter menor do que 255 caracteres!", error);
-    }
-
-    @Test
-    void validationUrlInvalid() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationUrl("http//img.carlux.com/teste.png");
-        Assertions.assertNotNull(error);
-        Assertions.assertEquals("Esta url é invalido!", error);
-    }
-
-    @Test
-    void isValidUrlValid() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        Boolean error = categoryValidation.isValidUrl("http://img.carlux.com/teste.png");
-        Assertions.assertTrue(error);
-    }
-
-    @Test
-    void isValidUrlInvalid() {
-        CategoryValidation categoryValidation = new CategoryValidation();
-        Boolean error = categoryValidation.isValidUrl("http//img.carlux.com/teste.png");
-        Assertions.assertFalse(error);
-    }
-
-    @Test
     void categoryInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
-            new CategoryValidation(new InputCategoryDto("", "", "Carro"));
+            new CategoryValidation(new InputCategoryDto("", "Carro"));
         });
     }
 
     @Test
     void categoryValid() {
         Assertions.assertDoesNotThrow(() -> {
-            new CategoryValidation(new InputCategoryDto("Carros conversiveis", "http://img.carlux.com/category/conversivel.png", "Canversivel"));
+            new CategoryValidation(new InputCategoryDto("Carros conversiveis", "Canversivel"));
         });
     }
 }

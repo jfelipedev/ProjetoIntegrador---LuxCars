@@ -1,6 +1,7 @@
 package projeto.integrador.equipe1.carrosluxo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,10 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageReadDto;
@@ -101,5 +105,20 @@ public class ImageController {
     public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /image/{id}");
         return new ResponseEntity<>(imageService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(value = "/image/{id}/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Não existir está imagem!",
+                    content = {@Content}),
+            @ApiResponse(responseCode = "200",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OutputCategoryReadDto.class))}),
+    })
+    @Operation(summary = "Mudar a imagem", tags = {"Image"})
+    public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
+        logger.trace("Controle: UPLOAD / POST /image/{id}/upload");
+        return new ResponseEntity<>(imageService.upload(id, file), HttpStatus.OK);
     }
 }

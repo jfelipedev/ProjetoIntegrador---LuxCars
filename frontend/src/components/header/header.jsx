@@ -1,22 +1,61 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
+import Avatar from '../avatar/avatar';
 import './header.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-import Image2 from '../../assets/logoWhiteBox.png'
+//import Image2 from '../../assets/logoWhiteBox.png'
+import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout} from '../../services/auth';
+import HeaderModal from '../headerModal/headerModal';
+import { useNavigate } from "react-router-dom";
 
 
 function Header() {
+  
   const navRef = useRef();
+  const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(getToken());
+  const [firstName, setFirstaName] = useState(getTokenName());
+  const [surname, setSurname] = useState(getTokenSurname());
+  const[nameInitials, setInitials] = useState("");
+ 
 
-  const showNav = () => {
-    navRef.current.classList.toggle("responsive")
+  useEffect(() => {
+	  const handleStorage = () => {
+		setToken(getToken())
+	}
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
+
+
+  useEffect(() => { 
+    setIsAuthenticated(!!token); 
+    if(isAuthenticated){
+      const nameInitials = `${firstName.charAt(0)}${surname.charAt(0)}`;
+      setInitials(nameInitials);
+      sessionStorage.setItem('nameInitials', nameInitials);
+    }
+  }, [token, firstName, surname, isAuthenticated]);
+
+  const handleLogout = () => {
+    logout();
+    setToken(null);
+    setFirstaName(null);
+    setSurname(null);
+    setIsAuthenticated(false);
+    navigate('/');
+    sessionStorage.removeItem('nameInitials', nameInitials);
   }
+
 
   return (
     <header className="header">
       <nav className="nav " >
-      <a href="//gitlab.ctd.academy/ctd/brasil/projeto-integrador-1/0223/turma-5/grupo-1"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
+
+        <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
@@ -35,7 +74,7 @@ function Header() {
             <Link to="/" className="navLink">Duvidas</Link>
           </li>
 
-          <ul className="navList1 grid">
+          {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
             </li>
@@ -43,17 +82,19 @@ function Header() {
             <li className="navItem1">
               <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
-          </ul>
-
-          <i class="uil uil-times navClose" onClick={showNav}></i>
+          </ul>}
+          {isAuthenticated && (
+            <div className="user-info"><div className="gretting">Olá, {firstName} {surname}</div><Avatar nameInitials={nameInitials} onLogout={handleLogout} />
+            </div>)}
         </ul>
 
-        <div className="navToggler" onClick={showNav}>
-          <i class="uil uil-align-center-alt"></i>
+        <div className="navToggler">
+          <i class="uil uil-align-center-alt" onClick={() => setVisible(true)}></i>
         </div>
 
       </nav>
-    </header>
+      {visible ? <HeaderModal onClose={() => setVisible(false)} /> : null}
+    </header >
   )
 }
 

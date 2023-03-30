@@ -2,6 +2,8 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.category;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 
+import java.util.Objects;
+
 public class OutputCategoryReadDto {
     private String descritpion;
     private String urlImage;
@@ -18,7 +20,11 @@ public class OutputCategoryReadDto {
 
     public OutputCategoryReadDto(CategoryEntity categoryEntity) {
         this.setQualification(categoryEntity.getQualification());
-        this.setUrlImage(categoryEntity.getUrlImage());
+        if (Objects.equals(categoryEntity.getUrlImage(), "")) {
+            this.urlImage = "Imagem ainda não foi inserida!";
+        } else {
+            this.urlImage = categoryEntity.getUrlImage();
+        }
         this.setDescritpion(categoryEntity.getDescritpion());
     }
 

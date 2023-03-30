@@ -1,5 +1,6 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.output.Car;
 
+import projeto.integrador.equipe1.carrosluxo.Entity.CarCaracteristicEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
@@ -51,8 +52,8 @@ public class OutputCarReadDto {
         }
         this.images = images;
         Set<OutputCarCaracteristicsDto> list = new HashSet<>();
-        for (CaracteristicEntity caracteristicEntity : car.getCaracteristics()) {
-            list.add(new OutputCarCaracteristicsDto(caracteristicEntity));
+        for (CarCaracteristicEntity carCaracteristic : car.getCarCaracteristic()) {
+            list.add(new OutputCarCaracteristicsDto(carCaracteristic));
         }
         this.caracteristics = list;
     }

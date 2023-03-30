@@ -1,0 +1,140 @@
+.headerModal{
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     display: flex;
+     justify-content: right;
+}
+
+.headerModalcontent{
+     height: 85vh;
+     width: 50%;
+     background-color: #474350;
+     /* transform: translateX(0%);
+     transition: 3s ease; Ver alguma forma de colocar e tirra como um menu hamburguer*/
+}
+
+.headerModalHeader{
+     height: 25%;
+     background-color: #1C1C1C;
+     border: 1px solid #1C1C1C;
+     display: flex;
+   }
+   
+   .headerModalTitle{
+     color: #FFC857;
+     font-size: 1.5rem;
+     font-family: 'Inter', sans-serif;
+     height: 60%;
+     text-align: end;
+     padding-top: 5rem;
+}
+
+.userPart{
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     justify-content:flex-end;
+}
+
+.Hello{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1.5rem;
+     margin-bottom: 0;
+     font-weight: 500;
+     color: #FFC857;
+     margin-right: 10px;
+}
+
+.completeName{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     font-weight: 500;
+     color: #F4F7F5;
+}
+
+.headerModalUser{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items:flex-end;
+     justify-content: center;
+     padding-right: 10px;
+     padding-top: 5rem;    
+}
+
+.userName1{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     color: #FFC857;
+}
+
+.headerModalBody{
+     text-align: right;
+     height: 15rem;
+     padding: 0 10px;
+     height: 60%;
+     border: 1px solid #FFC857;
+     border-bottom: none ;
+     border-top: none;
+   }
+   
+   .navListModal{
+     display: flex;
+     flex-direction: column;
+     gap: 1.5rem;
+   }
+   
+   .navItemModal{
+     padding-top: 1.5rem;
+     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navItem1Modal{
+     padding-top: 1.5rem;
+     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navLinkModal, .navLink1Modal{
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     color: #F4F7F5;
+     text-decoration: none;
+   }
+   
+   .navLinkModal:hover, .navLink1Modal:hover{
+     color: #807a90;
+   }
+   
+   .headerModalFooter{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 15%;
+     border: 1px solid #FFC857;
+     border-top: none;
+   }
+   
+   .headerButton{
+     width: 17rem;
+     height: 2.5rem;
+   }
+   
+   .navClose {
+     color: #FFC857;
+     font-weight: bold;
+     font-size: 2rem;
+     cursor: pointer;
+     padding-left: 10px;
+   }
+   
+   .activeLink1{
+     color: #807a90;
+   }
+   
+   .first{
+     border-top: none;
+   }
+   

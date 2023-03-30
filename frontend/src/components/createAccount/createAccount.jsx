@@ -5,6 +5,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import api from "../../services/api";
+import { useState } from "react";
 
 
 
@@ -23,7 +24,7 @@ const validation = yup.object().shape({
   .required("Necessario preencher o campo login"),
 
   confirmEmail: yup.string("Necessario Colocar um Email Valido")
-  .oneOf([yup.ref("email"), null], "As senhas precisam ser iguais"),
+  .oneOf([yup.ref("email"), null], "Os emails precisam ser iguais"),
   
   password: yup.string("Necessario preencher o campo senha")
   .required("Necessario preencher o campo senha")
@@ -32,18 +33,19 @@ const validation = yup.object().shape({
    //A senha precisa ter no mínimo 8 caracteres, ' +
   // 'uma letra maiúscula e uma letra minúscula, ' +
   // 'um número e um caracter especial'
+
 })
 
 
 function Createaccount() {
 
+  const [errorBack, setErrorBack ] =useState(null)
   const { register, handleSubmit, formState: { errors }, } = useForm(
     {
       resolver: yupResolver(validation)
     }
   );
 
-  
   const navigate = useNavigate();
 
   function newUser( value) {
@@ -65,10 +67,10 @@ function Createaccount() {
       navigate("/login")
     })
     .catch((erro) => {
-      console.log(erro)
+      let error = erro.response.data; 
+      setErrorBack(error.email)
     })
-    }
-
+  }
   }
 
 
@@ -105,6 +107,7 @@ function Createaccount() {
             {...register("email")}
           />
           { <span className="spanError1"> {errors.email?.message} </span>}
+          <span className="spanError1" style={{display: (errorBack === null) ? "none" : "block"}}> {errorBack} </span>
 
           <input
           className="create"

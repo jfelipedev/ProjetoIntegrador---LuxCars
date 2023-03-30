@@ -1,85 +1,71 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./category.css"
-import ImageConversivel from "../../assets/carFerrariCaliforniaT2014Red1.jpg"
-import ImageCoupe from "../../assets/carBMW-M440i.jpg"
-import ImageEsportivo from "../../assets/carBugattiChiron.jpg"
-import ImageSedan from "../../assets/carPorschePanameraTurbo.jpg"
+//import { categoryData } from './categoryData'
+import api from '../../services/api'
+import CategoriasCard from '../categoriasCards/categoriasCard'
+
+
 
 function Category() {
+
+  const [visible, setVisible] = useState(false)
+  const [categorys, setCategorys] = useState([])
+
+  const [filtro, setFiltro] = useState()
+
+  useEffect(() => {
+    
+    api.get("/category")
+    
+    .then((response) => {
+      console.log(response)
+      setCategorys(response.data)
+      
+    })
+    .catch((error)=>{
+      console.log(error)
+      console.log("Deu errado - category")
+    })
+
+  }, [])
+
+
+
+  
   return (
     
     <div className='categorySection'>
       <h3 className='categoryTitle'>Buscar por categoria de carro</h3>
 
       <div className="categoryContainer">
-        <div className="categoryCard">
-          <div className="box">
-            <div className='contentFront'>
-              <img src={ImageConversivel} alt="" className='img'/>
-              <h4 className='text1'>Conversível</h4>
-              <h6 className='text2'>807.105 Carros</h6>
-            </div>
-          
-            <div className="contentBx">
-              <div className="contentBack">
-                <h4 className='text3'>Conversível</h4>
-                <p className='text4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At consequatur maxime ab corporis, explicabo eaque quia accusantium. Atque rerum fugiat aspernatur fugit cumque? Autem, quasi. Quod consequuntur quisquam a ea.</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="categoryCard">
-          <div className="box">
-            <div className='contentFront'>
-              <img src={ImageCoupe} alt="" className='img'/>
-              <h4 className='text1'>Coupé</h4>
-              <h6 className='text2'>807.105 Carros</h6>
-            </div>
+        {categorys.map(({id, urlImage, qualification, numberCars, text }) => {
+          return(
+          <div className="categoryCard" key={id} onClick={() => {
+            setFiltro(id)
+            setVisible(true)
+          }} >
+            <div className="box">
+              <div className='contentFront'>
+                
+                <h4 className='text3'>{qualification}</h4>
+                  <p className='text4'>{text}</p>
+              </div>
           
-            <div className="contentBx">
-              <div className="contentBack">
-                <h4 className='text3'>Coupé</h4>
-                <p className='text4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At consequatur maxime ab corporis, explicabo eaque quia accusantium. Atque rerum fugiat aspernatur fugit cumque? Autem, quasi. Quod consequuntur quisquam a ea.</p>
+              <div className="contentBx">
+                <div className="contentBack">
+                  <img src={"https://carlux-grupo1.s3.us-east-2.amazonaws.com" + urlImage } alt="" className='img'/>
+                <h4 className='text1'>{qualification}</h4>
+                <h6 className='text2'>{numberCars} Carros</h6>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="categoryCard">
-          <div className="box">
-            <div className='contentFront'>
-              <img src={ImageEsportivo} alt="" className='img'/>
-              <h4 className='text1'>Esportivo</h4>
-              <h6 className='text2'>807.105 Carros</h6>
-            </div>
-          
-            <div className="contentBx">
-              <div className="contentBack">
-                <h4 className='text3'>Esportivo</h4>
-                <p className='text4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At consequatur maxime ab corporis, explicabo eaque quia accusantium. Atque rerum fugiat aspernatur fugit cumque? Autem, quasi. Quod consequuntur quisquam a ea.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="categoryCard">
-          <div className="box">
-            <div className='contentFront'>
-              <img src={ImageSedan} alt="" className='img'/>
-              <h4 className='text1'>Sedan</h4>
-              <h6 className='text2'>807.105 Carros</h6>
-            </div>
-          
-            <div className="contentBx">
-              <div className="contentBack">
-                <h4 className='text3'>Sedan</h4>
-                <p className='text4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At consequatur maxime ab corporis, explicabo eaque quia accusantium. Atque rerum fugiat aspernatur fugit cumque? Autem, quasi. Quod consequuntur quisquam a ea.</p>
-              </div>
-            </div>
-          </div>
-        </div> 
+          )
+        })}
       </div> 
+      {visible ? <CategoriasCard filtro={filtro} /> : null}
+
     </div>
   )
 }

@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .version("Sprint 2")
+                        .version("Sprint 3")
                         .title("CarLux API")
                         .description("Aluguel de carros de luxo."));
     }

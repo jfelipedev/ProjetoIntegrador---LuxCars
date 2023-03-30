@@ -1,8 +1,11 @@
 package projeto.integrador.equipe1.carrosluxo.Dto.output.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
 public class OutputUserDto {
+    Logger logger = LoggerFactory.getLogger(OutputUserDto.class);
     private long id;
     private String firstName;
     private String surname;
@@ -25,7 +28,7 @@ public class OutputUserDto {
         this.firstName = user.getFirstName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
-        switch (user.getRoles()) {
+        switch (user.getRole().getRoleName()) {
             case ROLE_USER:
                 this.role = "Usuário";
                 break;

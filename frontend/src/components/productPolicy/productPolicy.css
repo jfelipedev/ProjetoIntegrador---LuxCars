@@ -1,24 +1,129 @@
-.rentalPolicy{
+.policyContainer {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     grid-column-gap: 20px;
+     grid-row-gap: 20px;
+}
+
+.policyItem {
+     border: 1px solid #ccc;
+     padding: 20px;
+}
+
+.rentalPolicy {
      text-align: center;
      background-color: #474350;
-     margin-bottom: 5rem;
-     
+     padding-bottom: 5rem;
      padding-left: 2rem;
      padding-right: 2rem;
 }
 
-.policyTitle{
+.policyTitle {
      padding-bottom: 1rem;
+     color: #F4F7F5;
+     font-weight: 200;
+     font-size: 48px;
+     font-family: 'Heebo', sans-serif;
+}
+
+.secundTitle {
+     padding-bottom: 0;
+     margin-bottom: 0;
      color: #F4F7F5;
      font-weight: 200;
      font-size: 24px;
      font-family: 'Heebo', sans-serif;
+     text-align: left;
 }
 
-.policyText{
+.square {
+     margin-bottom: .4rem;
+}
+
+.square {
      color: #F4F7F5;
      font-size: 14px;
      font-family: 'Roboto', sans-serif;
      font-weight: 500;
      text-align: justify;
+     margin-left: .5rem;
+     margin-right: .5rem;
+}
+
+/* ====================Breakpoints=================== */
+
+    /* For medium devices */
+    @media screen and (max-width: 768px){
+     .policyContainer {
+          grid-template-columns: 1fr;
+     }
+    }
+    
+    @media screen and (max-width: 576px){
+     .policyContainer {
+          grid-template-columns: 1fr;
+          grid-column-gap: 10px;
+          grid-row-gap: 10px;
+     }
+
+     .policyItem {
+          padding: 10px;
+     }
+
+     .policyTitle {
+          font-size: 36px;
+     }
+
+     .secundTitle {
+          font-size: 18px;
+          text-align: center;
+     }
+
+     .square {
+          font-size: 12px;
+          margin-left: 0;
+          margin-right: 0;
+     }
+    }
+
+
+
+
+
+
+
+/* ====================Breakpoints=================== */
+
+@media (max-width: 768px) {
+     .policyContainer {
+          grid-template-columns: 1fr;
+     }
+}
+
+
+@media (max-width: 768px) {
+     .policyContainer {
+          grid-template-columns: 1fr;
+          grid-row-gap: 10px;
+          padding: 10px;
+     }
+
+     .policyItem {
+          padding: 10px;
+     }
+
+     .policyTitle {
+          font-size: 36px;
+     }
+
+     .secundTitle {
+          font-size: 18px;
+          text-align: center;
+     }
+
+     .square {
+          font-size: 12px;
+          margin-left: 0;
+          margin-right: 0;
+     }
 }
