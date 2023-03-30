@@ -206,7 +206,7 @@ public class imageServiceAndControllerTest {
             ResponseEntity<OutputImageReadDto> response = (ResponseEntity<OutputImageReadDto>) imageController.upload(1L, file);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png", response.getBody().getUrl());
-            uploadService.deleteFile("/image/3ce089b77945c6519ad5d9b4fa408ed55.1.png");
+            uploadService.deleteFile("/image/ce089b77945c6519ad5d9b4fa408ed55.1.png");
         });
     }
 }

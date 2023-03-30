@@ -69,6 +69,8 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/mybooking").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/booking/**").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/booking/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/contactUsMessage").hasAnyRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/contactUsMessage").permitAll()
                                 .anyRequest().permitAll()
                 );
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

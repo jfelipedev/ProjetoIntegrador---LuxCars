@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./footer.css";
-import Image1 from "../../assets/logoWhiteBox.png";
+
 
 function Footer() {
   const [showFooter, setShowFooter] = useState(false);
@@ -20,8 +20,8 @@ function Footer() {
   }, []);
 
   return (
-    <div className={`footer ${showFooter ? "show-footer" : ""}`}>
-      <img src={Image1} alt="LuxCars" className="brand1" />
+    <div className='footer'>
+      
 
       <span className="copyRight">&copy;2023 LuxCars.com LTDA</span>
 

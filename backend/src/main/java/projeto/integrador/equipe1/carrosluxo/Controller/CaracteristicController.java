@@ -12,13 +12,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic.InputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic.OutputCaracteristicReadDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.category.OutputCategoryReadDto;
 import projeto.integrador.equipe1.carrosluxo.Service.CaracteristicService;
 
 @RestController
@@ -101,5 +104,19 @@ public class CaracteristicController {
     public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /caracteristic/{id}");
         return new ResponseEntity<>(caracteristicService.delete(id), HttpStatus.NO_CONTENT);
+    }
+    @PostMapping(value = "/caracteristic/{id}/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Não existir está caracteristica!",
+                    content = {@Content}),
+            @ApiResponse(responseCode = "200",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OutputCaracteristicReadDto.class))}),
+    })
+    @Operation(summary = "Mudar a imagem", tags = {"Image"})
+    public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
+        logger.trace("Controle: UPLOAD / POST /caracteristic/{id}/upload");
+        return new ResponseEntity<>(caracteristicService.upload(id, file), HttpStatus.OK);
     }
 }

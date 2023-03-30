@@ -2,14 +2,14 @@ package projeto.integrador.equipe1.carrosluxo.Dto.input.caracteristic;
 
 public class InputCaracteristicDto {
     private String name;
-    private String icon;
-
-    public InputCaracteristicDto(String name, String icon) {
-        this.name = name;
-        this.icon = icon;
-    }
+    private String unitOfMeasurement;
 
     public InputCaracteristicDto() {
+    }
+
+    public InputCaracteristicDto(String name, String unitOfMeasurement) {
+        this.name = name;
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class InputCaracteristicDto {
         this.name = name;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

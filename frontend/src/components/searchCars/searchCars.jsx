@@ -1,15 +1,12 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import './searchCars.css'
+import React, { useState, useEffect } from "react";
+import "./searchCars.css";
 import Select from "react-select";
 import api from '../../services/api';
-import 'rsuite/dist/rsuite.min.css';
-import moment from 'moment';
-import { DateRangePicker } from 'rsuite';
-import ptBR from 'rsuite/locales/pt_BR';
+import moment from "moment";
 
-
-
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
 function SearchCars() {
   const [categories, setCategories] = useState([]);
@@ -57,19 +54,19 @@ function SearchCars() {
   }, [])
 
   const handleSelectChange = (event) => {
-    console.log(event)
-  }
+    console.log(event);
+  };
 
   const handleEvent = (event, picker) => {
     console.log(picker.startDate);
-  }
+  };
   const handleCallback = (start, end, label) => {
     console.log(start, end, label);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
+  };
 
   return (
     <div className="searchSection">
@@ -96,15 +93,7 @@ function SearchCars() {
 
         <div className=" drop">
           <DateRangePicker
-            placeholder="Período de reserva"
-            size="md"
-            format="dd/MM/yyyy"
-            locale={ptBR}
-            onEvent={handleEvent}
-            onCallback={handleCallback}
-            disabledDate={disabledDate}
-            character=" até "
-            label="Datas"
+            onEvent={handleEvent} onCallback={handleCallback}
           >
             <input className="form-control" />
           </DateRangePicker>

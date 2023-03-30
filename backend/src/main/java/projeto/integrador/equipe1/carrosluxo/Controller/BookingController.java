@@ -20,6 +20,7 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.booking.InputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.booking.OutputBookingDto;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.ForbiddenException;
+import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
 import projeto.integrador.equipe1.carrosluxo.Repository.UserRepository;
 import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 
@@ -31,6 +32,9 @@ public class BookingController {
     private BookingService bookingService;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CarController carController;
 
     @PostMapping(value = "/booking")
     @SecurityRequirement(name = "Bearer Authentication")
@@ -50,7 +54,9 @@ public class BookingController {
         logger.trace("Controle: CREATE / POST /booking");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userEntity = userRepository.findByEmail(auth.getName()).get();
-        return new ResponseEntity<>(bookingService.create(booking, userEntity.getId()), HttpStatus.CREATED);
+        OutputBookingDto bookingDto = bookingService.create(booking, userEntity.getId());
+        carController.availabilitySave();
+        return new ResponseEntity<>(bookingDto, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/booking/{id}")
@@ -68,7 +74,9 @@ public class BookingController {
         logger.trace("Controle: DELETE / DELETE /booking/{id}");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userEntity = userRepository.findByEmail(auth.getName()).get();
-        return new ResponseEntity<>(bookingService.delete(userEntity.getId(), id), HttpStatus.NO_CONTENT);
+        String retorno = bookingService.delete(userEntity.getId(), id);
+        carController.availabilitySave();
+        return new ResponseEntity<>(retorno, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping(value = "/booking/{id}")

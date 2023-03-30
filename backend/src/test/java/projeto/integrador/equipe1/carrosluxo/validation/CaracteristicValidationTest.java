@@ -70,7 +70,7 @@ public class CaracteristicValidationTest {
     @Test
     void caracteristicValid() {
         Assertions.assertDoesNotThrow(() -> {
-            new CaracteristicValidation(new InputCaracteristicDto("Teste", "TesteIcon"));
+            new CaracteristicValidation(new InputCaracteristicDto("Teste", "m/s"));
         });
     }
 }

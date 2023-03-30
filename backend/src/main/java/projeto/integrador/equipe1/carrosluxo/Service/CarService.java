@@ -6,19 +6,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCarDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarCaracteristicDTO;
 import projeto.integrador.equipe1.carrosluxo.Dto.input.car.InputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarCreateOrUpdateDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.output.Car.OutputCarReadDto;
+import projeto.integrador.equipe1.carrosluxo.Entity.CarCaracteristicEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CitiesEntity;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import projeto.integrador.equipe1.carrosluxo.Exception.ResourceNotFoundException;
-import projeto.integrador.equipe1.carrosluxo.Repository.CarRepository;
-import projeto.integrador.equipe1.carrosluxo.Repository.CaracteristicRepository;
-import projeto.integrador.equipe1.carrosluxo.Repository.CategoryRepository;
-import projeto.integrador.equipe1.carrosluxo.Repository.CityRepository;
+import projeto.integrador.equipe1.carrosluxo.Repository.*;
 import projeto.integrador.equipe1.carrosluxo.Validation.CarValidation;
 
 import java.time.LocalDate;
@@ -38,6 +37,8 @@ public class CarService {
     @Autowired
     private CaracteristicRepository caracteristicRepository;
     @Autowired
+    private CarCaracteristicRepository carCaracteristicRepository;
+    @Autowired
     private BookingService bookingService;
 
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
@@ -52,8 +53,8 @@ public class CarService {
         if (!cityRepository.existsById(car.getIdCity())) {
             error.setCity("Esta cidade não está registrado!");
         }
-        for (Long idCaracteristic : car.getIdCaracteristics()) {
-            if (!caracteristicRepository.existsById(idCaracteristic)) {
+        for (InputCarCaracteristicDTO caracteristic : car.getInputCarCaracteristicDTO()) {
+            if (!caracteristicRepository.existsById(caracteristic.getId())) {
                 error.setCaracteristics("Contém uma caracteristica que não existir!");
                 break;
             }
@@ -64,12 +65,15 @@ public class CarService {
         if (!(error.getNameCar() == null && error.getCategory() == null && error.getCity() == null && error.getCaracteristics() == null && error.getHighlight() == null)) {
             throw new BadRequestException(objectMapper.writeValueAsString(error));
         }
-        CarEntity carEntity = new CarEntity(car);
-        for (Long idCaracteristic : car.getIdCaracteristics()) {
-            carEntity.getCaracteristics().add(caracteristicRepository.findById(idCaracteristic).get());
-        }
-        carRepository.save(carEntity);
+        CarEntity carEntity = carRepository.save(new CarEntity(car));
         logger.info(car.getNameCar() + " foi adicionado!");
+        for (InputCarCaracteristicDTO caracteristic : car.getInputCarCaracteristicDTO()) {
+            CarCaracteristicEntity carCaracteristic = new CarCaracteristicEntity();
+            carCaracteristic.setCar(carEntity);
+            carCaracteristic.setCaracteristic(caracteristicRepository.findById(caracteristic.getId()).get());
+            carCaracteristic.setValue(caracteristic.getValue());
+            carCaracteristicRepository.save(carCaracteristic);
+        }
         return new OutputCarCreateOrUpdateDto(carRepository.findByNameCar(car.getNameCar()).get());
     }
 
@@ -98,8 +102,8 @@ public class CarService {
         if (!cityRepository.existsById(car.getIdCity())) {
             error.setCity("Esta cidade não está registrado!");
         }
-        for (Long idCaracteristic : car.getIdCaracteristics()) {
-            if (!caracteristicRepository.existsById(idCaracteristic)) {
+        for (InputCarCaracteristicDTO caracteristic : car.getInputCarCaracteristicDTO()) {
+            if (!caracteristicRepository.existsById(caracteristic.getId())) {
                 error.setCaracteristics("Contém uma caracteristica que não existir!");
                 break;
             }
@@ -111,11 +115,18 @@ public class CarService {
             throw new BadRequestException(objectMapper.writeValueAsString(error));
         }
         CarEntity carEntity = new CarEntity(car);
-        for (Long idCaracteristic : car.getIdCaracteristics()) {
-            carEntity.getCaracteristics().add(caracteristicRepository.findById(idCaracteristic).get());
-        }
         carEntity.setId(id);
         carRepository.save(carEntity);
+        for (CarCaracteristicEntity carCaracteristic : carCaracteristicRepository.findAllByCar(carEntity).get()){
+            carCaracteristicRepository.delete(carCaracteristic);
+        }
+        for (InputCarCaracteristicDTO caracteristic : car.getInputCarCaracteristicDTO()) {
+            CarCaracteristicEntity carCaracteristic = new CarCaracteristicEntity();
+            carCaracteristic.setCar(carEntity);
+            carCaracteristic.setCaracteristic(caracteristicRepository.findById(caracteristic.getId()).get());
+            carCaracteristic.setValue(caracteristic.getValue());
+            carCaracteristicRepository.save(carCaracteristic);
+        }
         logger.info(carEntity.getNameCar() + " foi atualizado!");
         return new OutputCarCreateOrUpdateDto(carRepository.findById(id).get());
     }

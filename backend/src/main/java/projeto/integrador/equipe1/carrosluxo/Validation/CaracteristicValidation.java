@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 public class CaracteristicValidation {
     private static final int nameCharactersMinimum = 2;
     private static final int nameCharactersMaximum = 255;
-    private static final int iconCharactersMinimum = 5;
-    private static final int iconCharactersMaximum = 255;
-    private static final String iconCharactersAllowed = "^[A-Za-z0-9]{5,}$";
+    private static final int unitCharactersMinimum = 1;
+    private static final int unitCharactersMaximum = 10;
+    private static final String unitCharactersAllowed = "^[A-Za-z/]{1,}$";
 
     public CaracteristicValidation() {
     }
@@ -21,9 +21,12 @@ public class CaracteristicValidation {
     public CaracteristicValidation(InputCaracteristicDto caracteristic) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorName = validationText(caracteristic.getName(), nameCharactersMinimum, nameCharactersMaximum, "");
-        String errorIcon = validationText(caracteristic.getIcon(), iconCharactersMinimum, iconCharactersMaximum, iconCharactersAllowed);
-        if (!(errorName == null && errorIcon == null)) {
-            ErrorCaracteristicDto errorCaracteristicDto = new ErrorCaracteristicDto(errorName, errorIcon);
+        String errorUnit = null;
+        if(caracteristic.getUnitOfMeasurement() != null){
+            errorUnit = validationText(caracteristic.getUnitOfMeasurement(), unitCharactersMinimum, unitCharactersMaximum, unitCharactersAllowed);
+        }
+        if (!(errorName == null && errorUnit == null)) {
+            ErrorCaracteristicDto errorCaracteristicDto = new ErrorCaracteristicDto(errorName, errorUnit);
             throw new BadRequestException(objectMapper.writeValueAsString(errorCaracteristicDto));
         }
     }

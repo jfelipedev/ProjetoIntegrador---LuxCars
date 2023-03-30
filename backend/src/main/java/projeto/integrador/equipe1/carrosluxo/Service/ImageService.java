@@ -69,7 +69,7 @@ public class ImageService {
     public String delete(long id) throws Exception {
         if (imageRepository.existsById(id)) {
             ImagesEntity image = imageRepository.findById(id).get();
-            if (image.getUrl() != "") {
+            if (!image.getUrl().isEmpty()) {
                 logger.trace("Imagem " + image.getUrl() + ": " + uploadService.deleteFile(image.getUrl()));
             }
             imageRepository.deleteById(id);
@@ -94,7 +94,7 @@ public class ImageService {
             throw new ResourceNotFoundException("Não existir está imagem!");
         }
         ImagesEntity images = imageRepository.findById(id).get();
-        if (images.getUrl() != "") {
+        if (!images.getUrl().isEmpty()) {
             logger.info("Imagem " + images.getUrl() + ": " + uploadService.deleteFile(images.getUrl()));
         }
         images.setUrl(uploadService.uploadFile(file, "image", id, 677, 679, 380, 382));

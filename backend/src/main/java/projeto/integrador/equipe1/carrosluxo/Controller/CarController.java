@@ -26,6 +26,7 @@ import projeto.integrador.equipe1.carrosluxo.Service.BookingService;
 import projeto.integrador.equipe1.carrosluxo.Service.CarService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import java.util.List;
 @Tag(name = "Car", description = "Controle de Carros")
 
 public class CarController {
+    private List<Date[]> cacheCarAvailability = new ArrayList<>();
     Logger logger = LoggerFactory.getLogger(CarController.class);
     @Autowired
     private CarService carService;
@@ -132,7 +134,6 @@ public class CarController {
     }
 
     @GetMapping(value = "/car/{id}/availability")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
@@ -155,7 +156,6 @@ public class CarController {
     }
 
     @GetMapping(value = "/car/availability")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
@@ -165,6 +165,13 @@ public class CarController {
     @Operation(summary = "Exibir disponibilidade de todos os carros", tags = {"Car"})
     public ResponseEntity<?> availability() throws Exception {
         logger.trace("Controle: availability / GET /car/availability");
-        return new ResponseEntity<>(bookingService.readAllAvailability(), HttpStatus.OK);
+        if(cacheCarAvailability.size() == 0){
+            this.availabilitySave();
+        }
+        return new ResponseEntity<>(cacheCarAvailability, HttpStatus.OK);
+    }
+
+    public void availabilitySave(){
+        cacheCarAvailability = bookingService.readAllAvailability();
     }
 }

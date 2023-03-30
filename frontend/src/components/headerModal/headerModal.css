@@ -1,114 +1,115 @@
 .headerModal{
-     position: absolute;
-     right: 0;
+     position: fixed;
      top: 0;
-     background-color: rgba(0, 0, 0, 0.5);
-     color: aliceblue;
-     width: 100%;
+     right: 0;
+     bottom: 0;
+     left: 0;
      display: flex;
-     justify-content: right;
-}
-
-.headerModalcontent{
-     height: 85.1vh;
+     justify-content: flex-end;
+     align-items: center;
+     background-color: rgba(0, 0, 0, 0.5);
+     z-index: 9999;
+   }
+   
+   .headerModalContent{
+     position: relative;
      width: 50%;
+     height: 85.1vh;
      background-color: #474350;
-     /* transform: translateX(0%);
-     transition: 3s ease; Ver alguma forma de colocar e tirra como um menu hamburguer*/
-}
-
-.headerModalHeader{
+     transition: transform 0.3s ease-in-out;
+     transform: translateX(100%);
+   }
+   
+   .headerModalContent.open {
+     transform: translateX(0);
+   }
+   
+   .headerModalHeader{
      height: 11.5rem;
      background-color: #1C1C1C;
      border: 1px solid #1C1C1C;
-}
-
-.headerModalTitle{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0 2rem;
+   }
+   
+   .headerModalTitle{
      color: #FFC857;
      font-size: 1.5rem;
      font-family: 'Inter', sans-serif;
-}
-
-/* .headerModalTitleUser{
-     
-} */
-
-.headerModalUser{
+   }
+   
+   .headerModalUser{
      display: flex;
      flex-direction: column;
      align-items:flex-end;
      justify-content: center;
      padding-right: 10px;
-     padding-top: 5.5rem;    
-}
-
-
-.headerModalBody{
-     text-align: right;
-     height: 15rem;
-     padding: 0 10px;
+     padding-top: 5.5rem;
+   }
+   
+   .headerModalBody{
      height: 25rem;
+     padding: 0 2rem;
      border: 1px solid #FFC857;
      border-bottom: none ;
      border-top: none;
-}
-
-.navListModal{
+   }
+   
+   .navListModal{
      display: flex;
      flex-direction: column;
      gap: 1.5rem;
-}
-
-.navItemModal{
-     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navItemModal{
      padding-top: 1.5rem;
-}
-
-.navItem1Modal{
      border-top: 1px solid #1C1C1C;
+   }
+   
+   .navItem1Modal{
      padding-top: 1.5rem;
-}
-
-.navLinkModal, .navLink1Modal{
+     border-top: 1px solid #1C1C1C;
+   }
+   
+   .navLinkModal, .navLink1Modal{
      font-family: 'Roboto', sans-serif;
      font-size: 1rem;
      color: #F4F7F5;
      text-decoration: none;
-}
-
-.navLinkModal:hover{
+   }
+   
+   .navLinkModal:hover, .navLink1Modal:hover{
      color: #807a90;
-}
-
-.navLink1Modal:hover{
-     color: #807a90;
-}
-
-.headerModalFooter{
+   }
+   
+   .headerModalFooter{
      display: flex;
      justify-content: center;
      align-items: center;
      height: 8.3rem;
      border: 1px solid #FFC857;
      border-top: none;
-}
-
-.headerButton{
+   }
+   
+   .headerButton{
      width: 17rem;
      height: 2.5rem;
-}
-
-.navClose {
+   }
+   
+   .navClose {
      color: #FFC857;
      font-weight: bold;
      font-size: 2rem;
      cursor: pointer;
-}
-
-.activeLink1{
+   }
+   
+   .activeLink1{
      color: #807a90;
-}
-
-.first{
+   }
+   
+   .first{
      border-top: none;
-}
+   }
+   
