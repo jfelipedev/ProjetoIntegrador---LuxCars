@@ -114,7 +114,7 @@ public class CaracteristicController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = OutputCaracteristicReadDto.class))}),
     })
-    @Operation(summary = "Mudar a imagem", tags = {"Image"})
+    @Operation(summary = "Mudar a imagem", tags = {"Caracteristic"})
     public ResponseEntity<?> upload(@PathVariable Long id, @Schema(type = "string", format = "binary") @RequestParam("file") MultipartFile file) throws Exception {
         logger.trace("Controle: UPLOAD / POST /caracteristic/{id}/upload");
         return new ResponseEntity<>(caracteristicService.upload(id, file), HttpStatus.OK);
