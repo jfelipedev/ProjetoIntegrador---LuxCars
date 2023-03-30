@@ -134,7 +134,6 @@ public class CarController {
     }
 
     @GetMapping(value = "/car/{id}/availability")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
@@ -157,7 +156,6 @@ public class CarController {
     }
 
     @GetMapping(value = "/car/availability")
-    @SecurityRequirement(name = "Bearer Authentication")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(arraySchema = @Schema(implementation = Date.class, format = "date")),
