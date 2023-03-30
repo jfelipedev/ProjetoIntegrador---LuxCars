@@ -23,9 +23,8 @@ function Footer() {
 
 
      return(
-       <div className={`footer ${showFooter ? "show-footer" : ""}`}>
-         <div className="footerInfo ">
-           <img src={Image1} alt="LuxCars" className="brand1" />
+       <div className="footer">
+         <div className="footerInfo ">         
 
            <h5 className="copyRight">©️2023 LuxCars.com LTDA</h5>
 
