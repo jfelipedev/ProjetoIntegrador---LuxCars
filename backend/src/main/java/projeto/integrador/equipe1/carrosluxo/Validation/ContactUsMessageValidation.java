@@ -21,7 +21,7 @@ public class ContactUsMessageValidation {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorEmail = validationEmail(contactUsMessage.getEmail());
         String errorTitle = validationText(contactUsMessage.getTitle(), 10, 300);
-        String errorBody = validationText(contactUsMessage.getBody(), 250, 6000);
+        String errorBody = validationText(contactUsMessage.getBody(), 50, 6000);
         if (!(errorEmail == null && errorBody == null && errorTitle == null)) {
             ErrorContactUsMessageDto error = new ErrorContactUsMessageDto(errorEmail, errorTitle, errorBody);
             throw new BadRequestException(objectMapper.writeValueAsString(error));
