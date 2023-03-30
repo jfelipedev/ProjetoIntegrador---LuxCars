@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./avatar.css";
 
-function Avatar({nameInitials, onLogout}) {
+function Avatar({ name, nameInitials, onLogout }) {
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,14 +16,14 @@ function Avatar({nameInitials, onLogout}) {
   };
 
 
-  
+
   return (
     <div className="avatar">
       <span onClick={toggleMenu}>{nameInitials}</span>
       {isMenuOpen && (<div className="avatar-menu">
         <div>Minhas Reservas</div>
         <div onClick={handleLogout}>Logout</div>
-        </div>
+      </div>
       )}
     </div>
   );

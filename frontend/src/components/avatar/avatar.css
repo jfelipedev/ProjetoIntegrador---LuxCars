@@ -11,8 +11,8 @@
   color: #1c1c1c;
   text-transform: uppercase;
   cursor: pointer;
-  
-  
+
+
 }
 
 .avatar-menu {
@@ -25,14 +25,13 @@
   z-index: 1;
   border-radius: 10px;
   overflow: hidden;
- 
   text-transform: capitalize;
-  
+
 }
 
 .avatar-menu div {
   padding: 10px;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .avatar-menu div:hover {
