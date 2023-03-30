@@ -71,7 +71,7 @@ public class CarService {
             carCaracteristic.setValue(caracteristic.getValue());
             carCaracteristicRepository.save(carCaracteristic);
         }
-        return new OutputCarCreateOrUpdateDto(carRepository.findByNameCar(car.getNameCar()).get());
+        return new OutputCarCreateOrUpdateDto(carEntity);
     }
 
     public OutputCarReadDto read(long id) throws Exception {
