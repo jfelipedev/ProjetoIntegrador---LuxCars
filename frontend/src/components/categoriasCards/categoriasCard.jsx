@@ -1,13 +1,12 @@
-import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import './categoriasCard.css'
-//import { categoriasCardData } from './categoriasCardData'
 import api from '../../services/api'
 
 
 function CategoriasCard({filtro}) {
 
+  const url = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
   const [listCategorys, setListCategorys] = useState([])
   
   useEffect(() => {
@@ -22,15 +21,17 @@ function CategoriasCard({filtro}) {
   }, [filtro]);
 
   return (
+    <>
+        <h2 id="motion-point">Resultados estão</h2>
     <div className="categoryCardSection">
       <div className="categoryCardContainer">
 
         {listCategorys.map(({id, nameCar, urlImage, year, price}) => {
           return(
-            <div className="categoryCardCard" >
+            <div className="categoryCardCard"  id="categoryCardCard">
             <div className="box" key={id}>
               
-                <img src={urlImage} alt="" className='categoryCardImg'/>
+                <img src={url + urlImage} alt="" className='categoryCardImg'/>
                 <h4 className='textCard1'>{nameCar}</h4>
                 <h6 className='textCard2'>{year} | {price}</h6>
               
@@ -42,6 +43,7 @@ function CategoriasCard({filtro}) {
 
       </div>
     </div>
+    </>
   )
 }
 
