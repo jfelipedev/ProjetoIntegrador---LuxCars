@@ -1,5 +1,5 @@
 #!/bin/bash
 git pull
-npm build
+npm run build
 sudo rm -R /var/www/html/*
 cp build/. /var/www/html
