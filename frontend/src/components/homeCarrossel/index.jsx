@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./styles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom'
 
 function HomeCarrossel() {
   const url = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
@@ -52,7 +53,7 @@ function HomeCarrossel() {
         {images.map((item) => (
           <div key={item.id}>
             <h3>{item.nameCar}</h3>
-            <img src={url + item.urlImage} alt="" className="slider-img" />
+            <Link to="/"> <img src={url + item.urlImage} alt="" className="slider-img" /></Link>
           </div>
         ))}
       </Slider>

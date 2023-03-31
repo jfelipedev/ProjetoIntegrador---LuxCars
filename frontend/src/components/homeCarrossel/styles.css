@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  background-color: #F4F7F5;
+  /* background-color: #F4F7F5; */
 
   border-top: 1px rgba(0, 0, 0, 0.281) solid;
   border-bottom: 1px rgba(0, 0, 0, 0.281) solid;
@@ -28,7 +28,7 @@ div h3 {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 1.3rem;
-  color: #000;
+  color: #f4f7f5;
   text-transform: capitalize;
 }
 
