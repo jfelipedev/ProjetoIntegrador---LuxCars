@@ -10,14 +10,14 @@ public class CityValidationTest {
     @Test
     void validationTextValid() {
         CityValidation cityValidation = new CityValidation();
-        String error = cityValidation.validationText("Olá Mundo!", 2, 25);
+        String error = cityValidation.validationText("Olá Mundo!", 2L, 25L);
         Assertions.assertNull(error);
     }
 
     @Test
     void validationTextEmpty() {
         CityValidation cityValidation = new CityValidation();
-        String error = cityValidation.validationText("", 2, 25);
+        String error = cityValidation.validationText("", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo não pode está vazio!", error);
     }
@@ -25,7 +25,7 @@ public class CityValidationTest {
     @Test
     void validationTextCharMin() {
         CityValidation cityValidation = new CityValidation();
-        String error = cityValidation.validationText("O", 2, 25);
+        String error = cityValidation.validationText("O", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 2 caractreres!", error);
     }
@@ -33,7 +33,7 @@ public class CityValidationTest {
     @Test
     void validationTextCharMax() {
         CityValidation cityValidation = new CityValidation();
-        String error = cityValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2, 25);
+        String error = cityValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser menor do que 25 caractreres!", error);
     }

@@ -8,7 +8,6 @@ public class ErrorCarDto {
     private String year;
     private String city;
     private String caracteristics;
-
     private String highlight;
 
     public ErrorCarDto(String nameCar, String category, String descritpion, String price, String year, String city, String caracteristics, String highlight) {

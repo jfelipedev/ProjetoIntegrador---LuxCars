@@ -10,14 +10,14 @@ public class ImageValidationTest {
     @Test
     void validationTextValid() {
         ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationText("Olá Mundo!", 2, 25);
+        String error = imageValidation.validationText("Olá Mundo!", 2L, 25L);
         Assertions.assertNull(error);
     }
 
     @Test
     void validationTextEmpty() {
         ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationText("", 2, 25);
+        String error = imageValidation.validationText("", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo não pode está vazio!", error);
     }
@@ -25,7 +25,7 @@ public class ImageValidationTest {
     @Test
     void validationTextCharMin() {
         ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationText("O", 2, 25);
+        String error = imageValidation.validationText("O", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 2 caractreres!", error);
     }
@@ -33,7 +33,7 @@ public class ImageValidationTest {
     @Test
     void validationTextCharMax() {
         ImageValidation imageValidation = new ImageValidation();
-        String error = imageValidation.validationText("Olá mundo, sou texto muito grande!", 2, 25);
+        String error = imageValidation.validationText("Olá mundo, sou texto muito grande!", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser menor do que 25 caractreres!", error);
     }
@@ -41,14 +41,14 @@ public class ImageValidationTest {
     @Test
     void imageInvalid() {
         Assertions.assertThrows(BadRequestException.class, () -> {
-            new ImageValidation(new InputImageDto("", 0));
+            new ImageValidation(new InputImageDto("", 0L));
         });
     }
 
     @Test
     void imageValid() {
         Assertions.assertDoesNotThrow(() -> {
-            new ImageValidation(new InputImageDto("Lateral do carro", 1));
+            new ImageValidation(new InputImageDto("Lateral do carro", 1L));
         });
     }
 }

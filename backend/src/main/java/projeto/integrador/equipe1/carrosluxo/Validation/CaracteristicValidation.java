@@ -9,10 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CaracteristicValidation {
-    private static final int nameCharactersMinimum = 2;
-    private static final int nameCharactersMaximum = 255;
-    private static final int unitCharactersMinimum = 1;
-    private static final int unitCharactersMaximum = 10;
+    private static final Long nameCharactersMinimum = 2L;
+    private static final Long nameCharactersMaximum = 255L;
+    private static final Long unitCharactersMinimum = 1L;
+    private static final Long unitCharactersMaximum = 10L;
     private static final String unitCharactersAllowed = "^[A-Za-z/]{1,}$";
 
     public CaracteristicValidation() {
@@ -31,7 +31,7 @@ public class CaracteristicValidation {
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum, String textCharactersAllowed) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum, String textCharactersAllowed) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

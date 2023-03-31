@@ -31,7 +31,7 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            Assertions.assertEquals("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png", uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000));
+            Assertions.assertEquals("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png", uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 1000L));
             Assertions.assertEquals("Imagem removida!", uploadService.deleteFile("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png"));
             Assertions.assertEquals("Imagem Não Existe!", uploadService.deleteFile("/test/ce089b77945c6519ad5d9b4fa408ed55.1.png"));
         });
@@ -44,7 +44,7 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = new byte[0];
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000);
+            uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 1000L);
         }).getMessage());
     }
 
@@ -56,7 +56,7 @@ public class UploadServiceTest {
             long maxFileSize = 10 * 1024 * 1024; // 10 MB
             byte[] content = new byte[(int) (maxFileSize + 1)];
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000);
+            uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 1000L);
             Mockito.verify(file, Mockito.atLeast(2)).getInputStream();
         }).getMessage());
     }
@@ -69,7 +69,7 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000);
+            uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 1000L);
         }).getMessage());
     }
 
@@ -81,7 +81,7 @@ public class UploadServiceTest {
             String contentType = "image/jpg";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 1000);
+            uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 1000L);
         }).getMessage());
     }
 
@@ -93,7 +93,7 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 200, 100, 1000);
+            uploadService.uploadFile(file, "test", 1L, 100L, 200L, 100L, 1000L);
         }).getMessage());
     }
 
@@ -105,7 +105,7 @@ public class UploadServiceTest {
             String contentType = "image/png";
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
-            uploadService.uploadFile(file, "test", 1L, 100, 1000, 100, 200);
+            uploadService.uploadFile(file, "test", 1L, 100L, 1000L, 100L, 200L);
         }).getMessage());
     }
 }

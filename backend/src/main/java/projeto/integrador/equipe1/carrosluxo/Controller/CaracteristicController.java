@@ -69,7 +69,7 @@ public class CaracteristicController {
                     content = {@Content}),
     })
     @Operation(summary = "Exibir uma característica especifica", tags = {"Caracteristic"})
-    public ResponseEntity<?> read(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /caracteristic/{id}");
         return new ResponseEntity<>(caracteristicService.read(id), HttpStatus.OK);
     }
@@ -87,7 +87,7 @@ public class CaracteristicController {
     })
     @Operation(summary = "Atualizar uma característica especifica", tags = {"Caracteristic"})
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCaracteristicDto caracteristic) throws Exception {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody InputCaracteristicDto caracteristic) throws Exception {
         logger.trace("Controle: UPDATE / PUT /caracteristic/{id}");
         return new ResponseEntity<>(caracteristicService.update(id, caracteristic), HttpStatus.OK);
     }
@@ -101,7 +101,7 @@ public class CaracteristicController {
                     content = {@Content}),
     })
     @Operation(summary = "Remover uma característica especifica", tags = {"Caracteristic"})
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /caracteristic/{id}");
         return new ResponseEntity<>(caracteristicService.delete(id), HttpStatus.NO_CONTENT);
     }

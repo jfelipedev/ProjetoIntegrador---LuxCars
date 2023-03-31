@@ -49,7 +49,7 @@ public class cityServiceAndControllerTest {
     @Test
     void readValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCityReadDto city = cityService.read(1);
+            OutputCityReadDto city = cityService.read(1L);
             Assertions.assertEquals("Napoli", city.getNameCity());
         });
     }
@@ -57,20 +57,20 @@ public class cityServiceAndControllerTest {
     @Test
     void readInvalid() {
         Assertions.assertEquals("Esta cidade não está registrada!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            cityService.read(10);
+            cityService.read(10L);
         }).getMessage());
     }
 
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCityCreateOrUpdateDto city = cityService.update(1, new InputCityDto("Rio de Janeiro", "Italia"));
+            OutputCityCreateOrUpdateDto city = cityService.update(1L, new InputCityDto("Rio de Janeiro", "Italia"));
             Assertions.assertEquals("Rio de Janeiro", city.getNameCity());
             Assertions.assertEquals("Italia", city.getCountry());
-            city = cityService.update(1, new InputCityDto("Rio de Janeiro", "Brasil"));
+            city = cityService.update(1L, new InputCityDto("Rio de Janeiro", "Brasil"));
             Assertions.assertEquals("Rio de Janeiro", city.getNameCity());
             Assertions.assertEquals("Brasil", city.getCountry());
-            city = cityService.update(1, new InputCityDto("Napoli", "Italia"));
+            city = cityService.update(1L, new InputCityDto("Napoli", "Italia"));
             Assertions.assertEquals("Napoli", city.getNameCity());
             Assertions.assertEquals("Italia", city.getCountry());
         });
@@ -79,21 +79,21 @@ public class cityServiceAndControllerTest {
     @Test
     void updateInvalidIdCity() {
         Assertions.assertEquals("Esta cidade não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            cityService.update(10, new InputCityDto("Rio de Janeiro", "Brasil"));
+            cityService.update(10L, new InputCityDto("Rio de Janeiro", "Brasil"));
         }).getMessage());
     }
 
     @Test
     void updateInvalidNameCity() {
         Assertions.assertEquals("{\"nameCity\":\"Já tem o nome registrado nessa cidade!\",\"country\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
-            cityService.update(1, new InputCityDto("São Paulo", "Brasil"));
+            cityService.update(1L, new InputCityDto("São Paulo", "Brasil"));
         }).getMessage());
     }
 
     @Test
     void deleteValid() {
         Assertions.assertDoesNotThrow(() -> {
-            String image = cityService.delete(1);
+            String image = cityService.delete(1L);
             Assertions.assertEquals("Esta cidade foi deletado com sucesso!", image);
         });
     }
@@ -101,7 +101,7 @@ public class cityServiceAndControllerTest {
     @Test
     void deleteInvalid() {
         Assertions.assertEquals("Esta cidade não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            cityService.delete(5);
+            cityService.delete(5L);
         }).getMessage());
     }
 
@@ -139,7 +139,7 @@ public class cityServiceAndControllerTest {
     @Test
     void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCityReadDto> response = (ResponseEntity<OutputCityReadDto>) cityController.read(1);
+            ResponseEntity<OutputCityReadDto> response = (ResponseEntity<OutputCityReadDto>) cityController.read(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Napoli", response.getBody().getNameCity());
         });
@@ -148,7 +148,7 @@ public class cityServiceAndControllerTest {
     @Test
     void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCityCreateOrUpdateDto> response = (ResponseEntity<OutputCityCreateOrUpdateDto>) cityController.update(1, new InputCityDto("Biguaçu", "Brasil"));
+            ResponseEntity<OutputCityCreateOrUpdateDto> response = (ResponseEntity<OutputCityCreateOrUpdateDto>) cityController.update(1L, new InputCityDto("Biguaçu", "Brasil"));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Biguaçu", response.getBody().getNameCity());
         });
@@ -157,7 +157,7 @@ public class cityServiceAndControllerTest {
     @Test
     void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<String> response = (ResponseEntity<String>) cityController.delete(1);
+            ResponseEntity<String> response = (ResponseEntity<String>) cityController.delete(1L);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta cidade foi deletado com sucesso!", response.getBody());
         });

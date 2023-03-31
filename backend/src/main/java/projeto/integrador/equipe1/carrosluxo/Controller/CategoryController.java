@@ -69,7 +69,7 @@ public class CategoryController {
                     content = {@Content}),
     })
     @Operation(summary = "Exibir uma categoria especifica", tags = {"Category"})
-    public ResponseEntity<?> read(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /category/{id}");
         return new ResponseEntity<>(categoryService.read(id), HttpStatus.OK);
     }
@@ -87,7 +87,7 @@ public class CategoryController {
     })
     @Operation(summary = "Atualizar uma categoria especifica", tags = {"Category"})
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCategoryDto category) throws Exception {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody InputCategoryDto category) throws Exception {
         logger.trace("Controle: UPDATE / PUT /category/{id}");
         logger.info(category.getQualification());
         logger.info(category.getDescritpion());
@@ -103,7 +103,7 @@ public class CategoryController {
                     content = {@Content}),
     })
     @Operation(summary = "Remover uma categoria especifica", tags = {"Category"})
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /category/{id}");
         return new ResponseEntity<>(categoryService.delete(id), HttpStatus.NO_CONTENT);
     }

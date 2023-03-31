@@ -6,8 +6,8 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 public class ImageValidation {
-    private static final int titleCharactersMinimum = 8;
-    private static final int titleCharactersMaximum = 100;
+    private static final Long titleCharactersMinimum = 8L;
+    private static final Long titleCharactersMaximum = 100L;
 
     public ImageValidation() {
     }
@@ -21,7 +21,7 @@ public class ImageValidation {
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

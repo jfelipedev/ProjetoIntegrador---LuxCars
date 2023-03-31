@@ -8,10 +8,10 @@ import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 import java.time.LocalDate;
 
 public class CarValidation {
-    private static final int nameCarCharactersMinimum = 5;
-    private static final int nameCarCharactersMaximum = 100;
-    private static final int descritpionCharactersMinimum = 5;
-    private static final int descritpionCharactersMaximum = 2000;
+    private static final Long nameCarCharactersMinimum = 5L;
+    private static final Long nameCarCharactersMaximum = 100L;
+    private static final Long descritpionCharactersMinimum = 5L;
+    private static final Long descritpionCharactersMaximum = 2000L;
 
     public CarValidation() {
     }
@@ -52,7 +52,7 @@ public class CarValidation {
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

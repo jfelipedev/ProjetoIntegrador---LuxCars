@@ -3,7 +3,7 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.booking;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 
 public class OutputBookingCarDto {
-    private long id;
+    private Long id;
     private String nameCar;
     private Double price;
     private Integer year;
@@ -11,7 +11,7 @@ public class OutputBookingCarDto {
     private String city;
     private String country;
 
-    public OutputBookingCarDto(long id, String nameCar, Double price, Integer year, String category, String city, String country) {
+    public OutputBookingCarDto(Long id, String nameCar, Double price, Integer year, String category, String city, String country) {
         this.id = id;
         this.nameCar = nameCar;
         this.price = price;
@@ -34,11 +34,11 @@ public class OutputBookingCarDto {
         this.country = car.getCities().getCountry();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

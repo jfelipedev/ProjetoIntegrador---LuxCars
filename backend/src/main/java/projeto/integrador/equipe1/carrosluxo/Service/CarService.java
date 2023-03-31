@@ -74,7 +74,7 @@ public class CarService {
         return new OutputCarCreateOrUpdateDto(carEntity);
     }
 
-    public OutputCarReadDto read(long id) throws Exception {
+    public OutputCarReadDto read(Long id) throws Exception {
         logger.trace("O carro com id + " + id + " foi exibindo!");
         if (carRepository.existsById(id)) {
             return new OutputCarReadDto(carRepository.findById(id).get());
@@ -82,7 +82,7 @@ public class CarService {
         throw new ResourceNotFoundException("Este carro não existir");
     }
 
-    public OutputCarCreateOrUpdateDto update(long id, InputCarDto car) throws Exception {
+    public OutputCarCreateOrUpdateDto update(Long id, InputCarDto car) throws Exception {
         new CarValidation(car);
         if (!carRepository.existsById(id)) {
             throw new ResourceNotFoundException("Este carro não existir");
@@ -123,7 +123,7 @@ public class CarService {
         return new OutputCarCreateOrUpdateDto(carRepository.findById(id).get());
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (carRepository.existsById(id)) {
             carRepository.deleteById(id);
             logger.info("O carro com a id " + id + " foi deletado!");

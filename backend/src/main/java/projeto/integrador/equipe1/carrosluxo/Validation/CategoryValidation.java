@@ -6,10 +6,10 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.category.InputCategoryDto
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 public class CategoryValidation {
-    private static final int descritpionCharactersMinimum = 10;
-    private static final int descritpionCharactersMaximum = 200;
-    private static final int qualificationCharactersMinimum = 3;
-    private static final int qualificationCharactersMaximum = 100;
+    private static final Long descritpionCharactersMinimum = 10L;
+    private static final Long descritpionCharactersMaximum = 200L;
+    private static final Long qualificationCharactersMinimum = 3L;
+    private static final Long qualificationCharactersMaximum = 100L;
 
     public CategoryValidation() {
     }
@@ -24,7 +24,7 @@ public class CategoryValidation {
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

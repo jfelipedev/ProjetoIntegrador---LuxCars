@@ -10,7 +10,7 @@ public class CitiesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(name = "name_city")
     private String nameCity;
@@ -23,7 +23,7 @@ public class CitiesEntity {
     public CitiesEntity() {
     }
 
-    public CitiesEntity(long id, String nameCity, String country, Set<CarEntity> cars) {
+    public CitiesEntity(Long id, String nameCity, String country, Set<CarEntity> cars) {
         this.id = id;
         this.nameCity = nameCity;
         this.country = country;
@@ -35,11 +35,11 @@ public class CitiesEntity {
         this.country = city.getCountry();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

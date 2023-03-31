@@ -3,13 +3,13 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.image;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 
 public class OutputImageCarDto {
-    private long id;
+    private Long id;
     private String nameCar;
 
     public OutputImageCarDto() {
     }
 
-    public OutputImageCarDto(long id, String nameCar) {
+    public OutputImageCarDto(Long id, String nameCar) {
         this.id = id;
         this.nameCar = nameCar;
     }
@@ -19,11 +19,11 @@ public class OutputImageCarDto {
         this.nameCar = car.getNameCar();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

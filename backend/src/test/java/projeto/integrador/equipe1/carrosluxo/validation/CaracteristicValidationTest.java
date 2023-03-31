@@ -10,14 +10,14 @@ public class CaracteristicValidationTest {
     @Test
     void validationTextValid() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("Ola Mundo", 2, 25, "^[A-Za-z ]{1,}$");
+        String error = caracteristicValidation.validationText("Ola Mundo", 2L, 25L, "^[A-Za-z ]{1,}$");
         Assertions.assertNull(error);
     }
 
     @Test
     void validationTextEmpty() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("", 2, 25, "");
+        String error = caracteristicValidation.validationText("", 2L, 25L, "");
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo não pode está vazio!", error);
     }
@@ -25,7 +25,7 @@ public class CaracteristicValidationTest {
     @Test
     void validationTextCharMin() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("Ola", 5, 25, "");
+        String error = caracteristicValidation.validationText("Ola", 5L, 25L, "");
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 5 caractreres!", error);
     }
@@ -33,7 +33,7 @@ public class CaracteristicValidationTest {
     @Test
     void validationTextCharMax() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("ola mundo", 2, 5, "");
+        String error = caracteristicValidation.validationText("ola mundo", 2L, 5L, "");
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser menor do que 5 caractreres!", error);
     }
@@ -41,7 +41,7 @@ public class CaracteristicValidationTest {
     @Test
     void validationTextCharAllowed() {
         CaracteristicValidation caracteristicValidation = new CaracteristicValidation();
-        String error = caracteristicValidation.validationText("Olá mundo!", 2, 25, "^[a-z]{1,}$");
+        String error = caracteristicValidation.validationText("Olá mundo!", 2L, 25L, "^[a-z]{1,}$");
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo contém caracteres invalidos!", error);
     }

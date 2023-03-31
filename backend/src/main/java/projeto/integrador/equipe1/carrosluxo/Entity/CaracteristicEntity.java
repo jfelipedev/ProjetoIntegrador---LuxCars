@@ -11,7 +11,7 @@ public class CaracteristicEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(name = "name_caracteristcs")
     private String name;
@@ -24,7 +24,7 @@ public class CaracteristicEntity {
     @OneToMany(mappedBy = "caracteristic")
     private Set<CarCaracteristicEntity> carCaracteristic = new HashSet<>();
 
-    public CaracteristicEntity(long id, String name, String icon, String unitOfMeasurement, Set<CarCaracteristicEntity> carCaracteristic) {
+    public CaracteristicEntity(Long id, String name, String icon, String unitOfMeasurement, Set<CarCaracteristicEntity> carCaracteristic) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -41,11 +41,11 @@ public class CaracteristicEntity {
         this.unitOfMeasurement = caracteristic.getUnitOfMeasurement();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

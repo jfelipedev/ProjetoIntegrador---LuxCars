@@ -5,14 +5,14 @@ import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 import java.util.Objects;
 
 public class OutputCarImagesDto {
-    private long id;
+    private Long id;
     private String title;
     private String url;
 
     public OutputCarImagesDto() {
     }
 
-    public OutputCarImagesDto(long id, String title, String url) {
+    public OutputCarImagesDto(Long id, String title, String url) {
         this.id = id;
         this.title = title;
         this.url = url;
@@ -28,11 +28,11 @@ public class OutputCarImagesDto {
         }
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

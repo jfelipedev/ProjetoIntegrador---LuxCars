@@ -3,14 +3,14 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.city;
 import projeto.integrador.equipe1.carrosluxo.Entity.CitiesEntity;
 
 public class OutputCityCreateOrUpdateDto {
-    private long id;
+    private Long id;
     private String nameCity;
     private String country;
 
     public OutputCityCreateOrUpdateDto() {
     }
 
-    public OutputCityCreateOrUpdateDto(long id, String nameCity, String country) {
+    public OutputCityCreateOrUpdateDto(Long id, String nameCity, String country) {
         this.id = id;
         this.nameCity = nameCity;
         this.country = country;
@@ -22,7 +22,7 @@ public class OutputCityCreateOrUpdateDto {
         this.country = cities.getCountry();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

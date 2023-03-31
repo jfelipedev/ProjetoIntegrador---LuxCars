@@ -12,13 +12,12 @@ import java.util.regex.Pattern;
 
 public class UserValidation {
 
-    private static final int nameCharactersMinimum = 2;
-    private static final int nameCharactersMaximum = 100;
+    private static final Long nameCharactersMinimum = 2L;
+    private static final Long nameCharactersMaximum = 100L;
     private static final String nameCharactersAllowed = "^[A-Za-záéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ-]{1,}$";
-
-    private static final int passwordCharacterMinimum = 8;
-    private static final int passwordCharacterMaximum = 20;
-    private static final int emailCharacterMaximum = 200;
+    private static final Long passwordCharacterMinimum = 8L;
+    private static final Long passwordCharacterMaximum = 20L;
+    private static final Long emailCharacterMaximum = 200L;
     private static final String emailAllowed = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
 
     public UserValidation() {
@@ -53,7 +52,7 @@ public class UserValidation {
             return "O " + campo + " dever ser maior do que " + nameCharactersMinimum + " caractreres!";
         } else if (name.trim().length() > nameCharactersMaximum) {
             return "O " + campo + " dever ser menor do que " + nameCharactersMaximum + " caractreres!";
-        } else if (!validationLength(name.trim().split(" "), 2)) {
+        } else if (!validationLength(name.trim().split(" "), 2L)) {
             return "O " + campo + " nome contém palavras menor do que 2 caractres!";
         }
         String list[] = name.split(" ");
@@ -88,7 +87,7 @@ public class UserValidation {
         return null;
     }
 
-    public boolean validationLength(String[] lista, int min) {
+    public boolean validationLength(String[] lista, Long min) {
         boolean tmp = true;
         for (String item : lista) {
             if (item.length() < min) {

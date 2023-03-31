@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 
 @Component
 public class MD5Generator {
-
     public String generate(MultipartFile file) throws NoSuchAlgorithmException, IOException {
         MessageDigest md = MessageDigest.getInstance("MD5");
         InputStream is = file.getInputStream();

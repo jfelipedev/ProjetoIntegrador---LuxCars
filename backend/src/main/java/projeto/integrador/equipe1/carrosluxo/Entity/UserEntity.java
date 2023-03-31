@@ -16,7 +16,7 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     private String surname;
@@ -30,7 +30,7 @@ public class UserEntity implements UserDetails {
     @OneToMany(mappedBy = "user")
     private Set<BookingEntity> bookings = new HashSet<>();
 
-    public UserEntity(long id, String firstName, String surname, String email, String password, UserRoleEntity role) {
+    public UserEntity(Long id, String firstName, String surname, String email, String password, UserRoleEntity role) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -90,11 +90,11 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -49,7 +49,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void readValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCaracteristicReadDto caracteristic = caracteristicService.read(1);
+            OutputCaracteristicReadDto caracteristic = caracteristicService.read(1L);
             Assertions.assertEquals("testeICon", caracteristic.getIcon());
         });
     }
@@ -57,14 +57,14 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void readInvalid() {
         Assertions.assertEquals("Esta caracteristica não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            caracteristicService.read(10);
+            caracteristicService.read(10L);
         }).getMessage());
     }
 
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.update(1, new InputCaracteristicDto("Tem iceberg",null));
+            OutputCaracteristicCreateOrUpdateDto caracteristic = caracteristicService.update(1L, new InputCaracteristicDto("Tem iceberg",null));
             Assertions.assertEquals("Imagem ainda não foi inserida!", caracteristic.getIcon());
             Assertions.assertEquals("Tem iceberg", caracteristic.getName());
         });
@@ -73,14 +73,14 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void updateInvalidIdCategory() {
         Assertions.assertEquals("Esta caracteristica não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            caracteristicService.update(10, new InputCaracteristicDto("Tem iceberg", null));
+            caracteristicService.update(10L, new InputCaracteristicDto("Tem iceberg", null));
         }).getMessage());
     }
 
     @Test
     void deleteValid() {
         Assertions.assertDoesNotThrow(() -> {
-            String categoty = caracteristicService.delete(1);
+            String categoty = caracteristicService.delete(1L);
             Assertions.assertEquals("Esta caracteristica foi deletado com sucesso!", categoty);
         });
     }
@@ -88,7 +88,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void deleteInvalid() {
         Assertions.assertEquals("Esta caracteristica não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            caracteristicService.delete(10);
+            caracteristicService.delete(10L);
         }).getMessage());
     }
 
@@ -98,7 +98,7 @@ public class CaracteristicServiceAndControllerTest {
             List<OutputCaracteristicDto> list = caracteristicService.all();
             Assertions.assertEquals(1, list.size());
             Assertions.assertEquals(1, list.get(0).getId());
-            Assertions.assertEquals("testeICon", list.get(0).getIcon());
+            Assertions.assertEquals("potência de 340 cv e torque de 44,1 m", list.get(0).getName());
         });
     }
 
@@ -136,7 +136,7 @@ public class CaracteristicServiceAndControllerTest {
             ResponseEntity<List<OutputCaracteristicDto>> response = (ResponseEntity<List<OutputCaracteristicDto>>) caracteristicController.all();
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals(1, response.getBody().get(0).getId());
-            Assertions.assertEquals("testeICon", response.getBody().get(0).getIcon());
+            Assertions.assertEquals("potência de 340 cv e torque de 44,1 m", response.getBody().get(0).getName());
         });
     }
 
@@ -152,7 +152,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCaracteristicReadDto> response = (ResponseEntity<OutputCaracteristicReadDto>) caracteristicController.read(1);
+            ResponseEntity<OutputCaracteristicReadDto> response = (ResponseEntity<OutputCaracteristicReadDto>) caracteristicController.read(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("testeICon", response.getBody().getIcon());
         });
@@ -161,7 +161,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.update(1, new InputCaracteristicDto("Tem iceberg", null));
+            ResponseEntity<OutputCaracteristicCreateOrUpdateDto> response = (ResponseEntity<OutputCaracteristicCreateOrUpdateDto>) caracteristicController.update(1L, new InputCaracteristicDto("Tem iceberg", null));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Tem iceberg", response.getBody().getName());
         });
@@ -170,7 +170,7 @@ public class CaracteristicServiceAndControllerTest {
     @Test
     void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<String> response = (ResponseEntity<String>) caracteristicController.delete(1);
+            ResponseEntity<String> response = (ResponseEntity<String>) caracteristicController.delete(1L);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta caracteristica foi deletado com sucesso!", response.getBody());
         });

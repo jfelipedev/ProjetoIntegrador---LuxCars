@@ -1,9 +1,9 @@
-package projeto.integrador.equipe1.carrosluxo.Dto.output;
+package projeto.integrador.equipe1.carrosluxo.Dto.output.contactUsMessage;
 
 import projeto.integrador.equipe1.carrosluxo.Entity.ContactUsMessageEntity;
 
 public class OutputContactUsMessageDto {
-    private long id;
+    private Long id;
     private String email;
     private String title;
     private String body;
@@ -11,7 +11,7 @@ public class OutputContactUsMessageDto {
     public OutputContactUsMessageDto() {
     }
 
-    public OutputContactUsMessageDto(long id, String email, String title, String body) {
+    public OutputContactUsMessageDto(Long id, String email, String title, String body) {
         this.id = id;
         this.email = email;
         this.title = title;
@@ -25,11 +25,11 @@ public class OutputContactUsMessageDto {
         this.body = message.getBody();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

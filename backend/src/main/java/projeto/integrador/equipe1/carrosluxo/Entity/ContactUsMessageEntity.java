@@ -1,14 +1,14 @@
 package projeto.integrador.equipe1.carrosluxo.Entity;
 
 import jakarta.persistence.*;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.InputContactUsMessageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.contactUsMessage.InputContactUsMessageDto;
 
 @Entity(name = "contact_us_message")
 public class ContactUsMessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     private String email;
     private String title;
     private String body;
@@ -16,7 +16,7 @@ public class ContactUsMessageEntity {
     public ContactUsMessageEntity() {
     }
 
-    public ContactUsMessageEntity(long id, String email, String title, String body) {
+    public ContactUsMessageEntity(Long id, String email, String title, String body) {
         this.id = id;
         this.email = email;
         this.title = title;
@@ -29,11 +29,11 @@ public class ContactUsMessageEntity {
         this.body = message.getBody();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

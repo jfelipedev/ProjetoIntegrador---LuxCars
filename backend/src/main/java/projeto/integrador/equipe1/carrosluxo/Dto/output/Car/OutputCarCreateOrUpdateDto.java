@@ -5,11 +5,13 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class OutputCarCreateOrUpdateDto {
-    private long id;
+    private Long id;
     private String nameCar;
 
     private String descritpion;
@@ -27,7 +29,7 @@ public class OutputCarCreateOrUpdateDto {
     public OutputCarCreateOrUpdateDto() {
     }
 
-    public OutputCarCreateOrUpdateDto(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, Set<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
+    public OutputCarCreateOrUpdateDto(Long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, Set<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
         this.id = id;
         this.nameCar = nameCar;
         this.descritpion = descritpion;
@@ -50,7 +52,9 @@ public class OutputCarCreateOrUpdateDto {
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
         Set<OutputCarImagesDto> images = new HashSet<>();
-        for (ImagesEntity image : car.getImages()) {
+        List<ImagesEntity> lista = new ArrayList<>(car.getImages());
+        lista.sort((e1, e2) -> e1.getId().compareTo(e2.getId()));
+        for (ImagesEntity image : lista) {
             images.add(new OutputCarImagesDto(image));
         }
         this.images = images;
@@ -61,11 +65,11 @@ public class OutputCarCreateOrUpdateDto {
         this.caracteristics = list;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

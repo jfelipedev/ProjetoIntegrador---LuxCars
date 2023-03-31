@@ -6,7 +6,7 @@ import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
 public class OutputUserDto {
     Logger logger = LoggerFactory.getLogger(OutputUserDto.class);
-    private long id;
+    private Long id;
     private String firstName;
     private String surname;
     private String email;
@@ -15,7 +15,7 @@ public class OutputUserDto {
     public OutputUserDto() {
     }
 
-    public OutputUserDto(long id, String firstName, String surname, String email, String role) {
+    public OutputUserDto(Long id, String firstName, String surname, String email, String role) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -40,11 +40,11 @@ public class OutputUserDto {
         }
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

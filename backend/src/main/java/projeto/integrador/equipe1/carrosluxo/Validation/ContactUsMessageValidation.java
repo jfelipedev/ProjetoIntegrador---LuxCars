@@ -1,18 +1,15 @@
 package projeto.integrador.equipe1.carrosluxo.Validation;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCaracteristicDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorCityDto;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorContactUsMessageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.InputContactUsMessageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.contactUsMessage.InputContactUsMessageDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ContactUsMessageValidation {
-    private static final int emailCharacterMaximum = 200;
+    private static final Long emailCharacterMaximum = 200L;
     private static final String emailAllowed = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
     public ContactUsMessageValidation() {
     }
@@ -20,15 +17,15 @@ public class ContactUsMessageValidation {
     public ContactUsMessageValidation(InputContactUsMessageDto contactUsMessage) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String errorEmail = validationEmail(contactUsMessage.getEmail());
-        String errorTitle = validationText(contactUsMessage.getTitle(), 10, 300);
-        String errorBody = validationText(contactUsMessage.getBody(), 50, 6000);
+        String errorTitle = validationText(contactUsMessage.getTitle(), 10L, 300L);
+        String errorBody = validationText(contactUsMessage.getBody(), 50L, 6000L);
         if (!(errorEmail == null && errorBody == null && errorTitle == null)) {
             ErrorContactUsMessageDto error = new ErrorContactUsMessageDto(errorEmail, errorTitle, errorBody);
             throw new BadRequestException(objectMapper.writeValueAsString(error));
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

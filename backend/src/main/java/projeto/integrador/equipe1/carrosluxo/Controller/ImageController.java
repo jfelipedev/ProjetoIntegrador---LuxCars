@@ -70,7 +70,7 @@ public class ImageController {
                     content = {@Content}),
     })
     @Operation(summary = "Exibir uma imagem especifica", tags = {"Image"})
-    public ResponseEntity<?> read(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /image/{id}");
         return new ResponseEntity<>(imageService.read(id), HttpStatus.OK);
     }
@@ -88,7 +88,7 @@ public class ImageController {
     })
     @Operation(summary = "Atualizar uma imagem especifica", tags = {"Image"})
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputImageDto image) throws Exception {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody InputImageDto image) throws Exception {
         logger.trace("Controle: UPDATE / PUT /image/{id}");
         return new ResponseEntity<>(imageService.update(id, image), HttpStatus.OK);
     }
@@ -102,7 +102,7 @@ public class ImageController {
                     content = {@Content}),
     })
     @Operation(summary = "Remover uma imagem especifica", tags = {"Image"})
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /image/{id}");
         return new ResponseEntity<>(imageService.delete(id), HttpStatus.NO_CONTENT);
     }

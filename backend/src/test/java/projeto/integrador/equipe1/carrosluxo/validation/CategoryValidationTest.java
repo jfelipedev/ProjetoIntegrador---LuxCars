@@ -10,14 +10,14 @@ public class CategoryValidationTest {
     @Test
     void validationTextValid() {
         CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationText("Olá Mundo!", 2, 25);
+        String error = categoryValidation.validationText("Olá Mundo!", 2L, 25L);
         Assertions.assertNull(error);
     }
 
     @Test
     void validationTextEmpty() {
         CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationText("", 2, 25);
+        String error = categoryValidation.validationText("", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo não pode está vazio!", error);
     }
@@ -25,7 +25,7 @@ public class CategoryValidationTest {
     @Test
     void validationTextCharMin() {
         CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationText("O", 2, 25);
+        String error = categoryValidation.validationText("O", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 2 caractreres!", error);
     }
@@ -33,7 +33,7 @@ public class CategoryValidationTest {
     @Test
     void validationTextCharMax() {
         CategoryValidation categoryValidation = new CategoryValidation();
-        String error = categoryValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2, 25);
+        String error = categoryValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser menor do que 25 caractreres!", error);
     }

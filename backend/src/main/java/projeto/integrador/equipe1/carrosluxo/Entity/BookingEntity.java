@@ -12,7 +12,7 @@ public class BookingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     private Date startDate;
@@ -29,7 +29,7 @@ public class BookingEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public BookingEntity(long id, Date startDate, Date startTime, Date endDate, CarEntity car, UserEntity user) {
+    public BookingEntity(Long id, Date startDate, Date startTime, Date endDate, CarEntity car, UserEntity user) {
         this.id = id;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -51,11 +51,11 @@ public class BookingEntity {
         this.user = user;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

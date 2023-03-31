@@ -5,22 +5,22 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import java.util.Objects;
 
 public class OutputCategoryAllDto {
-    private long id;
+    private Long id;
     private String qualification;
     private String urlImage;
-    private int numberCars;
+    private Long numberCars;
 
     public OutputCategoryAllDto() {
     }
 
-    public OutputCategoryAllDto(long id, String qualification, String urlImage, int numberCars) {
+    public OutputCategoryAllDto(Long id, String qualification, String urlImage, Long numberCars) {
         this.id = id;
         this.qualification = qualification;
         this.urlImage = urlImage;
         this.numberCars = numberCars;
     }
 
-    public OutputCategoryAllDto(CategoryEntity category, int numberCars) {
+    public OutputCategoryAllDto(CategoryEntity category, Long numberCars) {
         this.id = category.getId();
         this.qualification = category.getQualification();
         if (Objects.equals(category.getUrlImage(), "")) {
@@ -31,11 +31,11 @@ public class OutputCategoryAllDto {
         this.numberCars = numberCars;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,11 +55,11 @@ public class OutputCategoryAllDto {
         this.urlImage = urlImage;
     }
 
-    public int getNumberCars() {
+    public Long getNumberCars() {
         return numberCars;
     }
 
-    public void setNumberCars(int numberCars) {
+    public void setNumberCars(Long numberCars) {
         this.numberCars = numberCars;
     }
 }

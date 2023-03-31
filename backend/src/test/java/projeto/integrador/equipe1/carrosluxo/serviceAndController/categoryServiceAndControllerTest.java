@@ -56,7 +56,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void readValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCategoryReadDto category = categoryService.read(1);
+            OutputCategoryReadDto category = categoryService.read(1L);
             Assertions.assertEquals("Conversivel", category.getQualification());
         });
     }
@@ -64,20 +64,20 @@ public class categoryServiceAndControllerTest {
     @Test
     void readInvalid() {
         Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            categoryService.read(10);
+            categoryService.read(10L);
         }).getMessage());
     }
 
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCategoryCreateOrUpdateDto category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "SUVs"));
+            OutputCategoryCreateOrUpdateDto category = categoryService.update(1L, new InputCategoryDto("Carros sem o teto", "SUVs"));
             Assertions.assertEquals("Carros sem o teto", category.getDescritpion());
             Assertions.assertEquals("SUVs", category.getQualification());
-            category = categoryService.update(1, new InputCategoryDto("São carros suvs!", "SUVs"));
+            category = categoryService.update(1L, new InputCategoryDto("São carros suvs!", "SUVs"));
             Assertions.assertEquals("São carros suvs!", category.getDescritpion());
             Assertions.assertEquals("SUVs", category.getQualification());
-            category = categoryService.update(1, new InputCategoryDto("Carros sem o teto", "Conversivel"));
+            category = categoryService.update(1L, new InputCategoryDto("Carros sem o teto", "Conversivel"));
             Assertions.assertEquals("Carros sem o teto", category.getDescritpion());
             Assertions.assertEquals("Conversivel", category.getQualification());
         });
@@ -86,21 +86,21 @@ public class categoryServiceAndControllerTest {
     @Test
     void updateInvalidIdCategory() {
         Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            categoryService.update(10, new InputCategoryDto("São carros suvs!", "SUVs"));
+            categoryService.update(10L, new InputCategoryDto("São carros suvs!", "SUVs"));
         }).getMessage());
     }
 
     @Test
     void updateInvalidQualification() {
         Assertions.assertEquals("{\"descritpion\":null,\"qualification\":\"qualification especificado já está em uso\"}", Assertions.assertThrows(BadRequestException.class, () -> {
-            categoryService.update(1, new InputCategoryDto("São carros sedans", "Sedans"));
+            categoryService.update(1L, new InputCategoryDto("São carros sedans", "Sedans"));
         }).getMessage());
     }
 
     @Test
     void deleteInvalid() {
         Assertions.assertEquals("Esta categoria não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            categoryService.delete(10);
+            categoryService.delete(10L);
         }).getMessage());
     }
 
@@ -114,7 +114,7 @@ public class categoryServiceAndControllerTest {
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             categoryService.upload(1L, file);
-            String categoty = categoryService.delete(1);
+            String categoty = categoryService.delete(1L);
             Assertions.assertEquals("Esta categoria foi deletado com sucesso!", categoty);
         });
     }
@@ -183,7 +183,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCategoryReadDto> response = (ResponseEntity<OutputCategoryReadDto>) categoryController.read(1);
+            ResponseEntity<OutputCategoryReadDto> response = (ResponseEntity<OutputCategoryReadDto>) categoryController.read(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Conversivel", response.getBody().getQualification());
         });
@@ -192,7 +192,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.update(1, new InputCategoryDto("Carros SUVs", "survs"));
+            ResponseEntity<OutputCategoryCreateOrUpdateDto> response = (ResponseEntity<OutputCategoryCreateOrUpdateDto>) categoryController.update(1L, new InputCategoryDto("Carros SUVs", "survs"));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("survs", response.getBody().getQualification());
         });
@@ -201,7 +201,7 @@ public class categoryServiceAndControllerTest {
     @Test
     void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<String> response = (ResponseEntity<String>) categoryController.delete(1);
+            ResponseEntity<String> response = (ResponseEntity<String>) categoryController.delete(1L);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta categoria foi deletado com sucesso!", response.getBody());
         });

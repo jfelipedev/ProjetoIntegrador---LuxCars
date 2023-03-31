@@ -32,7 +32,6 @@ public class BookingController {
     private BookingService bookingService;
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private CarController carController;
 
@@ -70,7 +69,7 @@ public class BookingController {
                     content = {@Content}),
     })
     @Operation(summary = "Excluir uma reserva", tags = {"Booking"})
-    public ResponseEntity<?> delete(@PathVariable long id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /booking/{id}");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userEntity = userRepository.findByEmail(auth.getName()).get();
@@ -91,7 +90,7 @@ public class BookingController {
                     content = {@Content}),
     })
     @Operation(summary = "Ver uma reserva", tags = {"Booking"})
-    public ResponseEntity<?> read(@PathVariable long id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /booking/{id}");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userEntity = userRepository.findByEmail(auth.getName()).get();

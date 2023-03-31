@@ -39,18 +39,9 @@ public class CarServiceAndControllerTest {
         Assertions.assertDoesNotThrow(() -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals(3, car.getId());
         });
-    }
-
-    @Test
-    void createInvalidNameCar() {
-        Assertions.assertEquals("{\"nameCar\":\"Este carro já está cadastrado!\",\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
-            HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
-            list.add(new InputCarCaracteristicDTO(1L, null));
-            carService.create(new InputCarDto("Audi M6", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1, 1, list));
-        }).getMessage());
     }
 
     @Test
@@ -58,7 +49,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":\"Esta categoria não existe!\",\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 5, 1, list));
+            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 5L, 1L, list));
         }).getMessage());
     }
 
@@ -67,7 +58,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":\"Esta cidade não está registrado!\",\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1, 5, list));
+            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1L, 5L, list));
         }).getMessage());
     }
 
@@ -76,7 +67,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":\"Contém uma caracteristica que não existir!\",\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(10L, null));
-            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
         }).getMessage());
     }
 
@@ -85,14 +76,14 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":\"O destaque precisar ser verdadeiro ou falso!\"}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, null, 1, 1, list));
+            carService.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, null, 1L, 1L, list));
         }).getMessage());
     }
 
     @Test
     void readValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputCarReadDto car = carService.read(1);
+            OutputCarReadDto car = carService.read(1L);
             Assertions.assertEquals("Audi M6", car.getNameCar());
         });
     }
@@ -100,7 +91,7 @@ public class CarServiceAndControllerTest {
     @Test
     void readInvalid() {
         Assertions.assertEquals("Este carro não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.read(10);
+            carService.read(10L);
         }).getMessage());
     }
 
@@ -109,13 +100,13 @@ public class CarServiceAndControllerTest {
         Assertions.assertDoesNotThrow(() -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals("BMW M2", car.getNameCar());
             Assertions.assertEquals("Eu sou um audi", car.getDescritpion());
-            car = carService.update(1, new InputCarDto("BMW M2", "Um carro alemão", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            car = carService.update(1L, new InputCarDto("BMW M2", "Um carro alemão", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals("BMW M2", car.getNameCar());
             Assertions.assertEquals("Um carro alemão", car.getDescritpion());
-            car = carService.update(1, new InputCarDto("Audi M6", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            car = carService.update(1L, new InputCarDto("Audi M6", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals("Audi M6", car.getNameCar());
             Assertions.assertEquals("Eu sou um audi", car.getDescritpion());
         });
@@ -126,16 +117,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("Este carro não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(10, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
-        }).getMessage());
-    }
-
-    @Test
-    void updateInvalidNameCar() {
-        Assertions.assertEquals("{\"nameCar\":\"Este carro já está cadastrado!\",\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
-            HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
-            list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("Ferrari GT 400", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.update(10L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
         }).getMessage());
     }
 
@@ -144,7 +126,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":\"Esta categoria não existe!\",\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 10, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 10L, 1L, list));
         }).getMessage());
     }
 
@@ -153,7 +135,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":\"Esta cidade não está registrado!\",\"caracteristics\":null,\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 10, list));
+            OutputCarCreateOrUpdateDto car = carService.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 10L, list));
         }).getMessage());
     }
 
@@ -162,7 +144,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":\"Contém uma caracteristica que não existir!\",\"highlight\":null}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(10L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
         }).getMessage());
     }
 
@@ -171,14 +153,14 @@ public class CarServiceAndControllerTest {
         Assertions.assertEquals("{\"nameCar\":null,\"category\":null,\"descritpion\":null,\"price\":null,\"year\":null,\"city\":null,\"caracteristics\":null,\"highlight\":\"O destaque precisar ser verdadeiro ou falso!\"}", Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            OutputCarCreateOrUpdateDto car = carService.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, null, 1, 1, list));
+            OutputCarCreateOrUpdateDto car = carService.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, null, 1L, 1L, list));
         }).getMessage());
     }
 
     @Test
     void deleteValid() {
         Assertions.assertDoesNotThrow(() -> {
-            String categoty = carService.delete(1);
+            String categoty = carService.delete(1L);
             Assertions.assertEquals("Este carro foi deletado com sucesso!", categoty);
         });
     }
@@ -186,7 +168,7 @@ public class CarServiceAndControllerTest {
     @Test
     void deleteInvalid() {
         Assertions.assertEquals("Este carro não existir", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            carService.delete(10);
+            carService.delete(10L);
         }).getMessage());
     }
 
@@ -304,7 +286,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertDoesNotThrow(() -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            ResponseEntity<OutputCarCreateOrUpdateDto> response = (ResponseEntity<OutputCarCreateOrUpdateDto>) carController.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            ResponseEntity<OutputCarCreateOrUpdateDto> response = (ResponseEntity<OutputCarCreateOrUpdateDto>) carController.create(new InputCarDto("BMW M3", "uma carro alemão", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
             Assertions.assertEquals(3, response.getBody().getId());
         });
@@ -313,7 +295,7 @@ public class CarServiceAndControllerTest {
     @Test
     void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputCarReadDto> response = (ResponseEntity<OutputCarReadDto>) carController.read(1);
+            ResponseEntity<OutputCarReadDto> response = (ResponseEntity<OutputCarReadDto>) carController.read(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Audi M6", response.getBody().getNameCar());
         });
@@ -324,7 +306,7 @@ public class CarServiceAndControllerTest {
         Assertions.assertDoesNotThrow(() -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            ResponseEntity<OutputCarCreateOrUpdateDto> response = (ResponseEntity<OutputCarCreateOrUpdateDto>) carController.update(1, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1, 1, list));
+            ResponseEntity<OutputCarCreateOrUpdateDto> response = (ResponseEntity<OutputCarCreateOrUpdateDto>) carController.update(1L, new InputCarDto("BMW M2", "Eu sou um audi", 512.24, 2018, Boolean.TRUE, 1L, 1L, list));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("BMW M2", response.getBody().getNameCar());
         });
@@ -333,7 +315,7 @@ public class CarServiceAndControllerTest {
     @Test
     void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<String> response = (ResponseEntity<String>) carController.delete(1);
+            ResponseEntity<String> response = (ResponseEntity<String>) carController.delete(1L);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Este carro foi deletado com sucesso!", response.getBody());
         });

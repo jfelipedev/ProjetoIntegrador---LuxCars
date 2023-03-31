@@ -18,14 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorContactUsMessageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.error.ErrorImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.InputContactUsMessageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.input.image.InputImageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.OutputContactUsMessageDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageCreateOrUpdateDto;
-import projeto.integrador.equipe1.carrosluxo.Dto.output.image.OutputImageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.input.contactUsMessage.InputContactUsMessageDto;
+import projeto.integrador.equipe1.carrosluxo.Dto.output.contactUsMessage.OutputContactUsMessageDto;
 import projeto.integrador.equipe1.carrosluxo.Service.ContactUsMessageService;
-import projeto.integrador.equipe1.carrosluxo.Service.ImageService;
 
 @RestController
 @Tag(name = "Contact Us", description = "Controle de mensagem da partre entre em contato")

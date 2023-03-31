@@ -8,11 +8,11 @@ public class InputCarDto {
     private Double price;
     private Integer year;
     private Boolean highlight;
-    private long idCategory;
-    private long idCity;
+    private Long idCategory;
+    private Long idCity;
     private HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO = new HashSet<>();
 
-    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, long idCategory, long idCity, HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO) {
+    public InputCarDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, Long idCategory, Long idCity, HashSet<InputCarCaracteristicDTO> inputCarCaracteristicDTO) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
         this.price = price;
@@ -66,19 +66,19 @@ public class InputCarDto {
         this.highlight = highlight;
     }
 
-    public long getIdCategory() {
+    public Long getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(long idCategory) {
+    public void setIdCategory(Long idCategory) {
         this.idCategory = idCategory;
     }
 
-    public long getIdCity() {
+    public Long getIdCity() {
         return idCity;
     }
 
-    public void setIdCity(long idCity) {
+    public void setIdCity(Long idCity) {
         this.idCity = idCity;
     }
 

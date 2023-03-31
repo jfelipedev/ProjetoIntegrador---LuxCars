@@ -5,7 +5,7 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CategoryEntity;
 import java.util.Objects;
 
 public class OutputCategoryCreateOrUpdateDto {
-    private long id;
+    private Long id;
     private String descritpion;
     private String urlImage;
     private String qualification;
@@ -13,7 +13,7 @@ public class OutputCategoryCreateOrUpdateDto {
     public OutputCategoryCreateOrUpdateDto() {
     }
 
-    public OutputCategoryCreateOrUpdateDto(long id, String descritpion, String urlImage, String qualification) {
+    public OutputCategoryCreateOrUpdateDto(Long id, String descritpion, String urlImage, String qualification) {
         this.id = id;
         this.descritpion = descritpion;
         this.urlImage = urlImage;
@@ -31,11 +31,11 @@ public class OutputCategoryCreateOrUpdateDto {
         this.setDescritpion(categoryEntity.getDescritpion());
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

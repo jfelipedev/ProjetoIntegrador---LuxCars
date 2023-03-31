@@ -8,7 +8,7 @@ public class ImagesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     private String title;
     private String url;
     @ManyToOne
@@ -18,7 +18,7 @@ public class ImagesEntity {
     public ImagesEntity() {
     }
 
-    public ImagesEntity(long id, String title, String url, CarEntity car) {
+    public ImagesEntity(Long id, String title, String url, CarEntity car) {
         this.id = id;
         this.title = title;
         this.url = url;
@@ -33,11 +33,11 @@ public class ImagesEntity {
         this.car = car;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
