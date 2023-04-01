@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./productInfo.css";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function ProductInfo() {
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
@@ -35,17 +38,53 @@ function ProductInfo() {
     useEffect(()=> {
       fetchData();
     }, []);
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1025,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 769,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1,
+          },
+        },
+      ],
+    };
   return (
     <div className="productInfosection">
+        <h1>{carInfo.nameCar}</h1>
+    
+      <div className="sliderContainer">
+      <Slider {...settings}>
     {
       (carInfo.image !== null)?
         carInfo.image.map(({id, title, url})=>{
-          return <img key={id} src={baseUrl + url} alt={title} />
+          return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
         })
         : ""
     }
-      <h1 className="productInfoTitle">{carInfo.nameCar}</h1>
-      <div className="ProductInfoContainer container">
+    </Slider>
+    </div>
+    <div className="infoContainer">     
+   
+      
         <div className="productInfoDescription">
           <h3 className="descript">{carInfo.descritpion}</h3>
           <span className="script"></span>
@@ -72,7 +111,11 @@ function ProductInfo() {
             </h3>
           </div>
         </div>
-        <div className="productInfoLocal">
+      
+     
+      
+
+      <div className="productInfoLocal">
           <button className="productInfobutton">{carInfo.category}</button>
           <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
           <button className="productInfobutton">Check-in Check-out</button>
@@ -82,8 +125,31 @@ function ProductInfo() {
             </button>
           </Link>
         </div>
+      
+      
+      
+      
+      
+      
+      
       </div>
-    </div>
+
+
+
+
+
+      {/* <div className="rentSection"> */}
+
+  {/* </div> */}
+
+
+
+
+
+
+      </div>
+      
+
   );
 }
 
