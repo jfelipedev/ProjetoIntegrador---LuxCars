@@ -17,25 +17,28 @@
   font-size: 36px;
 }
 
-.infoContainer { 
+.infoContainer {
   display: flex;
-  width: 80%;
-  /* justify-content: space-between; */
-  padding: 40px;
+  width: 95%;
+  justify-content: space-between;
+  padding: 10px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.productInfoDescription {
+  width: 70%;
+  padding: 20px;
+  border: 1px solid whitesmoke;
+  display: flex;
   flex-wrap: wrap;
 }
 
-.productInfoDescription{
-     width: 70%;
-     padding-right: 20px;
+.productInfoDescription h3 {
+  text-align: justify;
+  padding-right: 15px;
+  margin-bottom: 15px;
 }
-
-.productInfoDescription h3{
-     text-align: justify;
-     padding-right: 15px;
-     margin-bottom: 15px;
-}
-
 
 .productInfoLocal {
   display: flex;
@@ -84,33 +87,55 @@
   text-decoration: none;
 }
 
-/* @media (max-width:990px) {
 
+@media (max-width: 1371px) {
+  .productInfoDescription {
+    width: 60%;
+  }
+  .sliderContainer{
+    width: 98%;
+  }
 
-     .productInfobutton{
-          width: 10rem;
-          height: 2.5rem;
-          background-color: #ffffff;
-          color: #474350;
-          border-radius: 5px;
-          font-weight:500;
-          box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
-          font-family: 'Inter', sans-serif;
-          cursor: none;
-          font-size: 14px;
-          text-align: start;
-     }
+  .productInfoLocal {
+    justify-content: center;
+  }
+}
 
-     .black{
-          background-color: #1c1c1c;
-          color: #f4f7f5;
-          font-weight: 300;
-          text-align: center;
-          font-size: 14px;
-          margin-top: 0;
-          width: 15rem;
-          text-transform: uppercase;
-     }
+@media (max-width: 1020px) {
+  .productInfoDescription {
+    width: 85%;
+    margin-bottom: 30px;
+    justify-content: center;
+    margin-right: 0px;
+  }
 
-    } */
+  .infoContainer {
+    justify-content: center;
+  }
 
+  .productInfoDescription h3 {
+    text-align: justify;
+    padding-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 850px){
+  .sliderContainer{
+    width: 95%;
+  }
+}
+
+@media (max-width: 574px) {
+  .productInfoDescription .descript {
+    font-size: 16px;
+    text-align: center;
+  }
+  .sliderContainer{
+    width: 90%;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+     display:none;
+  }
+}
