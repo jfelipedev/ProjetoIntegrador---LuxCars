@@ -19,15 +19,20 @@ function CategoriasCard({filtro}) {
       setListCategorys([])
     })
   }, [filtro]);
-
+console.log (listCategorys)
+const unique = listCategorys.filter(
+  (obj, index) =>
+  listCategorys.findIndex((item) => item.nameCar === obj.nameCar) === index
+);
   return (
     <>
         <h2 id="motion-point">Resultados estão</h2>
     <div className="categoryCardSection">
       <div className="categoryCardContainer">
 
-        {listCategorys.map(({id, nameCar, urlImage, year, price}) => {
+        {unique.map(({id, nameCar, urlImage, year, price}) => {
           return(
+            
             <div className="categoryCardCard"  id="categoryCardCard">
             <div className="box" key={id}>
               

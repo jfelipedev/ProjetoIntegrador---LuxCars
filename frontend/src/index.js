@@ -31,7 +31,7 @@ root.render(
         <Route path="/rent" element={<RentScreen />} />
         <Route path="/productList" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
-        <Route path="/produtos" element={<ProductScreen />} />
+        <Route path="/produtos/:id" element={<ProductScreen />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contato" element={<Contact />} />
 

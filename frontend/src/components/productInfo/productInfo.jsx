@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./productInfo.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getId } from '../homeCarrossel/index';
 
-console.log(getId);
+
 function ProductInfo() {
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
   const [carInfo, setCarInfo] = useState({
@@ -19,9 +18,12 @@ function ProductInfo() {
     year: null,
     image: null
   });
+
+  const { id } = useParams(); 
+  
   const fetchData = async () => {
       const response = await fetch(
-        `http://api.carlux.viniciusofagundes.com.br/car/14`
+        `http://api.carlux.viniciusofagundes.com.br/car/${id}`
       );
       const jsonData = await response.json();
       const response1 = await fetch(
@@ -88,28 +90,28 @@ function ProductInfo() {
     </div>
     <div className="infoContainer">           
         <div className="productInfoDescription">
-          <h3 className="descript">{carInfo.descritpion}</h3>
-          <span className="script"></span>
+          <h3 className="descript"><span className="textProduct">Sobre: </span>{carInfo.descritpion}</h3>
+          
           <div className="productInfoCategory">
-            <h3 className="descript">Carro: {carInfo.category}</h3>              
-              <span className="textProduct"></span>      
+            <h3 className="descript"><span className="textProduct">Carro:</span>  {carInfo.category}</h3>              
+                   
           </div>
 
           <div className="productInfoCaracteris">
-            <h3 className="descript">
-              Especificação: {carInfo.caracteristics} <span className="textProduct"></span>
+            <h3 className="descript"><span className="textProduct">Especificação: </span>
+               {carInfo.caracteristics} 
             </h3>
           </div>
 
           <div className="pro0ductInfoYear">
             <h3 className="descript">
-              Ano: <span className="textProduct"></span>{carInfo.year}
+               <span className="textProduct">Ano: </span>{carInfo.year}
             </h3>
           </div>
 
           <div className="pro0ductInfoState">
             <h3 className="descript">
-              Disponibilidade: Disponível <span className="textProduct"></span>
+            <span className="textProduct">Disponibilidade: </span>Disponível
             </h3>
           </div>
         </div>
