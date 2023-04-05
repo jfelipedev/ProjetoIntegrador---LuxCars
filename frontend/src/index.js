@@ -25,13 +25,11 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/createAccount" element={<CreateAccountScreen />} />
-        <Route path="/product" element={<ProductScreen />} />
+        <Route path="/entrar" element={<LoginScreen />} />
         <Route path="/rent" element={<RentScreen />} />
-        <Route path="/productList" element={<ProductListScreen />} />
+        <Route path="/produtos" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
-        <Route path="/produtos" element={<ProductScreen />} />
+        <Route path="/produto" element={<ProductScreen />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contato" element={<Contact />} />
 

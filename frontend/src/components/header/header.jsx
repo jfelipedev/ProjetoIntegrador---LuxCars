@@ -4,7 +4,6 @@ import Avatar from '../avatar/avatar';
 import './header.css'
 import { Link, Navigate } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-//import Image2 from '../../assets/logoWhiteBox.png'
 import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout} from '../../services/auth';
 import HeaderModal from '../headerModal/headerModal';
 import { useNavigate } from "react-router-dom";
@@ -59,24 +58,24 @@ function Header() {
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
-            <Link to="/" className="navLink activeLink">Carros</Link>
+            <Link to="/" className="navLink">Carros</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/product" className="navLink">Ofertas</Link>
+            <Link to="/produto" className="navLink">Ofertas</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/" className="navLink">Contato</Link>
+            <Link to="/contato" className="navLink">Contato</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/" className="navLink">Duvidas</Link>
+            <Link to="/faq" className="navLink">FAQ</Link>
           </li>
 
           {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
-              <Link to="/login" className="navLink1">Login</Link>
+              <Link to="/entrar" className="navLink1">Login</Link>
             </li>
 
             <li className="navItem1">

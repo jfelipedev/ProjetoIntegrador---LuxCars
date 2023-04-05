@@ -50,7 +50,7 @@ function Login() {
     .then((response) => {
       const data = response.data;
       login(response.data.jwt, data.user.firstName, data.user.surname);
-      //alert("Usuário Cadastrado")
+      alert("Usuário Cadastrado")
       navigate("/")
     })
     .catch((erro) => {

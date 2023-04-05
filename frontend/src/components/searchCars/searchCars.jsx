@@ -112,7 +112,7 @@ function SearchCars() {
           </CustomProvider>
         </div>
 
-        <Link to="/productList" className="buttonLink"><button className="button button1" type='submit'>BUSCAR</button></Link>
+        <Link to="/produtos" className="buttonLink"><button className="button button1" type='submit'>BUSCAR</button></Link>
         
         
       </form>

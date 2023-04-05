@@ -30,8 +30,6 @@ function Category() {
   }, [])
 
 
-
-  
   return (
     
     <div className='categorySection'>

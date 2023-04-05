@@ -3,6 +3,7 @@
      height: 100%;
      background-color: #474350;
      margin-top: 5rem;
+     margin-bottom: 5rem;
 }
 /* Ao chegar no tamanho do modal ele fica tem de subir para margin-top 4rem */
 
@@ -18,17 +19,88 @@
 }
 
 .carSelectScript{
-     font-size: 16px;
+     font-size: 15px;
      font-family: 'Inter', sans-serif;
      font-weight: 400;
+     color: #1C1C1C;
+     padding-right: 4.5rem;
 }
 
 .carnameScript{
-     font-size: 24px;
+     font-size: 20px;
      font-family: 'Inter', sans-serif;
+     color: #1C1C1C;
 }
 
 .uil-angle-left-b{
      font-size: 4rem;
      margin-right: 2rem;
 }
+
+.rentFromTitle{
+     margin-top: 1rem;
+     margin-bottom: 1.5rem;
+     margin-left: 1.5rem;
+     font-size: 24px;
+     font-weight: lighter;
+     font-family: 'Heebo', sans-serif;
+     color: #F4F7F5;
+     text-transform: capitalize;
+}
+
+.rentForm{
+     margin: 1.5rem;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     width: 100%;
+}
+
+.rentFormInfo{
+     width: 48rem;
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     justify-content: center;
+     align-items: center;
+     background: #474350;
+     height: 13.5rem;
+     border-radius: 10px;
+     gap: 40px;
+     border: 1px solid #1C1C1C;
+     box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+}
+
+.rentFormInfo1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 1rem;
+    color: whitesmoke;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+ .rentInfo{
+     width: 20rem;
+     height: 2.5rem;
+     border-radius: 5px;
+     border: none;
+ }
+
+ .rentCalendar{
+     margin: 1.5rem;
+ }
+
+ .rmdp-calendar{
+     width: 48rem;
+ }
+
+ .rmdp-day-picker {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 9rem;
+ }
+
+
+

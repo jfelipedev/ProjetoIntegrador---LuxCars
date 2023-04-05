@@ -30,7 +30,7 @@ function CategoriasCard({filtro}) {
             <div className="categoryCardCard" >
             <div className="box" key={id}>
               
-                <img src={urlImage} alt="" className='categoryCardImg'/>
+                <img src={"https://carlux-grupo1.s3.us-east-2.amazonaws.com" + urlImage} alt="" className='categoryCardImg'/>
                 <h4 className='textCard1'>{nameCar}</h4>
                 <h6 className='textCard2'>{year} | {price}</h6>
               
