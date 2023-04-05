@@ -1,0 +1,12 @@
+.searchCarSection {
+    width: 100%;
+    height: auto;
+    background: #1c1c1c;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: antiquewhite;
+  
+  }
+  

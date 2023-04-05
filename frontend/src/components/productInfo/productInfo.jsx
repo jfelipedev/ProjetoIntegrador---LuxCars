@@ -73,6 +73,7 @@ function ProductInfo() {
         },
       ],
     };
+
   return (
     <div className="productInfosection">
         <h1>{carInfo.nameCar}</h1>

@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./searchCars.css";
 import Select from "react-select";
 import api from '../../services/api';
-import { Link } from 'react-router-dom';
-
-
-
-
+import { Link, useNavigate } from 'react-router-dom';
 import { DateRangePicker } from 'rsuite';
 import "rsuite/dist/rsuite.css";
 import ptBR from 'rsuite/locales/pt_BR';
@@ -15,8 +11,10 @@ import moment from 'moment';
 
 function SearchCars() {
 
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
+  const [selectedCityId, setSelectedCityId] = useState(null);
 
   useEffect(() => {
     api.get("/category")
@@ -42,7 +40,7 @@ function SearchCars() {
         response.data.map((item) => {
           list.push({
             label: item.nameCity,
-            value: item.nameCity
+            value: item.id
           })
         })
         setCities(list)
@@ -59,7 +57,15 @@ function SearchCars() {
     console.log(event);
   };
 
-    // Desabilitar datas anteriores a hoje
+  const handleSelectCityId = (event) => {
+    setSelectedCityId(event.value);
+  }
+
+  useEffect(() => {
+    console.log(selectedCityId);
+  }, [selectedCityId]);
+
+  // Desabilitar datas anteriores a hoje
   const disabledDate = (date) => {
     return moment(date).isBefore(moment().startOf('day')) && !moment(date).isSame(moment().startOf('day'));
   };
@@ -71,7 +77,9 @@ function SearchCars() {
   };
 
   const handleSubmit = (event) => {
+    console.log(selectedCityId);
     event.preventDefault();
+    navigate('/productList', { state: { selectedCityId } });
   };
 
 
@@ -92,7 +100,7 @@ function SearchCars() {
         <div className="dropDown">
           <Select
             options={cities}
-            onChange={handleSelectChange}
+            onChange={handleSelectCityId}
             className="select"
             placeholder="Onde Vamos?"
           />
@@ -101,20 +109,20 @@ function SearchCars() {
         <div className=" drop">
 
           <CustomProvider locale={ptBR}>
-          <DateRangePicker className='select' placeholder='Período de reserva' 
-          disabledDate={disabledDate}
-          format="dd/MM/yyyy"
-          onEvent={handleEvent}
-          onCallback={handleCallback}
-          character=" até "
-          label="Datas"
-          />
+            <DateRangePicker className='select' placeholder='Período de reserva'
+              disabledDate={disabledDate}
+              format="dd/MM/yyyy"
+              onEvent={handleEvent}
+              onCallback={handleCallback}
+              character=" até "
+              label="Datas"
+            />
           </CustomProvider>
         </div>
 
-        <Link to="/productList" className="buttonLink"><button className="button button1" type='submit'>BUSCAR</button></Link>
-        
-        
+        <button className="button button1" type='submit' onChange={handleSubmit}>BUSCAR</button>
+
+
       </form>
 
     </div>
