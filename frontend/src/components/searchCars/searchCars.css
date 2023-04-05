@@ -17,14 +17,14 @@
      flex-wrap: wrap;
      gap: 1rem;
      padding: 1rem;
-     width: 100%;
-     max-width: 1300px;
+     max-width: 1600px;
      box-sizing: border-box;
 }
 
 .searchContainer>* {
      flex: 1;
-     /* cada elemento filho ocupa todo o espaço disponível */
+     /* cada elemento filho ocupa todo o espaço disponível */  
+     
 }
 
 .dropDown {
@@ -33,24 +33,28 @@
      width: 30rem;
      border-radius: 5px;
      transition: 0.5s;
-     transform: translate(0px, -10px);
+     /*transform: translate(0px, -10px);*/
+     border: solid 2px green;
+     /*padding-top:3px;*/
+     
 }
 
-.drop {
-     min-width: 150px;
+.dropDate {
+     width: 60rem;
      /* adicionado */
-     border-radius: 5px;
-     transition: 0.5s;
+    
+     /*transition: 0.5s;
      transform: translate(0px, -10px);
-     max-width: 13rem;
+     max-width: 13rem;*/
+    
 }
 
-.dropDown,
+/*.dropDown,
 .drop {
      margin-top: 10px;
-}
+}*/
 
-.select {
+/*.select {
      height: 40px;
      box-sizing: border-box;
      border: none;
@@ -61,7 +65,7 @@
      border: 0.5px solid #2d2d2d;
      margin-top: 10px;
      font-size: 16px;
-}
+}*/
 
 .button1 {
      height: 40px;
@@ -72,7 +76,7 @@
      /* adicionado */
 }
 
-.buttonLink {
+.buttonLink{
      text-decoration: none;
 }
 
@@ -83,16 +87,16 @@
      justify-content: flex-end;
 }
 
-.form-control {
+/* .form-control {
      height: 40px;
      border-radius: 5px;
      margin-top: 10px;
      border: none;
-}
+} */
 
 /* For large devices */
-@media screen and (max-width: 996px) {
-     .searchContainer {
+@media screen and (max-width: 996px){
+     .searchContainer{
           margin-top: 1rem;
           display: flex;
           align-items: flex-start;
@@ -103,7 +107,7 @@
           margin-right: 1rem;
      }
 
-     .select {
+     .select{
           height: 40px;
           width: 200px;
           box-sizing: border-box;
@@ -112,32 +116,32 @@
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d;
+          border: .5px solid #2d2d2d; 
           margin-top: 10px;
      }
 
-     .dropDown {
+     .dropDown{
           width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
      }
 
-     .drop {
+     .drop{
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
           width: 350px;
      }
 
-     .button1 {
+     .button1{
           margin-top: 9px;
      }
-}
+   }
 
 /* For medium devices */
-@media screen and (max-width: 768px) {
-     .searchContainer {
+@media screen and (max-width: 768px){
+     .searchContainer{
           margin-top: 1rem;
           display: flex;
           align-items: center;
@@ -148,7 +152,7 @@
           margin-right: 1rem;
      }
 
-     .select {
+     .select{
           height: 40px;
           width: 200px;
           box-sizing: border-box;
@@ -157,31 +161,31 @@
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d;
+          border: .5px solid #2d2d2d; 
           margin-top: 10px;
      }
 
-     .dropDown {
+     .dropDown{
           width: 300px;
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
      }
 
-     .drop {
+     .drop{
           border-radius: 5px;
           transition: .5s;
           transform: translate(0px, -10px);
           width: 250px;
      }
 
-     .button1 {
+     .button1{
           margin-bottom: 10px;
      }
-}
+   }
 
-@media screen and (max-width: 576px) {
-     .searchContainer {
+   @media screen and (max-width: 576px){
+     .searchContainer{
           margin-top: 1rem;
           display: flex;
           flex-direction: column;
@@ -207,7 +211,7 @@
           max-width: 100%;
      }
 
-     .button1 {
+     .button1{
           width: 300px;
      }
 }

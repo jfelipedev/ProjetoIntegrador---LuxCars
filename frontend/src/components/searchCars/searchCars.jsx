@@ -14,7 +14,7 @@ function SearchCars() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
-  const [selectedCityId, setSelectedCityId] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   useEffect(() => {
     api.get("/category")
@@ -40,7 +40,7 @@ function SearchCars() {
         response.data.map((item) => {
           list.push({
             label: item.nameCity,
-            value: item.id
+            value: item.nameCity
           })
         })
         setCities(list)
@@ -57,13 +57,13 @@ function SearchCars() {
     console.log(event);
   };
 
-  const handleSelectCityId = (event) => {
-    setSelectedCityId(event.value);
+  const handleSelectCity = (event) => {
+    setSelectedCity(event.value);
   }
 
   useEffect(() => {
-    console.log(selectedCityId);
-  }, [selectedCityId]);
+    console.log(selectedCity);
+  }, [selectedCity]);
 
   // Desabilitar datas anteriores a hoje
   const disabledDate = (date) => {
@@ -77,9 +77,9 @@ function SearchCars() {
   };
 
   const handleSubmit = (event) => {
-    console.log(selectedCityId);
+    //console.log(selectedCity);
     event.preventDefault();
-    navigate('/productList', { state: { selectedCityId } });
+    navigate('/productList', { state: { selectedCity } });
   };
 
 
@@ -100,7 +100,7 @@ function SearchCars() {
         <div className="dropDown">
           <Select
             options={cities}
-            onChange={handleSelectCityId}
+            onChange={handleSelectCity}
             className="select"
             placeholder="Onde Vamos?"
           />
