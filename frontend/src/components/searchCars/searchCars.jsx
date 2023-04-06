@@ -101,21 +101,19 @@ function SearchCars() {
           <Select
             options={cities}
             onChange={handleSelectCity}
-            className="select"
+            className="select cidade"
             placeholder="Onde Vamos?"
           />
         </div>
 
-        <div className=" drop">
-
+        <div className=" dropDown">
           <CustomProvider locale={ptBR}>
-            <DateRangePicker className='select' placeholder='Período de reserva'
+            <DateRangePicker className="select" placeholder='Período de reserva'
               disabledDate={disabledDate}
               format="dd/MM/yyyy"
               onEvent={handleEvent}
               onCallback={handleCallback}
               character=" até "
-              label="Datas"
             />
           </CustomProvider>
         </div>

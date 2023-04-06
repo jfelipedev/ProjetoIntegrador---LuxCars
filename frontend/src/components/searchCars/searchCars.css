@@ -12,9 +12,9 @@
      display: flex;
      align-items: center;
      justify-content: center;
-     flex-wrap: nowrap;
-     /* evita que os elementos sejam quebrados em várias linhas */
      flex-wrap: wrap;
+     width: 100%;
+     margin-top: 40px;
      gap: 1rem;
      padding: 1rem;
      max-width: 1600px;
@@ -23,49 +23,21 @@
 
 .searchContainer>* {
      flex: 1;
-     /* cada elemento filho ocupa todo o espaço disponível */  
-     
 }
 
 .dropDown {
      min-width: 200px;
-     /* adicionado */
-     width: 30rem;
+     max-width: 278px;
      border-radius: 5px;
      transition: 0.5s;
-     /*transform: translate(0px, -10px);*/
      border: solid 2px green;
-     /*padding-top:3px;*/
-     
+     margin-right: 20px;
 }
 
-.dropDate {
-     width: 60rem;
-     /* adicionado */
-    
-     /*transition: 0.5s;
-     transform: translate(0px, -10px);
-     max-width: 13rem;*/
-    
+.button {
+     height: 50px;
+     width: 100px;
 }
-
-/*.dropDown,
-.drop {
-     margin-top: 10px;
-}*/
-
-/*.select {
-     height: 40px;
-     box-sizing: border-box;
-     border: none;
-     border-radius: 5px;
-     outline: none;
-     color: #1c1c1c;
-     font-weight: 500;
-     border: 0.5px solid #2d2d2d;
-     margin-top: 10px;
-     font-size: 16px;
-}*/
 
 .button1 {
      height: 40px;
@@ -73,10 +45,9 @@
      width: 100%;
      display: block;
      flex: 1;
-     /* adicionado */
 }
 
-.buttonLink{
+.buttonLink {
      text-decoration: none;
 }
 
@@ -87,61 +58,49 @@
      justify-content: flex-end;
 }
 
-/* .form-control {
-     height: 40px;
-     border-radius: 5px;
-     margin-top: 10px;
-     border: none;
-} */
 
-/* For large devices */
-@media screen and (max-width: 996px){
-     .searchContainer{
-          margin-top: 1rem;
+/*For large devices */
+@media screen and (max-width: 996px) {
+     .searchContainer {
+          margin-top: 20px;
           display: flex;
+          flex-direction: column;
           align-items: flex-start;
           flex-wrap: wrap;
           justify-content: center;
           gap: 5px;
-          margin-left: 1rem;
-          margin-right: 1rem;
+          width: 40rem;
      }
 
-     .select{
+     .select {
           height: 40px;
-          width: 200px;
+          width: 100%;
           box-sizing: border-box;
           border: none;
           border-radius: 5px;
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d; 
-          margin-top: 10px;
+          border: .5px solid #2d2d2d;
+
      }
 
-     .dropDown{
-          width: 300px;
+     .dropDown {
+          width: 100%;
           border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
+          margin-bottom: 10px;
+          align-items: flex-start;
      }
 
-     .drop{
-          border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
-          width: 350px;
-     }
-
-     .button1{
+     .button1 {
           margin-top: 9px;
+          width: 150px;
      }
-   }
+}
 
-/* For medium devices */
-@media screen and (max-width: 768px){
-     .searchContainer{
+/*For medium devices */
+@media screen and (max-width: 768px) {
+     .searchContainer {
           margin-top: 1rem;
           display: flex;
           align-items: center;
@@ -150,48 +109,65 @@
           gap: 5px;
           margin-left: 1rem;
           margin-right: 1rem;
+          flex-direction: column;
+          font-size: 14px;
+
      }
 
-     .select{
+     .select {
           height: 40px;
-          width: 200px;
+          width: 100%;
           box-sizing: border-box;
           border: none;
           border-radius: 5px;
           outline: none;
           color: #1c1c1c;
           font-weight: 500;
-          border: .5px solid #2d2d2d; 
+          border: .5px solid #2d2d2d;
           margin-top: 10px;
+
      }
 
-     .dropDown{
-          width: 300px;
+     .dropDown {
+          width: 100%;
           border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
+          margin: 10px;
+
      }
 
-     .drop{
-          border-radius: 5px;
-          transition: .5s;
-          transform: translate(0px, -10px);
-          width: 250px;
+     .button {
+          font-size: 14px;
+          width: 180px;
+          border: 2px solid seagreen;
      }
 
-     .button1{
-          margin-bottom: 10px;
+     .button1 {
+          margin-bottom: 20px;
+          width: 150px;
      }
-   }
+}
 
-   @media screen and (max-width: 576px){
-     .searchContainer{
+@media screen and (max-width: 576px) {
+     .searchContainer {
           margin-top: 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          flex-direction: column;
+          flex-wrap: wrap;
+
+     }
+
+     .select {
+          font-size: 12px;
+          width: 350pxpx;
+          margin-bottom: 5px;
+
+     }
+
+     .button {
+          font-size: 12px;
+          width: 80px;
      }
 
      .searchContainer>* {
@@ -199,19 +175,12 @@
           width: 100%;
      }
 
-     .dropDown,
-     .drop {
-          min-width: 100%;
-          /* alterado */
-          max-width: 100%;
-          /* adicionado */
+     .dropDown {
+          width: 450px;
+          border: 2px solid red;
      }
 
-     .form-control {
-          max-width: 100%;
-     }
-
-     .button1{
+     .button1 {
           width: 300px;
      }
 }
