@@ -15,6 +15,7 @@ import RentScreen from "./pages/rent";
 import ProductListScreen from "./pages/productList";
 import Faq from './pages/faq/index'
 import Contact from './pages/contact/index'
+import AllCarsScreen from './pages/allCars/index'
 
 
 
@@ -25,10 +26,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
-        <Route path="/rent" element={<RentScreen />} />
+        <Route path="/alugue" element={<RentScreen />} />
         <Route path="/login" element={<LoginScreen />} />
-        <Route path="/createAccount" element={<CreateAccountScreen />} />
-        <Route path="/product" element={<ProductScreen />} />
+        <Route path="/produtos" element={<AllCarsScreen />} />
         <Route path="/rent" element={<RentScreen />} />
         <Route path="/productList" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />

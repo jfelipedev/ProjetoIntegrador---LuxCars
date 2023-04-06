@@ -1,0 +1,39 @@
+.car-title {
+  font-size: 1.2rem; 
+}
+
+Link, a, a:hover{
+    text-decoration: none;
+}
+.product-card {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.product-card:hover{
+    transition: 0.5 ease-in;
+    background-color: rgba(245, 245, 245, 0.178);
+}
+
+.product-card img {
+  max-width: 250px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+p {
+  margin: 0;
+}
+
+p:last-child {
+  font-weight: bold;
+  color: whitesmoke;
+}

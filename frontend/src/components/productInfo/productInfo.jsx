@@ -124,7 +124,7 @@ function ProductInfo() {
           <button className="productInfobutton">{carInfo.category}</button>
           <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
           <button className="productInfobutton">Check-in Check-out</button>
-          <Link to="/rent">
+          <Link to="/alugue">
             <button className="productInfobutton black">
               Prosseguir com Aluguel
             </button>
