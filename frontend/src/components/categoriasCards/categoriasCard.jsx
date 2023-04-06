@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import './categoriasCard.css'
 import api from '../../services/api'
+import { Link } from 'react-router-dom';
 
 
 function CategoriasCard({filtro}) {
@@ -36,7 +37,7 @@ const unique = listCategorys.filter(
             <div className="categoryCardCard"  id="categoryCardCard">
             <div className="box" key={id}>
               
-                <img src={url + urlImage} alt="" className='categoryCardImg'/>
+               <Link to={'/produtos/' + id} ><img src={url + urlImage} alt="" className='categoryCardImg'/></Link>
                 <h4 className='textCard1'>{nameCar}</h4>
                 <h6 className='textCard2'>{year} | {price}</h6>
               

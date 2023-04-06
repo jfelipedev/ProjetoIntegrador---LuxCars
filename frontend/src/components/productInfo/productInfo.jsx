@@ -19,6 +19,10 @@ function ProductInfo() {
     image: null
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { id } = useParams(); 
   
   const fetchData = async () => {

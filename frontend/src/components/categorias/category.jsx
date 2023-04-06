@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "./category.css"
 import api from '../../services/api'
 import CategoriasCard from '../categoriasCards/categoriasCard'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 

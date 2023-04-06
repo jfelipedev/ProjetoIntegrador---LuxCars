@@ -184,6 +184,8 @@
   transform: translateX(0) scale(0.96);
 }
 
+
+
 @media screen and (max-width: 576px) {
   .categoryTitle {
     height: 10px;
