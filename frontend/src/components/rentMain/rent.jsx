@@ -33,7 +33,7 @@ function Rent() {
     <div className='rentSection'>
 
      <div className="rentContainer">
-          <div className="rendHeader">
+          <div className="rentHeader">
             <div className="carSelected">
               <h2 className='carSelectScript'>Carro Selecionado</h2>
               <h1 className='carnameScript' >Ferrari California T</h1>
@@ -41,8 +41,11 @@ function Rent() {
             <i class="uil uil-angle-left-b"></i>
           </div>
 
-          <h1 className='rentFromTitle'>Complete seus Dados</h1>
-          <div className="rentForm">
+         
+          <div className="rentMain">
+            <div className="rentMain1">
+            <div className="rentForm">
+               <h1 className='rentFromTitle'>Complete seus Dados</h1>
                <form action="" className="rentFormInfo">
 
                 <div className="rentFormInfo1">
@@ -68,8 +71,9 @@ function Rent() {
                </form>
           </div>
 
-          <h1 className='rentFromTitle'>Selecione sua data de reserva</h1>
+          
           <div style={{ width: 480 }} className="rentCalendar">
+          <h1 className='rentFromTitle'>Selecione sua data de reserva</h1>
             <Calendar
             
             weekDays={weekDays}
@@ -84,18 +88,31 @@ function Rent() {
               <button onClick={handleDate}>Salve a Data</button>
             </Calendar>
           </div>
+            </div>
 
           <div className="rentDetails">
-            <h1>Detalhes da reserva</h1>
-            <img src={Image1} alt="" />
-            <h2>2014</h2>
-            <h1>Ferrari California</h1>
+            <h1 className='rentDeatailsTitle'>Detalhes da reserva</h1>
+            <img src={Image1} alt=""  className='rentDetailsImage'/>
+            
+            <div className="rentDetailsInfo">
+              <h2 className='rentDetailsYear'>2014</h2>
+              <h1 className='rentDetailsName'>Ferrari California</h1>
+              <h4 className='rentDetailsLocation'>São Paulo, Brasil</h4>
 
-            <h4>São Paulo, Brasil</h4>
+              <form action="" className='rentDetailsForm'>
+                <div className="single-input">
+                  <label htmlFor="Checkin">Check in</label>
+                  <input type="text" name="Checkin" id="Checkin" className='inputDate'/>
+                </div>
+                <div className="single-input">
+                  <label htmlFor="Checkout">Check out</label>
+                  <input type="text" name="Checkout" id="Checkout" className='inputDate' />
+                </div>
 
-            <input type="date" />
-            <input type="date" name="" id="" />
-            <button className="button">Confirmar Reserva</button>
+              </form>
+            </div>
+            <button className="rentDetailsButton button">Confirmar Reserva</button>
+          </div>
           </div>
      </div>
 

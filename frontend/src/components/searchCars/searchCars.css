@@ -20,6 +20,7 @@
      width: 100%;
      max-width: 1300px;
      box-sizing: border-box;
+     z-index: 999;
 }
 
 .searchContainer>* {
