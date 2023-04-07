@@ -16,8 +16,8 @@ function SearchCars() {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
 
 
 
@@ -69,6 +69,7 @@ function SearchCars() {
   useEffect(() => {
     console.log(selectedCity);
     console.log(selectedCategory);
+    //console.log(startDate);
   }, [selectedCity, selectedCategory]);
 
   // Desabilitar datas anteriores a hoje
@@ -76,28 +77,20 @@ function SearchCars() {
     return moment(date).isBefore(moment().startOf('day')) && !moment(date).isSame(moment().startOf('day'));
   };
 
-  const handleEvent = (event, picker) => {
-    setStartDate(picker.startDate);
-    setEndDate(picker.endDate);
-    console.log('start date:', picker.startDate);
-    console.log('end date:', picker.endDate);
+  const handleEvent = (dates) => {
+    const [start, end] = dates;
+    const formattedStartDate = start.toLocaleDateString('pt-BR');
+    const formattedEndDate = end.toLocaleDateString('pt-BR');
+    console.log("INICIO " + formattedStartDate + " e FIM " + formattedEndDate);
+    setStartDate(formattedStartDate);
+    setEndDate(formattedEndDate);
   };
 
-
-  const handleCallback = (start, end) => {
-    console.log('start date:', start);
-    console.log('end date:', end);
-    setStartDate(start);
-    setEndDate(end);
-  };
   const handleSubmit = (event) => {
     //console.log(selectedCity);
     event.preventDefault();
     navigate('/productList', { state: { selectedCity } });
   };
-
-
-
 
   return (
     <div className="searchSection">
@@ -128,9 +121,11 @@ function SearchCars() {
               disabledDate={disabledDate}
               format="dd/MM/yyyy"
               onChange={handleEvent}
-              onCallback={handleCallback}
-              ranges={[]}
               character=" até "
+              startDate={startDate}
+              endDate={endDate}
+              selectsRange
+              selected={startDate}
             />
           </CustomProvider>
         </div>
