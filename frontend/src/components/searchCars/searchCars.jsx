@@ -15,6 +15,11 @@ function SearchCars() {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState();
+
+
 
   useEffect(() => {
     api.get("/category")
@@ -53,8 +58,8 @@ function SearchCars() {
   }, [])
 
 
-  const handleSelectChange = (event) => {
-    console.log(event);
+  const handleSelectCategory = (event) => {
+    setSelectedCategory(event.value);
   };
 
   const handleSelectCity = (event) => {
@@ -63,24 +68,35 @@ function SearchCars() {
 
   useEffect(() => {
     console.log(selectedCity);
-  }, [selectedCity]);
+    console.log(selectedCategory);
+  }, [selectedCity, selectedCategory]);
 
   // Desabilitar datas anteriores a hoje
   const disabledDate = (date) => {
     return moment(date).isBefore(moment().startOf('day')) && !moment(date).isSame(moment().startOf('day'));
   };
+
   const handleEvent = (event, picker) => {
-    console.log(picker.startDate);
-  };
-  const handleCallback = (start, end, label) => {
-    console.log(start, end, label);
+    setStartDate(picker.startDate);
+    setEndDate(picker.endDate);
+    console.log('start date:', picker.startDate);
+    console.log('end date:', picker.endDate);
   };
 
+
+  const handleCallback = (start, end) => {
+    console.log('start date:', start);
+    console.log('end date:', end);
+    setStartDate(start);
+    setEndDate(end);
+  };
   const handleSubmit = (event) => {
     //console.log(selectedCity);
     event.preventDefault();
     navigate('/productList', { state: { selectedCity } });
   };
+
+
 
 
   return (
@@ -91,7 +107,7 @@ function SearchCars() {
         <div className="dropDown">
           <Select
             options={categories}
-            onChange={handleSelectChange}
+            onChange={handleSelectCategory}
             className="select"
             placeholder="Categoria"
           />
@@ -111,8 +127,9 @@ function SearchCars() {
             <DateRangePicker className="select" placeholder='Período de reserva'
               disabledDate={disabledDate}
               format="dd/MM/yyyy"
-              onEvent={handleEvent}
+              onChange={handleEvent}
               onCallback={handleCallback}
+              ranges={[]}
               character=" até "
             />
           </CustomProvider>
