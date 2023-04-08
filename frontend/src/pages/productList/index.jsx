@@ -14,7 +14,7 @@ function ProductListScreen() {
   return (
     <div>
       <Header />
-      <SearchCarsList selectedCity={state.selectedCity} />
+      <SearchCarsList selectedCity={state.selectedCity} selectedCategory={state.selectedCategory} />
       <Footer />
     </div>
   )
