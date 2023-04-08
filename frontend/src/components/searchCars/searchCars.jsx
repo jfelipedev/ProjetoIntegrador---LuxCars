@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 import "./searchCars.css";
 import Select from "react-select";
 import api from '../../services/api';
@@ -16,10 +18,9 @@ function SearchCars() {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
-
+  const [searchable, setSearchable] = useState(false);
 
   useEffect(() => {
     api.get("/category")
@@ -87,16 +88,32 @@ function SearchCars() {
   };
 
   const handleSubmit = (event) => {
-    //console.log(selectedCity);
     event.preventDefault();
-    navigate('/productList', { state: { selectedCity } });
+    if (!selectedCategory && !selectedCity && !startDate) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Por favor, selecione pelo menos uma opção',
+        confirmButtonText: 'OK'
+      });
+      return;
+    } else {
+      setSearchable(true);
+      navigate('/productList', {
+        state: {
+          selectedCity,
+          selectedCategory,
+          startDate,
+          endDate,
+        },
+      });
+    }
   };
 
   return (
     <div className="searchSection">
       <h1 className="sectionTitle">ALUGUE O CARRO DOS SEUS SONHOS</h1>
 
-      <form className="searchContainer " onSubmit={handleSubmit}>
+      <form className="searchContainer search-form " onSubmit={handleSubmit}>
         <div className="dropDown">
           <Select
             options={categories}
@@ -129,10 +146,9 @@ function SearchCars() {
             />
           </CustomProvider>
         </div>
-
-        <button className="button button1" type='submit' onChange={handleSubmit}>BUSCAR</button>
-
-
+        <div className="search-button-container">
+          <button className="button button1" type='submit'>BUSCAR</button>
+        </div>
       </form>
 
     </div>

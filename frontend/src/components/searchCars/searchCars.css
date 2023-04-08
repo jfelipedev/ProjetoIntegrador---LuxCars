@@ -8,6 +8,14 @@
      align-items: center;
 }
 
+.search-button-container {
+     display: none;
+}
+
+.search-form:not(:empty) .search-button-container {
+     display: block;
+}
+
 .searchContainer {
      display: flex;
      align-items: center;
