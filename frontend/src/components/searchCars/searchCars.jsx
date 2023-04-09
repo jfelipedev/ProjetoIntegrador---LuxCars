@@ -80,8 +80,8 @@ function SearchCars() {
 
   const handleEvent = (dates) => {
     const [start, end] = dates;
-    const formattedStartDate = start.toLocaleDateString('pt-BR');
-    const formattedEndDate = end.toLocaleDateString('pt-BR');
+    const formattedStartDate = start.toISOString();
+    const formattedEndDate = end.toISOString();
     console.log("INICIO " + formattedStartDate + " e FIM " + formattedEndDate);
     setStartDate(formattedStartDate);
     setEndDate(formattedEndDate);
