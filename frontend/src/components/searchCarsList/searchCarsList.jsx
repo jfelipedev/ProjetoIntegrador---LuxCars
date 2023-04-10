@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./searchCarsList.css";
 import api from '../../services/api';
 import Swal from 'sweetalert2';
@@ -7,9 +8,29 @@ import { parseISO, isWithinInterval } from 'date-fns';
 
 function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) {
 
-  const [filteredCars, setCars] = useState(null);
+  const [filteredCars, setCars] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [showNoCarsModal, setShowNoCarsModal] = useState (false);
+  const [showNoCarsModal, setShowNoCarsModal] = useState(false);
+  const navigate = useNavigate();
+
+
+  const checkAvailability = async (carId) => {
+    try {
+      const response = await api.get(`/car/${carId}/availability`);
+      const availabilityList = response.data;
+      const isAvailable = availabilityList.every(interval => {
+        const [start, end] = interval.map(parseISO);
+        return (
+          isWithinInterval(parseISO(startDate), { start, end }) &&
+          isWithinInterval(parseISO(endDate), { start, end })
+        );
+      });
+      return isAvailable;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -34,90 +55,50 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
           }
           return acc;
         }, []);
-        if (carsWithQuantity > 0) {
+        if (carsWithQuantity.length > 0) {
           setCars(carsWithQuantity);
         }
         //verifica a disponibilidade do carro de acordo com data de inicio e fim
-        let carsWithAvailability = [];
+        let availableCars = carsWithQuantity;
         if (startDate && endDate) {
-          carsWithAvailability = await Promise.all(
+          availableCars = await Promise.all(
             carsWithQuantity.map(async (car) => {
               const isAvailable = await checkAvailability(car.id);
               return { ...car, isAvailable };
             })
-          );
-          const availableCars = carsWithAvailability.filter(car => car.isAvailable);
-          filteredCars = availableCars.length > 0 ? availableCars : null;
-        } else {
-          filteredCars = carsWithQuantity;
+          ).then(carsWithAvailability => carsWithAvailability.filter(car => car.isAvailable));
         }
-        if (filteredCars) {
-          setCars(filteredCars);
+
+        if (availableCars.length > 0) {
+          setCars(availableCars);
         } else {
-          setCars(filteredCars);
+          setCars(null);
+          setIsLoading(true);
           setShowNoCarsModal(true);
         }
       } catch (error) {
-        setIsLoading(false);
         console.error(error);
       }
     }
-    const timeoutId = setTimeout(() => {
-      if (isLoading) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Carregando lista',
-          allowOutsideClick: false,
-          showConfirmButton: false,
-        });
-      }
-    }, 5000);
     fetchData();
-    return () => clearTimeout(timeoutId);
   }, [selectedCity, selectedCategory, startDate, endDate]);
 
-  console.log(filteredCars);
 
   useEffect(() => {
     if (isLoading) {
       Swal.fire({
         icon: 'warning',
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        showConfirmButton: false,
+        title: 'Carros não disponíveis. Por favor, escolha outros filtros para busca',
+        allowOutsideClick: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Voltar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/');
+        }
       });
-    } /*else {
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Sua lista de carros foi carregada com sucesso!',
-        showConfirmButton: false,
-        timer: 1000
-      });
-    }*/
-  }, [isLoading]);
-
-  const checkAvailability = async (carId) => {
-    try {
-      const response = await api.get(`/car/${carId}/availability`);
-      const availabilityList = response.data;
-      const isAvailable = availabilityList.every(interval => {
-        const [start, end] = interval.map(parseISO);
-        return (
-          isWithinInterval(parseISO(startDate), { start, end }) &&
-          isWithinInterval(parseISO(endDate), { start, end })
-        );
-      });
-      return isAvailable;
-    } catch (error) {
-      console.error(error);
-      return false;
     }
-  };
-
-  //console.log(isLoading);
-  console.log(filteredCars);
-  //console.log(filteredCars.length);
+  }, [isLoading]);
 
   useEffect(() => {
     if (filteredCars == null) {
@@ -129,8 +110,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
 
   const noCarsModal = (
     <div className="no-cars-modal">
-      <h2>Nenhum carro encontrado</h2>
-      <p>Por favor, tente novamente com outros filtros.</p>
+      <></>
     </div>
   );
 
@@ -141,16 +121,18 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
       {!isLoading && filteredCars != null && filteredCars.length > 0 ? (
         <div className="cards-container">
           {filteredCars?.map((car) => (
-            <div key={car.id} className="card">
-              <img src={`https://carlux-grupo1.s3.us-east-2.amazonaws.com${car.urlImage}`} alt={car.nameCar} />
-              {car.highlight ? <p className="highlight">Destaque da semana!</p> : null}
-              <h3 className="name">{car.nameCar}</h3>
-              <p className="description">{car.description}</p>
-              <p className="price">Preço: R$ {car.price.toFixed(2)}</p>
-              <p className="year">Ano: {car.year}</p>
-              <p className="quantity">Quantidade: {car.quantity}</p>
-              <button className="button-reserva" /*onClick={() => </div>navigate(`/rent/${car.id}`)}</div>*/>Reservar agora</button>
-            </div>
+            car.isAvailable && (
+              <div key={car.id} className="card">
+                <img src={`https://carlux-grupo1.s3.us-east-2.amazonaws.com${car.urlImage}`} alt={car.nameCar} />
+                {car.highlight ? <p className="highlight">Destaque da semana!</p> : null}
+                <h3 className="name">{car.nameCar}</h3>
+                <p className="description">{car.description}</p>
+                <p className="price">Preço: R$ {car.price.toFixed(2)}</p>
+                <p className="year">Ano: {car.year}</p>
+                <p className="quantity">Quantidade: {car.quantity}</p>
+                <button className="button-reserva" /*onClick={() => </div>navigate(`/rent/${car.id}`)}</div>*/>Reservar agora</button>
+              </div>
+            )
           ))}
         </div>
       ) : (
