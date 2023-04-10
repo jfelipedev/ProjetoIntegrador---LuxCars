@@ -135,32 +135,25 @@ Select {
 
   .button1 {
     padding: 10px;
-    width: 50%;
   }
 }
 
 @media screen and (max-width: 670px) {
-  .dropDown {
-    width: 75%;
+  .searchContainer{
+    width: 90%;
   }
+
 }
 
 @media screen and (max-width: 500px) {
-  .dropDown {
-    width: 50%;
+  .searchContainer{
+    width: 80%;
   }
-  .button1 {
-    padding: 10px;
-    width: 50%;
-  }
+
 }
 
 @media screen and (max-width: 383px) {
-  .dropDown {
-    width: 40%;
-  }
-  .button1 {
-    padding: 10px;
-    width: 40%;
+  .searchContainer{
+    width: 70%;
   }
 }

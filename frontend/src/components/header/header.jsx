@@ -57,11 +57,11 @@ function Header() {
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
-            <Link to="/" className="navLink">Carros</Link>
+            <Link to="/" className="navLink">Início</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/produtos" className="navLink">Ofertas</Link>
+            <Link to="/produtos" className="navLink">Carros</Link>
           </li>
 
           <li className="navItem">
