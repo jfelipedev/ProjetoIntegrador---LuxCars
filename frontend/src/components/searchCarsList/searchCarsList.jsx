@@ -9,6 +9,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
 
   const [filteredCars, setCars] = useState(null);
   const [isLoading, setIsLoading] = useState();
+  const [showNoCarsModal, setShowNoCarsModal] = useState (false);
 
   useEffect(() => {
     async function fetchData() {
@@ -54,6 +55,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
           setCars(filteredCars);
         } else {
           setCars(filteredCars);
+          setShowNoCarsModal(true);
         }
       } catch (error) {
         setIsLoading(false);
@@ -113,23 +115,24 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
     }
   };
 
-  console.log(isLoading);
+  //console.log(isLoading);
   console.log(filteredCars);
   //console.log(filteredCars.length);
 
-  let noCarsModal = null;
+  useEffect(() => {
+    if (filteredCars == null) {
+      setShowNoCarsModal(true);
+    } else {
+      setShowNoCarsModal(false);
+    }
+  }, [filteredCars]);
 
-  if (!isLoading && filteredCars == null) {
-    noCarsModal = (
-      Swal.fire({
-        icon: 'warning',
-        title: 'Não há carros disponíveis para a data selecionada.',
-        allowOutsideClick: true,
-        showConfirmButton: false,
-      })
-    );
-  }
-
+  const noCarsModal = (
+    <div className="no-cars-modal">
+      <h2>Nenhum carro encontrado</h2>
+      <p>Por favor, tente novamente com outros filtros.</p>
+    </div>
+  );
 
 
   return (
@@ -151,7 +154,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
           ))}
         </div>
       ) : (
-        <div>noCarsModal</div>
+        <div>{showNoCarsModal ? noCarsModal : null}</div>
       )}
     </div>
   );
