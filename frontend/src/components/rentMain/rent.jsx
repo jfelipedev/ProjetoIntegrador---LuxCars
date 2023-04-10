@@ -4,10 +4,11 @@ import {Calendar} from "react-multi-date-picker"
 import Image1 from '../../assets/carBMW-M440i.jpg'
 import { useEffect } from 'react'
 import api from '../../services/api'
+import { useLocation } from 'react-router-dom'
 
 
 
-function Rent() {
+function Rent({filtroProduct}) {
 
   // const [booking, setBooking] = useState([])
 
@@ -22,13 +23,18 @@ function Rent() {
   //   })
   // })
 
+  console.log(filtroProduct)
+
   const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"]
   const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
-  const [values, setValues] = useState()
+  const [values, setValues] = useState(new Date())
 
-  const handleDate = () => {
-    console.log(values)
-  }
+  // const handleDate = (values) => {
+  //   setValues()
+  //   console.log(values)
+  // }
+
+
   return (
     <div className='rentSection'>
 
@@ -78,20 +84,20 @@ function Rent() {
             
             weekDays={weekDays}
             months={months}
-            value={values}
-            onChange={setValues}
+            
+            onChange= {setValues}
             numberOfMonths={2}
             format="DD/MM/YYYY"
             size="large"
             range
             >
-              <button onClick={handleDate}>Salve a Data</button>
+              {/* <button onChange= {setValues}>Enviar</button> */}
             </Calendar>
           </div>
             </div>
 
           <div className="rentDetails">
-            <h1 className='rentDeatailsTitle'>Detalhes da reserva</h1>
+            <h1 className='rentDetailsTitle'>Detalhe da reserva</h1>
             <img src={Image1} alt=""  className='rentDetailsImage'/>
             
             <div className="rentDetailsInfo">
@@ -101,13 +107,14 @@ function Rent() {
 
               <form action="" className='rentDetailsForm'>
                 <div className="single-input">
-                  <label htmlFor="Checkin">Check in</label>
-                  <input type="text" name="Checkin" id="Checkin" className='inputDate'/>
+                  <label htmlFor="Checkin">Check in - Check out</label>
+                  <input value={values} type="text" name="Checkin" id="Checkin" className='inputDate'/>
                 </div>
-                <div className="single-input">
+
+                {/* <div className="single-input">
                   <label htmlFor="Checkout">Check out</label>
                   <input type="text" name="Checkout" id="Checkout" className='inputDate' />
-                </div>
+                </div> */}
 
               </form>
             </div>

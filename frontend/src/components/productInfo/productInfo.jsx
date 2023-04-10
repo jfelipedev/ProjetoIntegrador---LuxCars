@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./productInfo.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getId } from '../homeCarrossel/index';
+import { useNavigate } from "react-router-dom";
+
 
 console.log(getId);
 function ProductInfo() {
+
+  const { id } = useParams();
+
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
   const [carInfo, setCarInfo] = useState({
     nameCar:null,
@@ -21,7 +26,7 @@ function ProductInfo() {
   });
   const fetchData = async () => {
       const response = await fetch(
-        `http://api.carlux.viniciusofagundes.com.br/car/14`
+        `http://api.carlux.viniciusofagundes.com.br/car/${id}`
       );
       const jsonData = await response.json();
       const response1 = await fetch(
@@ -72,7 +77,14 @@ function ProductInfo() {
       ],
     };
 
-//     const [filtroProduct, setFiltroProduct] = useState([])
+    
+
+    const navigate = useNavigate()
+
+    const handlerent = () => {
+      navigate("/rent", {state : id})
+    }
+
   return (
     <div className="productInfosection">
         <h1>{carInfo.nameCar}</h1>
@@ -119,11 +131,11 @@ function ProductInfo() {
           <button className="productInfobutton">{carInfo.category}</button>
           <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
           <button className="productInfobutton">Check-in Check-out</button>
-          <Link to="/rent">
-            <button className="productInfobutton black" >
+      
+            <button className="productInfobutton black" onClick={handlerent}>
               Prosseguir com Aluguel
             </button>
-          </Link>
+          
         </div>
       </div>
       </div>

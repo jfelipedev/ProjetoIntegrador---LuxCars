@@ -123,13 +123,14 @@
      border: 1px solid #F4F7F5;
  }
 
- .rentDeatailsTitle{
+ .rentDetailsTitle{
      font-family: 'Roboto', sans-serif;
      color: #F4F7F5;
      font-size: 24px;
      padding: 1rem;
      text-transform: capitalize;
      width: 100%;
+     font-weight: 500;
  }
 
  .rentDetailsInfo{
@@ -186,11 +187,13 @@
  div.single-input label{
      font-size: 16px;
      position: absolute;
-     left: 0;
+     left: 285px;
      bottom: 5px;
      color: #F4F7F5;
      cursor: text;
      transition: 0.5s ease-in-out;
+     text-transform: capitalize;
+     font-weight: 500;
  }
 
  div.single-input .inputDate{
