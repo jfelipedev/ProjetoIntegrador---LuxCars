@@ -76,6 +76,9 @@ function Header() {
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
             </li>
+            <li className="navItem1">
+              <Link to="/criar-conta" className="navLink1">Cadastrar</Link>
+            </li>
           </ul>}
           {isAuthenticated && (
             <div className="user-info"><div className="gretting">Olá, {firstName} {surname}</div><Avatar nameInitials={nameInitials} onLogout={handleLogout} />

@@ -6,6 +6,8 @@ import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import api from "../../services/api";
 import { useState } from "react";
+import Swal from "sweetalert2";
+
 
 
 
@@ -50,29 +52,36 @@ function Createaccount() {
 
   function newUser( value) {
 
-    console.log(value)
+    //console.log(value)
     
     if (value.email !== value.confirmEmail) {
       alert("E-mails diferentes!");
-    }else{
-      api.post("/register", {
+    } else {
+      api
+        .post("/register", {
           firstName: value.name,
           surname: value.surname,
           email: value.email,
-          password: value.password
-      })
-    .then((response) => {
-      console.log(response)
-      console.log("Deu certo")
-      navigate("/login")
-    })
-    .catch((erro) => {
-      let error = erro.response.data; 
-      setErrorBack(error.email)
-    })
-  }
-  }
+          password: value.password,
+        })
+        .then((response) => {
+          console.log(response);
+         
 
+          Swal.fire({
+            title: "Conta criada com sucesso!",
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then(() => {
+            navigate("/login");
+          });
+        })
+        .catch((erro) => {
+          let error = erro.response.data;
+          setErrorBack(error.email);
+        });
+    }
+  }
 
   return (
     <div className="createAccount">

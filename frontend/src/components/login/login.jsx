@@ -7,6 +7,8 @@ import * as yup from "yup"
 import api from "../../services/api"
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logoMustardBox.png";
+import Swal from 'sweetalert2';
 
 
 
@@ -54,10 +56,24 @@ function Login() {
       navigate("/")
     })
     .catch((erro) => {
-      let error = erro.response
+      /*let error = erro.response
       setErrorLogin(error.data.password)
       setErrorLogin(error.data.email)
-      //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
+      //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage*/
+      if(erro.response.status === 400){
+        Swal.fire({
+          icon:'error',
+          title:'Erro!',
+          text: 'Os dados inseridos estão incorretos. Tente novamente!'
+        })
+      }
+      if(erro.response.status === 500){
+        Swal.fire({
+          icon:'error',
+          title:'Erro!',
+          text: 'Ocorreu um erro ao tentar fazer login. Tente mais tarde!'
+        })
+      }
 
     })
   }
@@ -67,7 +83,7 @@ function Login() {
     <div className="Login">
 
       <form action="" className="loginbar" onSubmit={handleSubmit(loginUser)}>
-        <h1 className='loginTitle'><span className="anima">LUX</span>CARS</h1>
+        <span className="anima"><img src={logo}/></span>
 
         <div className="inputs">
 

@@ -1,7 +1,7 @@
 import "./styles.css";
 
 function FAQ({ faq, index, toggleFAQ }) {
-  return (
+  return (    
     <div
       className={"faq " + (faq.open ? "open" : "")}
       key={index}
@@ -10,6 +10,7 @@ function FAQ({ faq, index, toggleFAQ }) {
       <div className="faq-question">{faq.question}</div>
       <div className="faq-answer">{faq.answer}</div>
     </div>
+
   );
 }
 
