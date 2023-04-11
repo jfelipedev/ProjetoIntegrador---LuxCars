@@ -24,6 +24,7 @@ function ProductInfo() {
      }, []);
 
      const { id } = useParams();
+     console.log(id);
 
      const fetchData = async () => {
           const response = await fetch(

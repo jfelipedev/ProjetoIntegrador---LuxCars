@@ -144,7 +144,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
                 <p className="price">Preço: R$ {car.price.toFixed(2)}</p>
                 <p className="year">Ano: {car.year}</p>
                 <p className="quantity">Quantidade: {car.quantity}</p>
-                <button className="button-reserva" /*onClick={() => </div>navigate(`/rent/${car.id}`)}</div>*/>Reservar agora</button>
+                <button className="button-reserva" onClick={() => navigate(`/produtos/${car.id}`)}>Reservar agora</button>
               </div>
             )
           ))}
