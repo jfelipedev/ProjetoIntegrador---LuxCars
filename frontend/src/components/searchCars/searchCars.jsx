@@ -75,8 +75,9 @@ function SearchCars() {
 
   // Desabilitar datas anteriores a hoje
   const disabledDate = (date) => {
-    return moment(date).isBefore(moment().startOf('day')) && !moment(date).isSame(moment().startOf('day'));
+    return moment(date).isBefore(moment().startOf('day').add(1, 'day')) && !moment(date).isSame(moment().startOf('day'));
   };
+
 
   const handleEvent = (dates) => {
     const [start, end] = dates;

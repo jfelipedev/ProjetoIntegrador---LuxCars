@@ -8,20 +8,12 @@
   align-items: center;
 }
 
-.search-button-container {
-  display: none;
-}
-
-.search-form:not(:empty) .search-button-container {
-  display: block;
-}
-
 .searchContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
+  width: 80%;
   margin-top: 40px;
   gap: 1rem;
   padding: 1rem;
@@ -33,24 +25,24 @@
   flex: 1;
 }
 
-.dropDown {
-  min-width: 200px;
-  max-width: 278px;
-  border-radius: 5px;
-  transition: 0.5s;
-  border: solid 2px green;
-  margin-right: 20px;
+Select {
+  z-index: 999;
 }
 
-.button {
-  height: 50px;
-  width: 100px;
+.dropDown {
+  border-radius: 5px;
+  transition: 0.5s;
 }
+
+.dropDown .select {
+  width: 100%;
+}
+
 
 .button1 {
   height: 40px;
+  width: 250px;
   background-color: #474350;
-  width: 100%;
   display: block;
   flex: 1;
 }
@@ -65,7 +57,6 @@
   align-items: center;
   justify-content: flex-end;
 }
-
 
 /*For large devices */
 @media screen and (max-width: 996px) {
@@ -89,9 +80,9 @@
     outline: none;
     color: #1c1c1c;
     font-weight: 500;
-    border: .5px solid #2d2d2d;
-
+    border: 0.5px solid #2d2d2d;
   }
+
 
   .dropDown {
     width: 100%;
@@ -119,72 +110,50 @@
     margin-right: 1rem;
     flex-direction: column;
     font-size: 14px;
-
   }
 
   .select {
-    height: 40px;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
     border-radius: 5px;
     outline: none;
     color: #1c1c1c;
     font-weight: 500;
-    border: .5px solid #2d2d2d;
+    border: 0.5px solid #2d2d2d;
     margin-top: 10px;
-
   }
 
   .dropDown {
     width: 100%;
     border-radius: 5px;
     margin: 10px;
-
   }
 
   .button {
     font-size: 14px;
     width: 180px;
-    border: 2px solid seagreen;
+    height: auto;
   }
 
   .button1 {
-    margin-bottom: 20px;
-    width: 150px;
+    padding: 10px;
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 670px) {
   .searchContainer {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-  }
-
-  .select {
-    font-size: 12px;
-    width: 350pxpx;
-    margin-bottom: 5px;
-
-  }
-
-  .button {
-    font-size: 12px;
-    width: 80px;
+    width: 90%;
   }
 
 }
 
-.dropDown {
-  width: 450px;
-  border: 2px solid red;
+@media screen and (max-width: 500px) {
+  .searchContainer {
+    width: 80%;
+  }
+
 }
 
-.button1 {
-  width: 300px;
+@media screen and (max-width: 383px) {
+  .searchContainer {
+    width: 70%;
+  }
 }
