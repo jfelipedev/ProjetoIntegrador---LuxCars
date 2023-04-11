@@ -13,6 +13,15 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
   const [showNoCarsModal, setShowNoCarsModal] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (filteredCars == null) {
+      setShowNoCarsModal(true);
+      console.log(filteredCars + "true pro setShowNoCarsModal");
+    } else {
+      setShowNoCarsModal(false);
+      console.log(filteredCars + "false pro setShowNoCarsModal");
+    }
+  }, [filteredCars]);
 
   const checkAvailability = async (carId) => {
     try {
@@ -40,6 +49,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
         let filteredCars = response.data;
         if (selectedCity) {
           filteredCars = filteredCars.filter(car => car.city.nameCity === selectedCity);
+          console.log(filteredCars + "cidade selecionada");
         }
         if (selectedCategory) {
           filteredCars = filteredCars.filter(car => car.category.qualification === selectedCategory);
@@ -68,10 +78,11 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
             })
           ).then(carsWithAvailability => carsWithAvailability.filter(car => car.isAvailable));
         }
-
         if (availableCars.length > 0) {
           setCars(availableCars);
+          console.log(availableCars + "carros available")
         } else {
+          console.log(availableCars + "carros no else de available")
           setCars(null);
           setIsLoading(true);
           setShowNoCarsModal(true);
@@ -83,12 +94,13 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
     fetchData();
   }, [selectedCity, selectedCategory, startDate, endDate]);
 
+  console.log(filteredCars);
 
   useEffect(() => {
     if (isLoading) {
       Swal.fire({
         icon: 'warning',
-        title: 'Carros não disponíveis. Por favor, escolha outros filtros para busca',
+        title: 'Carros não disponíveis. Por favor, escolha outros filtros/datas para busca',
         allowOutsideClick: true,
         showConfirmButton: true,
         confirmButtonText: 'Voltar',
@@ -103,8 +115,10 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
   useEffect(() => {
     if (filteredCars == null) {
       setShowNoCarsModal(true);
+      console.log(filteredCars + "true pro setShowNoCarsModal");
     } else {
       setShowNoCarsModal(false);
+      console.log(filteredCars + "false pro setShowNoCarsModal");
     }
   }, [filteredCars]);
 
@@ -121,7 +135,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
       {!isLoading && filteredCars != null && filteredCars.length > 0 ? (
         <div className="cards-container">
           {filteredCars?.map((car) => (
-            car.isAvailable && (
+            (
               <div key={car.id} className="card">
                 <img src={`https://carlux-grupo1.s3.us-east-2.amazonaws.com${car.urlImage}`} alt={car.nameCar} />
                 {car.highlight ? <p className="highlight">Destaque da semana!</p> : null}

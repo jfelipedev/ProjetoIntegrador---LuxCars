@@ -1,4 +1,4 @@
-.sectioncarousel{
+.sectioncarousel {
      position: relative;
      display: flex;
      justify-content: center;
@@ -7,14 +7,14 @@
      border: none;
 }
 
-.image{
+.image {
      height: 75vh;
      width: 91.5vw;
      margin-top: 6rem;
      background-color: #474350;
 }
 
-.right-arrow{
+.right-arrow {
      position: absolute;
      top: 50%;
      right: 55px;
@@ -26,7 +26,7 @@
      color: #d9d9d9;
 }
 
-.left-arrow{
+.left-arrow {
      position: absolute;
      top: 50%;
      left: 55px;
@@ -40,7 +40,7 @@
 
 .slide {
      opacity: 0;
-     transition-duration: 1s ease ;
+     transition-duration: 1s ease;
 }
 
 .slide.active {
@@ -49,7 +49,7 @@
      transform: scale(1.08);
 }
 
-/* ====================Breakpoints=================== */
+/* ====================Breakpoints=================== /
 @media screen and (max-width: 992px){
      .image{
           height: 70vh;
@@ -59,7 +59,7 @@
      }
     }
 
-/* For medium devices */
+/ For medium devices /
 @media screen and (max-width: 768px){
      .image{
           height: 65vh;
@@ -78,12 +78,12 @@
      }
 }
 
-/* For small devices */
-@media screen and (max-width: 390px){
-     .image{
+/ For small devices */
+@media screen and (max-width: 390px) {
+     .image {
           height: 40vh;
           width: 90vw;
           margin-left: 1rem;
-          margin-right: 1rem;    
+          margin-right: 1rem;
      }
 }

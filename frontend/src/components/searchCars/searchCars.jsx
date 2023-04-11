@@ -98,7 +98,7 @@ function SearchCars() {
       return;
     } else {
       setSearchable(true);
-      navigate('/productList', {
+      navigate('/produtos', {
         state: {
           selectedCity,
           selectedCategory,

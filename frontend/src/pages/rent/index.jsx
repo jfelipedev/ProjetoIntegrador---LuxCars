@@ -6,9 +6,9 @@ import Rent from '../../components/rentMain/rent'
 function RentScreen() {
   return (
     <div>
-     <Header />
-     <Rent />
-     <Footer />
+      <Header />
+      <Rent />
+      <Footer />
     </div>
   )
 }
