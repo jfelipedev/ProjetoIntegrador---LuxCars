@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./productInfo.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -34,7 +34,7 @@ function ProductInfo() {
         `http://api.carlux.viniciusofagundes.com.br/city/${jsonData.city.id}`
       );
       const jsonData1 = await response1.json();
-      setCarInfo({
+      setCarInfo({        
         nameCar: jsonData.nameCar,
         descritpion: jsonData.descritpion,
         category: jsonData.category.qualification,
@@ -86,9 +86,9 @@ function ProductInfo() {
       <Slider {...settings}>
     {
       (carInfo.image !== null)?
-        carInfo.image.map(({id, title, url})=>{
-          return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
-        })
+      carInfo.image.map(({id, title, url})=>{
+        return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
+      })
         : ""
     }
     </Slider>
@@ -124,7 +124,7 @@ function ProductInfo() {
           <button className="productInfobutton">{carInfo.category}</button>
           <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
           <button className="productInfobutton">Check-in Check-out</button>
-          <Link to="/alugue">
+          <Link to={'/alugue/' + id}>
             <button className="productInfobutton black">
               Prosseguir com Aluguel
             </button>
@@ -135,6 +135,7 @@ function ProductInfo() {
       
 
   );
+
 }
 
 export default ProductInfo;

@@ -108,7 +108,7 @@ a:hover {
 }
 
 .navLink1 {
-  color: #ffc857;
+  color: whitesmoke;
   font-family: "Inter", sans-serif;
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -120,12 +120,12 @@ a:hover {
 }
 
 .navLink1:hover {
-  color: #807a90;
+  color: whitesmoke;
   text-decoration: none;
 }
 
 /*Active Link*/
-.activeLink, .navLink1,
+.activeLink:hover, .navLink1:hover,
 .navLink:hover {
   color: #807a90;
   text-decoration: none;
