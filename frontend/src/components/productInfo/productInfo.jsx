@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getId } from '../homeCarrossel/index';
+
 import { useNavigate } from "react-router-dom";
 
 
-console.log(getId);
+
 function ProductInfo() {
 
      const { id } = useParams();
