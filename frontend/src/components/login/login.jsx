@@ -64,7 +64,7 @@ function Login() {
   
 
   return (
-    <div className="Login">
+    <div className="login">
 
       <form action="" className="loginbar" onSubmit={handleSubmit(loginUser)}>
         <h1 className='loginTitle'><span className="anima">LUX</span>CARS</h1>

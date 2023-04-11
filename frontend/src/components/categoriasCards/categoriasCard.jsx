@@ -27,7 +27,7 @@ const unique = listCategorys.filter(
 );
   return (
     <>
-        <h2 id="motion-point">Resultados estão</h2>
+        <h2 id="motion-point">Estes são os resultados</h2>
     <div className="categoryCardSection">
       <div className="categoryCardContainer">
 
