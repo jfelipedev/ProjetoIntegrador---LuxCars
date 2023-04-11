@@ -1,194 +1,190 @@
 .searchSection {
-     width: 100%;
-     height: auto;
-     background: #1c1c1c;
-     margin-top: 4rem;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+  width: 100%;
+  height: auto;
+  background: #1c1c1c;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-button-container {
-     display: none;
+  display: none;
 }
 
 .search-form:not(:empty) .search-button-container {
-     display: block;
+  display: block;
 }
 
 .searchContainer {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-wrap: wrap;
-     width: 100%;
-     margin-top: 40px;
-     gap: 1rem;
-     padding: 1rem;
-     max-width: 1600px;
-     box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 40px;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1600px;
+  box-sizing: border-box;
 }
 
 .searchContainer>* {
-     flex: 1;
+  flex: 1;
 }
 
 .dropDown {
-     min-width: 200px;
-     max-width: 278px;
-     border-radius: 5px;
-     transition: 0.5s;
-     border: solid 2px green;
-     margin-right: 20px;
+  min-width: 200px;
+  max-width: 278px;
+  border-radius: 5px;
+  transition: 0.5s;
+  border: solid 2px green;
+  margin-right: 20px;
 }
 
 .button {
-     height: 50px;
-     width: 100px;
+  height: 50px;
+  width: 100px;
 }
 
 .button1 {
-     height: 40px;
-     background-color: #474350;
-     width: 100%;
-     display: block;
-     flex: 1;
+  height: 40px;
+  background-color: #474350;
+  width: 100%;
+  display: block;
+  flex: 1;
 }
 
 .buttonLink {
-     text-decoration: none;
+  text-decoration: none;
 }
 
 .button-wrapper {
-     flex: 1;
-     display: flex;
-     align-items: center;
-     justify-content: flex-end;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 
 /*For large devices */
 @media screen and (max-width: 996px) {
-     .searchContainer {
-          margin-top: 20px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 5px;
-          width: 40rem;
-     }
+  .searchContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    width: 40rem;
+  }
 
-     .select {
-          height: 40px;
-          width: 100%;
-          box-sizing: border-box;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          color: #1c1c1c;
-          font-weight: 500;
-          border: .5px solid #2d2d2d;
+  .select {
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: #1c1c1c;
+    font-weight: 500;
+    border: .5px solid #2d2d2d;
 
-     }
+  }
 
-     .dropDown {
-          width: 100%;
-          border-radius: 5px;
-          margin-bottom: 10px;
-          align-items: flex-start;
-     }
+  .dropDown {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
 
-     .button1 {
-          margin-top: 9px;
-          width: 150px;
-     }
+  .button1 {
+    margin-top: 9px;
+    width: 150px;
+  }
 }
 
 /*For medium devices */
 @media screen and (max-width: 768px) {
-     .searchContainer {
-          margin-top: 1rem;
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 5px;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          flex-direction: column;
-          font-size: 14px;
+  .searchContainer {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    flex-direction: column;
+    font-size: 14px;
 
-     }
+  }
 
-     .select {
-          height: 40px;
-          width: 100%;
-          box-sizing: border-box;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          color: #1c1c1c;
-          font-weight: 500;
-          border: .5px solid #2d2d2d;
-          margin-top: 10px;
+  .select {
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: #1c1c1c;
+    font-weight: 500;
+    border: .5px solid #2d2d2d;
+    margin-top: 10px;
 
-     }
+  }
 
-     .dropDown {
-          width: 100%;
-          border-radius: 5px;
-          margin: 10px;
+  .dropDown {
+    width: 100%;
+    border-radius: 5px;
+    margin: 10px;
 
-     }
+  }
 
-     .button {
-          font-size: 14px;
-          width: 180px;
-          border: 2px solid seagreen;
-     }
+  .button {
+    font-size: 14px;
+    width: 180px;
+    border: 2px solid seagreen;
+  }
 
-     .button1 {
-          margin-bottom: 20px;
-          width: 150px;
-     }
+  .button1 {
+    margin-bottom: 20px;
+    width: 150px;
+  }
 }
 
 @media screen and (max-width: 576px) {
-     .searchContainer {
-          margin-top: 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
+  .searchContainer {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 
-     }
+  }
 
-     .select {
-          font-size: 12px;
-          width: 350pxpx;
-          margin-bottom: 5px;
+  .select {
+    font-size: 12px;
+    width: 350pxpx;
+    margin-bottom: 5px;
 
-     }
+  }
 
-     .button {
-          font-size: 12px;
-          width: 80px;
-     }
+  .button {
+    font-size: 12px;
+    width: 80px;
+  }
 
-     .searchContainer>* {
-          flex: none;
-          width: 100%;
-     }
+}
 
-     .dropDown {
-          width: 450px;
-          border: 2px solid red;
-     }
+.dropDown {
+  width: 450px;
+  border: 2px solid red;
+}
 
-     .button1 {
-          width: 300px;
-     }
+.button1 {
+  width: 300px;
 }

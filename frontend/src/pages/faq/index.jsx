@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../components/faqBoard/styles.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import FAQ from "../../components/faqBoard/faqBoard";
 
 function Contact() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [faqs, setfaqs] = useState([
     {
       question: "Socorro! Preciso alterar/cancelar minha reserva!",

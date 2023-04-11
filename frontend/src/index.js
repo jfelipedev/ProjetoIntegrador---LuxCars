@@ -11,10 +11,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import ProductScreen from "./pages/product";
-import RentScreen from "./pages/rent";
+import RentScreen from "./pages/rent/index";
 import ProductListScreen from "./pages/productList";
 import Faq from './pages/faq/index'
 import Contact from './pages/contact/index'
+import AllCarsScreen from './pages/allCars/index'
 
 
 
@@ -25,11 +26,12 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
-        <Route path="/entrar" element={<LoginScreen />} />
-        <Route path="/rent" element={<RentScreen />} />
-        <Route path="/produtos" element={<ProductListScreen />} />
+        <Route path="/alugue/:id" element={<RentScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/produtos" element={<AllCarsScreen />} />
+        <Route path="/produtosLista" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
-        <Route path="/produto" element={<ProductScreen />} />
+        <Route path="/produtos/:id" element={<ProductScreen />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contato" element={<Contact />} />
 

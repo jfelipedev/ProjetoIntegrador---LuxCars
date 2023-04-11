@@ -57,11 +57,11 @@ function Header() {
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
-            <Link to="/" className="navLink">Carros</Link>
+            <Link to="/" className="navLink">Início</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/produto" className="navLink">Ofertas</Link>
+            <Link to="/produtos" className="navLink">Carros</Link>
           </li>
 
           <li className="navItem">
@@ -75,10 +75,6 @@ function Header() {
           {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/login" className="navLink1">Login</Link>
-            </li>
-
-            <li className="navItem1">
-              <Link to="/" className="navLink1">Minhas Reservas</Link>
             </li>
           </ul>}
           {isAuthenticated && (

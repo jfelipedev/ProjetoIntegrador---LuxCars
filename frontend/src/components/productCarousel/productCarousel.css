@@ -51,34 +51,34 @@
 
 /* ====================Breakpoints=================== /
 @media screen and (max-width: 992px){
-     .image{
-          height: 70vh;
-          width: 90vw;
-          margin-left: 1rem;
-          margin-right: 1rem;
-     }
-    }
+  .image{
+       height: 70vh;
+       width: 90vw;
+       margin-left: 1rem;
+       margin-right: 1rem;
+  }
+ }
 
 / For medium devices /
 @media screen and (max-width: 768px){
-     .image{
-          height: 65vh;
-          width: 90vw;
-          margin-left: 1rem;
-          margin-right: 1rem;
-     }
-   }
-
-@media screen and (max-width: 576px){
-     .image{
-          height: 60vh;
-          width: 90vw;
-          margin-left: 1rem;
-          margin-right: 1rem;
-     }
+  .image{
+       height: 65vh;
+       width: 90vw;
+       margin-left: 1rem;
+       margin-right: 1rem;
+  }
 }
 
-/ For small devices */
+@media screen and (max-width: 576px){
+  .image{
+       height: 60vh;
+       width: 90vw;
+       margin-left: 1rem;
+       margin-right: 1rem;
+  }
+}
+
+/* For small devices */
 @media screen and (max-width: 390px) {
      .image {
           height: 40vh;
