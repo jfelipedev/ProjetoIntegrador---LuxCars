@@ -1,12 +1,28 @@
-import React, { useState } from "react";
-import "./rent.css";
-import { Calendar } from "react-multi-date-picker";
-import Image1 from "../../assets/carBMW-M440i.jpg";
-import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, {useState} from 'react'
+import './rent.css'
+import {Calendar} from "react-multi-date-picker"
+import Image1 from '../../assets/carBMW-M440i.jpg'
+import { useEffect } from 'react'
+import api from '../../services/api'
+import { useLocation } from 'react-router-dom'
+import { getToken } from '../../services/auth'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function Rent({ filtroProduct }) {
+function Rent({filtroProduct}) {
   const { id } = useParams();
+  // const [booking, setBooking] = useState([])
+
+  // useEffect(() => {
+
+  //   api.post("/booking/{id}").then((response) => {
+      
+  //     setBooking(response.data)
+  //     console.log(response)
+  //   })
+  //   .cath(() => {
+  //     setBooking([])
+  //   })
+  // })
 
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
 
@@ -26,7 +42,7 @@ function Rent({ filtroProduct }) {
   }, []);
   const fetchData = async () => {
     const response = await fetch(
-      `http://api.carlux.viniciusofagundes.com.br/car/${id}`
+      `http://api.carlux.viniciusofagundes.com.br/car/${14}`
     );
 
     const jsonData = await response.json();
@@ -51,31 +67,9 @@ function Rent({ filtroProduct }) {
 
   console.log(filtroProduct);
 
-  const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"];
-  const months = [
-    "jan",
-    "fev",
-    "mar",
-    "abr",
-    "mai",
-    "jun",
-    "jul",
-    "ago",
-    "set",
-    "out",
-    "nov",
-    "dez",
-  ];
-  const [values, setValues] = useState(new Date());
 
   console.log(carInfo);
 
-  // const oneImgOnly = carInfo.filter(
-  //   (obj, index) =>
-  //   carInfo.findIndex((item) => item.nameCar === obj.nameCar) === index
-  // );
-
-  //SLIDER~~~~~~~~
   const [sliderPosition, setSliderPosition] = useState(0);
 
   function moveSliderLeft() {
@@ -93,55 +87,99 @@ function Rent({ filtroProduct }) {
   }
   //END SLIDER ~~~~~~
 
+
+  const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"]
+  const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+  const [values, setValues] = useState(new Date())
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(getToken());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+	  const handleStorage = () => {
+		setToken(getToken())
+	}
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
+
+  const handleConfirm = () => {
+    if(isAuthenticated){
+      navigate("/reserva-confirmada")
+    }else{
+      navigate("/entrar")
+    }
+  }
+
+  useEffect(() => { 
+    setIsAuthenticated(!!token); 
+  }, []);
+
+
+
   return (
-    <div className="rentSection">
-      <div className="rentContainer">
-        <div className="rentHeader">
-          <div className="carSelected">
-            <h2 className="carSelectScript">Carro Selecionado</h2>
-            <h1 className="carnameScript">{carInfo.nameCar}</h1>
+    <div className='rentSection'>
+
+     <div className="rentContainer">
+          <div className="rentHeader">
+            <div className="carSelected">
+              <h2 className='carSelectScript'>Carro Selecionado</h2>
+              <h1 className='carnameScript' >{carInfo.nameCar}</h1>
+            </div>
+            <i class="uil uil-angle-left-b"></i>
           </div>
-          <i class="uil uil-angle-left-b"></i>
-        </div>
 
-        <div className="rentMain">
+         
+          <div className="rentMain">
+            <div className="rentMain1">
+            <div className="rentForm">
+               <h1 className='rentFromTitle'>Complete seus Dados</h1>
+               <form action="" className="rentFormInfo">
 
-          {/* <div className="rentForm">
-              <h1 className="rentFromTitle">Complete seus Dados</h1>
-              <form action="" className="rentFormInfo">
                 <div className="rentFormInfo1">
-                  <label htmlFor="name">Nome</label>
-                  <input className="rentInfo" type="text" id="name" />
+                <label htmlFor="name" >Nome</label>
+                <input className='rentInfo' type="text" id='name' />
+                
 
-                  <label htmlFor="surName">Sobrenome</label>
-                  <input className="rentInfo" type="text" id="surName" />
+                
+                <label htmlFor="surName">Sobrenome</label>
+                <input className='rentInfo' type="text" id='surName' />
                 </div>
 
                 <div className="rentFormInfo1">
-                  <label htmlFor="email">E-mail</label>
-                  <input className="rentInfo" type="text" id="email" />
-
-                  <label htmlFor="city">Cidade</label>
-                  <input className="rentInfo" type="text" id="city" />
+                <label htmlFor="email">E-mail</label>
+                <input className='rentInfo' type="text" id='email' />
+                
+                
+                
+                <label htmlFor="city">Cidade</label>
+                <input className='rentInfo' type="text" id='city'/>
                 </div>
-              </form>
-            </div> */}
 
+               </form>
+          </div>
+
+          
           <div style={{ width: 480 }} className="rentCalendar">
-            <h1 className="rentFromTitle">Selecione sua data de reserva</h1>
+          <h1 className='rentFromTitle'>Selecione sua data de reserva</h1>
             <Calendar
-              weekDays={weekDays}
-              months={months}
-              onChange={setValues}
-              numberOfMonths={2}
-              format="DD/MM/YYYY"
-              size="large"
-              range
-            ></Calendar>
+            
+            weekDays={weekDays}
+            months={months}
+            
+            onChange= {setValues}
+            numberOfMonths={2}
+            format="DD/MM/YYYY"
+            size="large"
+            range
+            >
+              {/* <button onChange= {setValues}>Enviar</button> */}
+            </Calendar>
           </div>
+            </div>
 
-
-          <div className="rentDetails">
+            <div className="rentDetails">
             <div className="rentDetailsImages">
               <div
                 className="slider"
@@ -182,14 +220,16 @@ function Rent({ filtroProduct }) {
                 </div>
               </form>
             </div>
-            <button className="rentDetailsButton button">
+            <button className="rentDetailsButton button" onClick={handleConfirm}>
               Confirmar Reserva
             </button>
           </div>
-        </div>
-      </div>
+
+          </div>
+     </div>
+
     </div>
-  );
+  )
 }
 
-export default Rent;
+export default Rent
