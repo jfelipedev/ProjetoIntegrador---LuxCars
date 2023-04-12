@@ -17,7 +17,7 @@ const Contact = () => {
 
   return (
     <div className="formContainer">
-      <h1>Fale Conosco</h1>
+      <h1 className='speakWith'>Fale Conosco</h1>
       <form onSubmit={handleSubmit} className="form">
         <label htmlFor="name">Nome:</label>
         <input

@@ -58,7 +58,6 @@ function Login() {
       setErrorLogin(error.data.password)
       setErrorLogin(error.data.email)
       //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
-
     })
   }
   

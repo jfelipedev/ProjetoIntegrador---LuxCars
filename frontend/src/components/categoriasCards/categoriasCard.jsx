@@ -37,7 +37,9 @@ const unique = listCategorys.filter(
             <div className="categoryCardCard"  id="categoryCardCard">
             <div className="box" key={id}>
               
+
                <Link to={'/produtos/' + id} ><img src={url + urlImage} alt="" className='categoryCardImg'/></Link>
+
                 <h4 className='textCard1'>{nameCar}</h4>
                 <h6 className='textCard2'>{year} | {price}</h6>
               

@@ -67,4 +67,3 @@ function HomeCarrossel() {
   
 }
 export default HomeCarrossel;
-
