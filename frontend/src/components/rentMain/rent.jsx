@@ -10,7 +10,8 @@ import { TOKEN_FIRST, getToken, getTokenName, getTokenSurname, getTokenEmail } f
 function Rent({ filtroProduct }) {
 
   const { id } = useParams();
-  const [value, setValue] = useState([new Date(), new Date()]);
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const [value, setValue] = useState(new Date().toLocaleString('pt-BR', options));
 
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
 
@@ -77,13 +78,13 @@ function Rent({ filtroProduct }) {
     "nov",
     "dez",
   ];
-  
+
   console.log(carInfo);
 
-  const handleDateChange = (date) =>{
+  const handleDateChange = (date) => {
     setValue(date);
   }
-  
+
   console.log(value)
 
   // const oneImgOnly = carInfo.filter(
@@ -113,12 +114,12 @@ function Rent({ filtroProduct }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(getToken());
   const navigate = useNavigate();
- 
+
 
   useEffect(() => {
-	  const handleStorage = () => {
-		setToken(getToken())
-	}
+    const handleStorage = () => {
+      setToken(getToken())
+    }
     window.addEventListener('storage', handleStorage())
     return () => window.removeEventListener('storage', handleStorage())
   }, [])
@@ -129,30 +130,30 @@ function Rent({ filtroProduct }) {
   const [tokenEmail, setTokenEmail] = useState(getTokenEmail());
   //console.log(tokenName + " " + tokenNameSurname);
 
-   useEffect (() =>{
+  useEffect(() => {
     setIsAuthenticated(!!token);
-    if(isAuthenticated){
-        setUserInfo({
-          name: tokenName,
-          lastName: tokenNameSurname,
-          email: tokenEmail,
-        });
+    if (isAuthenticated) {
+      setUserInfo({
+        name: tokenName,
+        lastName: tokenNameSurname,
+        email: tokenEmail,
+      });
     }
   }, [token, isAuthenticated, setUserInfo]);
 
   console.log(userInfo);
 
   const handleConfirm = () => {
-    if(isAuthenticated){
+    if (isAuthenticated) {
       navigate(`/aluguel-confirmado/${id}`)
       console.log(id);
-    }else{
+    } else {
       navigate("/entrar")
     }
   }
 
-  useEffect(() => { 
-    setIsAuthenticated(!!token); 
+  useEffect(() => {
+    setIsAuthenticated(!!token);
   }, []);
 
 
@@ -168,105 +169,105 @@ function Rent({ filtroProduct }) {
           <button onClick={() => navigate(-1)}><i class="uil uil-angle-left-b"></i></button>
         </div>
 
-        <div className="rentMain">        
-            <div className="rentForm">
-              <h1 className="rentFromTitle">Dados da sua conta</h1>
-              <form action="" className="rentFormInfo">
-                <div className="rentFormInfo1">
-                  <label htmlFor="name">Nome</label>
-                  <input className="rentInfo" type="text" id="name" value={userInfo.name} disabled/>
+        <div className="rentMain">
+          <div className="rentForm">
+            <h1 className="rentFromTitle">Dados da sua conta</h1>
+            <form action="" className="rentFormInfo">
+              <div className="rentFormInfo1">
+                <label htmlFor="name">Nome</label>
+                <input className="rentInfo" type="text" id="name" value={userInfo.name} disabled />
 
-                  <label htmlFor="surName">Sobrenome</label>
-                  <input className="rentInfo" type="text" id="surName" value={userInfo.lastName} disabled/>
+                <label htmlFor="surName">Sobrenome</label>
+                <input className="rentInfo" type="text" id="surName" value={userInfo.lastName} disabled />
 
+              </div>
+              <div className="rentFormInfo1">
+
+                <label htmlFor="city">Cidade</label>
+                <input className="rentInfo" type="text" id="city" value={carInfo.city} disabled />
+
+                <label htmlFor="city">Email</label>
+                <input className="rentInfo" type="text" id="city" value={userInfo.email} disabled />
+              </div>
+            </form>
+
+            <div className="calendar">
+              <div className="rentCalendarContainer">
+                <div className="rentCalendar">
+                  <div style={{ width: 480 }} className="rentCalendar">
+                    <h1 className="rentFromTitle">Selecione sua data de reserva</h1>
+                    <Calendar
+                      value={value}
+                      weekDays={weekDays}
+                      months={months}
+                      onChange={handleDateChange}
+                      numberOfMonths={2}
+                      format="DD/MM/YYYY"
+                      size="large"
+                      range
+                    ></Calendar>
                   </div>
-                  <div className="rentFormInfo1">
-
-                  <label htmlFor="city">Cidade</label>
-                  <input className="rentInfo" type="text" id="city" value={carInfo.city} disabled/>
-
-                  <label htmlFor="city">Email</label>
-                  <input className="rentInfo" type="text" id="city" value={userInfo.email} disabled/>
-                </div>               
-              </form>
-
-              <div className="calendar">
-            <div className="rentCalendarContainer">
-              <div className = "rentCalendar">
-              <div style={{ width: 480 }} className="rentCalendar">
-              <h1 className="rentFromTitle">Selecione sua data de reserva</h1>
-              <Calendar
-                value={value}
-                weekDays={weekDays}
-                months={months}
-                onChange={handleDateChange}
-                numberOfMonths={2}
-                format="DD/MM/YYYY"
-                size="large"
-                range
-              ></Calendar>
-              </div>
-            </div>
-            </div>
-            </div>
-            </div> 
-
-            
-
-            <div ClassName="car-info">
-            
-            <div className="rentDetails">
-            <div className="rentDetailsImages">
-              <div
-                className="slider"
-                style={{ transform: `translateX(${sliderPosition * -100}%)` }}
-              >
-                {carInfo.image &&
-                  carInfo.image.map(({ id, url, title }) => (
-                    <img
-                      key={id}
-                      className="rentDetailsImage"
-                      src={baseUrl + url}
-                      alt={title}
-                    />
-                  ))}
-              </div>
-              {/* <button onClick={moveSliderLeft}>{"<"}</button>
-              <button onClick={moveSliderRight}>{">"}</button> */}
-            </div>
-            <h1 className="rentDetailsTitle">Detalhe da reserva</h1>
-            <div className="rentDetailsInfo">
-              <h2 className="rentDetailsYear">{carInfo.year}</h2>
-              <h1 className="rentDetailsName">{carInfo.nameCar}</h1>
-              <h4 className="rentDetailsLocation">
-                {carInfo.city}, {carInfo.country}
-              </h4>
-
-              <form action="" className="rentDetailsForm">
-                <div className="single-input">
-                  {/* <label htmlFor="Checkin">Check in - Check out</label> */}
-                  <input
-                    value={value}
-                    type="text"
-                    name="Checkin"
-                    id="Checkin"
-                    className="inputDate"
-                  />
                 </div>
-              </form>
+              </div>
             </div>
-            <button className="rentDetailsButton button" onClick={handleConfirm}>
-              Confirmar Reserva
-            </button>
-            </div>
-              
+          </div>
+
+
+
+          <div ClassName="car-info">
+
+            <div className="rentDetails">
+              <div className="rentDetailsImages">
+                <div
+                  className="slider"
+                  style={{ transform: `translateX(${sliderPosition * -100}%)` }}
+                >
+                  {carInfo.image &&
+                    carInfo.image.map(({ id, url, title }) => (
+                      <img
+                        key={id}
+                        className="rentDetailsImage"
+                        src={baseUrl + url}
+                        alt={title}
+                      />
+                    ))}
+                </div>
+                {/* <button onClick={moveSliderLeft}>{"<"}</button>
+              <button onClick={moveSliderRight}>{">"}</button> */}
+              </div>
+              <h1 className="rentDetailsTitle">Detalhe da reserva</h1>
+              <div className="rentDetailsInfo">
+                <h2 className="rentDetailsYear">{carInfo.year}</h2>
+                <h1 className="rentDetailsName">{carInfo.nameCar}</h1>
+                <h4 className="rentDetailsLocation">
+                  {carInfo.city}, {carInfo.country}
+                </h4>
+
+                <form action="" className="rentDetailsForm">
+                  <div className="single-input">
+                    {/* <label htmlFor="Checkin">Check in - Check out</label> */}
+                    <input
+                      value={value}
+                      type="text"
+                      name="Checkin"
+                      id="Checkin"
+                      className="inputDate"
+                    />
+                  </div>
+                </form>
+              </div>
+              <button className="rentDetailsButton button" onClick={handleConfirm}>
+                Confirmar Reserva
+              </button>
             </div>
 
-                  
           </div>
+
+
         </div>
       </div>
-    
+    </div>
+
   );
 }
 
