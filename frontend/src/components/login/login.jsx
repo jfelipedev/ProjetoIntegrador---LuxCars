@@ -47,8 +47,8 @@ function Login() {
     })
       .then((response) => {
         const data = response.data;
-        login(response.data.jwt, data.user.firstName, data.user.surname);
-        //alert("Usuário Cadastrado")
+        login(response.data.jwt, data.user.firstName, data.user.surname, data.user.email);
+        console.log(data.user.email);
         navigate("/")
       })
       .catch((erro) => {

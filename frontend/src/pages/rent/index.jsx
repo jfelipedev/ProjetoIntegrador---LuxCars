@@ -4,16 +4,17 @@ import Footer from '../../components/footer/footer'
 import RentComp from '../../components/rentMain/rent'
 import { useLocation } from 'react-router-dom'
 
+
 function RentScreen() {
 
-  const { state } = useLocation();
+  const {state} = useLocation();
   console.log(state)
 
   return (
     <div>
-      <Header />
-      <RentComp />
-      <Footer />
+     <Header />
+     <RentComp />
+     <Footer />
     </div>
   )
 }

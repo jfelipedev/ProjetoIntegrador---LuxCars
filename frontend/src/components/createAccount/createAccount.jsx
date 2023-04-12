@@ -140,7 +140,7 @@ function Createaccount() {
           Registrar
         </button>
 
-        <div className="log">Já tem uma conta?<a href="/login"> Faça Login</a></div>
+        <div className="log">Já tem uma conta?<a href="/entrar"> Faça Login</a></div>
       </form>
     </div>
   );

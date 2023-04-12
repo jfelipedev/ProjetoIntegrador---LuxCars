@@ -65,9 +65,12 @@ p {
      align-items: center;
      flex-direction: column;
      justify-content: center;
-     height: 100vh;
-     color: whitesmoke;
+     height: 100vh;     
      background-color: #474350;
+}
+
+.iconBig{
+     color: whitesmoke;
 }
 
 

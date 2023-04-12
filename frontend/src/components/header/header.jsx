@@ -74,7 +74,7 @@ function Header() {
 
           {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
-              <Link to="/login" className="navLink1">Login</Link>
+              <Link to="/entrar" className="navLink1">Login</Link>
             </li>
             <li className="navItem1">
               <Link to="/criar-conta" className="navLink1">Cadastrar</Link>

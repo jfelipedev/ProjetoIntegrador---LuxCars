@@ -13,9 +13,11 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 import ProductScreen from "./pages/product";
 import RentScreen from "./pages/rent/index";
 import ProductListScreen from "./pages/productList";
-import Faq from './pages/faq/index'
-import Contact from './pages/contact/index'
-import AllCarsScreen from './pages/allCars/index'
+import Faq from './pages/faq/index';
+import Contact from './pages/contact/index';
+import RentConfirmScreen from "./pages/rentConfirm";
+import AllCarsScreen from './pages/allCars/index';
+
 
 
 
@@ -27,7 +29,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
         <Route path="/alugue/:id" element={<RentScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/aluguel-confirmado/:id" element={<RentConfirmScreen />} />
+        <Route path="/entrar" element={<LoginScreen />} />
         <Route path="/produtos" element={<AllCarsScreen />} />
         <Route path="/produtosLista" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />

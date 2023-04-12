@@ -1,28 +1,16 @@
-import React, {useState} from 'react'
-import './rent.css'
-import {Calendar} from "react-multi-date-picker"
-import Image1 from '../../assets/carBMW-M440i.jpg'
-import { useEffect } from 'react'
-import api from '../../services/api'
-import { useLocation } from 'react-router-dom'
-import { getToken } from '../../services/auth'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import "./rent.css";
+import { Calendar } from "react-multi-date-picker";
+import Image1 from "../../assets/carBMW-M440i.jpg";
+import { useEffect } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { TOKEN_FIRST, getToken, getTokenName, getTokenSurname, getTokenEmail } from '../../services/auth';
 
-function Rent({filtroProduct}) {
+function Rent({ filtroProduct }) {
+
   const { id } = useParams();
-  // const [booking, setBooking] = useState([])
-
-  // useEffect(() => {
-
-  //   api.post("/booking/{id}").then((response) => {
-      
-  //     setBooking(response.data)
-  //     console.log(response)
-  //   })
-  //   .cath(() => {
-  //     setBooking([])
-  //   })
-  // })
+  const [value, setValue] = useState([new Date(), new Date()]);
 
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
 
@@ -37,12 +25,18 @@ function Rent({filtroProduct}) {
     image: null,
   });
 
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const fetchData = async () => {
     const response = await fetch(
-      `http://api.carlux.viniciusofagundes.com.br/car/${14}`
+      `http://api.carlux.viniciusofagundes.com.br/car/${id}`
     );
 
     const jsonData = await response.json();
@@ -65,11 +59,39 @@ function Rent({filtroProduct}) {
     fetchData();
   }, []);
 
-  console.log(filtroProduct);
 
+  //console.log(filtroProduct);
 
+  const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"];
+  const months = [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez",
+  ];
+  
   console.log(carInfo);
 
+  const handleDateChange = (date) =>{
+    setValue(date);
+  }
+  
+  console.log(value)
+
+  // const oneImgOnly = carInfo.filter(
+  //   (obj, index) =>
+  //   carInfo.findIndex((item) => item.nameCar === obj.nameCar) === index
+  // );
+
+  //SLIDER~~~~~~~~
   const [sliderPosition, setSliderPosition] = useState(0);
 
   function moveSliderLeft() {
@@ -87,14 +109,11 @@ function Rent({filtroProduct}) {
   }
   //END SLIDER ~~~~~~
 
-
-  const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"]
-  const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
-  const [values, setValues] = useState(new Date())
-
+  //PRa confirmar a reserva
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(getToken());
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
 	  const handleStorage = () => {
@@ -104,9 +123,29 @@ function Rent({filtroProduct}) {
     return () => window.removeEventListener('storage', handleStorage())
   }, [])
 
+
+  const [tokenName, setTokenName] = useState(getTokenName());
+  const [tokenNameSurname, setTokenSurname] = useState(getTokenSurname());
+  const [tokenEmail, setTokenEmail] = useState(getTokenEmail());
+  //console.log(tokenName + " " + tokenNameSurname);
+
+   useEffect (() =>{
+    setIsAuthenticated(!!token);
+    if(isAuthenticated){
+        setUserInfo({
+          name: tokenName,
+          lastName: tokenNameSurname,
+          email: tokenEmail,
+        });
+    }
+  }, [token, isAuthenticated, setUserInfo]);
+
+  console.log(userInfo);
+
   const handleConfirm = () => {
     if(isAuthenticated){
-      navigate("/reserva-confirmada")
+      navigate(`/aluguel-confirmado/${id}`)
+      console.log(id);
     }else{
       navigate("/entrar")
     }
@@ -119,66 +158,63 @@ function Rent({filtroProduct}) {
 
 
   return (
-    <div className='rentSection'>
-
-     <div className="rentContainer">
-          <div className="rentHeader">
-            <div className="carSelected">
-              <h2 className='carSelectScript'>Carro Selecionado</h2>
-              <h1 className='carnameScript' >{carInfo.nameCar}</h1>
-            </div>
-            <i class="uil uil-angle-left-b"></i>
+    <div className="rentSection">
+      <div className="rentContainer">
+        <div className="rentHeader">
+          <div className="carSelected">
+            <h2 className="carSelectScript">Carro Selecionado</h2>
+            <h1 className="carnameScript">{carInfo.nameCar}</h1>
           </div>
+          <button onClick={() => navigate(-1)}><i class="uil uil-angle-left-b"></i></button>
+        </div>
 
-         
-          <div className="rentMain">
-            <div className="rentMain1">
+        <div className="rentMain">        
             <div className="rentForm">
-               <h1 className='rentFromTitle'>Complete seus Dados</h1>
-               <form action="" className="rentFormInfo">
-
+              <h1 className="rentFromTitle">Dados da sua conta</h1>
+              <form action="" className="rentFormInfo">
                 <div className="rentFormInfo1">
-                <label htmlFor="name" >Nome</label>
-                <input className='rentInfo' type="text" id='name' />
-                
+                  <label htmlFor="name">Nome</label>
+                  <input className="rentInfo" type="text" id="name" value={userInfo.name} disabled/>
 
-                
-                <label htmlFor="surName">Sobrenome</label>
-                <input className='rentInfo' type="text" id='surName' />
-                </div>
+                  <label htmlFor="surName">Sobrenome</label>
+                  <input className="rentInfo" type="text" id="surName" value={userInfo.lastName} disabled/>
 
-                <div className="rentFormInfo1">
-                <label htmlFor="email">E-mail</label>
-                <input className='rentInfo' type="text" id='email' />
-                
-                
-                
-                <label htmlFor="city">Cidade</label>
-                <input className='rentInfo' type="text" id='city'/>
-                </div>
+                  </div>
+                  <div className="rentFormInfo1">
 
-               </form>
-          </div>
+                  <label htmlFor="city">Cidade</label>
+                  <input className="rentInfo" type="text" id="city" value={carInfo.city} disabled/>
 
-          
-          <div style={{ width: 480 }} className="rentCalendar">
-          <h1 className='rentFromTitle'>Selecione sua data de reserva</h1>
-            <Calendar
-            
-            weekDays={weekDays}
-            months={months}
-            
-            onChange= {setValues}
-            numberOfMonths={2}
-            format="DD/MM/YYYY"
-            size="large"
-            range
-            >
-              {/* <button onChange= {setValues}>Enviar</button> */}
-            </Calendar>
-          </div>
+                  <label htmlFor="city">Email</label>
+                  <input className="rentInfo" type="text" id="city" value={userInfo.email} disabled/>
+                </div>               
+              </form>
+
+              <div className="calendar">
+            <div className="rentCalendarContainer">
+              <div className = "rentCalendar">
+              <div style={{ width: 480 }} className="rentCalendar">
+              <h1 className="rentFromTitle">Selecione sua data de reserva</h1>
+              <Calendar
+                value={value}
+                weekDays={weekDays}
+                months={months}
+                onChange={handleDateChange}
+                numberOfMonths={2}
+                format="DD/MM/YYYY"
+                size="large"
+                range
+              ></Calendar>
+              </div>
             </div>
+            </div>
+            </div>
+            </div> 
 
+            
+
+            <div ClassName="car-info">
+            
             <div className="rentDetails">
             <div className="rentDetailsImages">
               <div
@@ -199,7 +235,6 @@ function Rent({filtroProduct}) {
               <button onClick={moveSliderRight}>{">"}</button> */}
             </div>
             <h1 className="rentDetailsTitle">Detalhe da reserva</h1>
-
             <div className="rentDetailsInfo">
               <h2 className="rentDetailsYear">{carInfo.year}</h2>
               <h1 className="rentDetailsName">{carInfo.nameCar}</h1>
@@ -211,7 +246,7 @@ function Rent({filtroProduct}) {
                 <div className="single-input">
                   {/* <label htmlFor="Checkin">Check in - Check out</label> */}
                   <input
-                    value={values}
+                    value={value}
                     type="text"
                     name="Checkin"
                     id="Checkin"
@@ -223,13 +258,16 @@ function Rent({filtroProduct}) {
             <button className="rentDetailsButton button" onClick={handleConfirm}>
               Confirmar Reserva
             </button>
-          </div>
+            </div>
+              
+            </div>
 
+                  
           </div>
-     </div>
-
-    </div>
-  )
+        </div>
+      </div>
+    
+  );
 }
 
-export default Rent
+export default Rent;
