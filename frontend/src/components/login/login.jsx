@@ -47,7 +47,7 @@ function Login() {
     })
       .then((response) => {
         const data = response.data;
-        login(response.data.jwt, data.user.firstName, data.user.surname, data.user.email);
+        login(response.data.jwt, data.user.firstName, data.user.surname, data.user.role, data.user.email);
         console.log(data.user.email);
         navigate("/")
       })
