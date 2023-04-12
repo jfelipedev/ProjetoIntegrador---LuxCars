@@ -1,8 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { getTokenName, getTokenSurname, getTokenEmail } from '../../services/auth';
+import { useNavigate, useParams } from "react-router-dom";
 import './rentConfirm.css';
 
+
 function RentConfirm() {
+
+    const [name, setTokenName] = useState(getTokenName());
+    const [lastName, setTokenSurname] = useState(getTokenSurname());
+    const [email, setTokenEmail] = useState(getTokenEmail());
+    const navigate = useNavigate();
+
+    
+
+    const [userInfo, setUserInfo] = useState({
+        name: "",
+        lastName: "",
+        email: "",
+      });
+
+      useEffect (() =>{
+        setUserInfo({
+            name: name,
+            lastName: lastName,
+            email: email,
+        });
+      }, [setUserInfo]);
+
+      console.log(userInfo);
+
+
   const { id } = useParams();
   const baseUrl = 'https://carlux-grupo1.s3.us-east-2.amazonaws.com';
 
@@ -45,12 +72,25 @@ function RentConfirm() {
     fetchData();
   }, []);
 
+ 
+  const redirectToHome = () => {
+    setTimeout(() => {
+      navigate('/');
+    }, 5000); // Tempo em milissegundos
+  };
+
+  // Chama a função para redirecionar para a página inicial
+  useEffect(() => {
+    redirectToHome();
+  }, []);
+
   return (
     <div className="rentConfirmContainer">
       <div className="confirmBox">
         <h1 className="userNameConfirm"></h1>
 
         <div className="rentConfirmDescrip">
+            <h2 className='rentConfirmCar'>Sr(a) {userInfo.name} {userInfo.lastName}</h2>
           <h2 className="rentConfirmCar">{carInfo.nameCar}</h2>
           <h2 className="rentConfirmCar Year">{carInfo.year}</h2>
           <h2 className="rentConfirmCar City">{carInfo.city}, {carInfo.country}</h2>
@@ -60,7 +100,7 @@ function RentConfirm() {
           <img className="rentConfirmImg" src={baseUrl + carInfo.image} alt={carInfo.nameCar} />
         </div>
 
-        <button className="buttonRentConfirm button">Confirmar reserva</button>
+        <h3>Reserva confirmada com sucesso</h3>
       </div>
     </div>
   );
