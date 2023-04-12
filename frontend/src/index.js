@@ -15,6 +15,7 @@ import RentScreen from "./pages/rent";
 import ProductListScreen from "./pages/productList";
 import Faq from './pages/faq/index'
 import Contact from './pages/contact/index'
+import RentConfirmScreen from "./pages/rentConfirm";
 
 
 
@@ -26,7 +27,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
         <Route path="/entrar" element={<LoginScreen />} />
-        <Route path="/rent" element={<RentScreen />} />
+        <Route path="/reserva" element={<RentScreen />} />
+        <Route path="/reserva-confirmada" element={<RentConfirmScreen />} />
         <Route path="/produtos" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
         <Route path="/produto" element={<ProductScreen />} />

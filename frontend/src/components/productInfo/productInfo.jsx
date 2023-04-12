@@ -26,7 +26,7 @@ function ProductInfo() {
   });
   const fetchData = async () => {
       const response = await fetch(
-        `http://api.carlux.viniciusofagundes.com.br/car/${id}`
+        `http://api.carlux.viniciusofagundes.com.br/car/1`
       );
       const jsonData = await response.json();
       const response1 = await fetch(
@@ -82,7 +82,7 @@ function ProductInfo() {
     const navigate = useNavigate()
 
     const handlerent = () => {
-      navigate("/rent", {state : id})
+      navigate("/reserva", {state : id})
     }
 
   return (
