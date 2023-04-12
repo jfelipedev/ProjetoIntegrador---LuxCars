@@ -2,26 +2,24 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import './login.css';
 import { Link } from 'react-router-dom';
-import {yupResolver} from "@hookform/resolvers/yup"
+import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import api from "../../services/api"
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 
 const validation = yup.object().shape({
   email: yup.string("Necessario preencher o campo login")
-  .email("Email fora do padrao normal")
-  .required("Necessario preencher o campo login"),
-  
+    .email("Email fora do padrao normal")
+    .required("Necessario preencher o campo login"),
+
   password: yup.string("Necessario preencher o campo senha")
-  .required("Necessario preencher o campo senha")
-  .min(8, "A senha precisa ter no mínimo 8 caracteres")
-   //.matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,}$/, "Tamanho da senha fora do padrao") 
-   //A senha precisa ter no mínimo 8 caracteres, ' +
-  // 'uma letra maiúscula e uma letra minúscula, ' +
-  // 'um número e um caracter especial'
+    .required("Necessario preencher o campo senha")
+    .min(8, "A senha precisa ter no mínimo 8 caracteres")
+
 });
 
 
@@ -41,26 +39,39 @@ function Login() {
     }
   );
 
-  function loginUser(value) { 
+  function loginUser(value) {
 
     api.post("/auth", {
-          email: value.email,
-          password: value.password,
+      email: value.email,
+      password: value.password,
+    })
+      .then((response) => {
+        const data = response.data;
+        login(response.data.jwt, data.user.firstName, data.user.surname, data.user.email);
+        console.log(data.user.email);
+        navigate("/")
       })
-    .then((response) => {
-      const data = response.data;
-      login(response.data.jwt, data.user.firstName, data.user.surname, data.user.role, data.user.email);
-      //alert("Usuário Cadastrado")
-      navigate("/")
-    })
-    .catch((erro) => {
-      let error = erro.response
-      setErrorLogin(error.data.password)
-      setErrorLogin(error.data.email)
-      //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
-    })
+      .catch((erro) => {
+        let error = erro.response
+        /*setErrorLogin(error.data.password)
+        setErrorLogin(error.data.email)*/
+        if (erro.response.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Os dados inseridos estão incorretos. Tente novamente!'
+          })
+        }
+        if (erro.response.status === 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao tentar fazer login. Tente mais tarde!'
+          })
+        }
+
+      })
   }
-  
 
   return (
     <div className="login">
@@ -78,15 +89,15 @@ function Login() {
               placeholder="Email"
               {...register("email")}
             />
-            { <span className="spanError">{errors.email?.message}</span>}
+            {<span className="spanError">{errors.email?.message}</span>}
 
             <input className='input1'
               type="password"
               placeholder="Senha"
               {...register("password")}
             />
-            {  <span className="spanError">{errors.password?.message}</span>}
-            <span className="spanError" style={{display: (errorLogin === null) ? "none" : "block"}}> {errorLogin} </span>
+            {<span className="spanError">{errors.password?.message}</span>}
+            <span className="spanError" style={{ display: (errorLogin === null) ? "none" : "block" }}> {errorLogin} </span>
 
             <button type='submit' className='buttonE '>Entrar</button>
           </div>
@@ -110,3 +121,4 @@ function Login() {
 };
 
 export default Login;
+

@@ -6,7 +6,7 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 import java.util.Objects;
 
 public class OutputCarCaracteristicsDto {
-    private long id;
+    private Long id;
     private String name;
     private String icon;
     private String value;
@@ -15,7 +15,7 @@ public class OutputCarCaracteristicsDto {
     public OutputCarCaracteristicsDto() {
     }
 
-    public OutputCarCaracteristicsDto(long id, String name, String icon, String value, String unit) {
+    public OutputCarCaracteristicsDto(Long id, String name, String icon, String value, String unit) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -35,11 +35,11 @@ public class OutputCarCaracteristicsDto {
         this.value = caracteristic.getValue();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

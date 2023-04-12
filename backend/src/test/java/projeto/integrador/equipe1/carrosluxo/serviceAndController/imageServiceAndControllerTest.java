@@ -41,7 +41,7 @@ public class imageServiceAndControllerTest {
     @Test
     void createValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputImageCreateOrUpdateDto image = imageService.create(new InputImageDto("Imagem de teste", 1));
+            OutputImageCreateOrUpdateDto image = imageService.create(new InputImageDto("Imagem de teste", 1L));
             Assertions.assertEquals(2, image.getId());
         });
     }
@@ -49,14 +49,14 @@ public class imageServiceAndControllerTest {
     @Test
     void createInvalid() {
         Assertions.assertEquals("{\"title\":null,\"car\":\"Este carro não Existir\"}", Assertions.assertThrows(BadRequestException.class, () -> {
-            imageService.create(new InputImageDto("Imagem de teste", 10));
+            imageService.create(new InputImageDto("Imagem de teste", 10L));
         }).getMessage());
     }
 
     @Test
     void readValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputImageReadDto image = imageService.read(1);
+            OutputImageReadDto image = imageService.read(1L);
             Assertions.assertEquals("Imagem de um audi", image.getTitle());
         });
     }
@@ -64,14 +64,14 @@ public class imageServiceAndControllerTest {
     @Test
     void readInvalid() {
         Assertions.assertEquals("Esta imagem não está registrada!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            imageService.read(10);
+            imageService.read(10L);
         }).getMessage());
     }
 
     @Test
     void updateValid() {
         Assertions.assertDoesNotThrow(() -> {
-            OutputImageCreateOrUpdateDto image = imageService.update(1, new InputImageDto("Uma imagem de um audi", 1));
+            OutputImageCreateOrUpdateDto image = imageService.update(1L, new InputImageDto("Uma imagem de um audi", 1L));
             Assertions.assertEquals("Uma imagem de um audi", image.getTitle());
         });
     }
@@ -79,14 +79,14 @@ public class imageServiceAndControllerTest {
     @Test
     void updateInvalidIdImage() {
         Assertions.assertEquals("Esta imagem não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            imageService.update(10, new InputImageDto("Um imagem de um audi", 1));
+            imageService.update(10L, new InputImageDto("Um imagem de um audi", 1L));
         }).getMessage());
     }
 
     @Test
     void updateInvalidIdCar() {
         Assertions.assertEquals("{\"title\":null,\"car\":\"Este carro não Existir\"}", Assertions.assertThrows(BadRequestException.class, () -> {
-            imageService.update(1, new InputImageDto("Um imagem de um audi", 10));
+            imageService.update(1L, new InputImageDto("Um imagem de um audi", 10L));
         }).getMessage());
     }
 
@@ -99,7 +99,7 @@ public class imageServiceAndControllerTest {
             byte[] content = Files.readAllBytes(resource.getFile().toPath());
             MockMultipartFile file = new MockMultipartFile(filename, filename, contentType, content);
             imageService.upload(1L, file);
-            String image = imageService.delete(1);
+            String image = imageService.delete(1L);
             Assertions.assertEquals("Esta imagem foi deletado com sucesso!", image);
         });
     }
@@ -107,7 +107,7 @@ public class imageServiceAndControllerTest {
     @Test
     void deleteInvalid() {
         Assertions.assertEquals("Esta imagem não está registrado!", Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            imageService.delete(5);
+            imageService.delete(5L);
         }).getMessage());
     }
 
@@ -162,7 +162,7 @@ public class imageServiceAndControllerTest {
     @Test
     void controllerCreateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputImageCreateOrUpdateDto> response = (ResponseEntity<OutputImageCreateOrUpdateDto>) imageController.create(new InputImageDto("Imagem de teste", 1));
+            ResponseEntity<OutputImageCreateOrUpdateDto> response = (ResponseEntity<OutputImageCreateOrUpdateDto>) imageController.create(new InputImageDto("Imagem de teste", 1L));
             Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
             Assertions.assertEquals(2, response.getBody().getId());
         });
@@ -171,7 +171,7 @@ public class imageServiceAndControllerTest {
     @Test
     void controllerReadTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputImageReadDto> response = (ResponseEntity<OutputImageReadDto>) imageController.read(1);
+            ResponseEntity<OutputImageReadDto> response = (ResponseEntity<OutputImageReadDto>) imageController.read(1L);
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Imagem de um audi", response.getBody().getTitle());
         });
@@ -180,7 +180,7 @@ public class imageServiceAndControllerTest {
     @Test
     void controllerUpdateTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<OutputImageCreateOrUpdateDto> response = (ResponseEntity<OutputImageCreateOrUpdateDto>) imageController.update(1, new InputImageDto("Lateral de um carro Audi", 1));
+            ResponseEntity<OutputImageCreateOrUpdateDto> response = (ResponseEntity<OutputImageCreateOrUpdateDto>) imageController.update(1L, new InputImageDto("Lateral de um carro Audi", 1L));
             Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
             Assertions.assertEquals("Lateral de um carro Audi", response.getBody().getTitle());
         });
@@ -189,7 +189,7 @@ public class imageServiceAndControllerTest {
     @Test
     void controllerDeleteTest() {
         Assertions.assertDoesNotThrow(() -> {
-            ResponseEntity<String> response = (ResponseEntity<String>) imageController.delete(1);
+            ResponseEntity<String> response = (ResponseEntity<String>) imageController.delete(1L);
             Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
             Assertions.assertEquals("Esta imagem foi deletado com sucesso!", response.getBody());
         });

@@ -13,14 +13,14 @@ public class CarValidationTest {
     @Test
     void validationTextValid() {
         CarValidation carValidation = new CarValidation();
-        String error = carValidation.validationText("Olá Mundo!", 2, 25);
+        String error = carValidation.validationText("Olá Mundo!", 2L, 25L);
         Assertions.assertNull(error);
     }
 
     @Test
     void validationTextEmpty() {
         CarValidation carValidation = new CarValidation();
-        String error = carValidation.validationText("", 2, 25);
+        String error = carValidation.validationText("", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo não pode está vazio!", error);
     }
@@ -28,7 +28,7 @@ public class CarValidationTest {
     @Test
     void validationTextCharMin() {
         CarValidation carValidation = new CarValidation();
-        String error = carValidation.validationText("O", 2, 25);
+        String error = carValidation.validationText("O", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser maior do que 2 caractreres!", error);
     }
@@ -36,7 +36,7 @@ public class CarValidationTest {
     @Test
     void validationTextCharMax() {
         CarValidation carValidation = new CarValidation();
-        String error = carValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2, 25);
+        String error = carValidation.validationText("Olá Mundo, eu sou texto muito grande!", 2L, 25L);
         Assertions.assertNotNull(error);
         Assertions.assertEquals("Este campo dever ser menor do que 25 caractreres!", error);
     }
@@ -108,7 +108,7 @@ public class CarValidationTest {
         Assertions.assertThrows(BadRequestException.class, () -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            new CarValidation(new InputCarDto("d", "d", 20.0, 1850, Boolean.TRUE, 1, 1, list));
+            new CarValidation(new InputCarDto("d", "d", 20.0, 1850, Boolean.TRUE, 1L, 1L, list));
         });
     }
 
@@ -117,7 +117,7 @@ public class CarValidationTest {
         Assertions.assertDoesNotThrow(() -> {
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            new CarValidation(new InputCarDto("Ferrati GT 300", "Um carro conversivel", 1500.0, 2011, Boolean.TRUE, 1, 1, list));
+            new CarValidation(new InputCarDto("Ferrati GT 300", "Um carro conversivel", 1500.0, 2011, Boolean.TRUE, 1L, 1L, list));
         });
     }
 }

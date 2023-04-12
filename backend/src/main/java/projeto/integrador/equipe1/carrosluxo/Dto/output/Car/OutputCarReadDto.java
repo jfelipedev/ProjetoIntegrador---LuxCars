@@ -5,7 +5,9 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class OutputCarReadDto {
@@ -20,13 +22,13 @@ public class OutputCarReadDto {
     private Boolean highlight;
     private OutputCarCategoryDto category;
     private OutputCarCityDto city;
-    private Set<OutputCarImagesDto> images;
+    private List<OutputCarImagesDto> images;
     private Set<OutputCarCaracteristicsDto> caracteristics;
 
     public OutputCarReadDto() {
     }
 
-    public OutputCarReadDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, Set<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
+    public OutputCarReadDto(String nameCar, String descritpion, Double price, Integer year, Boolean highlight, OutputCarCategoryDto category, OutputCarCityDto city, List<OutputCarImagesDto> images, Set<OutputCarCaracteristicsDto> caracteristics) {
         this.nameCar = nameCar;
         this.descritpion = descritpion;
         this.price = price;
@@ -46,11 +48,11 @@ public class OutputCarReadDto {
         this.highlight = car.getHighlight();
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
-        Set<OutputCarImagesDto> images = new HashSet<>();
+        this.images = new ArrayList<>();
         for (ImagesEntity image : car.getImages()) {
-            images.add(new OutputCarImagesDto(image));
+            this.images.add(new OutputCarImagesDto(image));
         }
-        this.images = images;
+        this.images.sort((e1, e2) -> e1.getId().compareTo(e2.getId()));
         Set<OutputCarCaracteristicsDto> list = new HashSet<>();
         for (CarCaracteristicEntity carCaracteristic : car.getCarCaracteristic()) {
             list.add(new OutputCarCaracteristicsDto(carCaracteristic));
@@ -114,11 +116,11 @@ public class OutputCarReadDto {
         this.city = city;
     }
 
-    public Set<OutputCarImagesDto> getImages() {
+    public List<OutputCarImagesDto> getImages() {
         return images;
     }
 
-    public void setImages(Set<OutputCarImagesDto> images) {
+    public void setImages(List<OutputCarImagesDto> images) {
         this.images = images;
     }
 

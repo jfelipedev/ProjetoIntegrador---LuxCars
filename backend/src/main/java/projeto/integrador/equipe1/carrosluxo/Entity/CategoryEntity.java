@@ -10,7 +10,7 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     private String descritpion;
 
     @Column(name = "url_image")
@@ -23,7 +23,7 @@ public class CategoryEntity {
     public CategoryEntity() {
     }
 
-    public CategoryEntity(long id, String descritpion, String urlImage, String qualification, Set<CarEntity> cars) {
+    public CategoryEntity(Long id, String descritpion, String urlImage, String qualification, Set<CarEntity> cars) {
         this.id = id;
         this.descritpion = descritpion;
         this.urlImage = urlImage;
@@ -37,11 +37,11 @@ public class CategoryEntity {
         this.urlImage = "";
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

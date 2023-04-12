@@ -60,7 +60,7 @@ public class BookingService {
         }
     }
 
-    public String delete(long idUser, Long idBooking) throws Exception {
+    public String delete(Long idUser, Long idBooking) throws Exception {
         if (userRepository.existsById(idUser)) {
             if (userRepository.existsById(idBooking)) {
                 UserEntity user = userRepository.findById(idUser).get();
@@ -86,7 +86,7 @@ public class BookingService {
         }
     }
 
-    public OutputBookingDto read(long idUser, Long idBooking) throws Exception {
+    public OutputBookingDto read(Long idUser, Long idBooking) throws Exception {
         if (userRepository.existsById(idUser)) {
             if (userRepository.existsById(idBooking)) {
                 UserEntity user = userRepository.findById(idUser).get();

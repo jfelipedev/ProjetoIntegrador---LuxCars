@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import "./rent.css";
 import { Calendar } from "react-multi-date-picker";
 import Image1 from "../../assets/carBMW-M440i.jpg";
@@ -14,8 +14,10 @@ import {
 } from "../../services/auth";
 
 function Rent({ filtroProduct }) {
+
   const { id } = useParams();
-  const [value, setValue] = useState([new Date(), new Date()]);
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const [value, setValue] = useState(new Date().toLocaleString('pt-BR', options));
 
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
 
@@ -116,8 +118,14 @@ function Rent({ filtroProduct }) {
 
   const handleDateChange = (date) => {
     setValue(date);
-    console.log("olha aqui" + date[0].toString());
-  };
+  }
+
+  console.log(value)
+
+  // const oneImgOnly = carInfo.filter(
+  //   (obj, index) =>
+  //   carInfo.findIndex((item) => item.nameCar === obj.nameCar) === index
+  // );
 
   //SLIDER~~~~~~~~
   const [sliderPosition, setSliderPosition] = useState(0);
@@ -142,13 +150,15 @@ function Rent({ filtroProduct }) {
   const [token, setToken] = useState(getToken());
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const handleStorage = () => {
-      setToken(getToken());
-    };
-    window.addEventListener("storage", handleStorage());
-    return () => window.removeEventListener("storage", handleStorage());
-  }, []);
+      setToken(getToken())
+    }
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
+
 
   const [tokenName, setTokenName] = useState(getTokenName());
   const [tokenNameSurname, setTokenSurname] = useState(getTokenSurname());
@@ -166,17 +176,22 @@ function Rent({ filtroProduct }) {
     }
   }, [token, isAuthenticated, setUserInfo]);
 
+  console.log(userInfo);
+
   const handleConfirm = () => {
     if (isAuthenticated) {
-      navigate(`/aluguel-confirmado/${id}`);
+      navigate(`/aluguel-confirmado/${id}`)
+      console.log(id);
     } else {
-      navigate("/entrar");
+      navigate("/entrar")
     }
-  };
+  }
 
   useEffect(() => {
     setIsAuthenticated(!!token);
   }, []);
+
+
 
   return (
     <div className="rentSection">
@@ -186,9 +201,7 @@ function Rent({ filtroProduct }) {
             <h2 className="carSelectScript">Carro Selecionado</h2>
             <h1 className="carnameScript">{carInfo.nameCar}</h1>
           </div>
-          <button onClick={() => navigate(-1)}>
-            <i class="uil uil-angle-left-b"></i>
-          </button>
+          <button onClick={() => navigate(-1)}><i class="uil uil-angle-left-b"></i></button>
         </div>
 
         <div className="rentMain">
@@ -307,9 +320,12 @@ function Rent({ filtroProduct }) {
               </button>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
+
   );
 }
 

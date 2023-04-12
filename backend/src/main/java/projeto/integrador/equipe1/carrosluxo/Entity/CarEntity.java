@@ -11,7 +11,7 @@ public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "name_car")
     private String nameCar;
 
@@ -44,7 +44,7 @@ public class CarEntity {
     public CarEntity() {
     }
 
-    public CarEntity(long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<BookingEntity> bookings, Set<CarCaracteristicEntity> carCaracteristic) {
+    public CarEntity(Long id, String nameCar, String descritpion, Double price, Integer year, Boolean highlight, CategoryEntity category, CitiesEntity cities, Set<ImagesEntity> images, Set<BookingEntity> bookings, Set<CarCaracteristicEntity> carCaracteristic) {
         this.id = id;
         this.nameCar = nameCar;
         this.descritpion = descritpion;
@@ -70,11 +70,11 @@ public class CarEntity {
         this.cities.setId(car.getIdCity());
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

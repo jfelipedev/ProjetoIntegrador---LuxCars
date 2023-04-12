@@ -6,6 +6,8 @@ import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import api from "../../services/api";
 import { useState } from "react";
+import Swal from "sweetalert2";
+
 
 
 
@@ -50,12 +52,13 @@ function Createaccount() {
 
   function newUser( value) {
 
-    console.log(value)
+    //console.log(value)
     
     if (value.email !== value.confirmEmail) {
       alert("E-mails diferentes!");
-    }else{
-      api.post("/register", {
+    } else {
+      api
+        .post("/register", {
           firstName: value.name,
           surname: value.surname,
           email: value.email,
@@ -72,7 +75,6 @@ function Createaccount() {
     })
   }
   }
-
 
   return (
     <div className="createAccount">

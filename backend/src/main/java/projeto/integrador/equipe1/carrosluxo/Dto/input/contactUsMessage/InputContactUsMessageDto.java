@@ -1,4 +1,4 @@
-package projeto.integrador.equipe1.carrosluxo.Dto.input;
+package projeto.integrador.equipe1.carrosluxo.Dto.input.contactUsMessage;
 
 public class InputContactUsMessageDto {
     private String email;

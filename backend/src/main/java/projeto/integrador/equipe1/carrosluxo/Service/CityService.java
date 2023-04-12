@@ -36,7 +36,7 @@ public class CityService {
         throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCityDto("Esta cidade já está cadastrada!", null)));
     }
 
-    public OutputCityReadDto read(long id) throws Exception {
+    public OutputCityReadDto read(Long id) throws Exception {
         logger.trace("A cidade com id + " + id + " foi exibindo!");
         if (cityRepository.existsById(id)) {
             return new OutputCityReadDto(cityRepository.findById(id).get());
@@ -44,7 +44,7 @@ public class CityService {
         throw new ResourceNotFoundException("Esta cidade não está registrada!");
     }
 
-    public OutputCityCreateOrUpdateDto update(long id, InputCityDto city) throws Exception {
+    public OutputCityCreateOrUpdateDto update(Long id, InputCityDto city) throws Exception {
         new CityValidation(city);
         if (cityRepository.existsById(id)) {
             if (!cityRepository.findById(id).get().getNameCity().equals(city.getNameCity())) {
@@ -62,7 +62,7 @@ public class CityService {
         throw new ResourceNotFoundException("Esta cidade não está registrado!");
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (cityRepository.existsById(id)) {
             cityRepository.deleteById(id);
             logger.info("A cidade com a id " + id + " foi deletado!");

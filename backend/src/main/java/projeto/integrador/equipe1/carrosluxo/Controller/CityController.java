@@ -66,7 +66,7 @@ public class CityController {
                     content = {@Content}),
     })
     @Operation(summary = "Exibir uma cidade especifica", tags = {"City"})
-    public ResponseEntity<?> read(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /city/{id}");
         return new ResponseEntity<>(cityService.read(id), HttpStatus.OK);
     }
@@ -84,7 +84,7 @@ public class CityController {
     })
     @Operation(summary = "Atualizar uma cidade especifica", tags = {"City"})
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCityDto city) throws Exception {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody InputCityDto city) throws Exception {
         logger.trace("Controle: UPDATE / PUT /city/{id}");
         return new ResponseEntity<>(cityService.update(id, city), HttpStatus.OK);
     }
@@ -98,7 +98,7 @@ public class CityController {
                     content = {@Content}),
     })
     @Operation(summary = "Remover uma cidade especifica", tags = {"City"})
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /city/{id}");
         return new ResponseEntity<>(cityService.delete(id), HttpStatus.NO_CONTENT);
     }

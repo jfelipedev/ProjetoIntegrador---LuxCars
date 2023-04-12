@@ -5,17 +5,19 @@ import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 import java.util.Objects;
 
 public class OutputCaracteristicCreateOrUpdateDto {
-    private long id;
+    private Long id;
     private String name;
     private String icon;
+    private String unitOfMeasurement;
 
     public OutputCaracteristicCreateOrUpdateDto() {
     }
 
-    public OutputCaracteristicCreateOrUpdateDto(long id, String name, String icon) {
+    public OutputCaracteristicCreateOrUpdateDto(Long id, String name, String icon, String unitOfMeasurement) {
         this.id = id;
         this.name = name;
         this.icon = icon;
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 
     public OutputCaracteristicCreateOrUpdateDto(CaracteristicEntity caracteristic) {
@@ -26,13 +28,14 @@ public class OutputCaracteristicCreateOrUpdateDto {
             this.icon = caracteristic.getIcon();
         }
         this.name = caracteristic.getName();
+        this.unitOfMeasurement = caracteristic.getUnitOfMeasurement();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,5 +53,13 @@ public class OutputCaracteristicCreateOrUpdateDto {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

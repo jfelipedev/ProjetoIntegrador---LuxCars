@@ -39,7 +39,7 @@ public class CategoryService {
         throw new BadRequestException(objectMapper.writeValueAsString(new ErrorCategoryDto(null, "Esta categoria já está cadastrado!")));
     }
 
-    public OutputCategoryReadDto read(long id) throws Exception {
+    public OutputCategoryReadDto read(Long id) throws Exception {
         logger.trace("A categoria com id + " + id + "Foi exibindo!");
         if (categoryRepository.existsById(id)) {
             return new OutputCategoryReadDto(categoryRepository.findById(id).get());
@@ -47,7 +47,7 @@ public class CategoryService {
         throw new ResourceNotFoundException("Esta categoria não existir");
     }
 
-    public OutputCategoryCreateOrUpdateDto update(long id, InputCategoryDto category) throws Exception {
+    public OutputCategoryCreateOrUpdateDto update(Long id, InputCategoryDto category) throws Exception {
         new CategoryValidation(category);
         if (categoryRepository.existsById(id)) {
             if (!categoryRepository.findById(id).get().getQualification().equals(category.getQualification())) {
@@ -65,7 +65,7 @@ public class CategoryService {
         throw new ResourceNotFoundException("Esta categoria não existir");
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (categoryRepository.existsById(id)) {
             CategoryEntity category = categoryRepository.findById(id).get();
             if (!category.getUrlImage().isEmpty()) {
@@ -82,7 +82,7 @@ public class CategoryService {
         logger.trace("Todas as categorias foram exibidas!");
         List<OutputCategoryAllDto> list = new ArrayList();
         for (CategoryEntity category : categoryRepository.findAll()) {
-            list.add(new OutputCategoryAllDto(category, category.getCars().size()));
+            list.add(new OutputCategoryAllDto(category, (long) category.getCars().size()));
         }
         return list;
     }
@@ -96,7 +96,7 @@ public class CategoryService {
         if (!category.getUrlImage().isEmpty()) {
             logger.trace("Imagem " + category.getUrlImage() + ": " + uploadService.deleteFile(category.getUrlImage()));
         }
-        category.setUrlImage(uploadService.uploadFile(file, "category", id, 650, 1450, 220, 780));
+        category.setUrlImage(uploadService.uploadFile(file, "category", id, 650L, 1450L, 220L, 780L));
         categoryRepository.save(category);
         return new OutputCategoryReadDto(category);
     }

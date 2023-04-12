@@ -9,7 +9,7 @@ public class UserRoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(name = "name_role")
     @Enumerated(EnumType.STRING)
@@ -18,7 +18,7 @@ public class UserRoleEntity {
     @OneToMany(mappedBy = "role")
     private List<UserEntity> users;
 
-    public UserRoleEntity(long id, UserRoles roleName, List<UserEntity> users) {
+    public UserRoleEntity(Long id, UserRoles roleName, List<UserEntity> users) {
         this.id = id;
         this.roleName = roleName;
         this.users = users;
@@ -27,11 +27,11 @@ public class UserRoleEntity {
     public UserRoleEntity() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

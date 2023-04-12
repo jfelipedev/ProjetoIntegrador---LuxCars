@@ -3,7 +3,7 @@ import Avatar from '../avatar/avatar';
 import './header.css'
 import { Link, Navigate } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-import { getToken, isAuthenticated, getTokenName, getTokenSurname, getTokenRole, logout} from '../../services/auth';
+import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout } from '../../services/auth';
 import HeaderModal from '../headerModal/headerModal';
 import { useNavigate } from "react-router-dom";
 
@@ -86,6 +86,9 @@ function Header() {
           {!isAuthenticated && <ul className="navList1 grid">
             <li className="navItem1">
               <Link to="/entrar" className="navLink1">Login</Link>
+            </li>
+            <li className="navItem1">
+              <Link to="/criar-conta" className="navLink1">Cadastrar</Link>
             </li>
           </ul>}
           {isAuthenticated && (

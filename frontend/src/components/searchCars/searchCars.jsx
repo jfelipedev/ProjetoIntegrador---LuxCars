@@ -81,6 +81,8 @@ function SearchCars() {
 
   };
 
+
+
   const handleEvent = (dates) => {
     const [start, end] = dates;
     const formattedStartDate = start.toISOString();

@@ -121,14 +121,14 @@ public class UserValidationTest {
     @Test
     void validationLengthValid() {
         UserValidation userValidation = new UserValidation();
-        Boolean error = userValidation.validationLength("teste tes".split(" "), 3);
+        Boolean error = userValidation.validationLength("teste tes".split(" "), 3L);
         Assertions.assertTrue(error);
     }
 
     @Test
     void validationLengthInvalid() {
         UserValidation userValidation = new UserValidation();
-        Boolean error = userValidation.validationLength("teste ts".split(" "), 3);
+        Boolean error = userValidation.validationLength("teste ts".split(" "), 3L);
         Assertions.assertFalse(error);
     }
 

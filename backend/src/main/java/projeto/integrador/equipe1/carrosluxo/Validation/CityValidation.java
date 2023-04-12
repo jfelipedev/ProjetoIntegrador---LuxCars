@@ -6,10 +6,10 @@ import projeto.integrador.equipe1.carrosluxo.Dto.input.city.InputCityDto;
 import projeto.integrador.equipe1.carrosluxo.Exception.BadRequestException;
 
 public class CityValidation {
-    private static final int nameCityCharactersMinimum = 2;
-    private static final int nameCityCharactersMaximum = 100;
-    private static final int countryCharactersMinimum = 2;
-    private static final int countryCharactersMaximum = 100;
+    private static final Long nameCityCharactersMinimum = 2L;
+    private static final Long nameCityCharactersMaximum = 100L;
+    private static final Long countryCharactersMinimum = 2L;
+    private static final Long countryCharactersMaximum = 100L;
 
     public CityValidation() {
     }
@@ -24,7 +24,7 @@ public class CityValidation {
         }
     }
 
-    public String validationText(String text, int textCharactersMinimum, int textCharactersMaximum) {
+    public String validationText(String text, Long textCharactersMinimum, Long textCharactersMaximum) {
         if (text.trim().isBlank()) {
             return "Este campo não pode está vazio!";
         } else if (text.trim().length() < textCharactersMinimum) {

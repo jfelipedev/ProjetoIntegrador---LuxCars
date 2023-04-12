@@ -33,7 +33,7 @@ public class CaracteristicService {
         return new OutputCaracteristicCreateOrUpdateDto(caracteristicRepository.save(new CaracteristicEntity(caracteristic)));
     }
 
-    public OutputCaracteristicReadDto read(long id) throws Exception {
+    public OutputCaracteristicReadDto read(Long id) throws Exception {
         logger.trace("A caracteristica com id + " + id + " foi exibindo!");
         if (caracteristicRepository.existsById(id)) {
             return new OutputCaracteristicReadDto(caracteristicRepository.findById(id).get());
@@ -41,7 +41,7 @@ public class CaracteristicService {
         throw new ResourceNotFoundException("Esta caracteristica não está registrado!");
     }
 
-    public OutputCaracteristicCreateOrUpdateDto update(long id, InputCaracteristicDto caracteristic) throws Exception {
+    public OutputCaracteristicCreateOrUpdateDto update(Long id, InputCaracteristicDto caracteristic) throws Exception {
         new CaracteristicValidation(caracteristic);
         if (caracteristicRepository.existsById(id)) {
             CaracteristicEntity caracteristicEntity = new CaracteristicEntity(caracteristic);
@@ -53,7 +53,7 @@ public class CaracteristicService {
         throw new ResourceNotFoundException("Esta caracteristica não está registrado!");
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (caracteristicRepository.existsById(id)) {
             caracteristicRepository.deleteById(id);
             logger.info("A caracteristica com a id " + id + " foi deletado!");
@@ -80,7 +80,7 @@ public class CaracteristicService {
         if (!caracteristic.getIcon().isEmpty()) {
             logger.info("Imagem " + caracteristic.getIcon() + ": " + uploadService.deleteFile(caracteristic.getIcon()));
         }
-        caracteristic.setIcon(uploadService.uploadFile(file, "image", id, 100, 100, 100, 100));
+        caracteristic.setIcon(uploadService.uploadFile(file, "image", id, 100L, 100L, 100L, 100L));
         caracteristicRepository.save(caracteristic);
         return new OutputCaracteristicReadDto(caracteristic);
     }

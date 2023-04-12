@@ -21,7 +21,7 @@
   box-sizing: border-box;
 }
 
-.searchContainer > * {
+.searchContainer>* {
   flex: 1;
 }
 
@@ -80,10 +80,10 @@ Select {
     outline: none;
     color: #1c1c1c;
     font-weight: 500;
-    border: 0.5px solid #2d2d2d;    
+    border: 0.5px solid #2d2d2d;
   }
 
-  
+
   .dropDown {
     width: 100%;
     border-radius: 5px;
@@ -139,22 +139,21 @@ Select {
 }
 
 @media screen and (max-width: 670px) {
-  .searchContainer{
+  .searchContainer {
     width: 90%;
   }
 
 }
 
 @media screen and (max-width: 500px) {
-  .searchContainer{
+  .searchContainer {
     width: 80%;
   }
 
 }
 
 @media screen and (max-width: 383px) {
-  .searchContainer{
+  .searchContainer {
     width: 70%;
   }
 }
-

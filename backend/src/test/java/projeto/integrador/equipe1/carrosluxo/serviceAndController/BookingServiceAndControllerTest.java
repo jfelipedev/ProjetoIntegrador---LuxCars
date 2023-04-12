@@ -245,14 +245,14 @@ public class BookingServiceAndControllerTest {
     @Test
     void deleteValidAdmin() {
         Assertions.assertDoesNotThrow(() -> {
-            Assertions.assertEquals("Esta reserva foi deletada com sucesso!", bookingService.delete(1, 1L));
+            Assertions.assertEquals("Esta reserva foi deletada com sucesso!", bookingService.delete(1L, 1L));
         });
     }
 
     @Test
     void deleteValidUser() {
         Assertions.assertDoesNotThrow(() -> {
-            Assertions.assertEquals("Esta reserva foi deletada com sucesso!", bookingService.delete(2, 1L));
+            Assertions.assertEquals("Esta reserva foi deletada com sucesso!", bookingService.delete(2L, 1L));
         });
     }
 
@@ -308,7 +308,7 @@ public class BookingServiceAndControllerTest {
             Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
             HashSet<InputCarCaracteristicDTO> list = new HashSet<>();
             list.add(new InputCarCaracteristicDTO(1L, null));
-            carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1, 1, list)));
+            carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1L, 1L, list)));
             Assertions.assertEquals(true, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(20, ChronoUnit.DAYS))));
             Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(-20, ChronoUnit.DAYS))));
             Assertions.assertEquals(false, bookingService.checkDayAvailability(Date.from(new Date().toInstant().plus(400, ChronoUnit.DAYS))));
@@ -333,7 +333,7 @@ public class BookingServiceAndControllerTest {
             Assertions.assertEquals(260, ChronoUnit.DAYS.between(list2.get(1)[0].toInstant(), list2.get(1)[1].toInstant()));
             HashSet<InputCarCaracteristicDTO> listCaracteristic = new HashSet<>();
             listCaracteristic.add(new InputCarCaracteristicDTO(1L, null));
-            CarEntity car = carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1, 1, listCaracteristic)));
+            CarEntity car = carRepository.save(new CarEntity(new InputCarDto("TesteCar", "Carro de teste", 250.0, 2015, Boolean.FALSE, 1L, 1L, listCaracteristic)));
             List<Date[]> list4 = bookingService.readAllAvailabilityCar(car);
             Assertions.assertEquals(1, list4.size());
             Assertions.assertEquals(365, ChronoUnit.DAYS.between(list4.get(0)[0].toInstant(), list4.get(0)[1].toInstant()));

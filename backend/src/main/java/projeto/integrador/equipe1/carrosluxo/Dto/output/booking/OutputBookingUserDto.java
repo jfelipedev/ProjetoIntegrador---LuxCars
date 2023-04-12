@@ -3,12 +3,12 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.booking;
 import projeto.integrador.equipe1.carrosluxo.Entity.UserEntity;
 
 public class OutputBookingUserDto {
-    private long id;
+    private Long id;
     private String firstName;
     private String surname;
     private String email;
 
-    public OutputBookingUserDto(long id, String firstName, String surname, String email) {
+    public OutputBookingUserDto(Long id, String firstName, String surname, String email) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -25,11 +25,11 @@ public class OutputBookingUserDto {
         this.email = user.getEmail();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

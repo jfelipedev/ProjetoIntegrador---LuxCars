@@ -44,9 +44,6 @@ public class CarService {
     public OutputCarCreateOrUpdateDto create(InputCarDto car) throws Exception {
         new CarValidation(car);
         ErrorCarDto error = new ErrorCarDto();
-        if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-            error.setNameCar("Este carro já está cadastrado!");
-        }
         if (!categoryRepository.existsById(car.getIdCategory())) {
             error.setCategory("Esta categoria não existe!");
         }
@@ -74,10 +71,10 @@ public class CarService {
             carCaracteristic.setValue(caracteristic.getValue());
             carCaracteristicRepository.save(carCaracteristic);
         }
-        return new OutputCarCreateOrUpdateDto(carRepository.findByNameCar(car.getNameCar()).get());
+        return new OutputCarCreateOrUpdateDto(carEntity);
     }
 
-    public OutputCarReadDto read(long id) throws Exception {
+    public OutputCarReadDto read(Long id) throws Exception {
         logger.trace("O carro com id + " + id + " foi exibindo!");
         if (carRepository.existsById(id)) {
             return new OutputCarReadDto(carRepository.findById(id).get());
@@ -85,17 +82,12 @@ public class CarService {
         throw new ResourceNotFoundException("Este carro não existir");
     }
 
-    public OutputCarCreateOrUpdateDto update(long id, InputCarDto car) throws Exception {
+    public OutputCarCreateOrUpdateDto update(Long id, InputCarDto car) throws Exception {
         new CarValidation(car);
         if (!carRepository.existsById(id)) {
             throw new ResourceNotFoundException("Este carro não existir");
         }
         ErrorCarDto error = new ErrorCarDto();
-        if (!carRepository.findById(id).get().getNameCar().equals(car.getNameCar())) {
-            if (carRepository.existsByNameCar(car.getNameCar()).get()) {
-                error.setNameCar("Este carro já está cadastrado!");
-            }
-        }
         if (!categoryRepository.existsById(car.getIdCategory())) {
             error.setCategory("Esta categoria não existe!");
         }
@@ -131,7 +123,7 @@ public class CarService {
         return new OutputCarCreateOrUpdateDto(carRepository.findById(id).get());
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (carRepository.existsById(id)) {
             carRepository.deleteById(id);
             logger.info("O carro com a id " + id + " foi deletado!");

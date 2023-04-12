@@ -3,35 +3,46 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.caracteristic;
 import projeto.integrador.equipe1.carrosluxo.Entity.CaracteristicEntity;
 
 public class OutputCaracteristicDto {
-    private long id;
-    private String icon;
+    private Long id;
+    private String name;
+    private String unitOfMeasurement;
 
     public OutputCaracteristicDto() {
     }
 
-    public OutputCaracteristicDto(long id, String icon) {
+    public OutputCaracteristicDto(Long id, String name, String unitOfMeasurement) {
         this.id = id;
-        this.icon = icon;
+        this.name = name;
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 
     public OutputCaracteristicDto(CaracteristicEntity caracteristic) {
         this.id = caracteristic.getId();
-        this.icon = caracteristic.getIcon();
+        this.name = caracteristic.getName();
+        this.unitOfMeasurement = caracteristic.getUnitOfMeasurement();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getName() {
+        return name;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

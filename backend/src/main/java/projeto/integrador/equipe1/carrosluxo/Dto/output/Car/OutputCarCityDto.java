@@ -3,13 +3,13 @@ package projeto.integrador.equipe1.carrosluxo.Dto.output.Car;
 import projeto.integrador.equipe1.carrosluxo.Entity.CitiesEntity;
 
 public class OutputCarCityDto {
-    private long id;
+    private Long id;
     private String nameCity;
 
     public OutputCarCityDto() {
     }
 
-    public OutputCarCityDto(long id, String nameCity) {
+    public OutputCarCityDto(Long id, String nameCity) {
         this.id = id;
         this.nameCity = nameCity;
     }
@@ -19,11 +19,11 @@ public class OutputCarCityDto {
         this.nameCity = city.getNameCity();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

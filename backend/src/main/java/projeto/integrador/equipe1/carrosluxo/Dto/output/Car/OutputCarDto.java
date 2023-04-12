@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import projeto.integrador.equipe1.carrosluxo.Entity.CarEntity;
 import projeto.integrador.equipe1.carrosluxo.Entity.ImagesEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class OutputCarDto {
@@ -49,8 +51,9 @@ public class OutputCarDto {
         this.category = new OutputCarCategoryDto(car.getCategory());
         this.city = new OutputCarCityDto(car.getCities());
         if (car.getImages().size() >= 1) {
-            ImagesEntity image = (ImagesEntity) car.getImages().toArray()[0];
-            this.urlImage = image.getUrl();
+            List<ImagesEntity> lista = new ArrayList<>(car.getImages());
+            lista.sort((e1, e2) -> e1.getId().compareTo(e2.getId()));
+            ImagesEntity image = lista.get(0);
             if (Objects.equals(image.getUrl(), "")) {
                 this.urlImage = "Imagem ainda não foi inserida!";
             } else {

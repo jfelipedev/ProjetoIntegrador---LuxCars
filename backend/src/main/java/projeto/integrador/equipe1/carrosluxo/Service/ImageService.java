@@ -43,7 +43,7 @@ public class ImageService {
         }
     }
 
-    public OutputImageReadDto read(long id) throws Exception {
+    public OutputImageReadDto read(Long id) throws Exception {
         logger.trace("A imagem com id + " + id + " foi exibindo!");
         if (imageRepository.existsById(id)) {
             return new OutputImageReadDto(imageRepository.findById(id).get());
@@ -51,7 +51,7 @@ public class ImageService {
         throw new ResourceNotFoundException("Esta imagem não está registrada!");
     }
 
-    public OutputImageCreateOrUpdateDto update(long id, InputImageDto image) throws Exception {
+    public OutputImageCreateOrUpdateDto update(Long id, InputImageDto image) throws Exception {
         new ImageValidation(image);
         if (imageRepository.existsById(id)) {
             if (!carRepository.existsById(image.getIdCar())) {
@@ -66,7 +66,7 @@ public class ImageService {
         throw new ResourceNotFoundException("Esta imagem não está registrado!");
     }
 
-    public String delete(long id) throws Exception {
+    public String delete(Long id) throws Exception {
         if (imageRepository.existsById(id)) {
             ImagesEntity image = imageRepository.findById(id).get();
             if (!image.getUrl().isEmpty()) {
@@ -97,7 +97,7 @@ public class ImageService {
         if (!images.getUrl().isEmpty()) {
             logger.info("Imagem " + images.getUrl() + ": " + uploadService.deleteFile(images.getUrl()));
         }
-        images.setUrl(uploadService.uploadFile(file, "image", id, 677, 679, 380, 382));
+        images.setUrl(uploadService.uploadFile(file, "image", id, 677L, 679L, 380L, 382L));
         imageRepository.save(images);
         return new OutputImageReadDto(images);
     }

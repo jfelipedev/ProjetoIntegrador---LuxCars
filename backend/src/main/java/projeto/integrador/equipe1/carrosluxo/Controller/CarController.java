@@ -96,7 +96,7 @@ public class CarController {
                     content = {@Content}),
     })
     @Operation(summary = "Exibir um carro especifico", tags = {"Car"})
-    public ResponseEntity<?> read(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> read(@PathVariable Long id) throws Exception {
         logger.trace("Controle: READ / GET /car/{id}");
         return new ResponseEntity<>(carService.read(id), HttpStatus.OK);
     }
@@ -114,7 +114,7 @@ public class CarController {
                     content = {@Content}),
     })
     @Operation(summary = "Atualizar um carro especifico", tags = {"Car"})
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody InputCarDto car) throws Exception {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody InputCarDto car) throws Exception {
         logger.trace("Controle: UPDATE / PUT /car/{id}");
         return new ResponseEntity<>(carService.update(id, car), HttpStatus.OK);
     }
@@ -128,7 +128,7 @@ public class CarController {
                     content = {@Content}),
     })
     @Operation(summary = "Remover um carro especifico", tags = {"Car"})
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
         logger.trace("Controle: DELETE / DELETE /car/{id}");
         return new ResponseEntity<>(carService.delete(id), HttpStatus.NO_CONTENT);
     }
@@ -145,7 +145,7 @@ public class CarController {
             )
     })
     @Operation(summary = "Exibir a disponibilidade de um carro especifico", tags = {"Car"})
-    public ResponseEntity<?> availabilityByCar(@PathVariable long id) throws Exception {
+    public ResponseEntity<?> availabilityByCar(@PathVariable Long id) throws Exception {
         logger.trace("Controle: availabilityByCar / GET /car/{id}/availability");
         if (carRepository.existsById(id)) {
             List<Date[]> list;

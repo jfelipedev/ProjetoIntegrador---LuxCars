@@ -3,7 +3,7 @@ h1 {
      margin: 0
 }
 
-.spanError{
+.spanError {
      color: red;
      font-family: "Roboto";
      font-size: 12px;
@@ -70,7 +70,11 @@ p {
      align-items: center;
      flex-direction: column;
      justify-content: center;
-     height: 100vh;
+     height: 100vh;     
+     background-color: #474350;
+}
+
+.iconBig{
      color: whitesmoke;
      background-color: #474350;
 }
@@ -78,6 +82,7 @@ p {
      color: black;
      font-weight: 500;
 }
+
 
 .loginbar {
      max-width: 900px;
@@ -132,8 +137,8 @@ input::-moz-placeholder {
      font-weight: 500;
 }
 
-.buttonE:hover{
-     color:#474350;
+.buttonE:hover {
+     color: #474350;
      background-color: #ffc857;
 }
 
@@ -177,12 +182,13 @@ input::-moz-placeholder {
 /* ====================Breakpoints=================== */
 /* For large devices */
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
 
      .loginbar {
           width: 85%;
      }
-     .acessar .cadastrar{
+
+     .acessar .cadastrar {
           text-align: center;
           font-size: 16px;
           font-weight: 600;
@@ -194,9 +200,10 @@ input::-moz-placeholder {
      .loginTitle {
           text-align: center;
           margin: 15px 0px 50px 0px;
-          
+
      }
     
+
 
      .inputs {
           display: flex;
@@ -213,13 +220,13 @@ input::-moz-placeholder {
           padding: 5px;
           border-radius: 5px;
           margin-bottom: 20px;
-          
+
      }
 
      .input1 {
-          height: 32px; 
+          height: 32px;
           width: 15rem;
-     } 
+     }
 
      .buttonE {
           width: 15rem;
@@ -239,20 +246,20 @@ input::-moz-placeholder {
           margin-bottom: 20px;
      }
 
-     .iconBig{
+     .iconBig {
           font-size: 14px;
      }
 
-     .spanError{
+     .spanError {
           color: red;
           font-family: "Roboto", sans-serif;
           font-size: 12px;
           padding-bottom: 15px;
      }
-    }
+}
 
-    @media screen and (max-width: 768px){
-     .loginbar{
+@media screen and (max-width: 768px) {
+     .loginbar {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -269,52 +276,53 @@ input::-moz-placeholder {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          }
-     
-          .loginTitle {
-               text-align: center;
-               margin: 10px 0px 15px 0px;
-               font-size: 1.7rem;
-          }
-     
-          .inputs {
-               display: flex;
-               flex-direction: column;
-          }
-     
-          .input1{
-               height: 30px;
-               width: 12rem;
-          } 
-     
-          .buttonE{
-               width: 12rem;
-               background-color: #474350;
-               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-          }
+     }
 
-          .acessar ,.cadastrar{
-               text-align: center;
-               font-size: 14px;
-               font-weight: 600;
-               text-transform: uppercase;
-               display: inline-block;
-               color: whitesmoke;
-          }
-     
-          .icons{
-               display: flex;
-               flex-direction: column;
-          }
+     .loginTitle {
+          text-align: center;
+          margin: 10px 0px 15px 0px;
+          font-size: 1.7rem;
+     }
 
-          .iconBig{
-               font-size: 12px;
-          }
-    }
+     .inputs {
+          display: flex;
+          flex-direction: column;
+     }
 
-    /* For small devices */
-@media screen and (max-width: 576px){
-     .loginbar{
+     .input1 {
+          height: 30px;
+          width: 12rem;
+     }
+
+     .buttonE {
+          width: 12rem;
+          background-color: #474350;
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     }
+
+     .acessar,
+     .cadastrar {
+          text-align: center;
+          font-size: 14px;
+          font-weight: 600;
+          text-transform: uppercase;
+          display: inline-block;
+          color: whitesmoke;
+     }
+
+     .icons {
+          display: flex;
+          flex-direction: column;
+     }
+
+     .iconBig {
+          font-size: 12px;
+     }
+}
+
+/* For small devices */
+@media screen and (max-width: 576px) {
+     .loginbar {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -331,45 +339,45 @@ input::-moz-placeholder {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          }
-     
-          .loginTitle {
-               text-align: center;
-               margin: 5px 0px 10px 0px;
-               font-size: 1.5rem;
-          }
-     
-          .inputs {
-               display: flex;
-               flex-direction: column;
-          }
-     
-          .input1{
-               height: 30px;
-               width: 12rem;
-          } 
-     
-          .buttonE{
-               width: 12rem;
-               background-color: #474350;
-               box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-          }
+     }
 
-          .acessar .cadastrar{
-               text-align: center;
-               font-size: 12px;
-               font-weight: 600;
-               text-transform: uppercase;
-               display: inline-block;
-               color: whitesmoke;
-          }
-     
-          .icons{
-               display: flex;
-               flex-direction: column;
-          }
+     .loginTitle {
+          text-align: center;
+          margin: 5px 0px 10px 0px;
+          font-size: 1.5rem;
+     }
 
-          .iconBig{
-               font-size: 12px;
-          }
+     .inputs {
+          display: flex;
+          flex-direction: column;
+     }
+
+     .input1 {
+          height: 30px;
+          width: 12rem;
+     }
+
+     .buttonE {
+          width: 12rem;
+          background-color: #474350;
+          box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+     }
+
+     .acessar .cadastrar {
+          text-align: center;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          display: inline-block;
+          color: whitesmoke;
+     }
+
+     .icons {
+          display: flex;
+          flex-direction: column;
+     }
+
+     .iconBig {
+          font-size: 12px;
+     }
 }
