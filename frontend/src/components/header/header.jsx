@@ -3,7 +3,7 @@ import Avatar from '../avatar/avatar';
 import './header.css'
 import { Link, Navigate } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout } from '../../services/auth';
+import { getTokenRole, getToken, isAuthenticated, getTokenName, getTokenSurname, logout } from '../../services/auth';
 import HeaderModal from '../headerModal/headerModal';
 import { useNavigate } from "react-router-dom";
 
