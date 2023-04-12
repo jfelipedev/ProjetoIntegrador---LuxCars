@@ -51,12 +51,10 @@ function RentConfirm() {
       <div className="confirmBox">
         <h1 className="userNameConfirm"></h1>
 
-        <h2 className="rentConfirmCar">{carInfo.nameCar}</h2>
-        <h2 className="rentConfirmCarYear">{carInfo.year}</h2>
-        <h2 className="rentConfirmCarCity">{carInfo.city}, {carInfo.country}</h2>
-        
         <div className="rentConfirmDescrip">
-
+          <h2 className="rentConfirmCar">{carInfo.nameCar}</h2>
+          <h2 className="rentConfirmCar Year">{carInfo.year}</h2>
+          <h2 className="rentConfirmCar City">{carInfo.city}, {carInfo.country}</h2>
         </div>
       <button className="buttonRentConfirm button">Reservado</button>
       </div>
