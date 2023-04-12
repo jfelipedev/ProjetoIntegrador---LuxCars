@@ -4,15 +4,29 @@
      background-color: #474350;
      margin-top: 5rem;
      margin-bottom: 5rem;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 /* Ao chegar no tamanho do modal ele fica tem de subir para margin-top 4rem */
 
-
+.rentContainer {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     width: 100%;
+     gap: 1rem;
+     max-width: 1600px;
+     box-sizing: border-box;
+}
+   
 .rentHeader{
-     background: whitesmoke;
+     background: #1c1c1c;
      display: flex;
      align-items: center;
      justify-content: space-between;
+     width: 100%;
 }
 
 .carSelected{
@@ -24,19 +38,21 @@
      font-size: 15px;
      font-family: 'Inter', sans-serif;
      font-weight: 400;
-     color: #1C1C1C;
+     color: #F4F7F5;
      padding-right: 4.5rem;
 }
 
 .carnameScript{
      font-size: 20px;
      font-family: 'Inter', sans-serif;
-     color: #1C1C1C;
+     color: #F4F7F5;
 }
 
 .uil-angle-left-b{
      font-size: 4rem;
      margin-right: 2rem;
+     color: #F4F7F5;
+     padding-right: 2rem;
 }
 
 .rentMain{
@@ -221,10 +237,7 @@
 /* For large devices */
 @media screen and (max-width: 992px){
     .rentMain{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
+         display: flex;
     }
    }
    
