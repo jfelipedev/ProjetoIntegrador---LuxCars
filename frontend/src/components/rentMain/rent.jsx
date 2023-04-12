@@ -5,7 +5,13 @@ import { Calendar } from "react-multi-date-picker";
 import Image1 from "../../assets/carBMW-M440i.jpg";
 import { useEffect } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { TOKEN_FIRST, getToken, getTokenName, getTokenSurname, getTokenEmail } from '../../services/auth';
+import {
+  TOKEN_FIRST,
+  getToken,
+  getTokenName,
+  getTokenSurname,
+  getTokenEmail,
+} from "../../services/auth";
 
 function Rent({ filtroProduct }) {
 
@@ -60,8 +66,37 @@ function Rent({ filtroProduct }) {
     fetchData();
   }, []);
 
+// TENTANDO FAZER POST DA RESERVA
 
-  //console.log(filtroProduct);
+  async function postData() {
+    try {
+      const response = await fetch(
+        "http://api.carlux.viniciusofagundes.com.br/booking",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + getToken,
+          },
+          body: JSON.stringify({
+            startDate: value[0].toDate().toString(),
+            startTime: "",
+            endDate: value[1].toDate().toString(),
+            idCar: id,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  postData();
+
+  // console.log(filtroProduct);
 
   const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"];
   const months = [
@@ -79,7 +114,7 @@ function Rent({ filtroProduct }) {
     "dez",
   ];
 
-  console.log(carInfo);
+  // console.log(carInfo);
 
   const handleDateChange = (date) => {
     setValue(date);
@@ -110,7 +145,7 @@ function Rent({ filtroProduct }) {
   }
   //END SLIDER ~~~~~~
 
-  //PRa confirmar a reserva
+  //pra confirmar a reserva
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(getToken());
   const navigate = useNavigate();
@@ -175,19 +210,41 @@ function Rent({ filtroProduct }) {
             <form action="" className="rentFormInfo">
               <div className="rentFormInfo1">
                 <label htmlFor="name">Nome</label>
-                <input className="rentInfo" type="text" id="name" value={userInfo.name} disabled />
+                <input
+                  className="rentInfo"
+                  type="text"
+                  id="name"
+                  value={userInfo.name}
+                  disabled
+                />
 
                 <label htmlFor="surName">Sobrenome</label>
-                <input className="rentInfo" type="text" id="surName" value={userInfo.lastName} disabled />
-
+                <input
+                  className="rentInfo"
+                  type="text"
+                  id="surName"
+                  value={userInfo.lastName}
+                  disabled
+                />
               </div>
               <div className="rentFormInfo1">
-
                 <label htmlFor="city">Cidade</label>
-                <input className="rentInfo" type="text" id="city" value={carInfo.city} disabled />
+                <input
+                  className="rentInfo"
+                  type="text"
+                  id="city"
+                  value={carInfo.city}
+                  disabled
+                />
 
                 <label htmlFor="city">Email</label>
-                <input className="rentInfo" type="text" id="city" value={userInfo.email} disabled />
+                <input
+                  className="rentInfo"
+                  type="text"
+                  id="city"
+                  value={userInfo.email}
+                  disabled
+                />
               </div>
             </form>
 
@@ -195,7 +252,9 @@ function Rent({ filtroProduct }) {
               <div className="rentCalendarContainer">
                 <div className="rentCalendar">
                   <div style={{ width: 480 }} className="rentCalendar">
-                    <h1 className="rentFromTitle">Selecione sua data de reserva</h1>
+                    <h1 className="rentFromTitle">
+                      Selecione sua data de reserva
+                    </h1>
                     <Calendar
                       value={value}
                       weekDays={weekDays}
@@ -212,10 +271,7 @@ function Rent({ filtroProduct }) {
             </div>
           </div>
 
-
-
           <div ClassName="car-info">
-
             <div className="rentDetails">
               <div className="rentDetailsImages">
                 <div
@@ -256,11 +312,13 @@ function Rent({ filtroProduct }) {
                   </div>
                 </form>
               </div>
-              <button className="rentDetailsButton button" onClick={handleConfirm}>
+              <button
+                className="rentDetailsButton button"
+                onClick={handleConfirm}
+              >
                 Confirmar Reserva
               </button>
             </div>
-
           </div>
 
 

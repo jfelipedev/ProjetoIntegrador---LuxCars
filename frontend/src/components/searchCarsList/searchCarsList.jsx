@@ -162,4 +162,3 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
 }
 export default SearchCarsList;
 
-

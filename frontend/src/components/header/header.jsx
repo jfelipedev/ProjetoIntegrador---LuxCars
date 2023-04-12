@@ -17,6 +17,7 @@ function Header() {
   const [token, setToken] = useState(getToken());
   const [firstName, setFirstaName] = useState(getTokenName());
   const [surname, setSurname] = useState(getTokenSurname());
+  const [role, setRole] = useState(getTokenRole());
   const [nameInitials, setInitials] = useState("");
 
 
@@ -44,6 +45,7 @@ function Header() {
     setFirstaName(null);
     setSurname(null);
     setIsAuthenticated(false);
+    setRole(null);
     navigate('/');
     sessionStorage.removeItem('nameInitials', nameInitials);
   }
@@ -56,6 +58,15 @@ function Header() {
         <a href="/"><img src={Image1} width="100" height="95" alt="LuxCars" className="brand" /></a>
 
         <ul className="navList" ref={navRef}>
+
+        {role === "Administrador" && isAuthenticated && (
+            <li className="navItem">
+              <Link to="/admin" className="navLink">
+                Painel Administrativo
+              </Link>
+            </li>
+          )}
+
           <li className="navItem">
             <Link to="/" className="navLink">Início</Link>
           </li>

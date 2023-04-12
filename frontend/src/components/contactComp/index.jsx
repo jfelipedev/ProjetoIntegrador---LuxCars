@@ -73,19 +73,7 @@ const Contact = () => {
 
   return (  
     <div className="formContainer">
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <h1>Fale Conosco</h1>
+      <h1 className='speakWith'>Fale Conosco</h1>
       <form onSubmit={handleSubmit} className="form">
         <label htmlFor="name">Nome:</label>
         <input

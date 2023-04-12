@@ -62,25 +62,18 @@ function Createaccount() {
           firstName: value.name,
           surname: value.surname,
           email: value.email,
-          password: value.password,
-        })
-        .then((response) => {
-          console.log(response);
-         
-
-          Swal.fire({
-            title: "Conta criada com sucesso!",
-            icon: "success",
-            confirmButtonText: "OK",
-          }).then(() => {
-            navigate("/login");
-          });
-        })
-        .catch((erro) => {
-          let error = erro.response.data;
-          setErrorBack(error.email);
-        });
-    }
+          password: value.password
+      })
+    .then((response) => {
+      console.log(response)
+      console.log("Deu certo")
+      navigate("/entrar")
+    })
+    .catch((erro) => {
+      let error = erro.response.data; 
+      setErrorBack(error.email)
+    })
+  }
   }
 
   return (

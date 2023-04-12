@@ -12,3 +12,23 @@ code {
     monospace;
 }
 
+/* SCROLL DAS PAGINAS*/
+
+body::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #1c1c1c41;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #1c1c1c;    /* color of the scroll thumb */
+  border-radius: 5px;       /* roundness of the scroll thumb */
+  border: 1px solid #1c1c1c;  /* creates padding around scroll thumb */
+}
+
+body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: #1c1c1c #1c1c1c41;   /* scroll thumb and track */
+}

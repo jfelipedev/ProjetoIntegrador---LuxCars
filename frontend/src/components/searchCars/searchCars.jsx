@@ -78,6 +78,7 @@ function SearchCars() {
     const sixMonthsFromNow = moment().add(6, 'months').startOf('day');
     return moment(date).isBefore(moment().startOf('day').add(1, 'day'))
       || moment(date).isAfter(sixMonthsFromNow);
+
   };
 
 
