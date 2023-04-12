@@ -49,7 +49,7 @@ function Login() {
       })
     .then((response) => {
       const data = response.data;
-      login(response.data.jwt, data.user.firstName, data.user.surname);
+      login(response.data.jwt, data.user.firstName, data.user.surname, data.user.role, data.user.email);
       //alert("Usuário Cadastrado")
       navigate("/")
     })
@@ -64,7 +64,7 @@ function Login() {
   
 
   return (
-    <div className="Login">
+    <div className="login">
 
       <form action="" className="loginbar" onSubmit={handleSubmit(loginUser)}>
         <h1 className='loginTitle'><span className="anima">LUX</span>CARS</h1>

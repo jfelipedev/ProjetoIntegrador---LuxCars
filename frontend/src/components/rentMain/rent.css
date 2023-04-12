@@ -1,34 +1,408 @@
 .rentSection{
-     width: 100%;
-     height: 100%;
-     background-color: #474350;
-     margin-top: 5rem;
+    width: 100%;
+    height: 100%;
+    background-color: #474350;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 /* Ao chegar no tamanho do modal ele fica tem de subir para margin-top 4rem */
 
-.rendHeader{
-     background: whitesmoke;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
+
+.rentHeader{
+    background: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .carSelected{
-     padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .carSelectScript{
-     font-size: 16px;
-     font-family: 'Inter', sans-serif;
-     font-weight: 400;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #1C1C1C;
+    padding-right: 4.5rem;
 }
 
 .carnameScript{
-     font-size: 24px;
-     font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    color: #1C1C1C;
 }
 
 .uil-angle-left-b{
-     font-size: 4rem;
-     margin-right: 2rem;
+    font-size: 4rem;
+    margin-right: 2rem;
+    color: #1C1C1C;
+}
+
+.rentMain{
+   display: flex;
+   justify-content: space-around;
+   /* align-items: center; */
+   flex-wrap: wrap;
+
+}
+
+.rentFromTitle{
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    font-weight: lighter;
+    font-family: 'Heebo', sans-serif;
+    color: #F4F7F5;
+    text-transform: capitalize;
+}
+
+.rentForm{
+    margin: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+
+.rentFormInfo{
+    /*width: 48rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    background: #474350;
+    height: 13.5rem;
+    border-radius: 10px;
+    gap: 40px;
+    border: 1px solid #1C1C1C;
+    box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);*/
+
+    width: auto;    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    background: #474350;
+    height: 13.5rem;
+    border-radius: 10px;
+    gap: 40px;
+    border: 1px solid #1C1C1C;
+    box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+}
+
+.rentFormInfo1{
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   padding-left: 1rem;
+   color: whitesmoke;
+   font-size: 12px;
+   font-family: 'Roboto', sans-serif;
+   width: 380px;
+}
+
+.rentInfo{
+    width: 20rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: none;
+    color: whitesmoke;
+    font-size: 16px;
+    
+  
+}
+
+.rentInfo#name {
+    padding-left: 15px;
+}
+
+.rentInfo#surName {
+    padding-left: 15px;
+}
+  
+.rentInfo#city {
+    padding-left: 15px;
+}
+
+.rentCalendar{
+    /* margin: 1.5rem; */
+    width: 100%;
+}
+
+.rmdp-calendar{
+    width: fit-content;
+}
+
+.rmdp-day-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9rem;
+}
+
+.rentDetails{
+    /*background-color: #474350;
+    width: 30rem;
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+    border: 1px solid #F4F7F5;*/
+    background-color: #474350;
+    width: 30rem;
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px 0px rgba(10 10 10 / 10%);
+    border: 1px solid #F4F7F5;
+    flex: 1;
+}
+
+.rentDetailsAndCalendar{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rentCalendarContainer {
+    flex: 1;
+}
+
+.rentCalendar{
+    width: 100%;
+    height: 100%;
+}
+
+.car-info{
+    float: right;
+}
+
+.calendar{
+    float: left;
+}
+
+.rentDetailsTitle{
+    font-family: 'Roboto', sans-serif;
+    color: #F4F7F5;
+    font-size: 24px;
+    padding: 1rem;
+    text-transform: capitalize;
+    width: 100%;
+    font-weight: 500;
+    margin: 0;
+}
+
+.rentDetailsInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    /* margin-top: 1rem; */
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+    margin: 0;
+}
+
+.rentDetailsYear{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    margin-bottom: 0;
+    color: #F4F7F5;
+    font-weight: 400;
+}
+
+.rentDetailsName{
+    font-family: 'Roboto', sans-serif;
+    color: #F4F7F5;
+    font-size: 24px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.rentDetailsLocation{
+    width: 95%;
+    font-family: 'Roboto', sans-serif;
+    color: #F4F7F5;
+    font-size: 14px;
+    border-bottom: 1px solid #F4F7F5 ;
+    padding-bottom: 16px;
+    margin-bottom: 0;
+}
+
+.rentDetailsForm{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div.single-input{
+    width: 100%;
+    margin: 16px 0;
+    position: relative;
+}
+
+div.single-input label{
+    font-size: 16px;
+    position: absolute;
+    left: 285px;
+    bottom: 5px;
+    color: #F4F7F5;
+    cursor: text;
+    transition: 0.5s ease-in-out;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+div.single-input .inputDate{
+    width: 95%;
+    padding: 5px;
+    color: #F4F7F5;
+    background-color: #474350;
+    border: 0;
+    border-bottom: 1px solid #F4F7F5;
+    outline: 0;
+    font-size: 16px;
+}
+
+div.single-input .inputDate:focus{
+    border-bottom: 2px solid cornflowerblue;
+}
+
+.rentDetailsButton{
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 22.8rem;
+}
+
+
+/* SLIDER */
+.rentDetailsImages {
+   width: 100%;
+   overflow: hidden;
+ }
+ 
+ .slider {
+   display: flex;
+   transition: transform 0.5s ease-in-out;
+ }
+ 
+ .rentDetailsImage {
+   width: 100%;
+   height: auto;
+   border-radius: 5px;
+ }
+ 
+ /* To move the images left and right, use the following classes on the .slider div */
+ 
+ .slider.moveLeft {
+   transform: translateX(-100%);
+ }
+ 
+ .slider.moveRight {
+   transform: translateX(100%);
+ }
+
+
+
+
+ /* ----- BREAKPOINT ------ */
+
+
+ @media screen and (max-width: 996px) {    
+    .rentSection{
+        height: 100%;
+        width: 100%;
+    }
+    
+    .rentContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      
+    }
+
+    .rentForm{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .calendar{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+
+  
+  }
+  
+  @media screen and (max-width: 768px) {
+    .rentSection{
+        height: 100%;
+        width: 100%;
+    }
+    
+    .rentContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      
+    }
+
+    .rentForm{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .calendar{
+        display: flex;
+        flex-direction: column;
+
+    }
+  
+  }
+  
+  @media screen and (max-width: 383px) {
+    .rentSection{
+        height: 100%;
+        width: 100%;
+    }
+    
+    .rentContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      
+    }
+
+    .rentForm{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .calendar{
+        display: flex;
+        flex-direction: column;
+
+    }
 }

@@ -1,42 +1,141 @@
-import React from 'react'
-import './productInfo.css'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import "./productInfo.css";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function ProductInfo() {
+  const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
+  const [carInfo, setCarInfo] = useState({
+    nameCar:null,
+    descritpion: null,
+    category: null,
+    city: null,
+    country: null,
+    caracteristics: null,
+    year: null,
+    image: null
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const { id } = useParams(); 
+  
+  const fetchData = async () => {
+      const response = await fetch(
+        `http://api.carlux.viniciusofagundes.com.br/car/${id}`
+      );
+      const jsonData = await response.json();
+      const response1 = await fetch(
+        `http://api.carlux.viniciusofagundes.com.br/city/${jsonData.city.id}`
+      );
+      const jsonData1 = await response1.json();
+      setCarInfo({        
+        nameCar: jsonData.nameCar,
+        descritpion: jsonData.descritpion,
+        category: jsonData.category.qualification,
+        city: jsonData.city.nameCity,
+        country: jsonData1.country,
+        caracteristics: jsonData.caracteristics.name,
+        year: jsonData.year,
+        image: jsonData.images
+      });
+    };
+    useEffect(()=> {
+      fetchData();
+    }, []);
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1025,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 769,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1,
+          },
+        },
+      ],
+    };
+
   return (
-    <div className='productInfosection'>
-     <h1 className='productInfoTitle'>Ferrari Califórnia T</h1>
-
-     <div className="ProductInfoContainer container">
-          <div className="productInfoDescription">
-               <h3 className='descript'>Descrição</h3>
-               <span className='script'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quis accusantium minus. Asperiores provident at necessitatibus saepe vel alias obcaecati itaque esse blanditiis! Amet exercitationem sequi, temporibus deserunt accusantium repellendus.</span>
-               <div className="productInfoCategory">
-                    <h3 className='descript'>Categoria <span className='textProduct'>Conversível</span></h3>
-               </div>
-
-               <div className="productInfoCaracteris">
-                    <h3 className='descript'>Características <span className='textProduct'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit adipisci praesentium numquam odio. Labore ex architecto.</span> </h3>
-               </div>
-
-               <div className="pro0ductInfoYear">
-                    <h3 className='descript'>Ano <span className='textProduct'>2014</span> </h3>
-               </div>
-
-               <div className="pro0ductInfoState">
-                    <h3 className='descript'>Disponibilidade <span className='textProduct'>Disponível</span></h3>
-               </div>
-          </div>
-
-          <div className="productInfoLocal">
-               <button className='productInfobutton'>Conversivel</button>
-               <button className='productInfobutton'>São Paulo, Brasil</button>
-               <button className='productInfobutton'>Check-in Check-out</button>
-               <Link to="/rent"><button className='productInfobutton black'>Prosseguir com Aluguel</button></Link>
-          </div>
-     </div>
+    <div className="productInfosection">
+        <h1>{carInfo.nameCar}</h1>
+    
+      <div className="sliderContainer">
+      <Slider {...settings}>
+    {
+      (carInfo.image !== null)?
+      carInfo.image.map(({id, title, url})=>{
+        return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
+      })
+        : ""
+    }
+    </Slider>
     </div>
-  )
+    <div className="infoContainer">           
+        <div className="productInfoDescription">
+          <h3 className="descript"><span className="textProduct">Sobre: </span>{carInfo.descritpion}</h3>
+          
+          <div className="productInfoCategory">
+            <h3 className="descript"><span className="textProduct">Carro:</span>  {carInfo.category}</h3>              
+                   
+          </div>
+
+          <div className="productInfoCaracteris">
+            <h3 className="descript"><span className="textProduct">Especificação: </span>
+               {carInfo.caracteristics} 
+            </h3>
+          </div>
+
+          <div className="pro0ductInfoYear">
+            <h3 className="descript">
+               <span className="textProduct">Ano: </span>{carInfo.year}
+            </h3>
+          </div>
+
+          <div className="pro0ductInfoState">
+            <h3 className="descript">
+            <span className="textProduct">Disponibilidade: </span>Disponível
+            </h3>
+          </div>
+        </div>
+      <div className="productInfoLocal">
+          <button className="productInfobutton">{carInfo.category}</button>
+          <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
+          <button className="productInfobutton">Check-in Check-out</button>
+          <Link to={'/alugue/' + id}>
+            <button className="productInfobutton black">
+              Prosseguir com Aluguel
+            </button>
+          </Link>
+        </div>
+      </div>
+      </div>
+      
+
+  );
+
 }
 
-export default ProductInfo
+export default ProductInfo;

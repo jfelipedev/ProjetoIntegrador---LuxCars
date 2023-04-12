@@ -1,44 +1,56 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
 import './productCarousel.css'
-import { productData } from './productData'
-import { GoKebabHorizontal } from 'react-icons/go'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const ProductCarousel = ({slides}) => {
 
-  const [current, setCurrent] = useState(0)
-  const length = slides.length;
 
-  const nextSlide = () => {
-    setCurrent(current === length - 1 ? 0 : current +1)
-  }
+function Carousel() {
+  const [images, setImages] = useState([]);
 
-  const prevSlide = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1)
-  }
+  useEffect(() => {
+    fetch('http://api.carlux.viniciusofagundes.com.br/swagger-ui/index.html#/Car/allHighlight')
+      .then((response) => response.json())
+      .then((data) => setImages(data));
+  }, []);
 
-  console.log(current)
-
-  //Para caso n tenhamos Data na api ou json
-  if(!Array.isArray(slides) || slides.length <= 0){
-    return null
-  }
-  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll:3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <div className="sectioncarousel">
-      <GoKebabHorizontal className='left-arrow'  onClick={prevSlide}/>
-      <GoKebabHorizontal className='right-arrow' onClick={nextSlide} />
-      
-        {productData.map(( slide, index) => {
-          return(
-            <div className={index === current ? 'slide active' : 'slide'} key={index}>
-              {index === current && (<img src={slide.image} alt=""  className='image'/>) }
-            </div>
-          )
-        })}
-      
-    </div>
-  )
+    <Slider {...settings}>
+      {images.map((image) => (
+        <div key={image.id}>
+          <img src={image.url} alt={image.alt} />
+        </div>
+      ))}
+    </Slider>
+  );
 }
 
-export default ProductCarousel
+export default Carousel;

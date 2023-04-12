@@ -1,0 +1,43 @@
+.sliderContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  border-top: 1px rgba(0, 0, 0, 0.281) solid;
+  border-bottom: 1px rgba(0, 0, 0, 0.281) solid;
+  margin-top: 30px;
+}
+.slick-slider {
+  width: 96%;
+  height: auto;
+}
+.slick-slide {
+  padding: 20px;
+}
+
+.slider-img {
+  border-radius: 2px;
+}
+
+div h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #f4f7f5;
+  text-transform: capitalize;
+}
+
+div h2 {
+  text-align: center;
+  padding-top: 30px;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #f4f7f5;
+  text-transform: uppercase;
+}
+

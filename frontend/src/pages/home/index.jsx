@@ -1,5 +1,4 @@
-import React from "react";
-import Cars from "../../components/cars/cars";
+import HomeCarrossel from "../../components/homeCarrossel/index";
 import SearchCars from "../../components/searchCars/searchCars";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
@@ -11,7 +10,7 @@ function index() {
     <div className="index">
       <Header /> 
       <SearchCars />
-      {/* <Cars /> */}
+      <HomeCarrossel />
       <Category />
       <Footer />
     </div>

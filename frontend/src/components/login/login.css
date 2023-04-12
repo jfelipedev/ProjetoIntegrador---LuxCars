@@ -14,6 +14,11 @@ h1 {
      color: #ffc857;
 }
 
+.iconBig{
+     color: whitesmoke;
+}
+
+
 .anima:hover {
      animation: ondular 2s ease-in-out infinite;
 }
@@ -60,39 +65,34 @@ p {
      color: whitesmoke;
 }
 
-.Login {
+.login {
      display: flex;
      align-items: center;
      flex-direction: column;
      justify-content: center;
-     width: 100%;
-     min-height: 100%;
+     height: 100vh;
      color: whitesmoke;
+     background-color: #474350;
+}
+.login input{
+     color: black;
+     font-weight: 500;
 }
 
 .loginbar {
-     position: absolute;
-     left: 40%;
-     top: 20%;
      max-width: 900px;
      max-height: 900px;
-
-     /* --- incluido depois --- */
-     -webkit-border-radius: 10px 10px 10px 10px;
-     border-radius: 10px 10px 10px 10px;
      background-color: #1C1C1C;
      padding: 30px;
      width: 100%;
-     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
+     -webkit-border-radius: 10px 10px 10px 10px;
+     border-radius: 10px 10px 10px 10px;
 }
 
 .loginTitle {
      text-align: center;
      margin: 30px 0px 100px 0px;
+     color: white;
 }
 
 .inputs {
@@ -178,25 +178,10 @@ input::-moz-placeholder {
 /* For large devices */
 
 @media screen and (max-width: 992px){
-     .loginbar{
-     position: absolute;
-     left: 50%;
-     top: 50%;
-     max-width: 700px;
-     max-height: 700px;
-     /* --- incluido depois --- */
-     -webkit-border-radius: 10px 10px 10px 10px;
-     border-radius: 10px 10px 10px 10px;
-     background-color: #1C1C1C;
-     padding: 15px;
-     width: 50%;
-     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     }
 
+     .loginbar {
+          width: 85%;
+     }
      .acessar .cadastrar{
           text-align: center;
           font-size: 16px;
@@ -209,7 +194,9 @@ input::-moz-placeholder {
      .loginTitle {
           text-align: center;
           margin: 15px 0px 50px 0px;
+          
      }
+    
 
      .inputs {
           display: flex;
@@ -225,6 +212,7 @@ input::-moz-placeholder {
           border-bottom: 1px solid whitesmoke;
           padding: 5px;
           border-radius: 5px;
+          margin-bottom: 20px;
           
      }
 
@@ -237,6 +225,7 @@ input::-moz-placeholder {
           width: 15rem;
           background-color: #474350;
           box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+          margin-bottom: 10px;
      }
 
      .createaccount {
@@ -247,6 +236,7 @@ input::-moz-placeholder {
           border: none;
           border-bottom: 1px solid whitesmoke;
           padding: 10px;
+          margin-bottom: 20px;
      }
 
      .iconBig{
