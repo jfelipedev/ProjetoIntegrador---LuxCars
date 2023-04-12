@@ -1,0 +1,160 @@
+.admin {
+  height: 100vh;
+  background: #474350;
+  display: flex;
+  padding-top: 70px;
+}
+
+.menu {
+  background-color: #1c1c1c;
+  box-shadow: 3px 1px 3px #1c1c1c;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  justify-content: flex-start;
+  padding-top: 20px;
+  margin-right: 30px;
+}
+.panel {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+.panel input {
+  width: 200px;
+  padding: 5px;
+}
+
+.panel input,
+.panel textarea {
+  margin-right: 20px;
+  margin: 20px 0;
+  background-color: #1c1c1c41;
+  color: whitesmoke;
+  border: none;
+}
+
+.panel input::placeholder,
+.panel textarea::placeholder {
+  color: whitesmoke;
+  font-weight: lighter;
+}
+.panel input,
+.panel textarea {
+  display: block;
+}
+.panel textarea {
+  width: 500px;
+  height: 150px;
+  resize: none;
+  padding: 5px;
+}
+
+.panel button {
+  margin: 10px 10px 20px 0;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: #1c1c1ca8;
+  color: whitesmoke;
+}
+
+.panel button:hover {
+  background-color: whitesmoke;
+  color: #1c1c1c;
+  transition: 0.1s ease-in;
+}
+
+.menu button {
+  padding: 10px;
+  border-radius: 2px;
+  color: whitesmoke;
+  background: none;
+  text-align: justify;
+}
+.menu button:hover {
+  background-color: #474350;
+}
+
+.panel label {
+  display: flex;
+  align-items: center;
+  color: whitesmoke;
+  background-color: #1c1c1c41;
+  width: 110px;
+  margin-bottom: 10px;
+}
+.panel .checkboxInput {
+  width: 30px;
+}
+
+.panel .select {
+  margin-bottom: 10px;
+}
+
+/* SCROLL DA PAGINA PANEL */
+
+.panel::-webkit-scrollbar,
+.panel textarea::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+
+.panel::-webkit-scrollbar-track {
+  background: #1c1c1c41; /* color of the tracking area */
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background-color: #1c1c1c; /* color of the scroll thumb */
+  border-radius: 5px; /* roundness of the scroll thumb */
+  border: 1px solid #1c1c1c; /* creates padding around scroll thumb */
+}
+
+.panel {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #1c1c1c #1c1c1c41; /* scroll thumb and track */
+}
+
+@media (max-width: 710px) {
+  .panel {
+    width: 80%;
+    justify-content: center;
+  }
+
+  .panel textarea {
+    width: 400px;
+  }
+  .menu {
+    width: 100px;
+    font-size: 14px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .panel textarea {
+    width: 300px;
+  }
+  .panel .select {
+    width: 90%;
+  }
+}
+
+@media (max-width: 450px) {
+  .panel textarea {
+    width: 250px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 395px) {
+  .panel textarea {
+    width: 210px;
+    height: 300px;
+  }
+  .menu {
+    width: 90px;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+}

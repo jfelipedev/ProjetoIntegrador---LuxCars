@@ -3,7 +3,8 @@ import "./rent.css";
 import { Calendar } from "react-multi-date-picker";
 import Image1 from "../../assets/carBMW-M440i.jpg";
 import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { getToken } from '../../services/auth'
 
 function Rent({ filtroProduct }) {
   const { id } = useParams();
@@ -49,6 +50,21 @@ function Rent({ filtroProduct }) {
     fetchData();
   }, []);
 
+  // const [booking, setBooking] = useState([])
+
+  // useEffect(() => {
+
+  //   api.post("/booking/{id}").then((response) => {
+      
+  //     setBooking(response.data)
+  //     console.log(response)
+  //   })
+  //   .cath(() => {
+  //     setBooking([])
+  //   })
+  // })
+
+
   console.log(filtroProduct);
 
   const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"];
@@ -92,6 +108,33 @@ function Rent({ filtroProduct }) {
     setTimeout(() => slider.classList.remove("moveRight"), 500);
   }
   //END SLIDER ~~~~~~
+
+  //PRa confirmar a reserva
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(getToken());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+	  const handleStorage = () => {
+		setToken(getToken())
+	}
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage())
+  }, [])
+
+  const handleConfirm = () => {
+    if(isAuthenticated){
+      navigate("/aluguel-confirmado/" + id)
+    }else{
+      navigate("/entrar")
+    }
+  }
+
+  useEffect(() => { 
+    setIsAuthenticated(!!token); 
+  }, []);
+
+
 
   return (
     <div className="rentSection">
@@ -182,7 +225,7 @@ function Rent({ filtroProduct }) {
                 </div>
               </form>
             </div>
-            <button className="rentDetailsButton button">
+            <button className="rentDetailsButton button" onClick={handleConfirm}>
               Confirmar Reserva
             </button>
           </div>

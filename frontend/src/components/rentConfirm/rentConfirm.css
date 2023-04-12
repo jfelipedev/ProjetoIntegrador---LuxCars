@@ -1,0 +1,36 @@
+.rentConfirmContainer{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+}
+
+.confirmBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.rentConfirmDescrip{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.rentConfirmCar{
+    color: #1c1c1c;
+    font-family: 'Roboto', sans-serif;
+}
+
+.userNameConfirm{
+
+}
+
+.buttonRentConfirm{
+    
+}
