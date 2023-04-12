@@ -17,6 +17,8 @@ import Faq from './pages/faq/index'
 import Contact from './pages/contact/index'
 import RentConfirmScreen from "./pages/rentConfirm";
 import AllCarsScreen from './pages/allCars/index'
+import AdminPage from "./pages/adminPage";
+
 
 
 
@@ -33,11 +35,12 @@ root.render(
         <Route path="/aluguel-confirmado/:id" element={<RentConfirmScreen />} />
         <Route path="/entrar" element={<LoginScreen />} />
         <Route path="/produtos" element={<AllCarsScreen />} />
-        <Route path="/lista-produtos" element={<ProductListScreen />} />
+        <Route path="/produtosLista" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
         <Route path="/produtos/:id" element={<ProductScreen />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contato" element={<Contact />} />
+        <Route path="/admin" element={<AdminPage />} />
 
       </Routes>
     </BrowserRouter>

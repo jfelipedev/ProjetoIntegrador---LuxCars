@@ -2,7 +2,7 @@ import React from "react";
 import "./headerModal.css";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout} from '../../services/auth';
+import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout, getTokenRole} from '../../services/auth';
 import Avatar from '../avatar/avatar';
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
   const [firstName, setFirstaName] = useState(getTokenName());
   const [surname, setSurname] = useState(getTokenSurname());
   const[nameInitials, setInitials] = useState("");
+  const [role, setRole] = useState(getTokenRole());
 
   useEffect(() => {
     const handleStorage = () => {
@@ -40,6 +41,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
     setFirstaName(null);
     setSurname(null);
     setIsAuthenticated(false);
+    setRole(null);
     navigate('/');
     sessionStorage.removeItem('nameInitials', nameInitials);
   }
@@ -75,6 +77,15 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
                 Carros
               </Link>
             </li>
+            
+            {role === "Administrador" && isAuthenticated && (
+            <li className="navItemModal">
+              <Link to="/admin" className="navLinkModal">
+                Admin
+              </Link>
+            </li>
+            )}
+
 
             <li className="navItemModal">
               <Link to="/contato" className="navLinkModal">

@@ -14,6 +14,11 @@ h1 {
      color: #ffc857;
 }
 
+.iconBig{
+     color: whitesmoke;
+}
+
+
 .anima:hover {
      animation: ondular 2s ease-in-out infinite;
 }
@@ -69,7 +74,10 @@ p {
      color: whitesmoke;
      background-color: #474350;
 }
-
+.login input{
+     color: black;
+     font-weight: 500;
+}
 
 .loginbar {
      max-width: 900px;

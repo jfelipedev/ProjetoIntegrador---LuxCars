@@ -1,0 +1,21 @@
+.ModalOverlay{
+    background-color: rgba(151, 151, 151, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+}
+.ModalContent{
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    overflow: auto;
+}
