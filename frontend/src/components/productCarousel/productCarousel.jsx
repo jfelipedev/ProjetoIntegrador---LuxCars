@@ -10,7 +10,7 @@ function Carousel() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch('http://api.carlux.viniciusofagundes.com.br/swagger-ui/index.html#/Car/allHighlight')
+    fetch('https://api.carlux.viniciusofagundes.com.br/swagger-ui/index.html#/Car/allHighlight')
       .then((response) => response.json())
       .then((data) => setImages(data));
   }, []);

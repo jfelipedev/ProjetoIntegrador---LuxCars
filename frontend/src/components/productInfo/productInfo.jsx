@@ -28,11 +28,11 @@ function ProductInfo() {
 
      const fetchData = async () => {
           const response = await fetch(
-               `http://api.carlux.viniciusofagundes.com.br/car/${id}`
+               `https://api.carlux.viniciusofagundes.com.br/car/${id}`
           );
           const jsonData = await response.json();
           const response1 = await fetch(
-               `http://api.carlux.viniciusofagundes.com.br/city/${jsonData.city.id}`
+               `https://api.carlux.viniciusofagundes.com.br/city/${jsonData.city.id}`
           );
           const jsonData1 = await response1.json();
           setCarInfo({

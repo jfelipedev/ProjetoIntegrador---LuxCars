@@ -11,12 +11,12 @@ function HomeCarrossel() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch("http://api.carlux.viniciusofagundes.com.br/car/highlight")
+    fetch("https://api.carlux.viniciusofagundes.com.br/car/highlight")
       .then((response) => response.json())
       .then((data) => setImages(data));
   }, []);
 
-  const productUrl = 'http://api.carlux.viniciusofagundes.com.br/car/'
+  const productUrl = 'https://api.carlux.viniciusofagundes.com.br/car/'
   const settings = {
     dots: true,
     infinite: true,
