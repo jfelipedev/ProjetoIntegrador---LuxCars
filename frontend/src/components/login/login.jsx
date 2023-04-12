@@ -49,7 +49,7 @@ function Login() {
       })
     .then((response) => {
       const data = response.data;
-      login(response.data.jwt, data.user.firstName, data.user.surname, data.user.role);
+      login(response.data.jwt, data.user.firstName, data.user.surname, data.user.role, data.user.email);
       //alert("Usuário Cadastrado")
       navigate("/")
     })
