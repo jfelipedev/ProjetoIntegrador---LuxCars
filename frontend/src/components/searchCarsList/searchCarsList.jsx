@@ -8,20 +8,11 @@ import { parseISO, isWithinInterval } from 'date-fns';
 
 function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) {
 
-  const [filteredCars, setCars] = useState();
+  const [filteredCars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const [showNoCarsModal, setShowNoCarsModal] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (filteredCars == null) {
-      setShowNoCarsModal(true);
-      console.log(filteredCars + "true pro setShowNoCarsModal");
-    } else {
-      setShowNoCarsModal(false);
-      console.log(filteredCars + "false pro setShowNoCarsModal");
-    }
-  }, [filteredCars]);
 
   const checkAvailability = async (carId) => {
     try {
@@ -40,6 +31,8 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
       return false;
     }
   };
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -112,6 +105,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
     }
   }, [isLoading]);
 
+
   useEffect(() => {
     if (filteredCars == null) {
       setShowNoCarsModal(true);
@@ -121,6 +115,16 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
       console.log(filteredCars + "false pro setShowNoCarsModal");
     }
   }, [filteredCars]);
+
+  /*useEffect(() => {
+    if (filteredCars == null) {
+      setShowNoCarsModal(true);
+      console.log(filteredCars + "true pro setShowNoCarsModal");
+    } else {
+      setShowNoCarsModal(false);
+      console.log(filteredCars + "false pro setShowNoCarsModal");
+    }
+  }, [filteredCars]);*/
 
   const noCarsModal = (
     <div className="no-cars-modal">
@@ -144,7 +148,7 @@ function SearchCarsList({ selectedCity, selectedCategory, startDate, endDate }) 
                 <p className="price">Preço: R$ {car.price.toFixed(2)}</p>
                 <p className="year">Ano: {car.year}</p>
                 <p className="quantity">Quantidade: {car.quantity}</p>
-                <button className="button-reserva" onClick={() => navigate(`/produtos/${car.id}`)}>Reservar agora</button>
+                <button className="button-reserva" onClick={() => navigate(`/produtos/${car.id}`)}>Detalhes</button>
               </div>
             )
           ))}

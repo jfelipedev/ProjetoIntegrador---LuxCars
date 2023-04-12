@@ -1,7 +1,10 @@
 .createAccount {
      display: flex;
-     justify-content: center;
      align-items: center;
+     flex-direction: column;
+     justify-content: center;
+     height: 100vh;
+     background-color: #474350;
 }
 
 .createaccountBar {
@@ -39,14 +42,14 @@
      gap: 5px;
 }
 
-.spanError1{
+.spanError1 {
      color: red;
-          font-family: "Roboto", sans-serif;
-          font-size: 12px;
-          padding-bottom: 10px;
+     font-family: "Roboto", sans-serif;
+     font-size: 12px;
+     padding-bottom: 10px;
 }
 
-.create{
+.create {
      width: 18rem;
      height: 2rem;
      border-radius: 5px;
@@ -69,7 +72,7 @@
 }
 
 .buttonR:hover {
-     color:#474350;
+     color: #474350;
      background-color: #ffc857;
 }
 
@@ -97,13 +100,13 @@
           top: 20%;
           max-width: 600px;
           max-height: 600px;
-     
+
           /* --- incluido depois --- */
           -webkit-border-radius: 10px 10px 10px 10px;
           border-radius: 10px 10px 10px 10px;
           background-color: #1C1C1C;
           padding: 30px;
-     
+
           -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
           top: 50%;
@@ -126,7 +129,7 @@
           align-items: center;
      }
 
-     .create{
+     .create {
           width: 15rem;
           height: 2rem;
           border-radius: 5px;
@@ -143,10 +146,10 @@
           margin-top: 1.5rem;
      }
 
-     .spanError1{
+     .spanError1 {
           color: red;
-               font-family: "Roboto", sans-serif;
-               font-size: 12px;
-               padding-bottom: 5px;
+          font-family: "Roboto", sans-serif;
+          font-size: 12px;
+          padding-bottom: 5px;
      }
 }
