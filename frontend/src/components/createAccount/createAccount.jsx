@@ -64,7 +64,7 @@ function Createaccount() {
     .then((response) => {
       console.log(response)
       console.log("Deu certo")
-      navigate("/login")
+      navigate("/entrar")
     })
     .catch((erro) => {
       let error = erro.response.data; 

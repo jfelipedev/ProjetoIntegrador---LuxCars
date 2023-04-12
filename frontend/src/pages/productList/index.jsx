@@ -5,18 +5,22 @@ import SearchCarsList from '../../components/searchCarsList/searchCarsList'
 import { useLocation } from 'react-router-dom'
 
 
+
 function ProductListScreen() {
 
-  const {state} = useLocation();
+  const { state } = useLocation();
+  console.log(state);
+
 
   return (
     <div>
-     <Header />
-     <SearchCarsList selectedCity={state.selectedCity}
+      <Header />
+      <SearchCarsList
+        selectedCity={state.selectedCity}
         selectedCategory={state.selectedCategory}
         startDate={state.startDate}
-        endDate={state.endDate}  />
-     <Footer />
+        endDate={state.endDate} />
+      <Footer />
     </div>
   )
 }

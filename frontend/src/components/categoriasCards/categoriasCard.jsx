@@ -1,13 +1,13 @@
-import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import './categoriasCard.css'
-//import { categoriasCardData } from './categoriasCardData'
 import api from '../../services/api'
+import { Link } from 'react-router-dom';
 
 
 function CategoriasCard({filtro}) {
 
+  const url = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
   const [listCategorys, setListCategorys] = useState([])
   
   useEffect(() => {
@@ -20,17 +20,26 @@ function CategoriasCard({filtro}) {
       setListCategorys([])
     })
   }, [filtro]);
-
+console.log (listCategorys)
+const unique = listCategorys.filter(
+  (obj, index) =>
+  listCategorys.findIndex((item) => item.nameCar === obj.nameCar) === index
+);
   return (
+    <>
+        <h2 id="motion-point">Estes são os resultados</h2>
     <div className="categoryCardSection">
       <div className="categoryCardContainer">
 
-        {listCategorys.map(({id, nameCar, urlImage, year, price}) => {
+        {unique.map(({id, nameCar, urlImage, year, price}) => {
           return(
-            <div className="categoryCardCard" >
+            
+            <div className="categoryCardCard"  id="categoryCardCard">
             <div className="box" key={id}>
               
-                <img src={"https://carlux-grupo1.s3.us-east-2.amazonaws.com" + urlImage} alt="" className='categoryCardImg'/>
+
+               <Link to={'/produtos/' + id} ><img src={url + urlImage} alt="" className='categoryCardImg'/></Link>
+
                 <h4 className='textCard1'>{nameCar}</h4>
                 <h6 className='textCard2'>{year} | {price}</h6>
               
@@ -42,6 +51,7 @@ function CategoriasCard({filtro}) {
 
       </div>
     </div>
+    </>
   )
 }
 

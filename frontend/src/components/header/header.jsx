@@ -1,38 +1,37 @@
 import { useEffect, useRef, useState } from 'react';
-import React from 'react';
 import Avatar from '../avatar/avatar';
 import './header.css'
 import { Link, Navigate } from 'react-router-dom'
 import Image1 from '../../assets/logoWhiteLetters.png'
-import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout} from '../../services/auth';
+import { getToken, isAuthenticated, getTokenName, getTokenSurname, logout } from '../../services/auth';
 import HeaderModal from '../headerModal/headerModal';
 import { useNavigate } from "react-router-dom";
 
 
 function Header() {
-  
+
   const navRef = useRef();
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(false);  
+  const [visible, setVisible] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(getToken());
   const [firstName, setFirstaName] = useState(getTokenName());
   const [surname, setSurname] = useState(getTokenSurname());
-  const[nameInitials, setInitials] = useState("");
- 
+  const [nameInitials, setInitials] = useState("");
+
 
   useEffect(() => {
-	  const handleStorage = () => {
-		setToken(getToken())
-	}
+    const handleStorage = () => {
+      setToken(getToken())
+    }
     window.addEventListener('storage', handleStorage())
     return () => window.removeEventListener('storage', handleStorage())
   }, [])
 
 
-  useEffect(() => { 
-    setIsAuthenticated(!!token); 
-    if(isAuthenticated){
+  useEffect(() => {
+    setIsAuthenticated(!!token);
+    if (isAuthenticated) {
       const nameInitials = `${firstName.charAt(0)}${surname.charAt(0)}`;
       setInitials(nameInitials);
       sessionStorage.setItem('nameInitials', nameInitials);
@@ -58,11 +57,11 @@ function Header() {
 
         <ul className="navList" ref={navRef}>
           <li className="navItem">
-            <Link to="/" className="navLink">Carros</Link>
+            <Link to="/" className="navLink">Início</Link>
           </li>
 
           <li className="navItem">
-            <Link to="/produto" className="navLink">Ofertas</Link>
+            <Link to="/produtos" className="navLink">Carros</Link>
           </li>
 
           <li className="navItem">

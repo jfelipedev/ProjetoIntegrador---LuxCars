@@ -1,19 +1,29 @@
 .header {
-     top: 2rem;
-     width: 100vw;
-     height: 5rem;
-     position: fixed;
-     top: 0;
-     left: 0;
-     z-index: 100;
-     background-color: #1C1C1C;
-     box-shadow: 5px 1px 3px #1C1C1C;
+  top: 2rem;
+  width: 100vw;
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #1c1c1c;
+  box-shadow: 5px 1px 3px #1c1c1c;
 }
 
+Link {
+  text-decoration: none;
+}
+Link:hover {
+     text-decoration: none;
+   }
 a {
   text-decoration: none;
 }
 
+a:hover {
+     text-decoration: none;
+   }
+
 .user-info {
   display: flex;
   align-items: center;
@@ -29,12 +39,12 @@ a {
   display: flex;
   align-items: center;
 }
-   
+
 .gretting {
   color: #ffc857;
   text-transform: capitalize;
   margin-right: 10px;
-}   
+}
 
 .nav {
   height: 10vh;
@@ -67,25 +77,24 @@ a {
 }
 
 .navList1 {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     font-size: 0.9rem;
-     font-weight: 500;
-     gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 1rem;
 }
 
 .navList1-inline {
-     display: flex;
-     list-style: none;
-     padding: 0;
-     margin: 0;
-   }
-   
-.navList1-inline li {
-     margin-right: 1rem;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-   
+
+.navList1-inline li {
+  margin-right: 1rem;
+}
 
 .navToggler {
   display: none;
@@ -99,88 +108,88 @@ a {
 }
 
 .navLink1 {
-     color: #ffc857;
-     font-family: "Inter", sans-serif;
-     display: inline-block;
-     padding: 0.5rem 1rem;
-     border: 2px solid #ffc857;
-     border-radius: 0.5rem;
-     text-decoration: none;
-     font-weight: bold;
-     transition: all 0.2s ease-in-out;
+  color: whitesmoke;
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ffc857;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
-.navLink1:hover{
-     color: white;
-     text-decoration: none;
+.navLink1:hover {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 /*Active Link*/
-.activeLink,
-.navLink:hover{
-     color: #807a90;
-     text-decoration: none;
-
+.activeLink:hover, .navLink1:hover,
+.navLink:hover {
+  color: #807a90;
+  text-decoration: none;
 }
+
 
 /* ====================Breakpoints=================== */
 
 /* For large devices */
 @media screen and (max-width: 992px) {
-     .navList { 
-          column-gap: 1rem;
-          font-size: 1.1rem;
-     }
+  .navList {
+    column-gap: 1rem;
+    font-size: 1.1rem;
+  }
 
-     .navList1 {
-          font-size: 0.9rem;
-     }
+  .navList1 {
+    font-size: 0.9rem;
+  }
 
-     .brand{
-          height: 3rem;
-     }     
+  .brand {
+    height: 3rem;
+  }
 }
 
 /* For medium devices */
 @media screen and (max-width: 768px) {
-     .header {
-          height: 4.5rem;
-     }
-     
-     .nav {
-          height: 8vh;
-          margin: 0 2.5rem;
-     }
-     
-     .navToggler {
-          display: block;  
-     }
+  .header {
+    height: 4.5rem;
+  }
 
-     .navLink {
-          color: whitesmoke;
-     }
+  .nav {
+    height: 8vh;
+    margin: 0 2.5rem;
+  }
 
-      .navList {
-          position: fixed;
-          top: 0;
-          left: 0;
-          height: 100vh;
-          width: 100vw;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding-top: 1.5rem;
-          gap: 1.5rem;
-          background-color: #474350;
-          transition: 1s ease-in;
-          display: none;
-     } 
+  .navToggler {
+    display: block;
+  }
 
-     .brand{
-          height: 3rem;
-     }   
+  .navLink {
+    color: whitesmoke;
+  }
 
-     .navList1 {
-          align-items: flex-end;
-     }
+  .navList {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1.5rem;
+    gap: 1.5rem;
+    background-color: #474350;
+    transition: 1s ease-in;
+    display: none;
+  }
+
+  .brand {
+    height: 3rem;
+  }
+
+  .navList1 {
+    align-items: flex-end;
+  }
 }

@@ -66,31 +66,31 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
           <ul className="navListModal " ref={navRef}>
             <li className="navItemModal first">
               <Link to="/" className="navLinkModal activeLink1">
+                Inicio
+              </Link>
+            </li>
+
+            <li className="navItemModal">
+              <Link to="/produtos" className="navLinkModal">
                 Carros
               </Link>
             </li>
 
             <li className="navItemModal">
-              <Link to="/product" className="navLinkModal">
-                Ofertas
-              </Link>
-            </li>
-
-            <li className="navItemModal">
-              <Link to="/" className="navLinkModal">
+              <Link to="/contato" className="navLinkModal">
                 Contato
               </Link>
             </li>
 
             <li className="navItemModal">
-              <Link to="/" className="navLinkModal">
-                Duvidas
+              <Link to="/faq" className="navLinkModal">
+                FAQ
               </Link>
             </li>
 
             {isAuthenticated && (
             <li className="navItemModal">
-               <Link to="/" className="navLink1Modal">
+               <Link to="/aluguel-confirmado" className="navLink1Modal">
                     Minhas Reservas
                </Link>
             </li>
@@ -99,7 +99,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
 
             {!isAuthenticated && (
             <li className="navItem1Modal">
-               <Link to="/login" className="navLink1Modal">
+               <Link to="/entrar" className="navLink1Modal">
                     Login
                </Link>
             </li>
@@ -107,7 +107,7 @@ const HeaderModal= ({id="headerModal", onClose = () => {}}) => {
 
             {!isAuthenticated && (
             <li className="navItem1Modal">
-               <Link to="/createAccount" className="navLink1Modal">
+               <Link to="/criar-conta" className="navLink1Modal">
                     Criar Conta
                </Link>
             </li>

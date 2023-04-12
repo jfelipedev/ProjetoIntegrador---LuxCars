@@ -50,7 +50,6 @@ function Login() {
     .then((response) => {
       const data = response.data;
       login(response.data.jwt, data.user.firstName, data.user.surname);
-      alert("Usuário Cadastrado")
       navigate("/")
     })
     .catch((erro) => {
@@ -58,13 +57,12 @@ function Login() {
       setErrorLogin(error.data.password)
       setErrorLogin(error.data.email)
       //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
-
     })
   }
   
 
   return (
-    <div className="Login">
+    <div className="login">
 
       <form action="" className="loginbar" onSubmit={handleSubmit(loginUser)}>
         <h1 className='loginTitle'><span className="anima">LUX</span>CARS</h1>

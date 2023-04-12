@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./productInfo.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getId } from '../homeCarrossel/index';
-import { useNavigate } from "react-router-dom";
 
 
-console.log(getId);
 function ProductInfo() {
-
-  const { id } = useParams();
-
   const baseUrl = "https://carlux-grupo1.s3.us-east-2.amazonaws.com";
   const [carInfo, setCarInfo] = useState({
     nameCar:null,
@@ -24,16 +18,23 @@ function ProductInfo() {
     year: null,
     image: null
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const { id } = useParams(); 
+  
   const fetchData = async () => {
       const response = await fetch(
-        `http://api.carlux.viniciusofagundes.com.br/car/1`
+        `http://api.carlux.viniciusofagundes.com.br/car/${id}`
       );
       const jsonData = await response.json();
       const response1 = await fetch(
         `http://api.carlux.viniciusofagundes.com.br/city/${jsonData.city.id}`
       );
       const jsonData1 = await response1.json();
-      setCarInfo({
+      setCarInfo({        
         nameCar: jsonData.nameCar,
         descritpion: jsonData.descritpion,
         category: jsonData.category.qualification,
@@ -77,14 +78,6 @@ function ProductInfo() {
       ],
     };
 
-    
-
-    const navigate = useNavigate()
-
-    const handlerent = () => {
-      navigate("/reserva", {state : id})
-    }
-
   return (
     <div className="productInfosection">
         <h1>{carInfo.nameCar}</h1>
@@ -93,37 +86,37 @@ function ProductInfo() {
       <Slider {...settings}>
     {
       (carInfo.image !== null)?
-        carInfo.image.map(({id, title, url})=>{
-          return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
-        })
+      carInfo.image.map(({id, title, url})=>{
+        return <img key={id} src={baseUrl + url} alt={title} className="slider-img"/>
+      })
         : ""
     }
     </Slider>
     </div>
     <div className="infoContainer">           
         <div className="productInfoDescription">
-          <h3 className="descript">{carInfo.descritpion}</h3>
-          <span className="script"></span>
+          <h3 className="descript"><span className="textProduct">Sobre: </span>{carInfo.descritpion}</h3>
+          
           <div className="productInfoCategory">
-            <h3 className="descript">Carro: {carInfo.category}</h3>              
-              <span className="textProduct"></span>      
+            <h3 className="descript"><span className="textProduct">Carro:</span>  {carInfo.category}</h3>              
+                   
           </div>
 
           <div className="productInfoCaracteris">
-            <h3 className="descript">
-              Especificação: {carInfo.caracteristics} <span className="textProduct"></span>
+            <h3 className="descript"><span className="textProduct">Especificação: </span>
+               {carInfo.caracteristics} 
             </h3>
           </div>
 
           <div className="pro0ductInfoYear">
             <h3 className="descript">
-              Ano: <span className="textProduct"></span>{carInfo.year}
+               <span className="textProduct">Ano: </span>{carInfo.year}
             </h3>
           </div>
 
           <div className="pro0ductInfoState">
             <h3 className="descript">
-              Disponibilidade: Disponível <span className="textProduct"></span>
+            <span className="textProduct">Disponibilidade: </span>Disponível
             </h3>
           </div>
         </div>
@@ -131,17 +124,18 @@ function ProductInfo() {
           <button className="productInfobutton">{carInfo.category}</button>
           <button className="productInfobutton">{carInfo.city}, {carInfo.country}</button>
           <button className="productInfobutton">Check-in Check-out</button>
-      
-            <button className="productInfobutton black" onClick={handlerent}>
+          <Link to={'/alugue/' + id}>
+            <button className="productInfobutton black">
               Prosseguir com Aluguel
             </button>
-          
+          </Link>
         </div>
       </div>
       </div>
       
 
   );
+
 }
 
 export default ProductInfo;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import "./category.css"
-//import { categoryData } from './categoryData'
 import api from '../../services/api'
 import CategoriasCard from '../categoriasCards/categoriasCard'
 
@@ -50,9 +49,9 @@ function Category() {
                   <p className='text4'>{text}</p>
               </div>
           
-              <div className="contentBx">
-                <div className="contentBack">
-                  <img src={"https://carlux-grupo1.s3.us-east-2.amazonaws.com" + urlImage } alt="" className='img'/>
+               <div className="contentBx">
+                <div className="contentBack"> 
+                <a href="#motion-point"> <img src={"https://carlux-grupo1.s3.us-east-2.amazonaws.com" + urlImage} alt="" className='img'/></a>
                 <h4 className='text1'>{qualification}</h4>
                 <h6 className='text2'>{numberCars} Carros</h6>
                 </div>
