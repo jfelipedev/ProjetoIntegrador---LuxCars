@@ -34,7 +34,7 @@ root.render(
         <Route path="/aluguel-confirmado/:id" element={<RentConfirmScreen />} />
         <Route path="/entrar" element={<LoginScreen />} />
         <Route path="/produtos" element={<AllCarsScreen />} />
-        <Route path="/lista-produtos" element={<ProductListScreen />} />
+        <Route path="/produtosLista" element={<ProductListScreen />} />
         <Route path="/criar-conta" element={<CreateAccountScreen />} />
         <Route path="/produtos/:id" element={<ProductScreen />} />
         <Route path="/faq" element={<Faq />} />
