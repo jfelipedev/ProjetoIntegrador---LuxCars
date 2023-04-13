@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import api from "../../services/api"
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
+
 
 
 
@@ -25,12 +28,14 @@ const validation = yup.object().shape({
 });
 
 
-function Login() {
+function Login({state}) {
+
+  
 
   const navigate = useNavigate();
+  // const history = useHistory();
 
-  const [firstName, setFirstName] = useState("");
-  const [surname, setSurname] = useState("");
+  
 
   const [errorLogin, setErrorLogin] = useState(null);
 
@@ -48,9 +53,14 @@ function Login() {
           password: value.password,
       })
     .then((response) => {
+      console.log(state)
       const data = response.data;
       login(response.data.jwt, data.user.firstName, data.user.surname);
-      navigate("/")
+      if(state?.origin?.includes( "/alugue/")){
+        navigate(state.origin)
+      }else{
+        navigate("/")
+      }
     })
     .catch((erro) => {
       let error = erro.response
@@ -59,6 +69,10 @@ function Login() {
       //Colocar as sms de erro aqui 500 , 404 etc, e essas linhas comentadas são da api o que ta em cima é um exemplo para setar um token no sessionStorage
     })
   }
+
+  useEffect(() => {
+    
+  })
   
 
   return (

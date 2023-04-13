@@ -4,6 +4,7 @@ import { Calendar } from "react-multi-date-picker";
 import Image1 from "../../assets/carBMW-M440i.jpg";
 import { useEffect } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import api from "../../services/api";
 import { getToken } from '../../services/auth'
 
 function Rent({ filtroProduct }) {
@@ -54,13 +55,13 @@ function Rent({ filtroProduct }) {
 
   // useEffect(() => {
 
-  //   api.post("/booking/{id}").then((response) => {
+  //   api.post("/booking").then((response) => {
       
   //     setBooking(response.data)
   //     console.log(response)
   //   })
-  //   .cath(() => {
-  //     setBooking([])
+  //   .cath((error) => {
+  //     console.log(error)
   //   })
   // })
 
@@ -126,7 +127,8 @@ function Rent({ filtroProduct }) {
     if(isAuthenticated){
       navigate("/aluguel-confirmado/" + id)
     }else{
-      navigate("/entrar")
+      navigate("/entrar" , { state:{origin: '/alugue/' + id} } 
+      )
     }
   }
 
