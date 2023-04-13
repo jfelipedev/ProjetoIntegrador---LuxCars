@@ -76,13 +76,13 @@ function Rent({ filtroProduct }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + getToken,
+            Authorization: "Bearer " + getToken(),
           },
           body: JSON.stringify({
-            startDate: value[0].toDate().toString(),
-            startTime: "",
-            endDate: value[1].toDate().toString(),
-            idCar: id,
+            startDate: value[0].toDate().toLocaleDateString('pt-BR'),
+            startTime: "08:00:00",
+            endDate: value[1].toDate().toLocaleDateString('pt-BR'),
+            idCar: parseInt(id),
           }),
         }
       );
@@ -94,7 +94,7 @@ function Rent({ filtroProduct }) {
     }
   }
 
-  postData();
+  // postData();
 
   // console.log(filtroProduct);
 
@@ -180,6 +180,7 @@ function Rent({ filtroProduct }) {
 
   const handleConfirm = () => {
     if (isAuthenticated) {
+      postData();
       navigate(`/aluguel-confirmado/${id}`)
       console.log(id);
     } else {
