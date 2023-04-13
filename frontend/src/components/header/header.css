@@ -8,6 +8,7 @@
   z-index: 100;
   background-color: #1c1c1c;
   box-shadow: 5px 1px 3px #1c1c1c;
+  z-index: 999;
 }
 
 Link {

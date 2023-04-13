@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
 import "./rent.css";
 import { Calendar } from "react-multi-date-picker";
-import Image1 from "../../assets/carBMW-M440i.jpg";
 import { useEffect } from "react";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
-import {
-  TOKEN_FIRST,
+import { useParams, useNavigate } from "react-router-dom";
+import {  
   getToken,
   getTokenName,
   getTokenSurname,
@@ -94,10 +91,8 @@ function Rent({ filtroProduct }) {
     }
   }
 
-  // postData();
 
-  // console.log(filtroProduct);
-
+  //about the calendar
   const weekDays = ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sá"];
   const months = [
     "jan",
@@ -114,7 +109,27 @@ function Rent({ filtroProduct }) {
     "dez",
   ];
 
-  // console.log(carInfo);
+  // logic to resize calendar
+  const [numberOfMonths, setNumberOfMonths] = useState(2);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 700) {
+        setNumberOfMonths(1);
+      } else {
+        setNumberOfMonths(2);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+// end of it
 
   const handleDateChange = (date) => {
     setValue(date);
@@ -252,16 +267,16 @@ function Rent({ filtroProduct }) {
             <div className="calendar">
               <div className="rentCalendarContainer">
                 <div className="rentCalendar">
-                  <div style={{ width: 480 }} className="rentCalendar">
+                  <div className="rentCalendar">
                     <h1 className="rentFromTitle">
                       Selecione sua data de reserva
                     </h1>
                     <Calendar
+                    numberOfMonths={numberOfMonths}
                       value={value}
                       weekDays={weekDays}
                       months={months}
-                      onChange={handleDateChange}
-                      numberOfMonths={2}
+                      onChange={handleDateChange}                      
                       format="DD/MM/YYYY"
                       size="large"
                       range
