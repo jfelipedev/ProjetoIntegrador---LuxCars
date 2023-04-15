@@ -18,6 +18,7 @@ import Contact from './pages/contact/index'
 import RentConfirmScreen from "./pages/rentConfirm";
 import AllCarsScreen from './pages/allCars/index'
 import AdminPage from "./pages/adminPage";
+import NotFound from "./pages/404";
 
 
 
@@ -41,6 +42,7 @@ root.render(
         <Route path="/faq" element={<Faq />} />
         <Route path="/contato" element={<Contact />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </BrowserRouter>

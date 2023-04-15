@@ -4,6 +4,7 @@
 	margin: 0 auto;
     padding: 190px 10px 0 10px ;
   
+    color: whitesmoke;
 }
 
 .form {
@@ -39,4 +40,5 @@
     text-align: left;
     margin-bottom: 40px;
     margin-left: 5px;
+    color: whitesmoke;
 }

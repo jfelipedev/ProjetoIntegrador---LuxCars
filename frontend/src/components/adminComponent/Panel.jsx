@@ -5,7 +5,6 @@ import ImagePanel from './Panels/ImagePanel';
 import BookingPanel from './Panels/BookingPanel';
 import CarPanel from './Panels/CarPanel';
 import ContactUSPanel from './Panels/ContactUSPanel';
-import './stylePanel.css';
 
 function Panel(props) {
     switch(props.panel){

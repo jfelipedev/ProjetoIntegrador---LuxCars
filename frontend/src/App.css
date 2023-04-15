@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+#root{
+  background-color: #474350;
+}
+
 html{
   scroll-behavior: smooth;
   background: #474350;

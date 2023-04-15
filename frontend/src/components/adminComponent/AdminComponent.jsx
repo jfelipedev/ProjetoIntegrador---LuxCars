@@ -6,6 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getToken, getTokenRole} from '../../services/auth';
 
 function AdminComponent() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const [panel, setPanel] = useState(null);    
     let display = false;
  
